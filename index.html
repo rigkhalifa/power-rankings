@@ -65,6 +65,7 @@
   .digest h2 { font-weight: 600; font-size: 22px; margin: 0 0 4px; }
   .digest .sub { font-style: italic; font-size: 14px; color: var(--ink-muted); margin: 0 0 20px; }
   .digest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px 20px; }
+  #value-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
   .digest-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; color: var(--ink-muted); margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
   .digest-card ol { list-style: none; margin: 0; padding: 0; }
   .digest-card li { font-size: 14px; padding: 4px 0; border-bottom: 1px solid var(--divider); }
@@ -84,6 +85,15 @@
   .trophy-owner { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); margin-left: 6px; }
   .trophy-count { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--trophy); white-space: nowrap; }
   .trophy-panel { display: none; padding: 4px 4px 16px 4px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-muted); border-bottom: 1px solid var(--divider); }
+
+  .value-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; color: var(--ink-muted); margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .value-card ol { list-style: none; margin: 0; padding: 0; }
+  .value-card li { font-size: 13px; padding: 5px 0; border-bottom: 1px solid var(--divider); display: flex; justify-content: space-between; gap: 8px; }
+  .value-card li:last-child { border-bottom: none; }
+  .value-card .n { font-family: 'IBM Plex Mono', monospace; color: var(--ink-muted); margin-right: 6px; }
+  .value-card .vname { flex: 1; }
+  .value-card .vsalary { font-family: 'IBM Plex Mono', monospace; color: var(--accent); font-weight: 500; white-space: nowrap; }
+  .value-card .vteam { display: block; font-size: 11px; color: var(--ink-muted); font-style: italic; }
 
   .empty, .error { padding: 40px 4px; text-align: center; color: var(--ink-muted); font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
 </style>
@@ -107,6 +117,12 @@
       <h2>Trophy case</h2>
       <p class="sub">League championship history, 2012&ndash;2025</p>
       <div id="trophy-list"></div>
+    </div>
+
+    <div class="digest">
+      <h2>Best value vs. The Blitz</h2>
+      <p class="sub">Top 10 per position by cost per projected point</p>
+      <div id="value-grid" class="digest-grid"></div>
     </div>
   </div>
 
@@ -136,8 +152,9 @@
     Promise.all([
       fetch(API_URL).then(r => r.json()),
       fetch('projections.json').then(r => r.json()),
-      fetch('trophies.json').then(r => r.json())
-    ]).then(([teams, projectionsRaw, trophies]) => {
+      fetch('trophies.json').then(r => r.json()),
+      fetch('best_value.json').then(r => r.json())
+    ]).then(([teams, projectionsRaw, trophies, bestValue]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -145,6 +162,7 @@
       renderList(teams, projections);
       renderDigest(projectionsRaw);
       renderTrophies(trophies);
+      renderBestValue(bestValue);
     }).catch(err => {
       document.getElementById('list').innerHTML =
         '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
@@ -245,6 +263,18 @@
           chev.classList.toggle('open', !open);
         });
       });
+    }
+    function renderBestValue(bestValue) {
+      const grid = document.getElementById('value-grid');
+      const order = ['QB', 'RB', 'WR', 'TE'];
+      grid.innerHTML = order.filter(pos => bestValue[pos]).map(pos => {
+        const items = bestValue[pos].map((p, idx) => `
+          <li>
+            <span class="vname"><span class="n">${idx + 1}.</span>${p.player}<span class="vteam">${p.team}</span></span>
+            <span class="vsalary">$${p.salary}</span>
+          </li>`).join('');
+        return `<div class="digest-card value-card"><h3>${pos}</h3><ol>${items}</ol></div>`;
+      }).join('');
     }
   </script>
 </body>
