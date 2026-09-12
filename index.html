@@ -134,6 +134,7 @@
   <div class="page">
     <div class="tabs">
       <button class="tab-btn active" data-view="current">2026 Season</button>
+      <button class="tab-btn" data-view="history">League History</button>
       <button class="tab-btn" data-view="y2025">2025 Review</button>
       <button class="tab-btn" data-view="y2024">2024 Review</button>
     </div>
@@ -147,28 +148,36 @@
     <div id="list">Loading&hellip;</div>
 
     <div class="digest">
-      <h2>Position digest</h2>
-      <p class="sub">Top 3 teams per position, preseason</p>
-      <div id="digest-grid" class="digest-grid"></div>
-    </div>
-
-    <div class="digest">
-      <h2>Trophy case</h2>
-      <p class="sub">League championship history, 2012&ndash;2025</p>
-      <div id="trophy-list"></div>
-    </div>
-
-    <div class="digest">
-      <h2>Career earnings</h2>
-      <p class="sub" id="earnings-sub"></p>
-      <div id="earnings-list"></div>
-    </div>
-
-    <div class="digest">
       <h2>Top salaries vs. THE BLITZ projections</h2>
       <p class="sub">The 15 biggest auction prices per position, checked against THE BLITZ's own rank for that player</p>
       <div id="value-grid" class="digest-grid"></div>
     </div>
+
+    <div class="digest">
+      <h2>Position digest</h2>
+      <p class="sub">Top 3 teams per position, preseason</p>
+      <div id="digest-grid" class="digest-grid"></div>
+    </div>
+    </div>
+
+    <div id="view-history" style="display:none;">
+      <div class="masthead">
+        <h1>League history</h1>
+        <p>All-time records, spanning every season on file</p>
+        <hr class="rule">
+      </div>
+
+      <div class="digest">
+        <h2>Trophy case</h2>
+        <p class="sub">League championship history, 2012&ndash;2025</p>
+        <div id="trophy-list"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Career earnings</h2>
+        <p class="sub" id="earnings-sub"></p>
+        <div id="earnings-list"></div>
+      </div>
     </div>
 
     <div id="view-y2025" style="display:none;">
@@ -269,6 +278,7 @@
         btn.classList.add('active');
         const view = btn.dataset.view;
         document.getElementById('view-current').style.display = view === 'current' ? '' : 'none';
+        document.getElementById('view-history').style.display = view === 'history' ? '' : 'none';
         document.getElementById('view-y2025').style.display = view === 'y2025' ? '' : 'none';
         document.getElementById('view-y2024').style.display = view === 'y2024' ? '' : 'none';
       });
