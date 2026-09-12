@@ -1,31 +1,31 @@
 {
   "season": "2024",
   "standings": [
-    {"rank": 1, "team": "Loose Ends", "record": "10-4", "ppg": 128.9},
-    {"rank": 2, "team": "ban defense", "record": "7-7", "ppg": 127.6},
-    {"rank": 3, "team": "The Masonic Temple", "record": "11-3", "ppg": 121.1},
-    {"rank": 4, "team": "Chud", "record": "8-6", "ppg": 123.7},
-    {"rank": 5, "team": "Desmond Rizzler", "record": "6-8", "ppg": 127.3},
-    {"rank": 6, "team": "the moss zone", "record": "7-7", "ppg": 115.5},
-    {"rank": 7, "team": "Balance & Harmony", "record": "7-7", "ppg": 119.0},
-    {"rank": 8, "team": "there is nothing here but pain", "record": "5-9", "ppg": 119.5},
-    {"rank": 9, "team": "I was top scorer week 1", "record": "6-8", "ppg": 113.9},
-    {"rank": 10, "team": "FG's & Family Values", "record": "3-11", "ppg": 115.1}
+    {"rank": 1, "team": "ZC", "record": "10-4", "ppg": 128.9},
+    {"rank": 2, "team": "Gurv", "record": "7-7", "ppg": 127.6},
+    {"rank": 3, "team": "BB", "record": "11-3", "ppg": 121.1},
+    {"rank": 4, "team": "JM", "record": "8-6", "ppg": 123.7},
+    {"rank": 5, "team": "NW", "record": "6-8", "ppg": 127.3},
+    {"rank": 6, "team": "Pat", "record": "7-7", "ppg": 115.5},
+    {"rank": 7, "team": "T", "record": "7-7", "ppg": 119.0},
+    {"rank": 8, "team": "Janny", "record": "5-9", "ppg": 119.5},
+    {"rank": 9, "team": "Knees", "record": "6-8", "ppg": 113.9},
+    {"rank": 10, "team": "Masten", "record": "3-11", "ppg": 115.1}
   ],
   "high_scorers": [
-    {"team": "Loose Ends", "count": 3},
-    {"team": "Desmond Rizzler", "count": 2},
-    {"team": "there is nothing here but pain", "count": 2},
-    {"team": "Balance & Harmony", "count": 2},
-    {"team": "ban defense", "count": 2},
-    {"team": "I was top scorer week 1", "count": 1},
-    {"team": "Chud", "count": 1},
-    {"team": "the moss zone", "count": 1}
+    {"team": "ZC", "count": 3},
+    {"team": "NW", "count": 2},
+    {"team": "Janny", "count": 2},
+    {"team": "T", "count": 2},
+    {"team": "Gurv", "count": 2},
+    {"team": "Knees", "count": 1},
+    {"team": "JM", "count": 1},
+    {"team": "Pat", "count": 1}
   ],
   "highlights": [
-    {"title": "Peaked in the playoffs", "text": "Chud (JM) won the actual championship despite finishing just 4th in the regular-season power rank with only 1 week as high scorer \u2014 the opposite of a wire-to-wire story."},
-    {"title": "Best record, no respect", "text": "The Masonic Temple had the league's best record at 11-3 \u2014 yet finished only 3rd in the power rank and never once posted the week's high score. Great at winning close ones, never truly dominant."},
-    {"title": "Says it all", "text": "I was top scorer week 1 was, in fact, top scorer exactly once \u2014 week 1. The name has aged with brutal accuracy ever since."},
-    {"title": "Consistently solid", "text": "Loose Ends led the league in both the regular-season power rank and the weekly high-scorer count (3 wins) \u2014 the most complete season of anyone who didn't end up hoisting the trophy."}
+    {"title": "Peaked in the playoffs", "text": "JM (Chud) won the actual championship despite finishing just 4th in the regular-season power rank with only 1 week as high scorer \u2014 the opposite of a wire-to-wire story."},
+    {"title": "Best record, no respect", "text": "BB (The Masonic Temple) had the league's best record at 11-3 \u2014 yet finished only 3rd in the power rank and never once posted the week's high score."},
+    {"title": "Says it all", "text": "Knees's team, \"I was top scorer week 1,\" was in fact top scorer exactly once \u2014 week 1. The name has aged with brutal accuracy ever since."},
+    {"title": "Consistently solid", "text": "ZC (Loose Ends) led the league in both the regular-season power rank and the weekly high-scorer count (3 wins) \u2014 the most complete season of anyone who didn't end up hoisting the trophy."}
   ]
 }
