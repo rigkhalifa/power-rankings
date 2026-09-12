@@ -27,6 +27,28 @@
     font-family: 'Source Serif 4', serif;
   }
   .page { max-width: 640px; margin: 0 auto; padding: 44px 24px 70px; }
+
+  .tabs { display: flex; gap: 8px; margin-bottom: 28px; }
+  .tab-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    background: none;
+    border: 1px solid var(--divider);
+    color: var(--ink-muted);
+    padding: 7px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .tab-btn.active { border-color: var(--accent); color: var(--ink); background: rgba(107, 164, 135, 0.1); }
+
+  .ly-row { display: grid; grid-template-columns: 36px 1fr auto; align-items: baseline; gap: 14px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
+  .ly-row .rank { font-family: 'IBM Plex Mono', monospace; font-size: 16px; color: var(--ink-muted); text-align: right; }
+  .ly-row .lyname { font-size: 15px; font-weight: 500; }
+  .ly-row .lystats { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-muted); text-align: right; white-space: nowrap; }
+
+  .highlight-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: var(--accent); margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .highlight-card p { font-size: 14px; line-height: 1.5; margin: 0; }
   .masthead h1 { font-weight: 600; font-size: 30px; margin: 0 0 8px; letter-spacing: -0.2px; }
   .masthead p { font-style: italic; font-size: 15px; color: var(--ink-muted); margin: 0 0 20px; }
   .masthead .rule { border: none; border-top: 1px solid var(--ink); margin: 0; }
@@ -66,6 +88,7 @@
   .digest .sub { font-style: italic; font-size: 14px; color: var(--ink-muted); margin: 0 0 20px; }
   .digest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px 20px; }
   #value-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  #ly-highlights { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
   .digest-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; color: var(--ink-muted); margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
   .digest-card ol { list-style: none; margin: 0; padding: 0; }
   .digest-card li { font-size: 14px; padding: 4px 0; border-bottom: 1px solid var(--divider); }
@@ -101,6 +124,12 @@
 </head>
 <body>
   <div class="page">
+    <div class="tabs">
+      <button class="tab-btn active" data-view="current">2026 Season</button>
+      <button class="tab-btn" data-view="lastyear">2025 Review</button>
+    </div>
+
+    <div id="view-current">
     <div class="masthead">
       <h1>Draft power rankings</h1>
       <p>Based on preseason roster grades &mdash; live rankings begin after Week 1</p>
@@ -122,8 +151,24 @@
 
     <div class="digest">
       <h2>Top salaries vs. THE BLITZ projections</h2>
-      <p class="sub">The 10 biggest auction prices per position, checked against THE BLITZ's own rank for that player</p>
+      <p class="sub">The 15 biggest auction prices per position, checked against THE BLITZ's own rank for that player</p>
       <div id="value-grid" class="digest-grid"></div>
+    </div>
+    </div>
+
+    <div id="view-lastyear" style="display:none;">
+      <div class="masthead">
+        <h1 id="ly-title">2025 season review</h1>
+        <p>Final standings and storylines from last year</p>
+        <hr class="rule">
+      </div>
+      <div id="ly-list"></div>
+
+      <div class="digest">
+        <h2>Storylines</h2>
+        <p class="sub">The season's biggest moments</p>
+        <div id="ly-highlights" class="digest-grid"></div>
+      </div>
     </div>
   </div>
 
@@ -154,8 +199,9 @@
       fetch(API_URL).then(r => r.json()),
       fetch('projections.json').then(r => r.json()),
       fetch('trophies.json').then(r => r.json()),
-      fetch('best_value.json').then(r => r.json())
-    ]).then(([teams, projectionsRaw, trophies, bestValue]) => {
+      fetch('best_value.json').then(r => r.json()),
+      fetch('last_year.json').then(r => r.json())
+    ]).then(([teams, projectionsRaw, trophies, bestValue, lastYear]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -164,10 +210,21 @@
       renderDigest(projectionsRaw);
       renderTrophies(trophies);
       renderBestValue(bestValue);
+      renderLastYear(lastYear);
     }).catch(err => {
       document.getElementById('list').innerHTML =
         '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
       console.error(err);
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const view = btn.dataset.view;
+        document.getElementById('view-current').style.display = view === 'current' ? '' : 'none';
+        document.getElementById('view-lastyear').style.display = view === 'lastyear' ? '' : 'none';
+      });
     });
 
     function renderList(teams, projections) {
@@ -280,6 +337,24 @@
           </li>`).join('');
         return `<div class="digest-card value-card"><h3>${pos}</h3><ol>${items}</ol></div>`;
       }).join('');
+    }
+    function renderLastYear(data) {
+      document.getElementById('ly-title').textContent = data.season + ' season review';
+
+      const list = document.getElementById('ly-list');
+      list.innerHTML = data.standings.map(s => `
+        <div class="ly-row">
+          <div class="rank">${s.rank}</div>
+          <div class="lyname">${s.team}</div>
+          <div class="lystats">${s.record} &middot; ${s.ppg} ppg</div>
+        </div>`).join('');
+
+      const grid = document.getElementById('ly-highlights');
+      grid.innerHTML = data.highlights.map(h => `
+        <div class="highlight-card">
+          <h3>${h.title}</h3>
+          <p>${h.text}</p>
+        </div>`).join('');
     }
   </script>
 </body>
