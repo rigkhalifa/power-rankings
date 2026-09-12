@@ -1,12 +1,112 @@
 {
-  "Ban Him & Aubrey": {"TE": 1, "K": 1, "DST": 2, "QB": 3, "RB": 4, "WR": 5, "FLEX": 8, "STARTERS": 1, "BENCH": 5},
-  "Co-Authored-By Claude": {"FLEX": 1, "TE": 2, "WR": 3, "K": 4, "QB": 5, "DST": 8, "RB": 9, "STARTERS": 5, "BENCH": 1},
-  "Jeanty want winny": {"RB": 1, "DST": 1, "QB": 4, "TE": 4, "FLEX": 4, "WR": 10, "K": 10, "STARTERS": 3, "BENCH": 3},
-  "Destined for 3rd": {"QB": 1, "FLEX": 2, "WR": 2, "K": 2, "DST": 3, "TE": 7, "RB": 10, "STARTERS": 7, "BENCH": 2},
-  "reigning playoff team": {"QB": 2, "RB": 5, "TE": 5, "FLEX": 5, "WR": 6, "K": 8, "DST": 10, "STARTERS": 4, "BENCH": 7},
-  "MASTEⅣ's MILFs": {"WR": 1, "K": 5, "RB": 6, "FLEX": 7, "QB": 8, "TE": 9, "DST": 10, "STARTERS": 2, "BENCH": 9},
-  "Chasing Victory": {"FLEX": 3, "K": 3, "DST": 4, "WR": 4, "QB": 6, "TE": 6, "RB": 7, "STARTERS": 6, "BENCH": 6},
-  "Fat Husband": {"RB": 3, "K": 6, "DST": 7, "TE": 8, "WR": 8, "FLEX": 9, "QB": 10, "STARTERS": 9, "BENCH": 8},
-  "Ban defense & kickers": {"TE": 3, "DST": 6, "FLEX": 6, "WR": 7, "K": 7, "RB": 8, "QB": 9, "STARTERS": 10, "BENCH": 4},
-  "Absolutely not ass per chat": {"RB": 2, "DST": 5, "QB": 7, "WR": 9, "K": 9, "TE": 10, "FLEX": 10, "STARTERS": 8, "BENCH": 10}
+  "Ban Him & Aubrey": {
+    "TE": 1,
+    "K": 1,
+    "DST": 2,
+    "QB": 3,
+    "RB": 4,
+    "WR": 5,
+    "FLEX": 8,
+    "STARTERS": 1,
+    "BENCH": 5
+  },
+  "Co-Authored": {
+    "FLEX": 1,
+    "TE": 2,
+    "WR": 3,
+    "K": 4,
+    "QB": 5,
+    "DST": 8,
+    "RB": 9,
+    "STARTERS": 5,
+    "BENCH": 1
+  },
+  "Jeanty want winny": {
+    "RB": 1,
+    "DST": 1,
+    "QB": 4,
+    "TE": 4,
+    "FLEX": 4,
+    "WR": 10,
+    "K": 10,
+    "STARTERS": 3,
+    "BENCH": 3
+  },
+  "Destined for 3rd": {
+    "QB": 1,
+    "FLEX": 2,
+    "WR": 2,
+    "K": 2,
+    "DST": 3,
+    "TE": 7,
+    "RB": 10,
+    "STARTERS": 7,
+    "BENCH": 2
+  },
+  "reigning playoff team": {
+    "QB": 2,
+    "RB": 5,
+    "TE": 5,
+    "FLEX": 5,
+    "WR": 6,
+    "K": 8,
+    "DST": 10,
+    "STARTERS": 4,
+    "BENCH": 7
+  },
+  "MILFs": {
+    "WR": 1,
+    "K": 5,
+    "RB": 6,
+    "FLEX": 7,
+    "QB": 8,
+    "TE": 9,
+    "DST": 10,
+    "STARTERS": 2,
+    "BENCH": 9
+  },
+  "Chasing Victory": {
+    "FLEX": 3,
+    "K": 3,
+    "DST": 4,
+    "WR": 4,
+    "QB": 6,
+    "TE": 6,
+    "RB": 7,
+    "STARTERS": 6,
+    "BENCH": 6
+  },
+  "Fat Husband": {
+    "RB": 3,
+    "K": 6,
+    "DST": 7,
+    "TE": 8,
+    "WR": 8,
+    "FLEX": 9,
+    "QB": 10,
+    "STARTERS": 9,
+    "BENCH": 8
+  },
+  "Ban defense & kickers": {
+    "TE": 3,
+    "DST": 6,
+    "FLEX": 6,
+    "WR": 7,
+    "K": 7,
+    "RB": 8,
+    "QB": 9,
+    "STARTERS": 10,
+    "BENCH": 4
+  },
+  "not ass per chat": {
+    "RB": 2,
+    "DST": 5,
+    "QB": 7,
+    "WR": 9,
+    "K": 9,
+    "TE": 10,
+    "FLEX": 10,
+    "STARTERS": 8,
+    "BENCH": 10
+  }
 }
