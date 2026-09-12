@@ -88,13 +88,13 @@
 
   .value-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; color: var(--ink-muted); margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
   .value-card ol { list-style: none; margin: 0; padding: 0; }
-  .value-card li { font-size: 13px; padding: 5px 0; border-bottom: 1px solid var(--divider); display: flex; justify-content: space-between; gap: 8px; }
-  .value-card li:last-child { border-bottom: none; }
-  .value-card .n { font-family: 'IBM Plex Mono', monospace; color: var(--ink-muted); margin-right: 6px; }
-  .value-card .vname { flex: 1; }
-  .value-card .vsalary { font-family: 'IBM Plex Mono', monospace; color: var(--accent); font-weight: 500; white-space: nowrap; }
-  .value-card .vrank { font-family: 'IBM Plex Mono', monospace; color: var(--ink-muted); font-size: 12px; white-space: nowrap; }
-  .value-card .vteam { display: block; font-size: 11px; color: var(--ink-muted); font-style: italic; }
+  .value-row { display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--divider); }
+  .value-row:last-child { border-bottom: none; }
+  .value-row .vsalary { font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 500; color: var(--accent); }
+  .value-row .vname { font-size: 14px; font-weight: 500; }
+  .value-row .vteam { display: block; font-size: 11px; color: var(--ink-muted); font-style: italic; }
+  .value-row .vblitz { text-align: right; font-size: 10px; color: var(--ink-muted); line-height: 1.3; white-space: nowrap; }
+  .value-row .vblitz b { font-family: 'IBM Plex Mono', monospace; color: var(--ink); font-size: 13px; display: block; font-weight: 500; }
 
   .empty, .error { padding: 40px 4px; text-align: center; color: var(--ink-muted); font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
 </style>
@@ -121,8 +121,8 @@
     </div>
 
     <div class="digest">
-      <h2>Best value vs. The Blitz</h2>
-      <p class="sub">Top 10 salaries per position, next to Blitz's own rank for that player</p>
+      <h2>Top salaries vs. THE BLITZ projections</h2>
+      <p class="sub">The 10 biggest auction prices per position, checked against THE BLITZ's own rank for that player</p>
       <div id="value-grid" class="digest-grid"></div>
     </div>
   </div>
@@ -269,10 +269,14 @@
       const grid = document.getElementById('value-grid');
       const order = ['QB', 'RB', 'WR', 'TE'];
       grid.innerHTML = order.filter(pos => bestValue[pos] && bestValue[pos].length).map(pos => {
-        const items = bestValue[pos].map((p, idx) => `
-          <li>
-            <span class="vname"><span class="n">${idx + 1}.</span>${p.player}<span class="vteam">${p.team} &middot; $${p.salary}</span></span>
-            <span class="vrank">${p.blitz_rank ? pos + p.blitz_rank : '&mdash;'}</span>
+        const items = bestValue[pos].map((p) => `
+          <li class="value-row">
+            <div class="vsalary">$${p.salary}</div>
+            <div>
+              <div class="vname">${p.player}</div>
+              <div class="vteam">${p.team}</div>
+            </div>
+            <div class="vblitz">THE BLITZ says<b>${p.blitz_rank ? pos + p.blitz_rank : '&mdash;'}</b></div>
           </li>`).join('');
         return `<div class="digest-card value-card"><h3>${pos}</h3><ol>${items}</ol></div>`;
       }).join('');
