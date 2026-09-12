@@ -1,0 +1,185 @@
+{
+  "RB": [
+    {
+      "player": "Quinshon Judkins",
+      "team": "Co-Authored",
+      "salary": 16,
+      "predicted": 25.0,
+      "surplus": 9.0
+    },
+    {
+      "player": "De'Von Achane",
+      "team": "MILFs",
+      "salary": 36,
+      "predicted": 43.8,
+      "surplus": 7.82
+    },
+    {
+      "player": "Breece Hall",
+      "team": "Co-Authored",
+      "salary": 21,
+      "predicted": 27.2,
+      "surplus": 6.22
+    },
+    {
+      "player": "Ashton Jeanty",
+      "team": "Fat Husband",
+      "salary": 32,
+      "predicted": 37.0,
+      "surplus": 5.01
+    },
+    {
+      "player": "Christian McCaffrey",
+      "team": "not ass per chat",
+      "salary": 55,
+      "predicted": 59.9,
+      "surplus": 4.91
+    },
+    {
+      "player": "Jahmyr Gibbs",
+      "team": "Jeanty want winny",
+      "salary": 69,
+      "predicted": 72.4,
+      "surplus": 3.36
+    },
+    {
+      "player": "D'Andre Swift",
+      "team": "Destined for 3rd",
+      "salary": 16,
+      "predicted": 19.0,
+      "surplus": 2.95
+    },
+    {
+      "player": "Cam Skattebo",
+      "team": "Destined for 3rd",
+      "salary": 17,
+      "predicted": 19.9,
+      "surplus": 2.86
+    },
+    {
+      "player": "Jeremiyah Love",
+      "team": "MILFs",
+      "salary": 21,
+      "predicted": 21.9,
+      "surplus": 0.87
+    },
+    {
+      "player": "Saquon Barkley",
+      "team": "Ban Him & Aubrey",
+      "salary": 40,
+      "predicted": 40.8,
+      "surplus": 0.8
+    }
+  ],
+  "WR": [
+    {
+      "player": "Drake London",
+      "team": "Destined for 3rd",
+      "salary": 30,
+      "predicted": 38.3,
+      "surplus": 8.28
+    },
+    {
+      "player": "Justin Jefferson",
+      "team": "Co-Authored",
+      "salary": 34,
+      "predicted": 41.9,
+      "surplus": 7.88
+    },
+    {
+      "player": "Rashee Rice",
+      "team": "Co-Authored",
+      "salary": 32,
+      "predicted": 36.4,
+      "surplus": 4.38
+    },
+    {
+      "player": "Zay Flowers",
+      "team": "Co-Authored",
+      "salary": 27,
+      "predicted": 30.3,
+      "surplus": 3.28
+    },
+    {
+      "player": "Davante Adams",
+      "team": "Co-Authored",
+      "salary": 20,
+      "predicted": 21.8,
+      "surplus": 1.85
+    },
+    {
+      "player": "Puka Nacua",
+      "team": "Ban Him & Aubrey",
+      "salary": 49,
+      "predicted": 50.3,
+      "surplus": 1.28
+    },
+    {
+      "player": "DJ Moore",
+      "team": "not ass per chat",
+      "salary": 15,
+      "predicted": 14.9,
+      "surplus": -0.06
+    },
+    {
+      "player": "Tee Higgins",
+      "team": "reigning playoff team",
+      "salary": 19,
+      "predicted": 18.7,
+      "surplus": -0.32
+    },
+    {
+      "player": "DeVonta Smith",
+      "team": "Destined for 3rd",
+      "salary": 26,
+      "predicted": 25.5,
+      "surplus": -0.51
+    },
+    {
+      "player": "Garrett Wilson",
+      "team": "reigning playoff team",
+      "salary": 17,
+      "predicted": 14.6,
+      "surplus": -2.4
+    }
+  ],
+  "TE": [
+    {
+      "player": "Trey McBride",
+      "team": "Ban Him & Aubrey",
+      "salary": 25,
+      "predicted": 26.3,
+      "surplus": 1.27
+    },
+    {
+      "player": "Colston Loveland",
+      "team": "Co-Authored",
+      "salary": 16,
+      "predicted": 10.3,
+      "surplus": -5.72
+    },
+    {
+      "player": "Brock Bowers",
+      "team": "Ban defense & kickers",
+      "salary": 34,
+      "predicted": 19.9,
+      "surplus": -14.12
+    }
+  ],
+  "QB": [
+    {
+      "player": "Josh Allen",
+      "team": "Destined for 3rd",
+      "salary": 20,
+      "predicted": 12.0,
+      "surplus": -7.97
+    },
+    {
+      "player": "Lamar Jackson",
+      "team": "reigning playoff team",
+      "salary": 15,
+      "predicted": 4.7,
+      "surplus": -10.29
+    }
+  ]
+}
