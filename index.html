@@ -93,6 +93,7 @@
   .value-card .n { font-family: 'IBM Plex Mono', monospace; color: var(--ink-muted); margin-right: 6px; }
   .value-card .vname { flex: 1; }
   .value-card .vsalary { font-family: 'IBM Plex Mono', monospace; color: var(--accent); font-weight: 500; white-space: nowrap; }
+  .value-card .vsalary.over { color: var(--tier-bad); }
   .value-card .vteam { display: block; font-size: 11px; color: var(--ink-muted); font-style: italic; }
 
   .empty, .error { padding: 40px 4px; text-align: center; color: var(--ink-muted); font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
@@ -121,7 +122,7 @@
 
     <div class="digest">
       <h2>Best value vs. The Blitz</h2>
-      <p class="sub">Top 10 per position by cost per projected point</p>
+      <p class="sub">$15+ picks, ranked by surplus vs. this draft's own price curve</p>
       <div id="value-grid" class="digest-grid"></div>
     </div>
   </div>
@@ -267,12 +268,17 @@
     function renderBestValue(bestValue) {
       const grid = document.getElementById('value-grid');
       const order = ['QB', 'RB', 'WR', 'TE'];
-      grid.innerHTML = order.filter(pos => bestValue[pos]).map(pos => {
-        const items = bestValue[pos].map((p, idx) => `
+      grid.innerHTML = order.filter(pos => bestValue[pos] && bestValue[pos].length).map(pos => {
+        const items = bestValue[pos].map((p, idx) => {
+          const isOver = p.surplus < 0;
+          const sign = isOver ? '&minus;' : '+';
+          const label = `${sign}$${Math.abs(p.surplus).toFixed(0)}`;
+          return `
           <li>
-            <span class="vname"><span class="n">${idx + 1}.</span>${p.player}<span class="vteam">${p.team}</span></span>
-            <span class="vsalary">$${p.salary}</span>
-          </li>`).join('');
+            <span class="vname"><span class="n">${idx + 1}.</span>${p.player}<span class="vteam">${p.team} &middot; paid $${p.salary}</span></span>
+            <span class="vsalary ${isOver ? 'over' : ''}">${label}</span>
+          </li>`;
+        }).join('');
         return `<div class="digest-card value-card"><h3>${pos}</h3><ol>${items}</ol></div>`;
       }).join('');
     }
