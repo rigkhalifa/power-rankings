@@ -1,0 +1,185 @@
+{
+  "payout_note": "$1,000 for 1st, $510 for 2nd, $35/week high scorer over a 14-week regular season. 2024\u20132025 only.",
+  "leaderboard": [
+    {
+      "owner": "Gurv",
+      "total": 1210,
+      "breakdown": [
+        {
+          "year": "2025",
+          "team": "Ban defense & kickers",
+          "note": "1st place",
+          "amount": 1000
+        },
+        {
+          "year": "2025",
+          "team": "Ban defense & kickers",
+          "note": "4 weekly high scores",
+          "amount": 140
+        },
+        {
+          "year": "2024",
+          "team": "ban defense",
+          "note": "2 weekly high scores",
+          "amount": 70
+        }
+      ]
+    },
+    {
+      "owner": "JM",
+      "total": 1070,
+      "breakdown": [
+        {
+          "year": "2024",
+          "team": "Chud",
+          "note": "1st place",
+          "amount": 1000
+        },
+        {
+          "year": "2024",
+          "team": "Chud",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2025",
+          "team": "Chud",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
+    },
+    {
+      "owner": "T",
+      "total": 580,
+      "breakdown": [
+        {
+          "year": "2025",
+          "team": "Balance & Harmony",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2024",
+          "team": "Balance & Harmony",
+          "note": "2 weekly high scores",
+          "amount": 70
+        }
+      ]
+    },
+    {
+      "owner": "BB",
+      "total": 580,
+      "breakdown": [
+        {
+          "year": "2024",
+          "team": "The Masonic Temple",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2025",
+          "team": "Fraud Hoax",
+          "note": "2 weekly high scores",
+          "amount": 70
+        }
+      ]
+    },
+    {
+      "owner": "ZC",
+      "total": 175,
+      "breakdown": [
+        {
+          "year": "2025",
+          "team": "Destined for 3rd",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2024",
+          "team": "Loose Ends",
+          "note": "3 weekly high scores",
+          "amount": 105
+        }
+      ]
+    },
+    {
+      "owner": "Knees",
+      "total": 105,
+      "breakdown": [
+        {
+          "year": "2025",
+          "team": "1-0 vs Gurv",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2024",
+          "team": "I was top scorer week 1",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
+    },
+    {
+      "owner": "NW",
+      "total": 105,
+      "breakdown": [
+        {
+          "year": "2025",
+          "team": "Jeanty want",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2024",
+          "team": "Desmond Rizzler",
+          "note": "2 weekly high scores",
+          "amount": 70
+        }
+      ]
+    },
+    {
+      "owner": "Janny",
+      "total": 105,
+      "breakdown": [
+        {
+          "year": "2025",
+          "team": "Dan Campbell",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2024",
+          "team": "there is nothing here but pain",
+          "note": "2 weekly high scores",
+          "amount": 70
+        }
+      ]
+    },
+    {
+      "owner": "Masten",
+      "total": 35,
+      "breakdown": [
+        {
+          "year": "2025",
+          "team": "Columbus Cougars",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
+    },
+    {
+      "owner": "Pat",
+      "total": 35,
+      "breakdown": [
+        {
+          "year": "2024",
+          "team": "the moss zone",
+          "note": "1 weekly high score (departed)",
+          "amount": 35
+        }
+      ]
+    }
+  ]
+}
