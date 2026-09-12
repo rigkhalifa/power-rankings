@@ -126,7 +126,8 @@
   <div class="page">
     <div class="tabs">
       <button class="tab-btn active" data-view="current">2026 Season</button>
-      <button class="tab-btn" data-view="lastyear">2025 Review</button>
+      <button class="tab-btn" data-view="y2025">2025 Review</button>
+      <button class="tab-btn" data-view="y2024">2024 Review</button>
     </div>
 
     <div id="view-current">
@@ -156,18 +157,45 @@
     </div>
     </div>
 
-    <div id="view-lastyear" style="display:none;">
+    <div id="view-y2025" style="display:none;">
       <div class="masthead">
-        <h1 id="ly-title">2025 season review</h1>
-        <p>Final standings and storylines from last year</p>
+        <h1 id="y2025-title">2025 season review</h1>
+        <p>Regular-season only &mdash; this sheet stopped updating once playoffs began, so standings reflect the regular season, not the final bracket.</p>
         <hr class="rule">
       </div>
-      <div id="ly-list"></div>
+      <div id="y2025-list"></div>
+
+      <div class="digest">
+        <h2>Weekly high-scorer leaderboard</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2025-highscore" class="digest-grid"></div>
+      </div>
 
       <div class="digest">
         <h2>Storylines</h2>
         <p class="sub">The season's biggest moments</p>
-        <div id="ly-highlights" class="digest-grid"></div>
+        <div id="y2025-highlights" class="digest-grid"></div>
+      </div>
+    </div>
+
+    <div id="view-y2024" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2024-title">2024 season review</h1>
+        <p>Regular-season only &mdash; this sheet stopped updating once playoffs began, so standings reflect the regular season, not the final bracket.</p>
+        <hr class="rule">
+      </div>
+      <div id="y2024-list"></div>
+
+      <div class="digest">
+        <h2>Weekly high-scorer leaderboard</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2024-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Storylines</h2>
+        <p class="sub">The season's biggest moments</p>
+        <div id="y2024-highlights" class="digest-grid"></div>
       </div>
     </div>
   </div>
@@ -200,8 +228,9 @@
       fetch('projections.json').then(r => r.json()),
       fetch('trophies.json').then(r => r.json()),
       fetch('best_value.json').then(r => r.json()),
-      fetch('last_year.json').then(r => r.json())
-    ]).then(([teams, projectionsRaw, trophies, bestValue, lastYear]) => {
+      fetch('last_year.json').then(r => r.json()),
+      fetch('year_2024.json').then(r => r.json())
+    ]).then(([teams, projectionsRaw, trophies, bestValue, y2025, y2024]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -210,7 +239,8 @@
       renderDigest(projectionsRaw);
       renderTrophies(trophies);
       renderBestValue(bestValue);
-      renderLastYear(lastYear);
+      renderYearReview('y2025', y2025);
+      renderYearReview('y2024', y2024);
     }).catch(err => {
       document.getElementById('list').innerHTML =
         '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
@@ -223,7 +253,8 @@
         btn.classList.add('active');
         const view = btn.dataset.view;
         document.getElementById('view-current').style.display = view === 'current' ? '' : 'none';
-        document.getElementById('view-lastyear').style.display = view === 'lastyear' ? '' : 'none';
+        document.getElementById('view-y2025').style.display = view === 'y2025' ? '' : 'none';
+        document.getElementById('view-y2024').style.display = view === 'y2024' ? '' : 'none';
       });
     });
 
@@ -338,10 +369,10 @@
         return `<div class="digest-card value-card"><h3>${pos}</h3><ol>${items}</ol></div>`;
       }).join('');
     }
-    function renderLastYear(data) {
-      document.getElementById('ly-title').textContent = data.season + ' season review';
+    function renderYearReview(prefix, data) {
+      document.getElementById(`${prefix}-title`).textContent = data.season + ' season review';
 
-      const list = document.getElementById('ly-list');
+      const list = document.getElementById(`${prefix}-list`);
       list.innerHTML = data.standings.map(s => `
         <div class="ly-row">
           <div class="rank">${s.rank}</div>
@@ -349,7 +380,14 @@
           <div class="lystats">${s.record} &middot; ${s.ppg} ppg</div>
         </div>`).join('');
 
-      const grid = document.getElementById('ly-highlights');
+      const hs = document.getElementById(`${prefix}-highscore`);
+      hs.innerHTML = data.high_scorers.map(h => `
+        <div class="trophy-row">
+          <div class="trophy-team">${h.team}</div>
+          <div class="trophy-count">${h.count} week${h.count > 1 ? 's' : ''}</div>
+        </div>`).join('');
+
+      const grid = document.getElementById(`${prefix}-highlights`);
       grid.innerHTML = data.highlights.map(h => `
         <div class="highlight-card">
           <h3>${h.title}</h3>
