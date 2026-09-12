@@ -14,6 +14,10 @@
     --divider: #E4DFD6;
     --accent: #2F4A3C;
     --trophy: #B8860B;
+    --tier-good: #2F4A3C;
+    --tier-mid: #4A6B8A;
+    --tier-bad: #B5533C;
+    --track: #EDE9E1;
   }
   * { box-sizing: border-box; }
   body {
@@ -22,23 +26,15 @@
     color: var(--ink);
     font-family: 'Source Serif 4', serif;
   }
-  .page { max-width: 640px; margin: 0 auto; padding: 44px 24px 60px; }
-  .masthead h1 {
-    font-weight: 600;
-    font-size: 30px;
-    margin: 0 0 8px;
-    letter-spacing: -0.2px;
-  }
-  .masthead p {
-    font-style: italic;
-    font-size: 15px;
-    color: var(--ink-muted);
-    margin: 0 0 20px;
-  }
+  .page { max-width: 640px; margin: 0 auto; padding: 44px 24px 70px; }
+  .masthead h1 { font-weight: 600; font-size: 30px; margin: 0 0 8px; letter-spacing: -0.2px; }
+  .masthead p { font-style: italic; font-size: 15px; color: var(--ink-muted); margin: 0 0 20px; }
   .masthead .rule { border: none; border-top: 1px solid var(--ink); margin: 0; }
+
+  .row-btn { all: unset; cursor: pointer; display: block; width: 100%; }
   .row {
     display: grid;
-    grid-template-columns: 52px 1fr;
+    grid-template-columns: 52px 1fr 20px;
     align-items: baseline;
     gap: 16px;
     padding: 18px 4px;
@@ -46,19 +42,35 @@
     border-left: 2px solid transparent;
   }
   .row.r1 { border-left-color: var(--accent); padding-left: 14px; }
-  .rank {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 18px;
-    color: var(--ink-muted);
-    text-align: right;
-  }
+  .rank { font-family: 'IBM Plex Mono', monospace; font-size: 18px; color: var(--ink-muted); text-align: right; }
   .row.r1 .rank { color: var(--ink); font-weight: 500; }
-  .team-name {
-    font-size: 18px;
-    font-weight: 500;
-  }
+  .team-name { font-size: 18px; font-weight: 500; }
   .row.r1 .team-name { font-weight: 600; font-size: 19px; }
   .trophy { color: var(--trophy); font-size: 14px; margin-left: 6px; }
+  .chev { font-family: 'IBM Plex Mono', monospace; color: var(--ink-muted); font-size: 14px; align-self: center; transition: transform 0.15s; }
+  .chev.open { transform: rotate(90deg); }
+
+  .panel { display: none; padding: 6px 4px 22px 4px; border-bottom: 1px solid var(--divider); }
+  .pos-row { display: grid; grid-template-columns: 64px 1fr 40px; align-items: center; gap: 10px; padding: 5px 0; }
+  .pos-label { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); }
+  .pos-track { height: 8px; background: var(--track); border-radius: 4px; overflow: hidden; }
+  .pos-fill { height: 100%; border-radius: 4px; }
+  .pos-fill.good { background: var(--tier-good); }
+  .pos-fill.mid { background: var(--tier-mid); }
+  .pos-fill.bad { background: var(--tier-bad); }
+  .pos-rank { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); text-align: right; }
+  .no-data { font-size: 13px; color: var(--ink-muted); font-style: italic; padding: 8px 0; }
+
+  .digest { margin-top: 48px; }
+  .digest h2 { font-weight: 600; font-size: 22px; margin: 0 0 4px; }
+  .digest .sub { font-style: italic; font-size: 14px; color: var(--ink-muted); margin: 0 0 20px; }
+  .digest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px 20px; }
+  .digest-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; color: var(--ink-muted); margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .digest-card ol { list-style: none; margin: 0; padding: 0; }
+  .digest-card li { font-size: 14px; padding: 4px 0; border-bottom: 1px solid var(--divider); }
+  .digest-card li:last-child { border-bottom: none; }
+  .digest-card .n { font-family: 'IBM Plex Mono', monospace; color: var(--ink-muted); margin-right: 6px; }
+
   .empty, .error { padding: 40px 4px; text-align: center; color: var(--ink-muted); font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
 </style>
 </head>
@@ -70,31 +82,105 @@
       <hr class="rule">
     </div>
     <div id="list">Loading&hellip;</div>
+
+    <div class="digest">
+      <h2>Position digest</h2>
+      <p class="sub">Top 3 teams per position, preseason</p>
+      <div id="digest-grid" class="digest-grid"></div>
+    </div>
   </div>
 
   <script>
     const API_URL = 'https://script.google.com/macros/s/AKfycbzAm-9Glh6ylCSZoq28hBOM79lHr07Zlcv4TGJjW59ugeJbcV1PXlQpFgcaNv4fU84L/exec';
     const CHAMPION = 'Ban defense & kickers';
+    const POS_ORDER = ['TE', 'K', 'DST', 'QB', 'RB', 'WR', 'FLEX', 'STARTERS', 'BENCH'];
+    const DIGEST_POS = ['QB', 'RB', 'WR', 'TE', 'K', 'DST', 'FLEX'];
 
-    fetch(API_URL)
-      .then(res => res.json())
-      .then(teams => {
-        const list = document.getElementById('list');
-        if (!teams.length) {
-          list.innerHTML = '<div class="empty">No teams found.</div>';
-          return;
-        }
-        list.innerHTML = teams.map(t => `
-          <div class="row ${t.rank === 1 ? 'r1' : ''}">
-            <div class="rank">${t.rank}</div>
-            <div class="team-name">${t.name}${t.name === CHAMPION ? ' <span class="trophy">&#127942;</span>' : ''}</div>
-          </div>`).join('');
-      })
-      .catch(err => {
-        document.getElementById('list').innerHTML =
-          '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
-        console.error(err);
+    function ordinal(n) {
+      const s = ['th', 'st', 'nd', 'rd'], v = n % 100;
+      return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
+    function tier(rank) {
+      if (rank <= 3) return 'good';
+      if (rank <= 7) return 'mid';
+      return 'bad';
+    }
+    function barWidth(rank) {
+      return Math.round(((11 - rank) / 10) * 100) + '%';
+    }
+
+    Promise.all([
+      fetch(API_URL).then(r => r.json()),
+      fetch('projections.json').then(r => r.json())
+    ]).then(([teams, projections]) => {
+      renderList(teams, projections);
+      renderDigest(projections);
+    }).catch(err => {
+      document.getElementById('list').innerHTML =
+        '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
+      console.error(err);
+    });
+
+    function renderList(teams, projections) {
+      const list = document.getElementById('list');
+      if (!teams.length) {
+        list.innerHTML = '<div class="empty">No teams found.</div>';
+        return;
+      }
+
+      list.innerHTML = teams.map((t, i) => {
+        const proj = projections[t.name];
+        const panelBody = proj
+          ? POS_ORDER.map(pos => {
+              if (!(pos in proj)) return '';
+              const rank = proj[pos];
+              return `
+                <div class="pos-row">
+                  <div class="pos-label">${pos}</div>
+                  <div class="pos-track"><div class="pos-fill ${tier(rank)}" style="width:${barWidth(rank)}"></div></div>
+                  <div class="pos-rank">${ordinal(rank)}</div>
+                </div>`;
+            }).join('')
+          : '<div class="no-data">No positional data yet.</div>';
+
+        return `
+          <div>
+            <button class="row-btn" data-i="${i}">
+              <div class="row ${t.rank === 1 ? 'r1' : ''}">
+                <div class="rank">${t.rank}</div>
+                <div class="team-name">${t.name}${t.name === CHAMPION ? ' <span class="trophy">&#127942;</span>' : ''}</div>
+                <div class="chev" data-i="${i}">&rsaquo;</div>
+              </div>
+            </button>
+            <div class="panel" data-i="${i}">${panelBody}</div>
+          </div>`;
+      }).join('');
+
+      document.querySelectorAll('.row-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = btn.dataset.i;
+          const panel = document.querySelector(`.panel[data-i="${i}"]`);
+          const chev = document.querySelector(`.chev[data-i="${i}"]`);
+          const open = panel.style.display === 'block';
+          panel.style.display = open ? 'none' : 'block';
+          chev.classList.toggle('open', !open);
+        });
       });
+    }
+
+    function renderDigest(projections) {
+      const grid = document.getElementById('digest-grid');
+      grid.innerHTML = DIGEST_POS.map(pos => {
+        const ranked = Object.entries(projections)
+          .filter(([, p]) => pos in p)
+          .sort((a, b) => a[1][pos] - b[1][pos])
+          .slice(0, 3);
+        const items = ranked.map(([name]) => `<li>${name}</li>`)
+          .map((li, idx) => li.replace('<li>', `<li><span class="n">${idx + 1}.</span>`))
+          .join('');
+        return `<div class="digest-card"><h3>${pos}</h3><ol>${items}</ol></div>`;
+      }).join('');
+    }
   </script>
 </body>
 </html>
