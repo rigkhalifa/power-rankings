@@ -109,12 +109,20 @@
       return Math.round(((11 - rank) / 10) * 100) + '%';
     }
 
+    function normalizeName(s) {
+      return String(s).normalize('NFKC').trim().toLowerCase();
+    }
+
     Promise.all([
       fetch(API_URL).then(r => r.json()),
       fetch('projections.json').then(r => r.json())
-    ]).then(([teams, projections]) => {
+    ]).then(([teams, projectionsRaw]) => {
+      const projections = {};
+      Object.keys(projectionsRaw).forEach(key => {
+        projections[normalizeName(key)] = projectionsRaw[key];
+      });
       renderList(teams, projections);
-      renderDigest(projections);
+      renderDigest(projectionsRaw);
     }).catch(err => {
       document.getElementById('list').innerHTML =
         '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
@@ -129,7 +137,7 @@
       }
 
       list.innerHTML = teams.map((t, i) => {
-        const proj = projections[t.name];
+        const proj = projections[normalizeName(t.name)];
         const panelBody = proj
           ? POS_ORDER.map(pos => {
               if (!(pos in proj)) return '';
