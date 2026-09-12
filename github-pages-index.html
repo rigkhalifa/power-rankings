@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Draft power rankings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #211E1A;
+    --gold: #E8C547;
+    --silver: #C9CDD3;
+    --bronze: #C08A55;
+    --text: #F4F1EA;
+    --text-muted: #9C958A;
+    --divider: rgba(244, 241, 234, 0.09);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 640px; margin: 0 auto; padding: 28px 18px 60px; }
+  .masthead { margin-bottom: 22px; padding-bottom: 16px; border-bottom: 2px solid var(--gold); }
+  .masthead h1 { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 22px; margin: 0 0 4px; }
+  .masthead p { font-size: 12px; color: var(--text-muted); margin: 0; }
+  .row { display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: 14px; padding: 16px 4px; border-bottom: 1px solid var(--divider); }
+  .rank { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 28px; text-align: center; line-height: 1; }
+  .rank.r1 { color: var(--gold); }
+  .rank.r2 { color: var(--silver); }
+  .rank.r3 { color: var(--bronze); }
+  .team-name { font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 16px; display: flex; align-items: center; gap: 7px; }
+  .trophy { font-size: 14px; }
+  .empty, .error { padding: 40px 4px; text-align: center; color: var(--text-muted); font-size: 14px; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="masthead">
+      <h1>Draft power rankings</h1>
+      <p>Based on preseason roster grades &middot; live rankings begin after Week 1</p>
+    </div>
+    <div id="list">Loading&hellip;</div>
+  </div>
+
+  <script>
+    // Your Apps Script /exec URL — same one you already have, unchanged.
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzAm-9Glh6ylCSZoq28hBOM79lHr07Zlcv4TGJjW59ugeJbcV1PXlQpFgcaNv4fU84L/exec';
+    const CHAMPION = 'Ban defense & kickers';
+
+    function rankClass(rank) {
+      if (rank === 1) return 'r1';
+      if (rank === 2) return 'r2';
+      if (rank === 3) return 'r3';
+      return '';
+    }
+
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(teams => {
+        const list = document.getElementById('list');
+        if (!teams.length) {
+          list.innerHTML = '<div class="empty">No teams found.</div>';
+          return;
+        }
+        list.innerHTML = teams.map(t => `
+          <div class="row">
+            <div class="rank ${rankClass(t.rank)}">${t.rank}</div>
+            <div class="team-name">${t.name}${t.name === CHAMPION ? ' <span class="trophy">&#127942;</span>' : ''}</div>
+          </div>`).join('');
+      })
+      .catch(err => {
+        document.getElementById('list').innerHTML =
+          '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
