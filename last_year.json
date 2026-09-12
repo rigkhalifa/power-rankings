@@ -1,0 +1,21 @@
+{
+  "season": "2025",
+  "standings": [
+    {"rank": 1, "team": "Ban defense", "record": "10-3", "ppg": 141.4},
+    {"rank": 2, "team": "Jeanty want", "record": "8-5", "ppg": 119.3},
+    {"rank": 3, "team": "Destined for 3rd", "record": "6-7", "ppg": 120.8},
+    {"rank": 4, "team": "Balance & Harmony", "record": "9-4", "ppg": 111.7},
+    {"rank": 4, "team": "Columbus Cougars", "record": "7-6", "ppg": 118.4},
+    {"rank": 6, "team": "Chud", "record": "6-7", "ppg": 119.1},
+    {"rank": 7, "team": "Dan Campbell", "record": "6-7", "ppg": 114.3},
+    {"rank": 8, "team": "1-0 vs Gurv", "record": "6-7", "ppg": 108.0},
+    {"rank": 9, "team": "Fraud Hoax", "record": "5-8", "ppg": 119.3},
+    {"rank": 10, "team": "shouldve just", "record": "2-11", "ppg": 97.4}
+  ],
+  "highlights": [
+    {"title": "Wire-to-wire", "text": "Ban defense held #1 every single week, preseason through the finale \u2014 the only team that never once dropped from the top spot."},
+    {"title": "Week 7 fireworks", "text": "The season's highest score (202.24, Ban defense) and lowest score (60.24, shouldve just) landed in the exact same week."},
+    {"title": "Wildest ride", "text": "1-0 vs Gurv opened the year ranked 10th, climbed all the way to 2nd by midseason, then fell back to 8th by the finale \u2014 the biggest single-season swing of anyone."},
+    {"title": "Truth in advertising", "text": "Fraud Hoax nearly matched that swing \u2014 9th to 2nd and right back down to 9th \u2014 living up to the name perfectly."}
+  ]
+}
