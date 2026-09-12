@@ -59,6 +59,36 @@
       "team": "Ban Him & Aubrey",
       "salary": 39,
       "blitz_rank": 12
+    },
+    {
+      "player": "De'Von Achane",
+      "team": "MILFs",
+      "salary": 36,
+      "blitz_rank": 5
+    },
+    {
+      "player": "Kyren Williams",
+      "team": "reigning playoff team",
+      "salary": 36,
+      "blitz_rank": 15
+    },
+    {
+      "player": "Javonte Williams",
+      "team": "Ban defense & kickers",
+      "salary": 33,
+      "blitz_rank": 10
+    },
+    {
+      "player": "Ashton Jeanty",
+      "team": "Fat Husband",
+      "salary": 32,
+      "blitz_rank": 8
+    },
+    {
+      "player": "Travis Etienne",
+      "team": "Destined for 3rd",
+      "salary": 26,
+      "blitz_rank": 16
     }
   ],
   "WR": [
@@ -121,6 +151,36 @@
       "team": "reigning playoff team",
       "salary": 32,
       "blitz_rank": 13
+    },
+    {
+      "player": "Rashee Rice",
+      "team": "Co-Authored",
+      "salary": 32,
+      "blitz_rank": 7
+    },
+    {
+      "player": "Drake London",
+      "team": "Destined for 3rd",
+      "salary": 30,
+      "blitz_rank": 6
+    },
+    {
+      "player": "Malik Nabers",
+      "team": "Jeanty want winny",
+      "salary": 29,
+      "blitz_rank": 15
+    },
+    {
+      "player": "Zay Flowers",
+      "team": "Co-Authored",
+      "salary": 27,
+      "blitz_rank": 10
+    },
+    {
+      "player": "DeVonta Smith",
+      "team": "Destined for 3rd",
+      "salary": 26,
+      "blitz_rank": 14
     }
   ],
   "TE": [
@@ -183,6 +243,36 @@
       "team": "Destined for 3rd",
       "salary": 2,
       "blitz_rank": 12
+    },
+    {
+      "player": "Hunter Henry",
+      "team": "Chasing Victory",
+      "salary": 2,
+      "blitz_rank": 11
+    },
+    {
+      "player": "Isaiah Likely",
+      "team": "Jeanty want winny",
+      "salary": 1,
+      "blitz_rank": 15
+    },
+    {
+      "player": "Dalton Kincaid",
+      "team": "Fat Husband",
+      "salary": 1,
+      "blitz_rank": 16
+    },
+    {
+      "player": "Dallas Goedert",
+      "team": "MILFs",
+      "salary": 1,
+      "blitz_rank": 6
+    },
+    {
+      "player": "Jake Ferguson",
+      "team": "not ass per chat",
+      "salary": 1,
+      "blitz_rank": 14
     }
   ],
   "QB": [
@@ -245,6 +335,36 @@
       "team": "MILFs",
       "salary": 1,
       "blitz_rank": 7
+    },
+    {
+      "player": "Bo Nix",
+      "team": "Ban defense & kickers",
+      "salary": 1,
+      "blitz_rank": 17
+    },
+    {
+      "player": "Brock Purdy",
+      "team": "Chasing Victory",
+      "salary": 1,
+      "blitz_rank": 12
+    },
+    {
+      "player": "Patrick Mahomes",
+      "team": "Ban defense & kickers",
+      "salary": 1,
+      "blitz_rank": 9
+    },
+    {
+      "player": "Jared Goff",
+      "team": "MILFs",
+      "salary": 1,
+      "blitz_rank": 19
+    },
+    {
+      "player": "Jordan Love",
+      "team": "not ass per chat",
+      "salary": 1,
+      "blitz_rank": 20
     }
   ]
 }
