@@ -1,49 +1,115 @@
 {
-  "payout_note": "$1,000 for 1st, $510 for 2nd, $35/week high scorer over a 14-week regular season. 2024\u20132025 only.",
+  "payout_note": "$1,000 for 1st, $510 for 2nd, $35/week high scorer over a 14-week regular season. 2021, 2022, 2024, 2025 only (2023 sheet doesn't exist).",
   "leaderboard": [
     {
-      "owner": "Gurv",
-      "total": 1210,
+      "owner": "JM",
+      "total": 2175,
       "breakdown": [
         {
-          "year": "2025",
-          "team": "Ban defense & kickers",
+          "year": "2021",
           "note": "1st place",
           "amount": 1000
         },
         {
+          "year": "2021",
+          "note": "3 weekly high scores",
+          "amount": 105
+        },
+        {
+          "year": "2024",
+          "note": "1st place",
+          "amount": 1000
+        },
+        {
+          "year": "2024",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
           "year": "2025",
-          "team": "Ban defense & kickers",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
+    },
+    {
+      "owner": "BB",
+      "total": 1880,
+      "breakdown": [
+        {
+          "year": "2021",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2021",
+          "note": "4 weekly high scores",
+          "amount": 140
+        },
+        {
+          "year": "2022",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2022",
           "note": "4 weekly high scores",
           "amount": 140
         },
         {
           "year": "2024",
-          "team": "ban defense",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2025",
           "note": "2 weekly high scores",
           "amount": 70
         }
       ]
     },
     {
-      "owner": "JM",
-      "total": 1070,
+      "owner": "Gurv",
+      "total": 1280,
       "breakdown": [
         {
+          "year": "2022",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
           "year": "2024",
-          "team": "Chud",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2025",
           "note": "1st place",
           "amount": 1000
         },
         {
-          "year": "2024",
-          "team": "Chud",
+          "year": "2025",
+          "note": "4 weekly high scores",
+          "amount": 140
+        }
+      ]
+    },
+    {
+      "owner": "Masten",
+      "total": 1070,
+      "breakdown": [
+        {
+          "year": "2022",
+          "note": "1st place",
+          "amount": 1000
+        },
+        {
+          "year": "2022",
           "note": "1 weekly high score",
           "amount": 35
         },
         {
           "year": "2025",
-          "team": "Chud",
           "note": "1 weekly high score",
           "amount": 35
         }
@@ -51,89 +117,93 @@
     },
     {
       "owner": "T",
-      "total": 580,
+      "total": 790,
       "breakdown": [
         {
-          "year": "2025",
-          "team": "Balance & Harmony",
-          "note": "2nd place",
-          "amount": 510
+          "year": "2021",
+          "note": "4 weekly high scores",
+          "amount": 140
+        },
+        {
+          "year": "2022",
+          "note": "2 weekly high scores",
+          "amount": 70
         },
         {
           "year": "2024",
-          "team": "Balance & Harmony",
           "note": "2 weekly high scores",
           "amount": 70
-        }
-      ]
-    },
-    {
-      "owner": "BB",
-      "total": 580,
-      "breakdown": [
-        {
-          "year": "2024",
-          "team": "The Masonic Temple",
-          "note": "2nd place",
-          "amount": 510
         },
         {
           "year": "2025",
-          "team": "Fraud Hoax",
-          "note": "2 weekly high scores",
-          "amount": 70
+          "note": "2nd place",
+          "amount": 510
         }
       ]
     },
     {
       "owner": "ZC",
-      "total": 175,
+      "total": 280,
       "breakdown": [
         {
-          "year": "2025",
-          "team": "Destined for 3rd",
-          "note": "2 weekly high scores",
-          "amount": 70
-        },
-        {
-          "year": "2024",
-          "team": "Loose Ends",
-          "note": "3 weekly high scores",
-          "amount": 105
-        }
-      ]
-    },
-    {
-      "owner": "Knees",
-      "total": 105,
-      "breakdown": [
-        {
-          "year": "2025",
-          "team": "1-0 vs Gurv",
-          "note": "2 weekly high scores",
-          "amount": 70
-        },
-        {
-          "year": "2024",
-          "team": "I was top scorer week 1",
+          "year": "2021",
           "note": "1 weekly high score",
           "amount": 35
+        },
+        {
+          "year": "2022",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2024",
+          "note": "3 weekly high scores",
+          "amount": 105
+        },
+        {
+          "year": "2025",
+          "note": "2 weekly high scores",
+          "amount": 70
         }
       ]
     },
     {
       "owner": "NW",
-      "total": 105,
+      "total": 175,
       "breakdown": [
         {
+          "year": "2022",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2024",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
           "year": "2025",
-          "team": "Jeanty want",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
+    },
+    {
+      "owner": "Knees",
+      "total": 140,
+      "breakdown": [
+        {
+          "year": "2022",
           "note": "1 weekly high score",
           "amount": 35
         },
         {
           "year": "2024",
-          "team": "Desmond Rizzler",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2025",
           "note": "2 weekly high scores",
           "amount": 70
         }
@@ -144,26 +214,12 @@
       "total": 105,
       "breakdown": [
         {
-          "year": "2025",
-          "team": "Dan Campbell",
-          "note": "1 weekly high score",
-          "amount": 35
-        },
-        {
           "year": "2024",
-          "team": "there is nothing here but pain",
           "note": "2 weekly high scores",
           "amount": 70
-        }
-      ]
-    },
-    {
-      "owner": "Masten",
-      "total": 35,
-      "breakdown": [
+        },
         {
           "year": "2025",
-          "team": "Columbus Cougars",
           "note": "1 weekly high score",
           "amount": 35
         }
@@ -175,8 +231,29 @@
       "breakdown": [
         {
           "year": "2024",
-          "team": "the moss zone",
-          "note": "1 weekly high score (departed)",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
+    },
+    {
+      "owner": "Nick",
+      "total": 35,
+      "breakdown": [
+        {
+          "year": "2021",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
+    },
+    {
+      "owner": "Librizzi",
+      "total": 35,
+      "breakdown": [
+        {
+          "year": "2021",
+          "note": "1 weekly high score",
           "amount": 35
         }
       ]
