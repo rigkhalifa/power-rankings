@@ -71,6 +71,20 @@
   .digest-card li:last-child { border-bottom: none; }
   .digest-card .n { font-family: 'IBM Plex Mono', monospace; color: var(--ink-muted); margin-right: 6px; }
 
+  .trophy-row-btn { all: unset; cursor: pointer; display: block; width: 100%; }
+  .trophy-row {
+    display: grid;
+    grid-template-columns: 1fr auto 20px;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .trophy-team { font-size: 16px; font-weight: 500; }
+  .trophy-owner { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); margin-left: 6px; }
+  .trophy-count { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--trophy); white-space: nowrap; }
+  .trophy-panel { display: none; padding: 4px 4px 16px 4px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-muted); border-bottom: 1px solid var(--divider); }
+
   .empty, .error { padding: 40px 4px; text-align: center; color: var(--ink-muted); font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
 </style>
 </head>
@@ -87,6 +101,12 @@
       <h2>Position digest</h2>
       <p class="sub">Top 3 teams per position, preseason</p>
       <div id="digest-grid" class="digest-grid"></div>
+    </div>
+
+    <div class="digest">
+      <h2>Trophy case</h2>
+      <p class="sub">League championship history, 2012&ndash;2025</p>
+      <div id="trophy-list"></div>
     </div>
   </div>
 
@@ -115,14 +135,16 @@
 
     Promise.all([
       fetch(API_URL).then(r => r.json()),
-      fetch('projections.json').then(r => r.json())
-    ]).then(([teams, projectionsRaw]) => {
+      fetch('projections.json').then(r => r.json()),
+      fetch('trophies.json').then(r => r.json())
+    ]).then(([teams, projectionsRaw, trophies]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
       });
       renderList(teams, projections);
       renderDigest(projectionsRaw);
+      renderTrophies(trophies);
     }).catch(err => {
       document.getElementById('list').innerHTML =
         '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
@@ -188,6 +210,41 @@
           .join('');
         return `<div class="digest-card"><h3>${pos}</h3><ol>${items}</ol></div>`;
       }).join('');
+    }
+    function renderTrophies(trophies) {
+      const list = document.getElementById('trophy-list');
+      const entries = Object.entries(trophies)
+        .sort((a, b) => b[1].years.length - a[1].years.length);
+
+      list.innerHTML = entries.map(([name, info], i) => {
+        const count = info.years.length;
+        const label = count === 0 ? 'No titles' : `${count} title${count > 1 ? 's' : ''} &#127942;`;
+        const panelBody = count > 0
+          ? info.years.slice().sort((a, b) => b - a).join(', ')
+          : 'No championships yet.';
+        return `
+          <div>
+            <button class="trophy-row-btn" data-t="${i}">
+              <div class="trophy-row">
+                <div class="trophy-team">${name}<span class="trophy-owner">${info.owner}</span></div>
+                <div class="trophy-count">${label}</div>
+                <div class="chev" data-t="${i}">&rsaquo;</div>
+              </div>
+            </button>
+            <div class="trophy-panel" data-t="${i}">${panelBody}</div>
+          </div>`;
+      }).join('');
+
+      document.querySelectorAll('.trophy-row-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = btn.dataset.t;
+          const panel = document.querySelector(`.trophy-panel[data-t="${i}"]`);
+          const chev = document.querySelector(`.chev[data-t="${i}"]`);
+          const open = panel.style.display === 'block';
+          panel.style.display = open ? 'none' : 'block';
+          chev.classList.toggle('open', !open);
+        });
+      });
     }
   </script>
 </body>
