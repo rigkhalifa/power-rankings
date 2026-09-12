@@ -1,0 +1,30 @@
+{
+  "season": "2022",
+  "standings": [
+    {"rank": 1, "team": "Masten", "record": "9-4", "ppg": 124.5},
+    {"rank": 2, "team": "ZC", "record": "8-5", "ppg": 129.6},
+    {"rank": 3, "team": "Janny", "record": "7-6", "ppg": 123.8},
+    {"rank": 4, "team": "BB", "record": "7-6", "ppg": 131.5},
+    {"rank": 5, "team": "T", "record": "7-6", "ppg": 124.9},
+    {"rank": 5, "team": "NW", "record": "7-6", "ppg": 125.4},
+    {"rank": 7, "team": "JM", "record": "7-6", "ppg": 117.6},
+    {"rank": 8, "team": "Gurv", "record": "6-7", "ppg": 122.9},
+    {"rank": 9, "team": "Pat", "record": "5-8", "ppg": 104.9},
+    {"rank": 10, "team": "Knees", "record": "2-11", "ppg": 92.9}
+  ],
+  "high_scorers": [
+    {"team": "BB", "count": 4},
+    {"team": "Gurv", "count": 2},
+    {"team": "T", "count": 2},
+    {"team": "ZC", "count": 2},
+    {"team": "NW", "count": 2},
+    {"team": "Masten", "count": 1},
+    {"team": "Knees", "count": 1}
+  ],
+  "highlights": [
+    {"title": "Stolen at the buzzer", "text": "ZC (Three Alive Kings) held #1 for 10 straight weeks, from week 3 through week 12 \u2014 only for Masten (MILF) to surge from 3rd to 1st in the final stretch and take the actual championship right at the finish line."},
+    {"title": "Bridesmaid, twice", "text": "BB finished runner-up in the money again this year \u2014 same result as 2021 \u2014 despite leading the league with 4 weekly high scores both seasons. Never the champion, always in the mix."},
+    {"title": "Feast or famine", "text": "Knees posted the single lowest score of the entire season (66.64, week 10) while mired in last place \u2014 then somehow won the week 14 high-scorer bonus just four weeks later."},
+    {"title": "Best offense, no ring", "text": "BB (lord) actually led the league in points per game (131.5) \u2014 higher than champion Masten's 124.5 \u2014 but finished only 4th, a reminder that raw scoring and winning it all aren't the same thing."}
+  ]
+}
