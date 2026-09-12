@@ -5,62 +5,76 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Draft power rankings</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #211E1A;
-    --gold: #F2C14E;
-    --silver: #93A3B5;
-    --bronze: #C97A3D;
-    --text: #F4F1EA;
-    --text-muted: #9C958A;
-    --divider: rgba(244, 241, 234, 0.09);
+    --bg: #FAF8F4;
+    --ink: #1C1A17;
+    --ink-muted: #8A8478;
+    --divider: #E4DFD6;
+    --accent: #2F4A3C;
+    --trophy: #B8860B;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
     background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
+    color: var(--ink);
+    font-family: 'Source Serif 4', serif;
   }
-  .page { max-width: 640px; margin: 0 auto; padding: 28px 18px 60px; }
-  .masthead { margin-bottom: 22px; padding-bottom: 16px; border-bottom: 2px solid var(--gold); }
-  .masthead h1 { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 22px; margin: 0 0 4px; }
-  .masthead p { font-size: 12px; color: var(--text-muted); margin: 0; }
-  .row { display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: 14px; padding: 16px 12px; border-bottom: 1px solid var(--divider); border-left: 3px solid transparent; }
-  .row.r1 { border-left-color: var(--gold); background: rgba(242, 193, 78, 0.06); }
-  .row.r2 { border-left-color: var(--silver); background: rgba(147, 163, 181, 0.05); }
-  .row.r3 { border-left-color: var(--bronze); background: rgba(201, 122, 61, 0.05); }
-  .rank { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 28px; text-align: center; line-height: 1; }
-  .rank.r1 { color: var(--gold); text-shadow: 0 0 12px rgba(242, 193, 78, 0.35); }
-  .rank.r2 { color: var(--silver); }
-  .rank.r3 { color: var(--bronze); }
-  .team-name { font-family: 'Oswald', sans-serif; font-weight: 500; font-size: 16px; display: flex; align-items: center; gap: 7px; }
-  .trophy { font-size: 14px; }
-  .empty, .error { padding: 40px 4px; text-align: center; color: var(--text-muted); font-size: 14px; }
+  .page { max-width: 640px; margin: 0 auto; padding: 44px 24px 60px; }
+  .masthead h1 {
+    font-weight: 600;
+    font-size: 30px;
+    margin: 0 0 8px;
+    letter-spacing: -0.2px;
+  }
+  .masthead p {
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-muted);
+    margin: 0 0 20px;
+  }
+  .masthead .rule { border: none; border-top: 1px solid var(--ink); margin: 0; }
+  .row {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    align-items: baseline;
+    gap: 16px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--divider);
+    border-left: 2px solid transparent;
+  }
+  .row.r1 { border-left-color: var(--accent); padding-left: 14px; }
+  .rank {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    color: var(--ink-muted);
+    text-align: right;
+  }
+  .row.r1 .rank { color: var(--ink); font-weight: 500; }
+  .team-name {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .row.r1 .team-name { font-weight: 600; font-size: 19px; }
+  .trophy { color: var(--trophy); font-size: 14px; margin-left: 6px; }
+  .empty, .error { padding: 40px 4px; text-align: center; color: var(--ink-muted); font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
 </style>
 </head>
 <body>
   <div class="page">
     <div class="masthead">
       <h1>Draft power rankings</h1>
-      <p>Based on preseason roster grades &middot; live rankings begin after Week 1</p>
+      <p>Based on preseason roster grades &mdash; live rankings begin after Week 1</p>
+      <hr class="rule">
     </div>
     <div id="list">Loading&hellip;</div>
   </div>
 
   <script>
-    // Your Apps Script /exec URL — same one you already have, unchanged.
     const API_URL = 'https://script.google.com/macros/s/AKfycbzAm-9Glh6ylCSZoq28hBOM79lHr07Zlcv4TGJjW59ugeJbcV1PXlQpFgcaNv4fU84L/exec';
     const CHAMPION = 'Ban defense & kickers';
-
-    function rankClass(rank) {
-      if (rank === 1) return 'r1';
-      if (rank === 2) return 'r2';
-      if (rank === 3) return 'r3';
-      return '';
-    }
 
     fetch(API_URL)
       .then(res => res.json())
@@ -71,8 +85,8 @@
           return;
         }
         list.innerHTML = teams.map(t => `
-          <div class="row ${rankClass(t.rank)}">
-            <div class="rank ${rankClass(t.rank)}">${t.rank}</div>
+          <div class="row ${t.rank === 1 ? 'r1' : ''}">
+            <div class="rank">${t.rank}</div>
             <div class="team-name">${t.name}${t.name === CHAMPION ? ' <span class="trophy">&#127942;</span>' : ''}</div>
           </div>`).join('');
       })
