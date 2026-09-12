@@ -137,6 +137,8 @@
       <button class="tab-btn" data-view="history">League History</button>
       <button class="tab-btn" data-view="y2025">2025 Review</button>
       <button class="tab-btn" data-view="y2024">2024 Review</button>
+      <button class="tab-btn" data-view="y2022">2022 Review</button>
+      <button class="tab-btn" data-view="y2021">2021 Review</button>
     </div>
 
     <div id="view-current">
@@ -221,6 +223,48 @@
         <div id="y2024-highlights" class="digest-grid"></div>
       </div>
     </div>
+
+    <div id="view-y2022" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2022-title">2022 season review</h1>
+        <p>Regular-season only &mdash; this sheet stopped updating once playoffs began, so standings reflect the regular season, not the final bracket.</p>
+        <hr class="rule">
+      </div>
+      <div id="y2022-list"></div>
+
+      <div class="digest">
+        <h2>Weekly high-scorer leaderboard</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2022-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Storylines</h2>
+        <p class="sub">The season's biggest moments</p>
+        <div id="y2022-highlights" class="digest-grid"></div>
+      </div>
+    </div>
+
+    <div id="view-y2021" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2021-title">2021 season review</h1>
+        <p>Regular-season only &mdash; this sheet stopped updating once playoffs began, so standings reflect the regular season, not the final bracket.</p>
+        <hr class="rule">
+      </div>
+      <div id="y2021-list"></div>
+
+      <div class="digest">
+        <h2>Weekly high-scorer leaderboard</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2021-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Storylines</h2>
+        <p class="sub">The season's biggest moments</p>
+        <div id="y2021-highlights" class="digest-grid"></div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -253,8 +297,10 @@
       fetch('best_value.json').then(r => r.json()),
       fetch('last_year.json').then(r => r.json()),
       fetch('year_2024.json').then(r => r.json()),
+      fetch('year_2022.json').then(r => r.json()),
+      fetch('year_2021.json').then(r => r.json()),
       fetch('earnings.json').then(r => r.json())
-    ]).then(([teams, projectionsRaw, trophies, bestValue, y2025, y2024, earnings]) => {
+    ]).then(([teams, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, earnings]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -265,6 +311,8 @@
       renderBestValue(bestValue);
       renderYearReview('y2025', y2025);
       renderYearReview('y2024', y2024);
+      renderYearReview('y2022', y2022);
+      renderYearReview('y2021', y2021);
       renderEarnings(earnings);
     }).catch(err => {
       document.getElementById('list').innerHTML =
@@ -281,6 +329,8 @@
         document.getElementById('view-history').style.display = view === 'history' ? '' : 'none';
         document.getElementById('view-y2025').style.display = view === 'y2025' ? '' : 'none';
         document.getElementById('view-y2024').style.display = view === 'y2024' ? '' : 'none';
+        document.getElementById('view-y2022').style.display = view === 'y2022' ? '' : 'none';
+        document.getElementById('view-y2021').style.display = view === 'y2021' ? '' : 'none';
       });
     });
 
@@ -427,7 +477,7 @@
       list.innerHTML = data.leaderboard.map((o, i) => {
         const lines = o.breakdown.map(b => `
           <div class="earnings-line">
-            <span>${b.year} &middot; ${b.team} &middot; ${b.note}</span>
+            <span>${b.year} &middot; ${b.note}</span>
             <span>$${b.amount}</span>
           </div>`).join('');
         return `
