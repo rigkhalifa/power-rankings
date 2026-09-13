@@ -11,7 +11,8 @@
       "ppg": 122.3,
       "playoff_apps": 5,
       "top_seed_apps": 3,
-      "playoff_record": "2-5"
+      "playoff_record": "2-5",
+      "championship_record": "0-2"
     },
     {
       "owner": "Zach",
@@ -23,7 +24,8 @@
       "ppg": 127.5,
       "playoff_apps": 4,
       "top_seed_apps": 2,
-      "playoff_record": "1-4"
+      "playoff_record": "1-4",
+      "championship_record": "0-0"
     },
     {
       "owner": "Nick",
@@ -35,7 +37,8 @@
       "ppg": 121.5,
       "playoff_apps": 4,
       "top_seed_apps": 2,
-      "playoff_record": "4-3"
+      "playoff_record": "4-3",
+      "championship_record": "1-0"
     },
     {
       "owner": "Brian",
@@ -47,7 +50,8 @@
       "ppg": 126.0,
       "playoff_apps": 5,
       "top_seed_apps": 2,
-      "playoff_record": "7-4"
+      "playoff_record": "7-4",
+      "championship_record": "1-3"
     },
     {
       "owner": "Gurv",
@@ -59,7 +63,8 @@
       "ppg": 126.7,
       "playoff_apps": 4,
       "top_seed_apps": 1,
-      "playoff_record": "6-3"
+      "playoff_record": "6-3",
+      "championship_record": "1-1"
     },
     {
       "owner": "JM",
@@ -71,7 +76,8 @@
       "ppg": 121.3,
       "playoff_apps": 4,
       "top_seed_apps": 0,
-      "playoff_record": "7-2"
+      "playoff_record": "7-2",
+      "championship_record": "2-0"
     },
     {
       "owner": "Masten",
@@ -83,7 +89,8 @@
       "ppg": 118.3,
       "playoff_apps": 4,
       "top_seed_apps": 1,
-      "playoff_record": "3-3"
+      "playoff_record": "3-3",
+      "championship_record": "1-0"
     },
     {
       "owner": "Pat",
@@ -95,7 +102,8 @@
       "ppg": 110.2,
       "playoff_apps": 3,
       "top_seed_apps": 1,
-      "playoff_record": "0-3"
+      "playoff_record": "0-3",
+      "championship_record": "0-0"
     },
     {
       "owner": "Janny",
@@ -107,7 +115,8 @@
       "ppg": 116.9,
       "playoff_apps": 2,
       "top_seed_apps": 0,
-      "playoff_record": "0-2"
+      "playoff_record": "0-2",
+      "championship_record": "0-0"
     },
     {
       "owner": "Librizzi",
@@ -119,7 +128,8 @@
       "ppg": 110.0,
       "playoff_apps": 1,
       "top_seed_apps": 0,
-      "playoff_record": "0-1"
+      "playoff_record": "0-1",
+      "championship_record": "0-0"
     }
   ]
 }
