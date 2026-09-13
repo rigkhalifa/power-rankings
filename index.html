@@ -47,8 +47,6 @@
   .ly-row .lyname { font-size: 15px; font-weight: 500; }
   .ly-row .lystats { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-muted); text-align: right; white-space: nowrap; }
 
-  .highlight-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: var(--accent); margin: 0 0 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .highlight-card p { font-size: 14px; line-height: 1.5; margin: 0; }
   .masthead h1 { font-weight: 600; font-size: 30px; margin: 0 0 8px; letter-spacing: -0.2px; }
   .masthead p { font-style: italic; font-size: 15px; color: var(--ink-muted); margin: 0 0 20px; }
   .masthead .rule { border: none; border-top: 1px solid var(--ink); margin: 0; }
@@ -69,6 +67,7 @@
   .team-name { font-size: 18px; font-weight: 500; }
   .row.r1 .team-name { font-weight: 600; font-size: 19px; }
   .trophy { color: var(--trophy); font-size: 14px; margin-left: 6px; }
+  .medal { font-size: 14px; margin-left: 6px; }
   .chev { font-family: 'IBM Plex Mono', monospace; color: var(--ink-muted); font-size: 14px; align-self: center; transition: transform 0.15s; }
   .chev.open { transform: rotate(90deg); }
 
@@ -108,6 +107,7 @@
   .trophy-owner { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); margin-left: 6px; }
   .trophy-count { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--trophy); white-space: nowrap; }
   .trophy-panel { display: none; padding: 4px 4px 16px 4px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-muted); border-bottom: 1px solid var(--divider); }
+  .hs-count { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-muted); white-space: nowrap; }
 
   .earnings-row-btn { all: unset; cursor: pointer; display: block; width: 100%; }
   .earnings-row { display: grid; grid-template-columns: 1fr auto 20px; align-items: center; gap: 12px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
@@ -140,7 +140,8 @@
   <div class="page">
     <div class="tabs">
       <button class="tab-btn active" data-view="current">2026 Season</button>
-      <button class="tab-btn" data-view="history">League History</button>
+      <button class="tab-btn" data-view="history">Winnings</button>
+      <button class="tab-btn" data-view="trophycase">Trophy Case</button>
       <button class="tab-btn" data-view="wins">Combined Wins</button>
       <button class="tab-btn" data-view="y2025">2025 Review</button>
       <button class="tab-btn" data-view="y2024">2024 Review</button>
@@ -173,21 +174,35 @@
 
     <div id="view-history" style="display:none;">
       <div class="masthead">
-        <h1>League history</h1>
-        <p>All-time records, spanning every season on file</p>
+        <h1>Winnings</h1>
+        <p>All-time career earnings, every season on file</p>
         <hr class="rule">
-      </div>
-
-      <div class="digest">
-        <h2>Trophy case</h2>
-        <p class="sub">League championship history, 2012&ndash;2025</p>
-        <div id="trophy-list"></div>
       </div>
 
       <div class="digest">
         <h2>Career earnings</h2>
         <p class="sub" id="earnings-sub"></p>
         <div id="earnings-list"></div>
+      </div>
+    </div>
+
+    <div id="view-trophycase" style="display:none;">
+      <div class="masthead">
+        <h1>Trophy case</h1>
+        <p>Championships and weekly bragging rights, all-time</p>
+        <hr class="rule">
+      </div>
+
+      <div class="digest">
+        <h2>League championships</h2>
+        <p class="sub">Titles won, 2012&ndash;2025</p>
+        <div id="trophy-list"></div>
+      </div>
+
+      <div class="digest">
+        <h2>High-scorer payouts</h2>
+        <p class="sub">Total weekly high-scorer wins, all seasons combined</p>
+        <div id="hs-count-list"></div>
       </div>
     </div>
 
@@ -213,12 +228,6 @@
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2025-highscore" class="digest-grid"></div>
       </div>
-
-      <div class="digest">
-        <h2>Storylines</h2>
-        <p class="sub">The season's biggest moments</p>
-        <div id="y2025-highlights" class="digest-grid"></div>
-      </div>
     </div>
 
     <div id="view-y2024" style="display:none;">
@@ -233,12 +242,6 @@
         <h2>Weekly high-scorer leaderboard</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2024-highscore" class="digest-grid"></div>
-      </div>
-
-      <div class="digest">
-        <h2>Storylines</h2>
-        <p class="sub">The season's biggest moments</p>
-        <div id="y2024-highlights" class="digest-grid"></div>
       </div>
     </div>
 
@@ -255,12 +258,6 @@
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2023-highscore" class="digest-grid"></div>
       </div>
-
-      <div class="digest">
-        <h2>Storylines</h2>
-        <p class="sub">The season's biggest moments</p>
-        <div id="y2023-highlights" class="digest-grid"></div>
-      </div>
     </div>
 
     <div id="view-y2022" style="display:none;">
@@ -275,12 +272,6 @@
         <h2>Weekly high-scorer leaderboard</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2022-highscore" class="digest-grid"></div>
-      </div>
-
-      <div class="digest">
-        <h2>Storylines</h2>
-        <p class="sub">The season's biggest moments</p>
-        <div id="y2022-highlights" class="digest-grid"></div>
       </div>
     </div>
 
@@ -297,12 +288,6 @@
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2021-highscore" class="digest-grid"></div>
       </div>
-
-      <div class="digest">
-        <h2>Storylines</h2>
-        <p class="sub">The season's biggest moments</p>
-        <div id="y2021-highlights" class="digest-grid"></div>
-      </div>
     </div>
 
     <div id="view-y2020" style="display:none;">
@@ -318,18 +303,13 @@
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2020-highscore" class="digest-grid"></div>
       </div>
-
-      <div class="digest">
-        <h2>Storylines</h2>
-        <p class="sub">The season's biggest moments</p>
-        <div id="y2020-highlights" class="digest-grid"></div>
-      </div>
     </div>
   </div>
 
   <script>
     const API_URL = 'https://script.google.com/macros/s/AKfycbzAm-9Glh6ylCSZoq28hBOM79lHr07Zlcv4TGJjW59ugeJbcV1PXlQpFgcaNv4fU84L/exec';
     const CHAMPION = 'Ban defense & kickers';
+    const RUNNER_UP = 'Ban Him & Aubrey';
     const POS_ORDER = ['TE', 'K', 'DST', 'QB', 'RB', 'WR', 'FLEX', 'STARTERS', 'BENCH'];
     const DIGEST_POS = ['QB', 'RB', 'WR', 'TE', 'FLEX'];
 
@@ -380,6 +360,7 @@
       renderYearReview('y2020', y2020);
       renderEarnings(earnings);
       renderWins(wins);
+      renderHighScorerCounts([y2025, y2024, y2022, y2021, y2023, y2020]);
     }).catch(err => {
       document.getElementById('list').innerHTML =
         '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
@@ -393,6 +374,7 @@
         const view = btn.dataset.view;
         document.getElementById('view-current').style.display = view === 'current' ? '' : 'none';
         document.getElementById('view-history').style.display = view === 'history' ? '' : 'none';
+        document.getElementById('view-trophycase').style.display = view === 'trophycase' ? '' : 'none';
         document.getElementById('view-wins').style.display = view === 'wins' ? '' : 'none';
         document.getElementById('view-y2025').style.display = view === 'y2025' ? '' : 'none';
         document.getElementById('view-y2024').style.display = view === 'y2024' ? '' : 'none';
@@ -430,7 +412,7 @@
             <button class="row-btn" data-i="${i}">
               <div class="row ${t.rank === 1 ? 'r1' : ''}">
                 <div class="rank">${t.rank}</div>
-                <div class="team-name">${t.name}${t.name === CHAMPION ? ' <span class="trophy">&#127942;</span>' : ''}</div>
+                <div class="team-name">${t.name}${t.name === CHAMPION ? ' <span class="trophy">&#127942;</span>' : ''}${t.name === RUNNER_UP ? ' <span class="medal">&#129352;</span>' : ''}</div>
                 <div class="chev" data-i="${i}">&rsaquo;</div>
               </div>
             </button>
@@ -518,25 +500,23 @@
       document.getElementById(`${prefix}-title`).textContent = data.season + ' season review';
 
       const list = document.getElementById(`${prefix}-list`);
-      list.innerHTML = data.standings.map(s => `
+      list.innerHTML = data.standings.map(s => {
+        let badge = '';
+        if (s.team === data.champion) badge = ' <span class="trophy">&#127942;</span>';
+        else if (s.team === data.runner_up) badge = ' <span class="medal">&#129352;</span>';
+        return `
         <div class="ly-row">
           <div class="rank">${s.rank}</div>
-          <div class="lyname">${s.team}</div>
+          <div class="lyname">${s.team}${badge}</div>
           <div class="lystats">${s.record} &middot; ${s.ppg} ppg</div>
-        </div>`).join('');
+        </div>`;
+      }).join('');
 
       const hs = document.getElementById(`${prefix}-highscore`);
       hs.innerHTML = data.high_scorers.map(h => `
         <div class="trophy-row">
           <div class="trophy-team">${h.team}</div>
           <div class="trophy-count">${h.count} week${h.count > 1 ? 's' : ''}</div>
-        </div>`).join('');
-
-      const grid = document.getElementById(`${prefix}-highlights`);
-      grid.innerHTML = data.highlights.map(h => `
-        <div class="highlight-card">
-          <h3>${h.title}</h3>
-          <p>${h.text}</p>
         </div>`).join('');
     }
     function renderEarnings(data) {
@@ -581,6 +561,21 @@
           <div class="wins-owner">${o.owner}</div>
           <div class="wins-stat"><b>${o.record}</b><span>${o.win_pct.toFixed(3)} actual</span></div>
           <div class="wins-stat"><b>${o.overall_record}</b><span>${o.overall_pct.toFixed(3)} overall</span></div>
+        </div>`).join('');
+    }
+    function renderHighScorerCounts(years) {
+      const totals = {};
+      years.forEach(yr => {
+        yr.high_scorers.forEach(h => {
+          totals[h.team] = (totals[h.team] || 0) + h.count;
+        });
+      });
+      const sorted = Object.entries(totals).sort((a, b) => b[1] - a[1]);
+      const list = document.getElementById('hs-count-list');
+      list.innerHTML = sorted.map(([owner, count]) => `
+        <div class="trophy-row">
+          <div class="trophy-team">${owner}</div>
+          <div class="hs-count">${count} week${count > 1 ? 's' : ''} &#128176;</div>
         </div>`).join('');
     }
   </script>
