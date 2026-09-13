@@ -126,5 +126,47 @@
     "Gurv",
     "Masten",
     "Brian"
-  ]
+  ],
+  "bracket": {
+    "bye": [
+      "Nick",
+      "Triangle"
+    ],
+    "qf": [
+      {
+        "w": "JM",
+        "ws": 141.22,
+        "l": "Brian",
+        "ls": 96.74
+      },
+      {
+        "w": "Gurv",
+        "ws": 142.34,
+        "l": "Masten",
+        "ls": 112.54
+      }
+    ],
+    "sf": [
+      {
+        "w": "Nick",
+        "ws": 156.24,
+        "l": "JM",
+        "ls": 140.96
+      },
+      {
+        "w": "Triangle",
+        "ws": 130.16,
+        "l": "Gurv",
+        "ls": 120.6
+      }
+    ],
+    "f": [
+      {
+        "w": "Nick",
+        "ws": 118.78,
+        "l": "Triangle",
+        "ls": 97.12
+      }
+    ]
+  }
 }
