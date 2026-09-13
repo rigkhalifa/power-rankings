@@ -181,11 +181,12 @@
   .records-list b { color: var(--ink); font-weight: 600; }
   .bracket-rounds { display: flex; flex-direction: column; gap: 20px; }
   .bracket-round h3 { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: var(--accent); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .bracket-game { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid var(--divider); font-size: 14px; }
+  .bracket-game { padding: 10px 0; border-bottom: 1px solid var(--divider); }
   .bracket-game:last-child { border-bottom: none; }
-  .bracket-winner { font-weight: 600; }
-  .bracket-loser { color: var(--ink-muted); }
-  .bracket-score { font-family: 'IBM Plex Mono', monospace; font-size: 13px; }
+  .bracket-game-row { display: flex; justify-content: space-between; align-items: baseline; padding: 2px 0; font-size: 15px; }
+  .bracket-game-row.winner { font-weight: 600; }
+  .bracket-game-row.loser { color: var(--ink-muted); font-size: 13px; }
+  .bracket-game-score { font-family: 'IBM Plex Mono', monospace; }
 </style>
 </head>
 <body>
@@ -266,7 +267,7 @@
       <div class="digest">
         <h2>Playoffs</h2>
         <p class="sub">Playoff record and appearances (bye), 2019&ndash;2025</p>
-        <div class="playoffs-header"><span></span><span class="sortable" data-sort="playoff_record">Playoff record</span><span class="sortable" data-sort="playoff_apps">Appearances (bye)</span><span class="sortable" data-sort="championship_record">Championship</span><span class="sortable" data-sort="pppg">pPPG</span></div>
+        <div class="playoffs-header"><span></span><span class="sortable" data-sort="playoff_record">Playoff record</span><span class="sortable" data-sort="playoff_apps">Appearances (bye)</span><span class="sortable" data-sort="championship_record">Championship</span><span class="sortable" data-sort="pppg">PPG</span></div>
         <div id="playoffs-list"></div>
       </div>
     </div>
@@ -290,6 +291,12 @@
       <div id="y2025-list"></div>
 
       <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2025-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
         <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2025-highscore" class="digest-grid"></div>
@@ -300,11 +307,6 @@
         <ul id="y2025-glance" class="glance-list"></ul>
       </div>
 
-      <div class="digest">
-        <h2>Playoff Bracket</h2>
-        <p class="sub">Quarterfinal, semifinal, and championship games</p>
-        <div id="y2025-bracket" class="bracket-rounds"></div>
-      </div>
     </div>
 
     <div id="view-y2024" style="display:none;">
@@ -317,6 +319,12 @@
       <div id="y2024-list"></div>
 
       <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2024-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
         <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2024-highscore" class="digest-grid"></div>
@@ -327,11 +335,6 @@
         <ul id="y2024-glance" class="glance-list"></ul>
       </div>
 
-      <div class="digest">
-        <h2>Playoff Bracket</h2>
-        <p class="sub">Quarterfinal, semifinal, and championship games</p>
-        <div id="y2024-bracket" class="bracket-rounds"></div>
-      </div>
     </div>
 
     <div id="view-y2023" style="display:none;">
@@ -344,6 +347,12 @@
       <div id="y2023-list"></div>
 
       <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2023-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
         <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2023-highscore" class="digest-grid"></div>
@@ -354,11 +363,6 @@
         <ul id="y2023-glance" class="glance-list"></ul>
       </div>
 
-      <div class="digest">
-        <h2>Playoff Bracket</h2>
-        <p class="sub">Quarterfinal, semifinal, and championship games</p>
-        <div id="y2023-bracket" class="bracket-rounds"></div>
-      </div>
     </div>
 
     <div id="view-y2022" style="display:none;">
@@ -371,6 +375,12 @@
       <div id="y2022-list"></div>
 
       <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2022-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
         <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2022-highscore" class="digest-grid"></div>
@@ -381,11 +391,6 @@
         <ul id="y2022-glance" class="glance-list"></ul>
       </div>
 
-      <div class="digest">
-        <h2>Playoff Bracket</h2>
-        <p class="sub">Quarterfinal, semifinal, and championship games</p>
-        <div id="y2022-bracket" class="bracket-rounds"></div>
-      </div>
     </div>
 
     <div id="view-y2021" style="display:none;">
@@ -398,6 +403,12 @@
       <div id="y2021-list"></div>
 
       <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2021-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
         <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2021-highscore" class="digest-grid"></div>
@@ -408,11 +419,6 @@
         <ul id="y2021-glance" class="glance-list"></ul>
       </div>
 
-      <div class="digest">
-        <h2>Playoff Bracket</h2>
-        <p class="sub">Quarterfinal, semifinal, and championship games</p>
-        <div id="y2021-bracket" class="bracket-rounds"></div>
-      </div>
     </div>
 
     <div id="view-y2020" style="display:none;">
@@ -425,6 +431,12 @@
       <div id="y2020-list"></div>
 
       <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2020-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
         <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2020-highscore" class="digest-grid"></div>
@@ -435,11 +447,6 @@
         <ul id="y2020-glance" class="glance-list"></ul>
       </div>
 
-      <div class="digest">
-        <h2>Playoff Bracket</h2>
-        <p class="sub">Quarterfinal, semifinal, and championship games</p>
-        <div id="y2020-bracket" class="bracket-rounds"></div>
-      </div>
     </div>
 
     <div id="view-y2019" style="display:none;">
@@ -452,6 +459,12 @@
       <div id="y2019-list"></div>
 
       <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2019-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
         <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2019-highscore" class="digest-grid"></div>
@@ -462,11 +475,6 @@
         <ul id="y2019-glance" class="glance-list"></ul>
       </div>
 
-      <div class="digest">
-        <h2>Playoff Bracket</h2>
-        <p class="sub">Quarterfinal, semifinal, and championship games</p>
-        <div id="y2019-bracket" class="bracket-rounds"></div>
-      </div>
     </div>
   </div>
 
@@ -705,15 +713,14 @@
       const bracket = document.getElementById(`${prefix}-bracket`);
       if (data.bracket) {
         const b = data.bracket;
-        const byeHtml = `<div class="bracket-round"><h3>Byes</h3><div class="bracket-game"><span>${b.bye.join(' &middot; ')}</span></div></div>`;
+        const byeHtml = `<div class="bracket-round"><h3>Byes</h3><div class="bracket-game"><div class="bracket-game-row winner"><span>${b.bye.join(' &middot; ')}</span></div></div></div>`;
         const roundHtml = (label, games) => `
           <div class="bracket-round">
             <h3>${label}</h3>
             ${games.map(g => `
               <div class="bracket-game">
-                <span class="bracket-winner">${g.w}</span>
-                <span class="bracket-score">${g.ws} &ndash; ${g.ls}</span>
-                <span class="bracket-loser">${g.l}</span>
+                <div class="bracket-game-row winner"><span>${g.w}</span><span class="bracket-game-score">${g.ws}</span></div>
+                <div class="bracket-game-row loser"><span>${g.l}</span><span class="bracket-game-score">${g.ls}</span></div>
               </div>`).join('')}
           </div>`;
         bracket.innerHTML = byeHtml + roundHtml('Quarterfinal', b.qf) + roundHtml('Semifinal', b.sf) + roundHtml('Championship', b.f);
@@ -882,15 +889,9 @@
         <li>Worst single-season record: <b>Pat</b>, 2-12 (.143) in 2025</li>
         <li>Most weekly high scores in one season: <b>Zach</b>, 7 in 2023</li>
         <li>Highest single-season PPG: <b>Zach</b>, 143.2 in 2023</li>
-        <li>Highest average PPG since 2019: <b>Zach</b>, 127.5</li>
-        <li>Most playoff appearances: <b>Triangle</b> and <b>Brian</b>, tied at 6 of 7 seasons</li>
-        <li>Most top-seed (bye) appearances: <b>Triangle</b>, 4 of 7 seasons</li>
-        <li>Best championship-game record: <b>JM</b> and <b>Masten</b>, tied at 2-0 in title games</li>
-        <li>Most championship-game appearances: <b>Brian</b>, 4 of 7 seasons</li>
-        <li>Highest playoff PPG: <b>Gurv</b>, 144.2</li>
-        <li>Lowest playoff PPG (min. 5 games): <b>Zach</b>, 111.4 &mdash; despite leading regular-season PPG at 127.5</li>
-        <li>Highest single playoff game: <b>Masten</b>, 200.62 (2025 Quarterfinal)</li>
-        <li>Lowest single playoff game: <b>Zach</b>, 69.78 (2021 Quarterfinal, a loss)</li>`;
+        <li>Highest average PPG over the last 7 seasons: <b>Zach</b>, 127.5</li>
+        <li>Longest win streak in a single season: <b>Zach</b>, 9 straight in 2023</li>
+        <li>Most consecutive winning seasons: <b>Triangle</b>, 4 in a row</li>`;
     }
     function renderHighScorerCounts(years) {
       const totals = {};
