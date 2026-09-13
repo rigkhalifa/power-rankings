@@ -579,10 +579,12 @@
 
       const glance = document.getElementById(`${prefix}-glance`);
       const s = data.season_summary;
+      const notesHtml = (data.notes || []).map(n => `<li>${n}</li>`).join('');
       glance.innerHTML = `
         <li>Highest score: <b>${s.high.team}</b>, ${s.high.score} (Week ${s.high.week})</li>
         <li>Lowest score: <b>${s.low.team}</b>, ${s.low.score} (Week ${s.low.week})</li>
-        <li>League average: <b>${s.avg}</b> points per week</li>`;
+        <li>League average: <b>${s.avg}</b> points per week</li>
+        ${notesHtml}`;
     }
     function renderEarnings(data) {
       const list = document.getElementById('earnings-list');
