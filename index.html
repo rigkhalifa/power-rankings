@@ -147,6 +147,7 @@
       <button class="tab-btn" data-view="y2023">2023 Review</button>
       <button class="tab-btn" data-view="y2022">2022 Review</button>
       <button class="tab-btn" data-view="y2021">2021 Review</button>
+      <button class="tab-btn" data-view="y2020">2020 Review</button>
     </div>
 
     <div id="view-current">
@@ -303,6 +304,27 @@
         <div id="y2021-highlights" class="digest-grid"></div>
       </div>
     </div>
+
+    <div id="view-y2020" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2020-title">2020 season review</h1>
+        <p>Regular-season only, and genuinely 13 weeks this year, not a data gap &mdash; the weekly high-scorer pool paid out $455 instead of the usual $490.</p>
+        <hr class="rule">
+      </div>
+      <div id="y2020-list"></div>
+
+      <div class="digest">
+        <h2>Weekly high-scorer leaderboard</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2020-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Storylines</h2>
+        <p class="sub">The season's biggest moments</p>
+        <div id="y2020-highlights" class="digest-grid"></div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -338,9 +360,10 @@
       fetch('year_2022.json').then(r => r.json()),
       fetch('year_2021.json').then(r => r.json()),
       fetch('year_2023.json').then(r => r.json()),
+      fetch('year_2020.json').then(r => r.json()),
       fetch('earnings.json').then(r => r.json()),
       fetch('combined_wins.json').then(r => r.json())
-    ]).then(([teams, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, earnings, wins]) => {
+    ]).then(([teams, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, earnings, wins]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -354,6 +377,7 @@
       renderYearReview('y2022', y2022);
       renderYearReview('y2021', y2021);
       renderYearReview('y2023', y2023);
+      renderYearReview('y2020', y2020);
       renderEarnings(earnings);
       renderWins(wins);
     }).catch(err => {
@@ -375,6 +399,7 @@
         document.getElementById('view-y2023').style.display = view === 'y2023' ? '' : 'none';
         document.getElementById('view-y2022').style.display = view === 'y2022' ? '' : 'none';
         document.getElementById('view-y2021').style.display = view === 'y2021' ? '' : 'none';
+        document.getElementById('view-y2020').style.display = view === 'y2020' ? '' : 'none';
       });
     });
 
