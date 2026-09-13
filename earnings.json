@@ -1,9 +1,9 @@
 {
-  "payout_note": "$1,000 for 1st, $510 for 2nd, $35/week high scorer over a 14-week regular season. 2021, 2022, 2024, 2025 complete; 2023 champion/runner-up only, no weekly data (2023 sheet doesn't exist).",
+  "payout_note": "$1,000 for 1st, $510 for 2nd, $35/week high scorer over a 14-week regular season. 2021\u20132025, all years complete.",
   "leaderboard": [
     {
       "owner": "Brian",
-      "total": 2880,
+      "total": 2950,
       "breakdown": [
         {
           "year": "2025",
@@ -19,6 +19,11 @@
           "year": "2023",
           "note": "1st place",
           "amount": 1000
+        },
+        {
+          "year": "2023",
+          "note": "2 weekly high scores",
+          "amount": 70
         },
         {
           "year": "2022",
@@ -44,7 +49,7 @@
     },
     {
       "owner": "JM",
-      "total": 2175,
+      "total": 2210,
       "breakdown": [
         {
           "year": "2025",
@@ -62,6 +67,11 @@
           "amount": 35
         },
         {
+          "year": "2023",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
           "year": "2021",
           "note": "1st place",
           "amount": 1000
@@ -75,7 +85,7 @@
     },
     {
       "owner": "Gurv",
-      "total": 1790,
+      "total": 1825,
       "breakdown": [
         {
           "year": "2025",
@@ -96,6 +106,11 @@
           "year": "2023",
           "note": "2nd place",
           "amount": 510
+        },
+        {
+          "year": "2023",
+          "note": "1 weekly high score",
+          "amount": 35
         },
         {
           "year": "2022",
@@ -127,7 +142,7 @@
     },
     {
       "owner": "Triangle",
-      "total": 790,
+      "total": 825,
       "breakdown": [
         {
           "year": "2025",
@@ -138,6 +153,11 @@
           "year": "2024",
           "note": "2 weekly high scores",
           "amount": 70
+        },
+        {
+          "year": "2023",
+          "note": "1 weekly high score",
+          "amount": 35
         },
         {
           "year": "2022",
@@ -153,7 +173,7 @@
     },
     {
       "owner": "Zach",
-      "total": 280,
+      "total": 525,
       "breakdown": [
         {
           "year": "2025",
@@ -164,6 +184,11 @@
           "year": "2024",
           "note": "3 weekly high scores",
           "amount": 105
+        },
+        {
+          "year": "2023",
+          "note": "7 weekly high scores",
+          "amount": 245
         },
         {
           "year": "2022",
@@ -179,7 +204,7 @@
     },
     {
       "owner": "Nick",
-      "total": 210,
+      "total": 245,
       "breakdown": [
         {
           "year": "2025",
@@ -190,6 +215,11 @@
           "year": "2024",
           "note": "2 weekly high scores",
           "amount": 70
+        },
+        {
+          "year": "2023",
+          "note": "1 weekly high score",
+          "amount": 35
         },
         {
           "year": "2022",
@@ -231,7 +261,7 @@
     },
     {
       "owner": "Janny",
-      "total": 105,
+      "total": 140,
       "breakdown": [
         {
           "year": "2025",
@@ -242,6 +272,11 @@
           "year": "2024",
           "note": "2 weekly high scores",
           "amount": 70
+        },
+        {
+          "year": "2023",
+          "note": "1 weekly high score",
+          "amount": 35
         }
       ]
     },
