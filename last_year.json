@@ -97,5 +97,18 @@
     }
   ],
   "champion": "Gurv",
-  "runner_up": "Triangle"
+  "runner_up": "Triangle",
+  "season_summary": {
+    "high": {
+      "team": "Gurv",
+      "week": 7,
+      "score": 202.24
+    },
+    "low": {
+      "team": "Pat",
+      "week": 7,
+      "score": 60.24
+    },
+    "avg": 116.9
+  }
 }
