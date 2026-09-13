@@ -96,26 +96,6 @@
       "count": 1
     }
   ],
-  "highlights": [
-    {
-      "title": "Wire-to-wire",
-      "text": "Gurv (Ban defense & kickers) held #1 every single week, preseason through the finale \u2014 the only team that never once dropped from the top spot."
-    },
-    {
-      "title": "Total domination",
-      "text": "Gurv also led the weekly high-scorer count with 4 wins \u2014 more than double anyone else \u2014 then went on to win the actual championship. #1 regular season, #1 high scorer, #1 overall."
-    },
-    {
-      "title": "Week 7 fireworks",
-      "text": "The season's highest score (202.24) and lowest score (60.24) both landed in the exact same week \u2014 Gurv's high, Pat's low."
-    },
-    {
-      "title": "Wildest ride",
-      "text": "Librizzi opened the year ranked 10th, climbed all the way to 2nd by midseason, then settled at 7th by the finale \u2014 the biggest single-season swing of anyone."
-    },
-    {
-      "title": "Buzzer-beater climb",
-      "text": "Brian's Fraud Hoax sat 9th through week 13, then exploded for 139.38 in the season's final week \u2014 the second-highest score of Week 14 \u2014 rocketing all the way up to 6th at the literal last moment."
-    }
-  ]
+  "champion": "Gurv",
+  "runner_up": "Triangle"
 }
