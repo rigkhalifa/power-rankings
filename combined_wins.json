@@ -7,7 +7,8 @@
       "record": "50-33",
       "win_pct": 0.602,
       "overall_record": "405-342",
-      "overall_pct": 0.542
+      "overall_pct": 0.542,
+      "ppg": 122.3
     },
     {
       "owner": "Zach",
@@ -15,7 +16,8 @@
       "record": "50-33",
       "win_pct": 0.602,
       "overall_record": "451-296",
-      "overall_pct": 0.604
+      "overall_pct": 0.604,
+      "ppg": 127.5
     },
     {
       "owner": "Nick",
@@ -23,7 +25,8 @@
       "record": "47-36",
       "win_pct": 0.566,
       "overall_record": "389-358",
-      "overall_pct": 0.521
+      "overall_pct": 0.521,
+      "ppg": 121.5
     },
     {
       "owner": "Brian",
@@ -31,7 +34,8 @@
       "record": "45-38",
       "win_pct": 0.542,
       "overall_record": "430-317",
-      "overall_pct": 0.576
+      "overall_pct": 0.576,
+      "ppg": 126.0
     },
     {
       "owner": "Gurv",
@@ -39,7 +43,8 @@
       "record": "44-39",
       "win_pct": 0.53,
       "overall_record": "431-316",
-      "overall_pct": 0.577
+      "overall_pct": 0.577,
+      "ppg": 126.7
     },
     {
       "owner": "JM",
@@ -47,7 +52,8 @@
       "record": "42-41",
       "win_pct": 0.506,
       "overall_record": "391-356",
-      "overall_pct": 0.523
+      "overall_pct": 0.523,
+      "ppg": 121.3
     },
     {
       "owner": "Masten",
@@ -55,7 +61,8 @@
       "record": "40-43",
       "win_pct": 0.482,
       "overall_record": "354-393",
-      "overall_pct": 0.474
+      "overall_pct": 0.474,
+      "ppg": 118.3
     },
     {
       "owner": "Pat",
@@ -63,7 +70,8 @@
       "record": "35-48",
       "win_pct": 0.422,
       "overall_record": "276-471",
-      "overall_pct": 0.369
+      "overall_pct": 0.369,
+      "ppg": 110.2
     },
     {
       "owner": "Janny",
@@ -71,7 +79,8 @@
       "record": "33-50",
       "win_pct": 0.398,
       "overall_record": "338-409",
-      "overall_pct": 0.452
+      "overall_pct": 0.452,
+      "ppg": 116.9
     },
     {
       "owner": "Librizzi",
@@ -79,7 +88,8 @@
       "record": "29-54",
       "win_pct": 0.349,
       "overall_record": "268-479",
-      "overall_pct": 0.359
+      "overall_pct": 0.359,
+      "ppg": 110.0
     }
   ]
 }
