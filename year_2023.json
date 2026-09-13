@@ -1,0 +1,109 @@
+{
+  "season": "2023",
+  "standings": [
+    {
+      "rank": 1,
+      "team": "Zach",
+      "record": "13-1",
+      "ppg": 143.2
+    },
+    {
+      "rank": 2,
+      "team": "Nick",
+      "record": "9-5",
+      "ppg": 122.0
+    },
+    {
+      "rank": 3,
+      "team": "Gurv",
+      "record": "8-6",
+      "ppg": 123.3
+    },
+    {
+      "rank": 4,
+      "team": "Brian",
+      "record": "7-7",
+      "ppg": 126.3
+    },
+    {
+      "rank": 5,
+      "team": "Pat",
+      "record": "7-7",
+      "ppg": 114.0
+    },
+    {
+      "rank": 6,
+      "team": "JM",
+      "record": "6-8",
+      "ppg": 118.1
+    },
+    {
+      "rank": 7,
+      "team": "Librizzi",
+      "record": "6-8",
+      "ppg": 110.0
+    },
+    {
+      "rank": 8,
+      "team": "Triangle",
+      "record": "5-9",
+      "ppg": 111.3
+    },
+    {
+      "rank": 9,
+      "team": "Masten",
+      "record": "5-9",
+      "ppg": 110.6
+    },
+    {
+      "rank": 10,
+      "team": "Janny",
+      "record": "4-10",
+      "ppg": 113.9
+    }
+  ],
+  "high_scorers": [
+    {
+      "team": "Zach",
+      "count": 7
+    },
+    {
+      "team": "Brian",
+      "count": 2
+    },
+    {
+      "team": "JM",
+      "count": 1
+    },
+    {
+      "team": "Gurv",
+      "count": 1
+    },
+    {
+      "team": "Triangle",
+      "count": 1
+    },
+    {
+      "team": "Nick",
+      "count": 1
+    },
+    {
+      "team": "Janny",
+      "count": 1
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Dominant, and it didn't matter",
+      "text": "Zach went 13-1 in the regular season and posted the week's high score 7 out of 14 weeks \u2014 half the entire season \u2014 yet didn't win the championship. The most lopsided regular-season vs. actual-outcome gap of any year on record."
+    },
+    {
+      "title": "Quiet champion",
+      "text": "Brian won the actual title with a modest 7-7 record and just 2 weekly high scores \u2014 proof that peaking in the playoffs beats dominating the regular season."
+    },
+    {
+      "title": "No power ranking exists for this year",
+      "text": "Roster strength and playoff odds were never tracked for 2023, so there's no power-rank formula to apply here \u2014 the list above is sorted by actual win-loss record only."
+    }
+  ]
+}
