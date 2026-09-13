@@ -1,29 +1,109 @@
 {
   "season": "2021",
   "standings": [
-    {"rank": 1, "team": "T", "record": "12-2", "ppg": 135.1},
-    {"rank": 2, "team": "Pat", "record": "12-2", "ppg": 124.9},
-    {"rank": 3, "team": "JM", "record": "8-6", "ppg": 127.2},
-    {"rank": 4, "team": "BB", "record": "6-8", "ppg": 130.0},
-    {"rank": 5, "team": "Masten", "record": "7-7", "ppg": 119.2},
-    {"rank": 6, "team": "ZC", "record": "6-8", "ppg": 124.6},
-    {"rank": 7, "team": "Gurv", "record": "6-8", "ppg": 119.7},
-    {"rank": 8, "team": "Janny", "record": "4-10", "ppg": 111.0},
-    {"rank": 9, "team": "Librizzi", "record": "4-10", "ppg": 111.8},
-    {"rank": 10, "team": "Nick", "record": "5-9", "ppg": 108.6}
+    {
+      "rank": 1,
+      "team": "Triangle",
+      "record": "12-2",
+      "ppg": 135.1
+    },
+    {
+      "rank": 2,
+      "team": "Pat",
+      "record": "12-2",
+      "ppg": 124.9
+    },
+    {
+      "rank": 3,
+      "team": "JM",
+      "record": "8-6",
+      "ppg": 127.2
+    },
+    {
+      "rank": 4,
+      "team": "Brian",
+      "record": "6-8",
+      "ppg": 130.0
+    },
+    {
+      "rank": 5,
+      "team": "Masten",
+      "record": "7-7",
+      "ppg": 119.2
+    },
+    {
+      "rank": 6,
+      "team": "Zach",
+      "record": "6-8",
+      "ppg": 124.6
+    },
+    {
+      "rank": 7,
+      "team": "Gurv",
+      "record": "6-8",
+      "ppg": 119.7
+    },
+    {
+      "rank": 8,
+      "team": "Janny",
+      "record": "4-10",
+      "ppg": 111.0
+    },
+    {
+      "rank": 9,
+      "team": "Librizzi",
+      "record": "4-10",
+      "ppg": 111.8
+    },
+    {
+      "rank": 10,
+      "team": "Nick",
+      "record": "5-9",
+      "ppg": 108.6
+    }
   ],
   "high_scorers": [
-    {"team": "BB", "count": 4},
-    {"team": "T", "count": 4},
-    {"team": "JM", "count": 3},
-    {"team": "Librizzi", "count": 1},
-    {"team": "ZC", "count": 1},
-    {"team": "Nick", "count": 1}
+    {
+      "team": "Brian",
+      "count": 4
+    },
+    {
+      "team": "Triangle",
+      "count": 4
+    },
+    {
+      "team": "JM",
+      "count": 3
+    },
+    {
+      "team": "Librizzi",
+      "count": 1
+    },
+    {
+      "team": "Zach",
+      "count": 1
+    },
+    {
+      "team": "Nick",
+      "count": 1
+    }
   ],
   "highlights": [
-    {"title": "From worst to first", "text": "T (Number 2) opened the year ranked 8th in the preseason, then took over #1 in week 7 and never let go \u2014 8 straight weeks atop the power rankings to close the season."},
-    {"title": "Peaked in the playoffs, again", "text": "JM (THE FOLKS) won the actual championship despite finishing just 3rd in the regular-season power rank \u2014 the same pattern that would repeat again in 2024."},
-    {"title": "Opening statement", "text": "BB (Stugots) posted the single highest score of the entire season \u2014 190.28 \u2014 in week 1, then backed it up with 4 total weekly high scores on the year."},
-    {"title": "A season to forget", "text": "Librizzi (out due to dad) finished dead last for 13 of the season's 14 weeks, budging from 10th only in the very last week, and posted the year's single lowest score (61.92) along the way."}
+    {
+      "title": "From worst to first",
+      "text": "T (Number 2) opened the year ranked 8th in the preseason, then took over #1 in week 7 and never let go \u2014 8 straight weeks atop the power rankings to close the season."
+    },
+    {
+      "title": "Peaked in the playoffs, again",
+      "text": "JM (THE FOLKS) won the actual championship despite finishing just 3rd in the regular-season power rank \u2014 the same pattern that would repeat again in 2024."
+    },
+    {
+      "title": "Opening statement",
+      "text": "BB (Stugots) posted the single highest score of the entire season \u2014 190.28 \u2014 in week 1, then backed it up with 4 total weekly high scores on the year."
+    },
+    {
+      "title": "A season to forget",
+      "text": "Librizzi (out due to dad) finished dead last for 13 of the season's 14 weeks, budging from 10th only in the very last week, and posted the year's single lowest score (61.92) along the way."
+    }
   ]
 }
