@@ -144,7 +144,7 @@
       <button class="tab-btn" data-view="wins">Combined Wins</button>
       <button class="tab-btn" data-view="y2025">2025 Review</button>
       <button class="tab-btn" data-view="y2024">2024 Review</button>
-      <button class="tab-btn" data-view="y2023">2023 (N/A)</button>
+      <button class="tab-btn" data-view="y2023">2023 Review</button>
       <button class="tab-btn" data-view="y2022">2022 Review</button>
       <button class="tab-btn" data-view="y2021">2021 Review</button>
     </div>
@@ -243,19 +243,22 @@
 
     <div id="view-y2023" style="display:none;">
       <div class="masthead">
-        <h1>2023 season review</h1>
-        <p>No power rankings sheet exists for this season &mdash; only the champion and runner-up are on record.</p>
+        <h1 id="y2023-title">2023 season review</h1>
+        <p>Stats-only, not a power ranking &mdash; roster strength and playoff odds were never tracked this year, so teams below are sorted by actual win-loss record.</p>
         <hr class="rule">
       </div>
-      <div class="ly-row">
-        <div class="rank">1</div>
-        <div class="lyname">Brian</div>
-        <div class="lystats">Champion</div>
+      <div id="y2023-list"></div>
+
+      <div class="digest">
+        <h2>Weekly high-scorer leaderboard</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2023-highscore" class="digest-grid"></div>
       </div>
-      <div class="ly-row">
-        <div class="rank">2</div>
-        <div class="lyname">Gurv</div>
-        <div class="lystats">Runner-up</div>
+
+      <div class="digest">
+        <h2>Storylines</h2>
+        <p class="sub">The season's biggest moments</p>
+        <div id="y2023-highlights" class="digest-grid"></div>
       </div>
     </div>
 
@@ -334,9 +337,10 @@
       fetch('year_2024.json').then(r => r.json()),
       fetch('year_2022.json').then(r => r.json()),
       fetch('year_2021.json').then(r => r.json()),
+      fetch('year_2023.json').then(r => r.json()),
       fetch('earnings.json').then(r => r.json()),
       fetch('combined_wins.json').then(r => r.json())
-    ]).then(([teams, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, earnings, wins]) => {
+    ]).then(([teams, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, earnings, wins]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -349,6 +353,7 @@
       renderYearReview('y2024', y2024);
       renderYearReview('y2022', y2022);
       renderYearReview('y2021', y2021);
+      renderYearReview('y2023', y2023);
       renderEarnings(earnings);
       renderWins(wins);
     }).catch(err => {
