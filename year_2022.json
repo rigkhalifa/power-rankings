@@ -127,5 +127,47 @@
     "Zach",
     "Nick",
     "Triangle"
-  ]
+  ],
+  "bracket": {
+    "bye": [
+      "Masten",
+      "Brian"
+    ],
+    "qf": [
+      {
+        "w": "Nick",
+        "ws": 120.58,
+        "l": "Triangle",
+        "ls": 111.18
+      },
+      {
+        "w": "Zach",
+        "ws": 144.12,
+        "l": "Janny",
+        "ls": 124.56
+      }
+    ],
+    "sf": [
+      {
+        "w": "Masten",
+        "ws": 104.9,
+        "l": "Nick",
+        "ls": 97.36
+      },
+      {
+        "w": "Brian",
+        "ws": 139.48,
+        "l": "Zach",
+        "ls": 121.2
+      }
+    ],
+    "f": [
+      {
+        "w": "Masten",
+        "ws": 76.8,
+        "l": "Brian",
+        "ls": 73.68
+      }
+    ]
+  }
 }
