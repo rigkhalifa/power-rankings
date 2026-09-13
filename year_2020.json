@@ -111,7 +111,20 @@
   "notes": [
     "Nick took over the #1 power rank in Week 5 and held it the rest of the season, finishing with the league's best record (11-2) and the championship.",
     "Triangle's 203.18 in Week 2 is the highest single-week score across all six seasons tracked on this site.",
-    "Pat sat in 10th place for 10 straight weeks and finished 2-11."
+    "Pat sat in 10th place for 10 straight weeks and finished 2-11.",
+    "Nick's #1 seed bye lined up with the eventual championship."
   ],
-  "subtitle": "Regular season only"
+  "subtitle": "Regular season only",
+  "bye_teams": [
+    "Nick",
+    "Triangle"
+  ],
+  "playoff_teams": [
+    "Nick",
+    "Triangle",
+    "JM",
+    "Gurv",
+    "Masten",
+    "Brian"
+  ]
 }
