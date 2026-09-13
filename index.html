@@ -49,6 +49,8 @@
 
   .masthead h1 { font-weight: 600; font-size: 30px; margin: 0 0 8px; letter-spacing: -0.2px; }
   .masthead p { font-family: 'IBM Plex Sans', sans-serif; font-style: normal; font-size: 14px; color: var(--ink-muted); margin: 0 0 20px; }
+  .year-subtitle { margin: 0 0 4px !important; }
+  .year-legend { font-family: 'IBM Plex Mono', monospace !important; font-size: 12px !important; color: var(--ink-muted); margin: 0 0 20px !important; }
   .masthead .rule { border: none; border-top: 1px solid var(--ink); margin: 0; }
 
   .row-btn { all: unset; cursor: pointer; display: block; width: 100%; }
@@ -165,12 +167,12 @@
       <button class="tab-btn" data-view="history">Winnings</button>
       <button class="tab-btn" data-view="trophycase">Trophy Case</button>
       <button class="tab-btn" data-view="wins">All</button>
-      <button class="tab-btn" data-view="y2025">2025 Review</button>
-      <button class="tab-btn" data-view="y2024">2024 Review</button>
-      <button class="tab-btn" data-view="y2023">2023 Review</button>
-      <button class="tab-btn" data-view="y2022">2022 Review</button>
-      <button class="tab-btn" data-view="y2021">2021 Review</button>
-      <button class="tab-btn" data-view="y2020">2020 Review</button>
+      <button class="tab-btn" data-view="y2025">2025</button>
+      <button class="tab-btn" data-view="y2024">2024</button>
+      <button class="tab-btn" data-view="y2023">2023</button>
+      <button class="tab-btn" data-view="y2022">2022</button>
+      <button class="tab-btn" data-view="y2021">2021</button>
+      <button class="tab-btn" data-view="y2020">2020</button>
     </div>
 
     <div id="view-current">
@@ -201,12 +203,6 @@
         <hr class="rule">
       </div>
 
-      <ul class="payout-rules">
-        <li><b>1st place:</b> $1,000</li>
-        <li><b>2nd place:</b> $510</li>
-        <li><b>Weekly high scorer:</b> $35</li>
-      </ul>
-
       <div class="digest">
         <div id="earnings-list"></div>
       </div>
@@ -226,14 +222,14 @@
 
       <div class="digest">
         <h2>High-scorer payouts</h2>
-        <p class="sub">Weekly high-scorer wins since 2020, $35 a week per regular season</p>
+        <p class="sub">Weekly high-scorer wins since 2020</p>
         <div id="hs-count-list"></div>
       </div>
     </div>
 
     <div id="view-wins" style="display:none;">
       <div class="masthead">
-        <h1>All</h1>
+        <h1>2020&ndash;2025</h1>
         <p id="wins-sub"></p>
         <hr class="rule">
       </div>
@@ -249,7 +245,9 @@
 
     <div id="view-y2025" style="display:none;">
       <div class="masthead">
-        <h1 id="y2025-title">End of season power rankings</h1>
+        <h1 id="y2025-title">PLACEHOLDER</h1>
+        <p id="y2025-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
         <hr class="rule">
       </div>
       <div id="y2025-list"></div>
@@ -268,7 +266,9 @@
 
     <div id="view-y2024" style="display:none;">
       <div class="masthead">
-        <h1 id="y2024-title">End of season power rankings</h1>
+        <h1 id="y2024-title">PLACEHOLDER</h1>
+        <p id="y2024-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
         <hr class="rule">
       </div>
       <div id="y2024-list"></div>
@@ -287,8 +287,9 @@
 
     <div id="view-y2023" style="display:none;">
       <div class="masthead">
-        <h1 id="y2023-title">2023 season review</h1>
-        <p>Stats-only, not a power ranking &mdash; roster strength and playoff odds were never tracked this year, so teams below are sorted by actual win-loss record.</p>
+        <h1 id="y2023-title">PLACEHOLDER</h1>
+        <p id="y2023-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
         <hr class="rule">
       </div>
       <div id="y2023-list"></div>
@@ -307,7 +308,9 @@
 
     <div id="view-y2022" style="display:none;">
       <div class="masthead">
-        <h1 id="y2022-title">End of season power rankings</h1>
+        <h1 id="y2022-title">PLACEHOLDER</h1>
+        <p id="y2022-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
         <hr class="rule">
       </div>
       <div id="y2022-list"></div>
@@ -326,7 +329,9 @@
 
     <div id="view-y2021" style="display:none;">
       <div class="masthead">
-        <h1 id="y2021-title">End of season power rankings</h1>
+        <h1 id="y2021-title">PLACEHOLDER</h1>
+        <p id="y2021-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
         <hr class="rule">
       </div>
       <div id="y2021-list"></div>
@@ -345,7 +350,9 @@
 
     <div id="view-y2020" style="display:none;">
       <div class="masthead">
-        <h1 id="y2020-title">End of season power rankings</h1>
+        <h1 id="y2020-title">PLACEHOLDER</h1>
+        <p id="y2020-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
         <hr class="rule">
       </div>
       <div id="y2020-list"></div>
@@ -556,6 +563,7 @@
     }
     function renderYearReview(prefix, data) {
       document.getElementById(`${prefix}-title`).textContent = data.title;
+      document.getElementById(`${prefix}-subtitle`).textContent = data.subtitle;
 
       const list = document.getElementById(`${prefix}-list`);
       list.innerHTML = data.standings.map(s => {
@@ -654,7 +662,8 @@
         <li>Best single-season record: <b>Zach</b>, 13-1 (.929) in 2023</li>
         <li>Worst single-season record: <b>Pat</b>, 2-12 (.143) in 2025</li>
         <li>Most weekly high scores in one season: <b>Zach</b>, 7 in 2023 &mdash; half the season</li>
-        <li>Highest single-season PPG: <b>Zach</b>, 143.2 in 2023</li>`;
+        <li>Highest single-season PPG: <b>Zach</b>, 143.2 in 2023</li>
+        <li>Highest average PPG since 2020: <b>Zach</b>, 127.5</li>`;
     }
     function renderHighScorerCounts(years) {
       const totals = {};
