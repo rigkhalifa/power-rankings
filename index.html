@@ -115,7 +115,10 @@
   .earnings-row-btn { all: unset; cursor: pointer; display: block; width: 100%; }
   .earnings-row { display: grid; grid-template-columns: 1fr auto 20px; align-items: center; gap: 12px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
   .earnings-owner { font-size: 16px; font-weight: 500; }
-  .earnings-total { font-family: 'IBM Plex Mono', monospace; font-size: 16px; color: var(--accent); font-weight: 500; }
+  .earnings-total { font-family: 'IBM Plex Mono', monospace; font-size: 16px; color: var(--accent); font-weight: 500; text-align: right; }
+  .earnings-total .net { display: block; font-size: 11px; font-weight: 400; margin-top: 2px; }
+  .earnings-total .net.net-positive { color: var(--tier-good); }
+  .earnings-total .net.net-negative { color: var(--tier-bad); }
   .earnings-panel { display: none; padding: 4px 4px 16px 4px; border-bottom: 1px solid var(--divider); }
   .earnings-line { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-muted); padding: 3px 0; font-family: 'IBM Plex Mono', monospace; }
   .earnings-line span:first-child { font-style: italic; }
@@ -650,6 +653,8 @@
         <li>League average: <b>${s.avg}</b> points per week</li>
         ${notesHtml}`;
     }
+    const BUY_IN = 200;
+    const YEARS_PLAYED = 7;
     function renderEarnings(data) {
       const list = document.getElementById('earnings-list');
 
@@ -659,12 +664,15 @@
             <span>${b.year} &middot; ${b.note}</span>
             <span>$${b.amount}</span>
           </div>`).join('');
+        const net = o.total - BUY_IN * YEARS_PLAYED;
+        const netDisplay = net >= 0 ? `+$${net}` : `-$${Math.abs(net)}`;
+        const netClass = net >= 0 ? 'net-positive' : 'net-negative';
         return `
           <div>
             <button class="earnings-row-btn" data-e="${i}">
               <div class="earnings-row">
                 <div class="earnings-owner">${o.owner}</div>
-                <div class="earnings-total">$${o.total}</div>
+                <div class="earnings-total">$${o.total}<span class="net ${netClass}">(net ${netDisplay})</span></div>
                 <div class="chev" data-e="${i}">&rsaquo;</div>
               </div>
             </button>
