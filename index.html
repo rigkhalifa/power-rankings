@@ -142,8 +142,8 @@
   .wins-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; white-space: nowrap; }
   .wins-stat .pct { font-size: 13px; color: var(--ink-muted); margin-left: 6px; }
   .wins-ppg { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; }
-  .playoffs-row { display: grid; grid-template-columns: 1fr 112px 120px 90px 84px; align-items: center; gap: 16px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
-  .playoffs-header { display: grid; grid-template-columns: 1fr 112px 120px 90px 84px; gap: 16px; padding: 0 4px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .playoffs-row { display: grid; grid-template-columns: 1fr 112px 120px 90px 110px; align-items: center; gap: 16px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
+  .playoffs-header { display: grid; grid-template-columns: 1fr 112px 120px 90px 110px; gap: 16px; padding: 0 4px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
   .playoffs-header span { text-align: right; }
   .playoffs-header span.sortable { cursor: pointer; }
   .playoffs-header span.sortable:hover { color: var(--ink); }
@@ -151,7 +151,7 @@
   .playoffs-owner { font-size: 16px; font-weight: 500; }
   .playoffs-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
   @media (max-width: 480px) {
-    .playoffs-row, .playoffs-header { grid-template-columns: 1fr 80px 82px 62px 60px; gap: 4px; }
+    .playoffs-row, .playoffs-header { grid-template-columns: 1fr 80px 82px 62px 78px; gap: 4px; }
     .playoffs-stat { font-size: 13px; }
   }
   @media (max-width: 480px) {
@@ -270,8 +270,8 @@
 
       <div class="digest">
         <h2>Playoffs</h2>
-        <p class="sub">Playoff record and appearances (bye), 2019&ndash;2025 &mdash; small number under PPG is the difference vs. regular-season PPG</p>
-        <div class="playoffs-header"><span></span><span class="sortable" data-sort="playoff_record">Playoff record</span><span class="sortable" data-sort="playoff_apps">Appearances (bye)</span><span class="sortable" data-sort="championship_record">Championship</span><span class="sortable" data-sort="pppg">Playoff PPG</span></div>
+        <p class="sub">Playoff record and appearances (bye), 2019&ndash;2025</p>
+        <div class="playoffs-header"><span></span><span class="sortable" data-sort="playoff_record">Playoff record</span><span class="sortable" data-sort="playoff_apps">Appearances (bye)</span><span class="sortable" data-sort="championship_record">Championship</span><span class="sortable" data-sort="pppg">PPG (vs regular season)</span></div>
         <div id="playoffs-list"></div>
       </div>
     </div>
