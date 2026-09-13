@@ -93,5 +93,18 @@
     }
   ],
   "champion": "Nick",
-  "runner_up": "Triangle"
+  "runner_up": "Triangle",
+  "season_summary": {
+    "high": {
+      "team": "Triangle",
+      "week": 2,
+      "score": 203.18
+    },
+    "low": {
+      "team": "Librizzi",
+      "week": 10,
+      "score": 76.32
+    },
+    "avg": 122.8
+  }
 }
