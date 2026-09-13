@@ -1,12 +1,62 @@
 {
-  "Ban Him & Aubrey": {"owner": "T", "years": [2013]},
-  "Jeanty want winny": {"owner": "NW", "years": [2020]},
-  "Co-Authored": {"owner": "JM", "years": [2016, 2021, 2024]},
-  "Destined for 3rd": {"owner": "ZC", "years": [2015]},
-  "reigning playoff team": {"owner": "Knees", "years": []},
-  "MILFs": {"owner": "Masten", "years": [2017, 2018, 2019, 2022]},
-  "Chasing Victory": {"owner": "Chris", "years": []},
-  "Ban defense & kickers": {"owner": "Gurv", "years": [2025]},
-  "Fat Husband": {"owner": "Janny", "years": []},
-  "not ass per chat": {"owner": "BB", "years": [2012, 2023]}
+  "Ban Him & Aubrey": {
+    "owner": "Triangle",
+    "years": [
+      2013
+    ]
+  },
+  "Jeanty want winny": {
+    "owner": "Nick",
+    "years": [
+      2020
+    ]
+  },
+  "Co-Authored": {
+    "owner": "JM",
+    "years": [
+      2016,
+      2021,
+      2024
+    ]
+  },
+  "Destined for 3rd": {
+    "owner": "Zach",
+    "years": [
+      2015
+    ]
+  },
+  "reigning playoff team": {
+    "owner": "Librizzi",
+    "years": []
+  },
+  "MILFs": {
+    "owner": "Masten",
+    "years": [
+      2017,
+      2018,
+      2019,
+      2022
+    ]
+  },
+  "Chasing Victory": {
+    "owner": "Chris",
+    "years": []
+  },
+  "Ban defense & kickers": {
+    "owner": "Gurv",
+    "years": [
+      2025
+    ]
+  },
+  "Fat Husband": {
+    "owner": "Janny",
+    "years": []
+  },
+  "not ass per chat": {
+    "owner": "Brian",
+    "years": [
+      2012,
+      2023
+    ]
+  }
 }
