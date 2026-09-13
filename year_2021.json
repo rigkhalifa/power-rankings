@@ -108,7 +108,20 @@
     "Triangle opened 8th in the preseason power rank, took over #1 in Week 7, and held it the rest of the season.",
     "JM won the championship from 3rd in the regular-season power rank.",
     "Brian posted the season's highest score (190.28) in Week 1 and led the league with 4 weekly high scores.",
-    "Librizzi finished last for 13 of the season's 14 weeks."
+    "Librizzi finished last for 13 of the season's 14 weeks.",
+    "JM won the championship as a non-bye qualifier, beating fellow non-bye team Brian in the final."
   ],
-  "subtitle": "Regular season only"
+  "subtitle": "Regular season only",
+  "bye_teams": [
+    "Triangle",
+    "Pat"
+  ],
+  "playoff_teams": [
+    "Triangle",
+    "Pat",
+    "JM",
+    "Zach",
+    "Masten",
+    "Brian"
+  ]
 }
