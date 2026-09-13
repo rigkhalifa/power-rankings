@@ -8,7 +8,9 @@
       "win_pct": 0.602,
       "overall_record": "405-342",
       "overall_pct": 0.542,
-      "ppg": 122.3
+      "ppg": 122.3,
+      "playoff_apps": 5,
+      "top_seed_apps": 3
     },
     {
       "owner": "Zach",
@@ -17,7 +19,9 @@
       "win_pct": 0.602,
       "overall_record": "451-296",
       "overall_pct": 0.604,
-      "ppg": 127.5
+      "ppg": 127.5,
+      "playoff_apps": 4,
+      "top_seed_apps": 2
     },
     {
       "owner": "Nick",
@@ -26,7 +30,9 @@
       "win_pct": 0.566,
       "overall_record": "389-358",
       "overall_pct": 0.521,
-      "ppg": 121.5
+      "ppg": 121.5,
+      "playoff_apps": 4,
+      "top_seed_apps": 2
     },
     {
       "owner": "Brian",
@@ -35,7 +41,9 @@
       "win_pct": 0.542,
       "overall_record": "430-317",
       "overall_pct": 0.576,
-      "ppg": 126.0
+      "ppg": 126.0,
+      "playoff_apps": 5,
+      "top_seed_apps": 2
     },
     {
       "owner": "Gurv",
@@ -44,7 +52,9 @@
       "win_pct": 0.53,
       "overall_record": "431-316",
       "overall_pct": 0.577,
-      "ppg": 126.7
+      "ppg": 126.7,
+      "playoff_apps": 4,
+      "top_seed_apps": 1
     },
     {
       "owner": "JM",
@@ -53,7 +63,9 @@
       "win_pct": 0.506,
       "overall_record": "391-356",
       "overall_pct": 0.523,
-      "ppg": 121.3
+      "ppg": 121.3,
+      "playoff_apps": 4,
+      "top_seed_apps": 0
     },
     {
       "owner": "Masten",
@@ -62,7 +74,9 @@
       "win_pct": 0.482,
       "overall_record": "354-393",
       "overall_pct": 0.474,
-      "ppg": 118.3
+      "ppg": 118.3,
+      "playoff_apps": 4,
+      "top_seed_apps": 1
     },
     {
       "owner": "Pat",
@@ -71,7 +85,9 @@
       "win_pct": 0.422,
       "overall_record": "276-471",
       "overall_pct": 0.369,
-      "ppg": 110.2
+      "ppg": 110.2,
+      "playoff_apps": 3,
+      "top_seed_apps": 1
     },
     {
       "owner": "Janny",
@@ -80,7 +96,9 @@
       "win_pct": 0.398,
       "overall_record": "338-409",
       "overall_pct": 0.452,
-      "ppg": 116.9
+      "ppg": 116.9,
+      "playoff_apps": 2,
+      "top_seed_apps": 0
     },
     {
       "owner": "Librizzi",
@@ -89,7 +107,9 @@
       "win_pct": 0.349,
       "overall_record": "268-479",
       "overall_pct": 0.359,
-      "ppg": 110.0
+      "ppg": 110.0,
+      "playoff_apps": 1,
+      "top_seed_apps": 0
     }
   ]
 }
