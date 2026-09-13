@@ -137,6 +137,7 @@
       <button class="tab-btn" data-view="history">League History</button>
       <button class="tab-btn" data-view="y2025">2025 Review</button>
       <button class="tab-btn" data-view="y2024">2024 Review</button>
+      <button class="tab-btn" data-view="y2023">2023 (N/A)</button>
       <button class="tab-btn" data-view="y2022">2022 Review</button>
       <button class="tab-btn" data-view="y2021">2021 Review</button>
     </div>
@@ -183,6 +184,8 @@
     </div>
 
     <div id="view-y2025" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2025-title">2025 season review</h1>
         <p>Regular-season only, and one week shy of it &mdash; the sheet stopped at Week 13, so standings/PPG reflect 13 of 14 weeks. The high-scorer count below includes Week 14 from the actual box scores.</p>
         <hr class="rule">
       </div>
@@ -219,6 +222,24 @@
         <h2>Storylines</h2>
         <p class="sub">The season's biggest moments</p>
         <div id="y2024-highlights" class="digest-grid"></div>
+      </div>
+    </div>
+
+    <div id="view-y2023" style="display:none;">
+      <div class="masthead">
+        <h1>2023 season review</h1>
+        <p>No power rankings sheet exists for this season &mdash; only the champion and runner-up are on record.</p>
+        <hr class="rule">
+      </div>
+      <div class="ly-row">
+        <div class="rank">1</div>
+        <div class="lyname">BB</div>
+        <div class="lystats">Champion</div>
+      </div>
+      <div class="ly-row">
+        <div class="rank">2</div>
+        <div class="lyname">Gurv</div>
+        <div class="lystats">Runner-up</div>
       </div>
     </div>
 
@@ -327,6 +348,7 @@
         document.getElementById('view-history').style.display = view === 'history' ? '' : 'none';
         document.getElementById('view-y2025').style.display = view === 'y2025' ? '' : 'none';
         document.getElementById('view-y2024').style.display = view === 'y2024' ? '' : 'none';
+        document.getElementById('view-y2023').style.display = view === 'y2023' ? '' : 'none';
         document.getElementById('view-y2022').style.display = view === 'y2022' ? '' : 'none';
         document.getElementById('view-y2021').style.display = view === 'y2021' ? '' : 'none';
       });
