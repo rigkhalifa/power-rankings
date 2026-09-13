@@ -1,6 +1,47 @@
 {
-  "payout_note": "$1,000 for 1st, $510 for 2nd, $35/week high scorer over a 14-week regular season. 2021, 2022, 2024, 2025 only (2023 sheet doesn't exist).",
+  "payout_note": "$1,000 for 1st, $510 for 2nd, $35/week high scorer over a 14-week regular season. 2021, 2022, 2024, 2025 complete; 2023 champion/runner-up only, no weekly data (2023 sheet doesn't exist).",
   "leaderboard": [
+    {
+      "owner": "BB",
+      "total": 2880,
+      "breakdown": [
+        {
+          "year": "2021",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2021",
+          "note": "4 weekly high scores",
+          "amount": 140
+        },
+        {
+          "year": "2022",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2022",
+          "note": "4 weekly high scores",
+          "amount": 140
+        },
+        {
+          "year": "2024",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2025",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2023",
+          "note": "1st place",
+          "amount": 1000
+        }
+      ]
+    },
     {
       "owner": "JM",
       "total": 2175,
@@ -33,44 +74,8 @@
       ]
     },
     {
-      "owner": "BB",
-      "total": 1880,
-      "breakdown": [
-        {
-          "year": "2021",
-          "note": "2nd place",
-          "amount": 510
-        },
-        {
-          "year": "2021",
-          "note": "4 weekly high scores",
-          "amount": 140
-        },
-        {
-          "year": "2022",
-          "note": "2nd place",
-          "amount": 510
-        },
-        {
-          "year": "2022",
-          "note": "4 weekly high scores",
-          "amount": 140
-        },
-        {
-          "year": "2024",
-          "note": "2nd place",
-          "amount": 510
-        },
-        {
-          "year": "2025",
-          "note": "2 weekly high scores",
-          "amount": 70
-        }
-      ]
-    },
-    {
       "owner": "Gurv",
-      "total": 1280,
+      "total": 1790,
       "breakdown": [
         {
           "year": "2022",
@@ -91,6 +96,11 @@
           "year": "2025",
           "note": "4 weekly high scores",
           "amount": 140
+        },
+        {
+          "year": "2023",
+          "note": "2nd place",
+          "amount": 510
         }
       ]
     },
