@@ -86,7 +86,7 @@
   .digest h2 { font-weight: 600; font-size: 22px; margin: 0 0 4px; }
   .digest .sub { font-style: italic; font-size: 14px; color: var(--ink-muted); margin: 0 0 20px; }
   .digest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px 20px; }
-  #value-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  #value-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
   #ly-highlights { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
   .digest-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; color: var(--ink-muted); margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
   .digest-card ol { list-style: none; margin: 0; padding: 0; }
@@ -120,6 +120,9 @@
   .wins-row { display: grid; grid-template-columns: 1fr 112px 128px 60px; align-items: center; gap: 18px; padding: 16px 4px; border-bottom: 1px solid var(--divider); }
   .wins-header { display: grid; grid-template-columns: 1fr 112px 128px 60px; gap: 18px; padding: 0 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
   .wins-header span { text-align: right; }
+  .wins-header span.sortable { cursor: pointer; }
+  .wins-header span.sortable:hover { color: var(--ink); }
+  .wins-stat.leader, .wins-ppg.leader { font-weight: 700; color: var(--ink); }
   .wins-owner { font-size: 16px; font-weight: 500; }
   .wins-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; white-space: nowrap; }
   .wins-stat .pct { font-size: 13px; color: var(--ink-muted); margin-left: 6px; }
@@ -145,6 +148,14 @@
   .glance-list li { font-size: 14px; padding: 8px 0; border-bottom: 1px solid var(--divider); }
   .glance-list li:last-child { border-bottom: none; }
   .glance-list b { color: var(--ink); font-weight: 500; }
+  .payout-rules { list-style: none; margin: 0 0 32px; padding: 0; }
+  .payout-rules li { font-size: 15px; padding: 8px 0; border-bottom: 1px solid var(--divider); }
+  .payout-rules li:last-child { border-bottom: none; }
+  .payout-rules b { font-weight: 600; }
+  .records-list { list-style: none; margin: 0; padding: 0; }
+  .records-list li { font-size: 16px; padding: 10px 0; border-bottom: 1px solid var(--divider); }
+  .records-list li:last-child { border-bottom: none; }
+  .records-list b { color: var(--ink); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -171,28 +182,32 @@
     <div id="list">Loading&hellip;</div>
 
     <div class="digest">
-      <h2>Top salaries vs. THE BLITZ projections</h2>
-      <p class="sub">The 15 biggest auction prices per position, checked against THE BLITZ's own rank for that player</p>
-      <div id="value-grid" class="digest-grid"></div>
-    </div>
-
-    <div class="digest">
       <h2>Position digest</h2>
       <p class="sub">Top 3 teams per position, preseason</p>
       <div id="digest-grid" class="digest-grid"></div>
+    </div>
+
+    <div class="digest">
+      <h2>Top salaries vs. THE BLITZ projections</h2>
+      <p class="sub">The 15 biggest auction prices per position, checked against THE BLITZ's own rank for that player</p>
+      <div id="value-grid" class="digest-grid"></div>
     </div>
     </div>
 
     <div id="view-history" style="display:none;">
       <div class="masthead">
         <h1>Winnings</h1>
-        <p>Career earnings, 2020&ndash;2025 &mdash; every year we have sheet data for</p>
+        <p>Total earnings since 2020</p>
         <hr class="rule">
       </div>
 
+      <ul class="payout-rules">
+        <li><b>1st place:</b> $1,000</li>
+        <li><b>2nd place:</b> $510</li>
+        <li><b>Weekly high scorer:</b> $35</li>
+      </ul>
+
       <div class="digest">
-        <h2>Career earnings</h2>
-        <p class="sub" id="earnings-sub"></p>
         <div id="earnings-list"></div>
       </div>
     </div>
@@ -200,7 +215,6 @@
     <div id="view-trophycase" style="display:none;">
       <div class="masthead">
         <h1>Trophy case</h1>
-        <p>Championships going back to 2012, plus weekly bragging rights from the sheet-tracked years</p>
         <hr class="rule">
       </div>
 
@@ -212,7 +226,7 @@
 
       <div class="digest">
         <h2>High-scorer payouts</h2>
-        <p class="sub">Weekly high-scorer wins, 2020&ndash;2025 only (no sheet data before 2020)</p>
+        <p class="sub">Weekly high-scorer wins since 2020, $35 a week per regular season</p>
         <div id="hs-count-list"></div>
       </div>
     </div>
@@ -223,20 +237,19 @@
         <p id="wins-sub"></p>
         <hr class="rule">
       </div>
-      <div class="wins-header"><span></span><span>Actual (win %)</span><span>Overall (win %)</span><span>PPG</span></div>
+      <div class="wins-header"><span></span><span class="sortable" data-sort="win_pct">Actual (win %)</span><span class="sortable" data-sort="overall_pct">Overall (win %)</span><span class="sortable" data-sort="ppg">PPG</span></div>
       <div id="wins-list"></div>
 
       <div class="digest">
         <h2>Records</h2>
         <p class="sub">Notable single-season and single-week marks, 2020&ndash;2025</p>
-        <ul id="records-list" class="glance-list"></ul>
+        <ul id="records-list" class="records-list"></ul>
       </div>
     </div>
 
     <div id="view-y2025" style="display:none;">
       <div class="masthead">
-        <h1 id="y2025-title">2025 season review</h1>
-        <p>Regular-season only &mdash; this sheet stopped updating once playoffs began. This is the final power ranking at the end of the regular season, not a plain win-loss standings table and not the actual playoff bracket.</p>
+        <h1 id="y2025-title">End of season power rankings</h1>
         <hr class="rule">
       </div>
       <div id="y2025-list"></div>
@@ -255,8 +268,7 @@
 
     <div id="view-y2024" style="display:none;">
       <div class="masthead">
-        <h1 id="y2024-title">2024 season review</h1>
-        <p>Regular-season only &mdash; this sheet stopped updating once playoffs began. This is the final power ranking at the end of the regular season, not a plain win-loss standings table and not the actual playoff bracket.</p>
+        <h1 id="y2024-title">End of season power rankings</h1>
         <hr class="rule">
       </div>
       <div id="y2024-list"></div>
@@ -295,8 +307,7 @@
 
     <div id="view-y2022" style="display:none;">
       <div class="masthead">
-        <h1 id="y2022-title">2022 season review</h1>
-        <p>Regular-season only &mdash; this sheet stopped updating once playoffs began. This is the final power ranking at the end of the regular season, not a plain win-loss standings table and not the actual playoff bracket.</p>
+        <h1 id="y2022-title">End of season power rankings</h1>
         <hr class="rule">
       </div>
       <div id="y2022-list"></div>
@@ -315,8 +326,7 @@
 
     <div id="view-y2021" style="display:none;">
       <div class="masthead">
-        <h1 id="y2021-title">2021 season review</h1>
-        <p>Regular-season only &mdash; this sheet stopped updating once playoffs began. This is the final power ranking at the end of the regular season, not a plain win-loss standings table and not the actual playoff bracket.</p>
+        <h1 id="y2021-title">End of season power rankings</h1>
         <hr class="rule">
       </div>
       <div id="y2021-list"></div>
@@ -335,8 +345,7 @@
 
     <div id="view-y2020" style="display:none;">
       <div class="masthead">
-        <h1 id="y2020-title">2020 season review</h1>
-        <p>Regular-season only, and genuinely 13 weeks this year, not a data gap &mdash; the weekly high-scorer pool paid out $455 instead of the usual $490.</p>
+        <h1 id="y2020-title">End of season power rankings</h1>
         <hr class="rule">
       </div>
       <div id="y2020-list"></div>
@@ -501,7 +510,7 @@
 
       list.innerHTML = entries.map(([name, info], i) => {
         const count = info.years.length;
-        const label = count === 0 ? 'No titles' : `${count} title${count > 1 ? 's' : ''} &#127942;`;
+        const label = count === 0 ? 'No titles' : `${count} title${count > 1 ? 's' : ''} ${'&#127942;'.repeat(count)}`;
         const panelBody = count > 0
           ? info.years.slice().sort((a, b) => b - a).join(', ')
           : 'No championships yet.';
@@ -546,7 +555,7 @@
       }).join('');
     }
     function renderYearReview(prefix, data) {
-      document.getElementById(`${prefix}-title`).textContent = data.season + ' season review';
+      document.getElementById(`${prefix}-title`).textContent = data.title;
 
       const list = document.getElementById(`${prefix}-list`);
       list.innerHTML = data.standings.map(s => {
@@ -576,7 +585,6 @@
         <li>League average: <b>${s.avg}</b> points per week</li>`;
     }
     function renderEarnings(data) {
-      document.getElementById('earnings-sub').textContent = data.payout_note;
       const list = document.getElementById('earnings-list');
 
       list.innerHTML = data.leaderboard.map((o, i) => {
@@ -609,16 +617,32 @@
         });
       });
     }
-    function renderWins(data) {
-      document.getElementById('wins-sub').textContent = data.years_included;
+    let winsData = null;
+    function renderWinsRows(sortKey) {
+      const rows = winsData.leaderboard.slice();
+      if (sortKey) rows.sort((a, b) => b[sortKey] - a[sortKey]);
+      const maxWinPct = Math.max(...winsData.leaderboard.map(o => o.win_pct));
+      const maxPpg = Math.max(...winsData.leaderboard.map(o => o.ppg));
       const list = document.getElementById('wins-list');
-      list.innerHTML = data.leaderboard.map(o => `
+      list.innerHTML = rows.map(o => {
+        const actualLeader = o.win_pct === maxWinPct;
+        const ppgLeader = o.ppg === maxPpg;
+        return `
         <div class="wins-row">
           <div class="wins-owner">${o.owner}</div>
-          <div class="wins-stat">${o.record}<span class="pct">(${o.win_pct.toFixed(3)})</span></div>
+          <div class="wins-stat${actualLeader ? ' leader' : ''}">${o.record}<span class="pct">(${o.win_pct.toFixed(3)})</span>${actualLeader ? ' &#129351;' : ''}</div>
           <div class="wins-stat">${o.overall_record}<span class="pct">(${o.overall_pct.toFixed(3)})</span></div>
-          <div class="wins-ppg">${o.ppg}</div>
-        </div>`).join('');
+          <div class="wins-ppg${ppgLeader ? ' leader' : ''}">${o.ppg}${ppgLeader ? ' &#129351;' : ''}</div>
+        </div>`;
+      }).join('');
+    }
+    function renderWins(data) {
+      winsData = data;
+      document.getElementById('wins-sub').textContent = data.years_included;
+      renderWinsRows(null);
+      document.querySelectorAll('.wins-header .sortable').forEach(el => {
+        el.addEventListener('click', () => renderWinsRows(el.dataset.sort));
+      });
     }
     function renderRecords() {
       const list = document.getElementById('records-list');
@@ -628,8 +652,7 @@
         <li>Best single-season record: <b>Zach</b>, 13-1 (.929) in 2023</li>
         <li>Worst single-season record: <b>Pat</b>, 2-12 (.143) in 2025</li>
         <li>Most weekly high scores in one season: <b>Zach</b>, 7 in 2023 &mdash; half the season</li>
-        <li>Highest single-season PPG: <b>Zach</b>, 143.2 in 2023</li>
-        <li><i>Zach's 2023 season holds 3 of the 6 records above &mdash; the single most dominant regular season on file.</i></li>`;
+        <li>Highest single-season PPG: <b>Zach</b>, 143.2 in 2023</li>`;
     }
     function renderHighScorerCounts(years) {
       const totals = {};
