@@ -92,22 +92,6 @@
       "count": 1
     }
   ],
-  "highlights": [
-    {
-      "title": "Stolen at the buzzer",
-      "text": "Zach (Three Alive Kings) held #1 for 10 straight weeks, from week 3 through week 12 \u2014 only for Masten (MILF) to surge from 3rd to 1st in the final stretch and take the actual championship right at the finish line."
-    },
-    {
-      "title": "Bridesmaid, twice",
-      "text": "Brian finished runner-up in the money again this year \u2014 same result as 2021 \u2014 despite leading the league with 4 weekly high scores both seasons. Never the champion, always in the mix."
-    },
-    {
-      "title": "Feast or famine",
-      "text": "Librizzi posted the single lowest score of the entire season (66.64, week 10) while mired in last place \u2014 then somehow won the week 14 high-scorer bonus just four weeks later."
-    },
-    {
-      "title": "Best offense, no ring",
-      "text": "Brian (lord) actually led the league in points per game (130.6) \u2014 higher than champion Masten's 123.3 \u2014 but finished only 4th, a reminder that raw scoring and winning it all aren't the same thing."
-    }
-  ]
+  "champion": "Masten",
+  "runner_up": "Brian"
 }
