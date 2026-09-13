@@ -93,5 +93,18 @@
     }
   ],
   "champion": "Masten",
-  "runner_up": "Brian"
+  "runner_up": "Brian",
+  "season_summary": {
+    "high": {
+      "team": "Gurv",
+      "week": 9,
+      "score": 180.24
+    },
+    "low": {
+      "team": "Librizzi",
+      "week": 10,
+      "score": 66.64
+    },
+    "avg": 119.3
+  }
 }
