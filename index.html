@@ -771,14 +771,14 @@
       const bracket = document.getElementById(`${prefix}-bracket`);
       if (data.bracket) {
         const b = data.bracket;
-        const byeHtml = `<div class="bracket-round"><h3>Byes</h3><div class="bracket-game"><div class="bracket-game-row winner"><span>${b.bye.join(' &middot; ')}</span></div></div></div>`;
+        const byeHtml = `<div class="bracket-round"><h3>Byes</h3><div class="bracket-game">${b.bye.map(name => `<div class="bracket-game-row winner" data-owner="${name}"><span>${name}</span></div>`).join('')}</div></div>`;
         const roundHtml = (label, games) => `
           <div class="bracket-round">
             <h3>${label}</h3>
             ${games.map(g => `
               <div class="bracket-game">
-                <div class="bracket-game-row winner"><span>${g.w}</span><span class="bracket-game-score">${g.ws}</span></div>
-                <div class="bracket-game-row loser"><span>${g.l}</span><span class="bracket-game-score">${g.ls}</span></div>
+                <div class="bracket-game-row winner" data-owner="${g.w}"><span>${g.w}</span><span class="bracket-game-score">${g.ws}</span></div>
+                <div class="bracket-game-row loser" data-owner="${g.l}"><span>${g.l}</span><span class="bracket-game-score">${g.ls}</span></div>
               </div>`).join('')}
           </div>`;
         bracket.innerHTML = byeHtml + roundHtml('Quarterfinal', b.qf) + roundHtml('Semifinal', b.sf) + roundHtml('Championship', b.f);
