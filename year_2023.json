@@ -93,5 +93,18 @@
     }
   ],
   "champion": "Brian",
-  "runner_up": "Gurv"
+  "runner_up": "Gurv",
+  "season_summary": {
+    "high": {
+      "team": "Gurv",
+      "week": 5,
+      "score": 196.34
+    },
+    "low": {
+      "team": "Triangle",
+      "week": 8,
+      "score": 69.2
+    },
+    "avg": 119.3
+  }
 }
