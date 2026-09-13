@@ -1,32 +1,121 @@
 {
   "season": "2025",
   "standings": [
-    {"rank": 1, "team": "Gurv", "record": "10-3", "ppg": 141.4},
-    {"rank": 2, "team": "NW", "record": "8-5", "ppg": 119.3},
-    {"rank": 3, "team": "ZC", "record": "6-7", "ppg": 120.8},
-    {"rank": 4, "team": "T", "record": "9-4", "ppg": 111.7},
-    {"rank": 4, "team": "Masten", "record": "7-6", "ppg": 118.4},
-    {"rank": 6, "team": "JM", "record": "6-7", "ppg": 119.1},
-    {"rank": 7, "team": "Janny", "record": "6-7", "ppg": 114.3},
-    {"rank": 8, "team": "Knees", "record": "6-7", "ppg": 108.0},
-    {"rank": 9, "team": "BB", "record": "5-8", "ppg": 119.3},
-    {"rank": 10, "team": "Pat", "record": "2-11", "ppg": 97.4}
+    {
+      "rank": 1,
+      "team": "Gurv",
+      "record": "10-4",
+      "ppg": 140.1
+    },
+    {
+      "rank": 2,
+      "team": "Nick",
+      "record": "8-6",
+      "ppg": 119.4
+    },
+    {
+      "rank": 3,
+      "team": "Masten",
+      "record": "8-6",
+      "ppg": 119.3
+    },
+    {
+      "rank": 4,
+      "team": "Triangle",
+      "record": "10-4",
+      "ppg": 113.0
+    },
+    {
+      "rank": 5,
+      "team": "Zach",
+      "record": "6-8",
+      "ppg": 121.3
+    },
+    {
+      "rank": 6,
+      "team": "Brian",
+      "record": "6-8",
+      "ppg": 120.7
+    },
+    {
+      "rank": 7,
+      "team": "Librizzi",
+      "record": "7-7",
+      "ppg": 110.5
+    },
+    {
+      "rank": 8,
+      "team": "Janny",
+      "record": "7-7",
+      "ppg": 112.3
+    },
+    {
+      "rank": 9,
+      "team": "JM",
+      "record": "6-8",
+      "ppg": 116.8
+    },
+    {
+      "rank": 10,
+      "team": "Pat",
+      "record": "2-12",
+      "ppg": 95.8
+    }
   ],
   "high_scorers": [
-    {"team": "Gurv", "count": 4},
-    {"team": "Knees", "count": 2},
-    {"team": "BB", "count": 2},
-    {"team": "ZC", "count": 2},
-    {"team": "NW", "count": 1},
-    {"team": "JM", "count": 1},
-    {"team": "Janny", "count": 1},
-    {"team": "Masten", "count": 1}
+    {
+      "team": "Gurv",
+      "count": 4
+    },
+    {
+      "team": "Librizzi",
+      "count": 2
+    },
+    {
+      "team": "Brian",
+      "count": 2
+    },
+    {
+      "team": "Zach",
+      "count": 2
+    },
+    {
+      "team": "Nick",
+      "count": 1
+    },
+    {
+      "team": "JM",
+      "count": 1
+    },
+    {
+      "team": "Janny",
+      "count": 1
+    },
+    {
+      "team": "Masten",
+      "count": 1
+    }
   ],
   "highlights": [
-    {"title": "Wire-to-wire", "text": "Gurv (Ban defense & kickers) held #1 every single week, preseason through the finale \u2014 the only team that never once dropped from the top spot."},
-    {"title": "Total domination", "text": "Gurv also led the weekly high-scorer count with 4 wins \u2014 more than double anyone else \u2014 then went on to win the actual championship. #1 regular season, #1 high scorer, #1 overall."},
-    {"title": "Week 7 fireworks", "text": "The season's highest score (202.24) and lowest score (60.24) both landed in the exact same week \u2014 Gurv's high, Pat's low."},
-    {"title": "Wildest ride", "text": "Knees opened the year ranked 10th, climbed all the way to 2nd by midseason, then fell back to 8th by the finale \u2014 the biggest single-season swing of anyone."},
-    {"title": "Truth in advertising", "text": "BB's team, Fraud Hoax, nearly matched that swing \u2014 9th to 2nd and right back down to 9th \u2014 living up to the name perfectly."}
+    {
+      "title": "Wire-to-wire",
+      "text": "Gurv (Ban defense & kickers) held #1 every single week, preseason through the finale \u2014 the only team that never once dropped from the top spot."
+    },
+    {
+      "title": "Total domination",
+      "text": "Gurv also led the weekly high-scorer count with 4 wins \u2014 more than double anyone else \u2014 then went on to win the actual championship. #1 regular season, #1 high scorer, #1 overall."
+    },
+    {
+      "title": "Week 7 fireworks",
+      "text": "The season's highest score (202.24) and lowest score (60.24) both landed in the exact same week \u2014 Gurv's high, Pat's low."
+    },
+    {
+      "title": "Wildest ride",
+      "text": "Librizzi opened the year ranked 10th, climbed all the way to 2nd by midseason, then settled at 7th by the finale \u2014 the biggest single-season swing of anyone."
+    },
+    {
+      "title": "Buzzer-beater climb",
+      "text": "Brian's Fraud Hoax sat 9th through week 13, then exploded for 139.38 in the season's final week \u2014 the second-highest score of Week 14 \u2014 rocketing all the way up to 6th at the literal last moment."
+    }
   ]
 }
