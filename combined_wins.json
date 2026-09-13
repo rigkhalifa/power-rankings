@@ -1,85 +1,85 @@
 {
-  "years_included": "2021, 2022, 2024, 2025 (2023 excluded \u2014 no sheet exists)",
+  "years_included": "2020\u20132025, all years complete",
   "leaderboard": [
     {
       "owner": "Triangle",
-      "years": 4,
-      "record": "37-19",
-      "win_pct": 0.661,
-      "overall_record": "286-218",
-      "overall_pct": 0.567
-    },
-    {
-      "owner": "Brian",
-      "years": 4,
-      "record": "31-25",
-      "win_pct": 0.554,
-      "overall_record": "284-220",
-      "overall_pct": 0.563
+      "years": 6,
+      "record": "50-33",
+      "win_pct": 0.602,
+      "overall_record": "405-342",
+      "overall_pct": 0.542
     },
     {
       "owner": "Zach",
-      "years": 4,
-      "record": "30-26",
-      "win_pct": 0.536,
-      "overall_record": "298-206",
-      "overall_pct": 0.591
-    },
-    {
-      "owner": "JM",
-      "years": 4,
-      "record": "29-27",
-      "win_pct": 0.518,
-      "overall_record": "257-247",
-      "overall_pct": 0.51
-    },
-    {
-      "owner": "Gurv",
-      "years": 4,
-      "record": "29-27",
-      "win_pct": 0.518,
-      "overall_record": "301-203",
-      "overall_pct": 0.597
-    },
-    {
-      "owner": "Masten",
-      "years": 4,
-      "record": "28-28",
-      "win_pct": 0.5,
-      "overall_record": "252-252",
-      "overall_pct": 0.5
+      "years": 6,
+      "record": "50-33",
+      "win_pct": 0.602,
+      "overall_record": "451-296",
+      "overall_pct": 0.604
     },
     {
       "owner": "Nick",
-      "years": 4,
-      "record": "27-29",
+      "years": 6,
+      "record": "47-36",
+      "win_pct": 0.566,
+      "overall_record": "389-358",
+      "overall_pct": 0.521
+    },
+    {
+      "owner": "Brian",
+      "years": 6,
+      "record": "45-38",
+      "win_pct": 0.542,
+      "overall_record": "430-317",
+      "overall_pct": 0.576
+    },
+    {
+      "owner": "Gurv",
+      "years": 6,
+      "record": "44-39",
+      "win_pct": 0.53,
+      "overall_record": "431-316",
+      "overall_pct": 0.577
+    },
+    {
+      "owner": "JM",
+      "years": 6,
+      "record": "42-41",
+      "win_pct": 0.506,
+      "overall_record": "391-356",
+      "overall_pct": 0.523
+    },
+    {
+      "owner": "Masten",
+      "years": 6,
+      "record": "40-43",
       "win_pct": 0.482,
-      "overall_record": "253-251",
-      "overall_pct": 0.502
+      "overall_record": "354-393",
+      "overall_pct": 0.474
     },
     {
       "owner": "Pat",
-      "years": 4,
-      "record": "26-30",
-      "win_pct": 0.464,
-      "overall_record": "195-309",
-      "overall_pct": 0.387
+      "years": 6,
+      "record": "35-48",
+      "win_pct": 0.422,
+      "overall_record": "276-471",
+      "overall_pct": 0.369
     },
     {
       "owner": "Janny",
-      "years": 4,
-      "record": "23-33",
-      "win_pct": 0.411,
-      "overall_record": "221-283",
-      "overall_pct": 0.438
+      "years": 6,
+      "record": "33-50",
+      "win_pct": 0.398,
+      "overall_record": "338-409",
+      "overall_pct": 0.452
     },
     {
       "owner": "Librizzi",
-      "years": 4,
-      "record": "20-36",
-      "win_pct": 0.357,
-      "overall_record": "173-331",
-      "overall_pct": 0.343
+      "years": 6,
+      "record": "29-54",
+      "win_pct": 0.349,
+      "overall_record": "268-479",
+      "overall_pct": 0.359
     }
   ]
 }
