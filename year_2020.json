@@ -92,22 +92,6 @@
       "count": 1
     }
   ],
-  "highlights": [
-    {
-      "title": "Deserved it",
-      "text": "Nick took over #1 in week 5 and never gave it back, backing up the power rank with the league's best record (11-2) and the actual championship \u2014 no playoff-luck asterisk this time."
-    },
-    {
-      "title": "All-time record",
-      "text": "Triangle's 203.18 in week 2 is the single highest score across all 6 seasons now tracked on this site \u2014 yet they still finished as runner-up, not champion."
-    },
-    {
-      "title": "Bottom from day one",
-      "text": "Pat sat in 10th place for 10 straight weeks, visible from week 1 onward, and finished the year 2-11 \u2014 dead last wire-to-wire."
-    },
-    {
-      "title": "13 weeks, genuinely",
-      "text": "This season really was 13 weeks, not a data gap \u2014 the weekly high-scorer pool paid out $455 instead of the usual $490."
-    }
-  ]
+  "champion": "Nick",
+  "runner_up": "Triangle"
 }
