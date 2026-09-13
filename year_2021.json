@@ -89,5 +89,18 @@
     }
   ],
   "champion": "JM",
-  "runner_up": "Brian"
+  "runner_up": "Brian",
+  "season_summary": {
+    "high": {
+      "team": "Brian",
+      "week": 1,
+      "score": 190.28
+    },
+    "low": {
+      "team": "Librizzi",
+      "week": 10,
+      "score": 61.92
+    },
+    "avg": 121.2
+  }
 }
