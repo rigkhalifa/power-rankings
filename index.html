@@ -130,12 +130,13 @@
   .wins-stat.leader, .wins-ppg.leader { font-weight: 700; color: var(--trophy); }
   .wins-stat.leader .pct { color: var(--trophy); opacity: 0.75; }
   .playoffs-stat.leader { font-weight: 700; color: var(--trophy); }
+  .playoffs-stat.leader .pct { color: var(--trophy); opacity: 0.75; }
   .wins-owner { font-size: 16px; font-weight: 500; }
   .wins-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; white-space: nowrap; }
   .wins-stat .pct { font-size: 13px; color: var(--ink-muted); margin-left: 6px; }
   .wins-ppg { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; }
-  .playoffs-row { display: grid; grid-template-columns: 1fr 100px 120px 90px; align-items: center; gap: 16px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
-  .playoffs-header { display: grid; grid-template-columns: 1fr 100px 120px 90px; gap: 16px; padding: 0 4px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .playoffs-row { display: grid; grid-template-columns: 1fr 112px 120px 90px; align-items: center; gap: 16px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
+  .playoffs-header { display: grid; grid-template-columns: 1fr 112px 120px 90px; gap: 16px; padding: 0 4px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
   .playoffs-header span { text-align: right; }
   .playoffs-header span.sortable { cursor: pointer; }
   .playoffs-header span.sortable:hover { color: var(--ink); }
@@ -143,7 +144,7 @@
   .playoffs-owner { font-size: 16px; font-weight: 500; }
   .playoffs-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
   @media (max-width: 480px) {
-    .playoffs-row, .playoffs-header { grid-template-columns: 1fr 80px 90px 70px; gap: 6px; }
+    .playoffs-row, .playoffs-header { grid-template-columns: 1fr 88px 90px 70px; gap: 6px; }
     .playoffs-stat { font-size: 13px; }
   }
   @media (max-width: 480px) {
@@ -768,7 +769,7 @@
         return `
         <div class="playoffs-row">
           <div class="playoffs-owner">${o.owner}</div>
-          <div class="playoffs-stat${recordLeader ? ' leader' : ''}">${o.playoff_record}</div>
+          <div class="playoffs-stat${recordLeader ? ' leader' : ''}">${o.playoff_record}<span class="pct">(${pctFromRecord(o.playoff_record).toFixed(3)})</span></div>
           <div class="playoffs-stat${appsLeader ? ' leader' : ''}">${o.playoff_apps} <span class="pct">(${o.top_seed_apps})</span></div>
           <div class="playoffs-stat${champLeader ? ' leader' : ''}">${o.championship_record}</div>
         </div>`;
