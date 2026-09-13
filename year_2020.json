@@ -1,0 +1,113 @@
+{
+  "season": "2020",
+  "standings": [
+    {
+      "rank": 1,
+      "team": "Nick",
+      "record": "11-2",
+      "ppg": 126.2
+    },
+    {
+      "rank": 2,
+      "team": "Triangle",
+      "record": "8-5",
+      "ppg": 129.7
+    },
+    {
+      "rank": 3,
+      "team": "Gurv",
+      "record": "7-6",
+      "ppg": 128.8
+    },
+    {
+      "rank": 4,
+      "team": "Brian",
+      "record": "7-6",
+      "ppg": 127.6
+    },
+    {
+      "rank": 5,
+      "team": "JM",
+      "record": "7-6",
+      "ppg": 127.1
+    },
+    {
+      "rank": 6,
+      "team": "Masten",
+      "record": "7-6",
+      "ppg": 122.6
+    },
+    {
+      "rank": 7,
+      "team": "Zach",
+      "record": "7-6",
+      "ppg": 118.6
+    },
+    {
+      "rank": 8,
+      "team": "Janny",
+      "record": "6-7",
+      "ppg": 123.8
+    },
+    {
+      "rank": 9,
+      "team": "Librizzi",
+      "record": "3-10",
+      "ppg": 116.9
+    },
+    {
+      "rank": 10,
+      "team": "Pat",
+      "record": "2-11",
+      "ppg": 106.8
+    }
+  ],
+  "high_scorers": [
+    {
+      "team": "Gurv",
+      "count": 4
+    },
+    {
+      "team": "Triangle",
+      "count": 3
+    },
+    {
+      "team": "Janny",
+      "count": 2
+    },
+    {
+      "team": "JM",
+      "count": 1
+    },
+    {
+      "team": "Librizzi",
+      "count": 1
+    },
+    {
+      "team": "Zach",
+      "count": 1
+    },
+    {
+      "team": "Brian",
+      "count": 1
+    }
+  ],
+  "highlights": [
+    {
+      "title": "Deserved it",
+      "text": "Nick took over #1 in week 5 and never gave it back, backing up the power rank with the league's best record (11-2) and the actual championship \u2014 no playoff-luck asterisk this time."
+    },
+    {
+      "title": "All-time record",
+      "text": "Triangle's 203.18 in week 2 is the single highest score across all 6 seasons now tracked on this site \u2014 yet they still finished as runner-up, not champion."
+    },
+    {
+      "title": "Bottom from day one",
+      "text": "Pat sat in 10th place for 10 straight weeks, visible from week 1 onward, and finished the year 2-11 \u2014 dead last wire-to-wire."
+    },
+    {
+      "title": "13 weeks, genuinely",
+      "text": "This season really was 13 weeks, not a data gap \u2014 the weekly high-scorer pool paid out $455 instead of the usual $490."
+    }
+  ]
+}
