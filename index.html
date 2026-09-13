@@ -136,6 +136,9 @@
   .playoffs-row { display: grid; grid-template-columns: 1fr 100px 120px 90px; align-items: center; gap: 16px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
   .playoffs-header { display: grid; grid-template-columns: 1fr 100px 120px 90px; gap: 16px; padding: 0 4px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
   .playoffs-header span { text-align: right; }
+  .playoffs-header span.sortable { cursor: pointer; }
+  .playoffs-header span.sortable:hover { color: var(--ink); }
+  .playoffs-header span.sort-active { color: var(--accent); }
   .playoffs-owner { font-size: 16px; font-weight: 500; }
   .playoffs-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
   @media (max-width: 480px) {
@@ -179,7 +182,7 @@
       <button class="tab-btn active" data-view="current">2026 Season</button>
       <button class="tab-btn" data-view="history">Winnings</button>
       <button class="tab-btn" data-view="trophycase">Trophy Case</button>
-      <button class="tab-btn" data-view="wins">2020&ndash;2025</button>
+      <button class="tab-btn" data-view="wins">2019&ndash;2025</button>
       <button class="tab-btn" data-view="records">Records</button>
       <button class="tab-btn" data-view="y2025">2025</button>
       <button class="tab-btn" data-view="y2024">2024</button>
@@ -187,6 +190,7 @@
       <button class="tab-btn" data-view="y2022">2022</button>
       <button class="tab-btn" data-view="y2021">2021</button>
       <button class="tab-btn" data-view="y2020">2020</button>
+      <button class="tab-btn" data-view="y2019">2019</button>
     </div>
 
     <div id="view-current">
@@ -213,7 +217,7 @@
     <div id="view-history" style="display:none;">
       <div class="masthead">
         <h1>Winnings</h1>
-        <p>Total earnings since 2020</p>
+        <p>Total earnings since 2019</p>
         <hr class="rule">
       </div>
 
@@ -231,14 +235,14 @@
 
       <div class="digest">
         <h2>Weekly High-Scorer</h2>
-        <p class="sub">Weekly high-scorer wins since 2020</p>
+        <p class="sub">Weekly high-scorer wins since 2019</p>
         <div id="hs-count-list"></div>
       </div>
     </div>
 
     <div id="view-wins" style="display:none;">
       <div class="masthead">
-        <h1>2020&ndash;2025</h1>
+        <h1>2019&ndash;2025</h1>
         <hr class="rule">
       </div>
       <div class="digest">
@@ -249,8 +253,8 @@
 
       <div class="digest">
         <h2>Playoffs</h2>
-        <p class="sub">Playoff record and appearances (bye), 2020&ndash;2025</p>
-        <div class="playoffs-header"><span></span><span>Playoff record</span><span>Appearances (bye)</span><span>Championship</span></div>
+        <p class="sub">Playoff record and appearances (bye), 2019&ndash;2025</p>
+        <div class="playoffs-header"><span></span><span class="sortable" data-sort="playoff_record">Playoff record</span><span class="sortable" data-sort="playoff_apps">Appearances (bye)</span><span class="sortable" data-sort="championship_record">Championship</span></div>
         <div id="playoffs-list"></div>
       </div>
     </div>
@@ -258,7 +262,7 @@
     <div id="view-records" style="display:none;">
       <div class="masthead">
         <h1>Records</h1>
-        <p>Notable single-season and single-week marks, 2020&ndash;2025</p>
+        <p>Notable single-season and single-week marks, 2019&ndash;2025</p>
         <hr class="rule">
       </div>
       <ul id="records-list" class="records-list"></ul>
@@ -389,6 +393,27 @@
         <ul id="y2020-glance" class="glance-list"></ul>
       </div>
     </div>
+
+    <div id="view-y2019" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2019-title">PLACEHOLDER</h1>
+        <p id="y2019-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
+        <hr class="rule">
+      </div>
+      <div id="y2019-list"></div>
+
+      <div class="digest">
+        <h2>Weekly High-Scorer</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2019-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Season at a glance</h2>
+        <ul id="y2019-glance" class="glance-list"></ul>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -426,9 +451,10 @@
       fetch('year_2021.json').then(r => r.json()),
       fetch('year_2023.json').then(r => r.json()),
       fetch('year_2020.json').then(r => r.json()),
+      fetch('year_2019.json').then(r => r.json()),
       fetch('earnings.json').then(r => r.json()),
       fetch('combined_wins.json').then(r => r.json())
-    ]).then(([teams, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, earnings, wins]) => {
+    ]).then(([teams, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -443,11 +469,12 @@
       renderYearReview('y2021', y2021);
       renderYearReview('y2023', y2023);
       renderYearReview('y2020', y2020);
+      renderYearReview('y2019', y2019);
       renderEarnings(earnings);
       renderWins(wins);
       renderPlayoffs(wins);
       renderRecords();
-      renderHighScorerCounts([y2025, y2024, y2022, y2021, y2023, y2020]);
+      renderHighScorerCounts([y2025, y2024, y2022, y2021, y2023, y2020, y2019]);
     }).catch(err => {
       document.getElementById('list').innerHTML =
         '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
@@ -470,6 +497,7 @@
         document.getElementById('view-y2022').style.display = view === 'y2022' ? '' : 'none';
         document.getElementById('view-y2021').style.display = view === 'y2021' ? '' : 'none';
         document.getElementById('view-y2020').style.display = view === 'y2020' ? '' : 'none';
+        document.getElementById('view-y2019').style.display = view === 'y2019' ? '' : 'none';
       });
     });
 
@@ -700,37 +728,73 @@
         });
       });
     }
-    function renderPlayoffs(data) {
-      const rows = data.leaderboard.slice().sort((a, b) => {
-        const [aw, al] = a.playoff_record.split('-').map(Number);
-        const [bw, bl] = b.playoff_record.split('-').map(Number);
-        const apct = (aw + al) > 0 ? aw / (aw + al) : -1;
-        const bpct = (bw + bl) > 0 ? bw / (bw + bl) : -1;
-        return bpct - apct;
-      });
+    function pctFromRecord(rec) {
+      const [w, l] = rec.split('-').map(Number);
+      return (w + l) > 0 ? w / (w + l) : -1;
+    }
+    let playoffsData = null;
+    let playoffsSort = { key: null, dir: -1 };
+    function renderPlayoffsRows(sortKey) {
+      const rows = playoffsData.leaderboard.slice();
+      const valueFor = (o, key) => {
+        if (key === 'playoff_record') return pctFromRecord(o.playoff_record);
+        if (key === 'championship_record') return pctFromRecord(o.championship_record);
+        return o[key];
+      };
+      if (sortKey) rows.sort((a, b) => playoffsSort.dir * (valueFor(b, sortKey) - valueFor(a, sortKey)));
+      else rows.sort((a, b) => pctFromRecord(b.playoff_record) - pctFromRecord(a.playoff_record));
+      const maxPlayoffPct = Math.max(...playoffsData.leaderboard.map(o => pctFromRecord(o.playoff_record)));
+      const maxApps = Math.max(...playoffsData.leaderboard.map(o => o.playoff_apps));
+      const maxChampPct = Math.max(...playoffsData.leaderboard.map(o => pctFromRecord(o.championship_record)));
       const list = document.getElementById('playoffs-list');
-      list.innerHTML = rows.map(o => `
+      list.innerHTML = rows.map(o => {
+        const recordLeader = pctFromRecord(o.playoff_record) === maxPlayoffPct;
+        const appsLeader = o.playoff_apps === maxApps;
+        const champLeader = pctFromRecord(o.championship_record) === maxChampPct && maxChampPct > 0;
+        return `
         <div class="playoffs-row">
           <div class="playoffs-owner">${o.owner}</div>
-          <div class="playoffs-stat">${o.playoff_record}</div>
-          <div class="playoffs-stat">${o.playoff_apps} <span class="pct">(${o.top_seed_apps})</span></div>
-          <div class="playoffs-stat">${o.championship_record}</div>
-        </div>`).join('');
+          <div class="playoffs-stat${recordLeader ? ' leader' : ''}">${o.playoff_record}</div>
+          <div class="playoffs-stat${appsLeader ? ' leader' : ''}">${o.playoff_apps} <span class="pct">(${o.top_seed_apps})</span></div>
+          <div class="playoffs-stat${champLeader ? ' leader' : ''}">${o.championship_record}</div>
+        </div>`;
+      }).join('');
+      document.querySelectorAll('.playoffs-header .sortable').forEach(el => {
+        el.classList.remove('sort-active');
+        const arrow = el.querySelector('.sort-arrow');
+        if (arrow) arrow.remove();
+        if (sortKey && el.dataset.sort === sortKey) {
+          el.classList.add('sort-active');
+          el.insertAdjacentHTML('beforeend', `<span class="sort-arrow">${playoffsSort.dir === -1 ? ' \u25bc' : ' \u25b2'}</span>`);
+        }
+      });
+    }
+    function renderPlayoffs(data) {
+      playoffsData = data;
+      renderPlayoffsRows(null);
+      document.querySelectorAll('.playoffs-header .sortable').forEach(el => {
+        el.addEventListener('click', () => {
+          const key = el.dataset.sort;
+          if (playoffsSort.key === key) playoffsSort.dir *= -1;
+          else { playoffsSort.key = key; playoffsSort.dir = -1; }
+          renderPlayoffsRows(key);
+        });
+      });
     }
     function renderRecords() {
       const list = document.getElementById('records-list');
       list.innerHTML = `
-        <li>Highest single-week score: <b>Triangle</b>, 203.18 (2020, Week 2)</li>
+        <li>Highest single-week score: <b>Zach</b>, 207.26 (2019, Week 3)</li>
         <li>Lowest single-week score: <b>Pat</b>, 60.24 (2025, Week 7)</li>
         <li>Best single-season record: <b>Zach</b>, 13-1 (.929) in 2023</li>
         <li>Worst single-season record: <b>Pat</b>, 2-12 (.143) in 2025</li>
         <li>Most weekly high scores in one season: <b>Zach</b>, 7 in 2023</li>
         <li>Highest single-season PPG: <b>Zach</b>, 143.2 in 2023</li>
-        <li>Highest average PPG since 2020: <b>Zach</b>, 127.5</li>
-        <li>Most playoff appearances: <b>Triangle</b> and <b>Brian</b>, tied at 5 of 6 seasons</li>
-        <li>Most top-seed (bye) appearances: <b>Triangle</b>, 3 of 6 seasons</li>
-        <li>Best championship-game record: <b>JM</b>, 2-0 in title games</li>
-        <li>Most championship-game appearances: <b>Brian</b>, 4 of 6 seasons</li>`;
+        <li>Highest average PPG since 2019: <b>Zach</b>, 127.5</li>
+        <li>Most playoff appearances: <b>Triangle</b> and <b>Brian</b>, tied at 6 of 7 seasons</li>
+        <li>Most top-seed (bye) appearances: <b>Triangle</b>, 4 of 7 seasons</li>
+        <li>Best championship-game record: <b>JM</b> and <b>Masten</b>, tied at 2-0 in title games</li>
+        <li>Most championship-game appearances: <b>Brian</b>, 4 of 7 seasons</li>`;
     }
     function renderHighScorerCounts(years) {
       const totals = {};
