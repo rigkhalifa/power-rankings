@@ -92,18 +92,6 @@
       "count": 1
     }
   ],
-  "highlights": [
-    {
-      "title": "Dominant, and it didn't matter",
-      "text": "Zach went 13-1 in the regular season and posted the week's high score 7 out of 14 weeks \u2014 half the entire season \u2014 yet didn't win the championship. The most lopsided regular-season vs. actual-outcome gap of any year on record."
-    },
-    {
-      "title": "Quiet champion",
-      "text": "Brian won the actual title with a modest 7-7 record and just 2 weekly high scores \u2014 proof that peaking in the playoffs beats dominating the regular season."
-    },
-    {
-      "title": "No power ranking exists for this year",
-      "text": "Roster strength and playoff odds were never tracked for 2023, so there's no power-rank formula to apply here \u2014 the list above is sorted by actual win-loss record only."
-    }
-  ]
+  "champion": "Brian",
+  "runner_up": "Gurv"
 }
