@@ -88,22 +88,6 @@
       "count": 1
     }
   ],
-  "highlights": [
-    {
-      "title": "From worst to first",
-      "text": "T (Number 2) opened the year ranked 8th in the preseason, then took over #1 in week 7 and never let go \u2014 8 straight weeks atop the power rankings to close the season."
-    },
-    {
-      "title": "Peaked in the playoffs, again",
-      "text": "JM (THE FOLKS) won the actual championship despite finishing just 3rd in the regular-season power rank \u2014 the same pattern that would repeat again in 2024."
-    },
-    {
-      "title": "Opening statement",
-      "text": "BB (Stugots) posted the single highest score of the entire season \u2014 190.28 \u2014 in week 1, then backed it up with 4 total weekly high scores on the year."
-    },
-    {
-      "title": "A season to forget",
-      "text": "Librizzi (out due to dad) finished dead last for 13 of the season's 14 weeks, budging from 10th only in the very last week, and posted the year's single lowest score (61.92) along the way."
-    }
-  ]
+  "champion": "JM",
+  "runner_up": "Brian"
 }
