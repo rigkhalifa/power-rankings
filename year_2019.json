@@ -129,5 +129,47 @@
     "Masten got a first-round bye and won the championship \u2014 the earliest instance of a deserved top-seed title on record.",
     "Zach posted 207.26 in Week 3 \u2014 the highest single-week score across all seasons tracked on this site.",
     "No power ranking exists for this season \u2014 roster strength and playoff odds weren't tracked."
-  ]
+  ],
+  "bracket": {
+    "bye": [
+      "Masten",
+      "Triangle"
+    ],
+    "qf": [
+      {
+        "w": "Brian",
+        "ws": 133.6,
+        "l": "Nick",
+        "ls": 109.6
+      },
+      {
+        "w": "Pat",
+        "ws": 155.1,
+        "l": "Librizzi",
+        "ls": 85.7
+      }
+    ],
+    "sf": [
+      {
+        "w": "Masten",
+        "ws": 193.02,
+        "l": "Brian",
+        "ls": 99.42
+      },
+      {
+        "w": "Pat",
+        "ws": 124.34,
+        "l": "Triangle",
+        "ls": 121.8
+      }
+    ],
+    "f": [
+      {
+        "w": "Masten",
+        "ws": 119.76,
+        "l": "Pat",
+        "ls": 88.36
+      }
+    ]
+  }
 }
