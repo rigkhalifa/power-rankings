@@ -120,8 +120,8 @@
   .earnings-line { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-muted); padding: 3px 0; font-family: 'IBM Plex Mono', monospace; }
   .earnings-line span:first-child { font-style: italic; }
 
-  .wins-row { display: grid; grid-template-columns: 1fr 112px 128px 60px 96px; align-items: center; gap: 18px; padding: 16px 4px; border-bottom: 1px solid var(--divider); }
-  .wins-header { display: grid; grid-template-columns: 1fr 112px 128px 60px 96px; gap: 18px; padding: 0 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .wins-row { display: grid; grid-template-columns: 1fr 112px 128px 60px; align-items: center; gap: 18px; padding: 16px 4px; border-bottom: 1px solid var(--divider); }
+  .wins-header { display: grid; grid-template-columns: 1fr 112px 128px 60px; gap: 18px; padding: 0 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
   .wins-header span { text-align: right; }
   .wins-header span.sortable { cursor: pointer; }
   .wins-header span.sortable:hover { color: var(--ink); }
@@ -130,8 +130,17 @@
   .wins-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; white-space: nowrap; }
   .wins-stat .pct { font-size: 13px; color: var(--ink-muted); margin-left: 6px; }
   .wins-ppg { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; }
+  .playoffs-row { display: grid; grid-template-columns: 1fr 100px 120px; align-items: center; gap: 16px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
+  .playoffs-header { display: grid; grid-template-columns: 1fr 100px 120px; gap: 16px; padding: 0 4px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .playoffs-header span { text-align: right; }
+  .playoffs-owner { font-size: 16px; font-weight: 500; }
+  .playoffs-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
   @media (max-width: 480px) {
-    .wins-row, .wins-header { grid-template-columns: 1fr 88px 100px 44px 74px; gap: 8px; }
+    .playoffs-row, .playoffs-header { grid-template-columns: 1fr 80px 90px; gap: 8px; }
+    .playoffs-stat { font-size: 13px; }
+  }
+  @media (max-width: 480px) {
+    .wins-row, .wins-header { grid-template-columns: 1fr 88px 100px 44px; gap: 8px; }
     .wins-stat, .wins-ppg { font-size: 13px; }
     .wins-stat .pct { font-size: 11px; margin-left: 3px; }
   }
@@ -234,8 +243,15 @@
         <p id="wins-sub"></p>
         <hr class="rule">
       </div>
-      <div class="wins-header"><span></span><span class="sortable" data-sort="win_pct">Actual (win %)</span><span class="sortable" data-sort="overall_pct">Overall (win %)</span><span class="sortable" data-sort="ppg">PPG</span><span class="sortable" data-sort="playoff_apps">Playoffs (top seed)</span></div>
+      <div class="wins-header"><span></span><span class="sortable" data-sort="win_pct">Actual (win %)</span><span class="sortable" data-sort="overall_pct">Overall (win %)</span><span class="sortable" data-sort="ppg">PPG</span></div>
       <div id="wins-list"></div>
+
+      <div class="digest">
+        <h2>Playoffs</h2>
+        <p class="sub">Playoff record and appearances (bye), 2020&ndash;2025</p>
+        <div class="playoffs-header"><span></span><span>Playoff record</span><span>Appearances (bye)</span></div>
+        <div id="playoffs-list"></div>
+      </div>
 
       <div class="digest">
         <h2>Records</h2>
@@ -425,6 +441,7 @@
       renderYearReview('y2020', y2020);
       renderEarnings(earnings);
       renderWins(wins);
+      renderPlayoffs(wins);
       renderRecords();
       renderHighScorerCounts([y2025, y2024, y2022, y2021, y2023, y2020]);
     }).catch(err => {
@@ -647,7 +664,6 @@
           <div class="wins-stat${actualLeader ? ' leader' : ''}">${o.record}<span class="pct">(${o.win_pct.toFixed(3)})</span></div>
           <div class="wins-stat">${o.overall_record}<span class="pct">(${o.overall_pct.toFixed(3)})</span></div>
           <div class="wins-ppg${ppgLeader ? ' leader' : ''}">${o.ppg}</div>
-          <div class="wins-ppg">${o.playoff_apps} <span class="pct">(${o.top_seed_apps})</span></div>
         </div>`;
       }).join('');
     }
@@ -658,6 +674,22 @@
       document.querySelectorAll('.wins-header .sortable').forEach(el => {
         el.addEventListener('click', () => renderWinsRows(el.dataset.sort));
       });
+    }
+    function renderPlayoffs(data) {
+      const rows = data.leaderboard.slice().sort((a, b) => {
+        const [aw, al] = a.playoff_record.split('-').map(Number);
+        const [bw, bl] = b.playoff_record.split('-').map(Number);
+        const apct = (aw + al) > 0 ? aw / (aw + al) : -1;
+        const bpct = (bw + bl) > 0 ? bw / (bw + bl) : -1;
+        return bpct - apct;
+      });
+      const list = document.getElementById('playoffs-list');
+      list.innerHTML = rows.map(o => `
+        <div class="playoffs-row">
+          <div class="playoffs-owner">${o.owner}</div>
+          <div class="playoffs-stat">${o.playoff_record}</div>
+          <div class="playoffs-stat">${o.playoff_apps} <span class="pct">(${o.top_seed_apps})</span></div>
+        </div>`).join('');
     }
     function renderRecords() {
       const list = document.getElementById('records-list');
@@ -670,7 +702,9 @@
         <li>Highest single-season PPG: <b>Zach</b>, 143.2 in 2023</li>
         <li>Highest average PPG since 2020: <b>Zach</b>, 127.5</li>
         <li>Most playoff appearances: <b>Triangle</b> and <b>Brian</b>, tied at 5 of 6 seasons</li>
-        <li>Most top-seed (bye) appearances: <b>Triangle</b>, 3 of 6 seasons</li>`;
+        <li>Most top-seed (bye) appearances: <b>Triangle</b>, 3 of 6 seasons</li>
+        <li>Best championship-game record: <b>JM</b>, 2-0 in title games</li>
+        <li>Most championship-game appearances: <b>Brian</b>, 4 of 6 seasons &mdash; but only 1 title to show for it</li>`;
     }
     function renderHighScorerCounts(years) {
       const totals = {};
