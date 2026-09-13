@@ -125,7 +125,8 @@
   .wins-header span { text-align: right; }
   .wins-header span.sortable { cursor: pointer; }
   .wins-header span.sortable:hover { color: var(--ink); }
-  .wins-stat.leader, .wins-ppg.leader { font-weight: 700; color: var(--ink); }
+  .wins-stat.leader, .wins-ppg.leader { font-weight: 700; color: var(--trophy); }
+  .wins-stat.leader .pct { color: var(--trophy); opacity: 0.75; }
   .wins-owner { font-size: 16px; font-weight: 500; }
   .wins-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; white-space: nowrap; }
   .wins-stat .pct { font-size: 13px; color: var(--ink-muted); margin-left: 6px; }
@@ -176,7 +177,8 @@
       <button class="tab-btn active" data-view="current">2026 Season</button>
       <button class="tab-btn" data-view="history">Winnings</button>
       <button class="tab-btn" data-view="trophycase">Trophy Case</button>
-      <button class="tab-btn" data-view="wins">All</button>
+      <button class="tab-btn" data-view="wins">2020&ndash;2025</button>
+      <button class="tab-btn" data-view="records">Records</button>
       <button class="tab-btn" data-view="y2025">2025</button>
       <button class="tab-btn" data-view="y2024">2024</button>
       <button class="tab-btn" data-view="y2023">2023</button>
@@ -187,21 +189,21 @@
 
     <div id="view-current">
     <div class="masthead">
-      <h1>Draft power rankings</h1>
-      <p>Based on preseason roster grades &mdash; live rankings begin after Week 1</p>
+      <h1>Draft Power Rankings</h1>
+      <p>Based on preseason roster grades as of 9/8/26. Live rankings begin after Week 1</p>
       <hr class="rule">
     </div>
     <div id="list">Loading&hellip;</div>
 
     <div class="digest">
-      <h2>Position digest</h2>
+      <h2>Position Digest</h2>
       <p class="sub">Top 3 teams per position, preseason</p>
       <div id="digest-grid" class="digest-grid"></div>
     </div>
 
     <div class="digest">
       <h2>Top salaries vs. THE BLITZ projections</h2>
-      <p class="sub">The 15 biggest auction prices per position, checked against THE BLITZ's own rank for that player</p>
+      <p class="sub">The 15 biggest auction prices per position, checked against THE BLITZ season long projections for that player</p>
       <div id="value-grid" class="digest-grid"></div>
     </div>
     </div>
@@ -219,19 +221,14 @@
     </div>
 
     <div id="view-trophycase" style="display:none;">
-      <div class="masthead">
-        <h1>Trophy case</h1>
-        <hr class="rule">
-      </div>
-
       <div class="digest">
-        <h2>Total championships</h2>
+        <h2>Total Championships</h2>
         <p class="sub">All-time titles, 2012&ndash;2025</p>
         <div id="trophy-list"></div>
       </div>
 
       <div class="digest">
-        <h2>High-scorer payouts</h2>
+        <h2>Weekly High-Scorer</h2>
         <p class="sub">Weekly high-scorer wins since 2020</p>
         <div id="hs-count-list"></div>
       </div>
@@ -240,11 +237,13 @@
     <div id="view-wins" style="display:none;">
       <div class="masthead">
         <h1>2020&ndash;2025</h1>
-        <p id="wins-sub"></p>
         <hr class="rule">
       </div>
-      <div class="wins-header"><span></span><span class="sortable" data-sort="win_pct">Actual (win %)</span><span class="sortable" data-sort="overall_pct">Overall (win %)</span><span class="sortable" data-sort="ppg">PPG</span></div>
-      <div id="wins-list"></div>
+      <div class="digest">
+        <h2>Regular season</h2>
+        <div class="wins-header"><span></span><span class="sortable" data-sort="win_pct">Actual (win %)</span><span class="sortable" data-sort="overall_pct">Overall (win %)</span><span class="sortable" data-sort="ppg">PPG</span></div>
+        <div id="wins-list"></div>
+      </div>
 
       <div class="digest">
         <h2>Playoffs</h2>
@@ -252,12 +251,15 @@
         <div class="playoffs-header"><span></span><span>Playoff record</span><span>Appearances (bye)</span></div>
         <div id="playoffs-list"></div>
       </div>
+    </div>
 
-      <div class="digest">
-        <h2>Records</h2>
-        <p class="sub">Notable single-season and single-week marks, 2020&ndash;2025</p>
-        <ul id="records-list" class="records-list"></ul>
+    <div id="view-records" style="display:none;">
+      <div class="masthead">
+        <h1>Records</h1>
+        <p>Notable single-season and single-week marks, 2020&ndash;2025</p>
+        <hr class="rule">
       </div>
+      <ul id="records-list" class="records-list"></ul>
     </div>
 
     <div id="view-y2025" style="display:none;">
@@ -270,7 +272,7 @@
       <div id="y2025-list"></div>
 
       <div class="digest">
-        <h2>Weekly high-scorer leaderboard</h2>
+        <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2025-highscore" class="digest-grid"></div>
       </div>
@@ -291,7 +293,7 @@
       <div id="y2024-list"></div>
 
       <div class="digest">
-        <h2>Weekly high-scorer leaderboard</h2>
+        <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2024-highscore" class="digest-grid"></div>
       </div>
@@ -312,7 +314,7 @@
       <div id="y2023-list"></div>
 
       <div class="digest">
-        <h2>Weekly high-scorer leaderboard</h2>
+        <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2023-highscore" class="digest-grid"></div>
       </div>
@@ -333,7 +335,7 @@
       <div id="y2022-list"></div>
 
       <div class="digest">
-        <h2>Weekly high-scorer leaderboard</h2>
+        <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2022-highscore" class="digest-grid"></div>
       </div>
@@ -354,7 +356,7 @@
       <div id="y2021-list"></div>
 
       <div class="digest">
-        <h2>Weekly high-scorer leaderboard</h2>
+        <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2021-highscore" class="digest-grid"></div>
       </div>
@@ -375,7 +377,7 @@
       <div id="y2020-list"></div>
 
       <div class="digest">
-        <h2>Weekly high-scorer leaderboard</h2>
+        <h2>Weekly High-Scorer</h2>
         <p class="sub">Number of weeks each team posted the league's top score</p>
         <div id="y2020-highscore" class="digest-grid"></div>
       </div>
@@ -459,6 +461,7 @@
         document.getElementById('view-history').style.display = view === 'history' ? '' : 'none';
         document.getElementById('view-trophycase').style.display = view === 'trophycase' ? '' : 'none';
         document.getElementById('view-wins').style.display = view === 'wins' ? '' : 'none';
+        document.getElementById('view-records').style.display = view === 'records' ? '' : 'none';
         document.getElementById('view-y2025').style.display = view === 'y2025' ? '' : 'none';
         document.getElementById('view-y2024').style.display = view === 'y2024' ? '' : 'none';
         document.getElementById('view-y2023').style.display = view === 'y2023' ? '' : 'none';
@@ -653,23 +656,24 @@
       const rows = winsData.leaderboard.slice();
       if (sortKey) rows.sort((a, b) => b[sortKey] - a[sortKey]);
       const maxWinPct = Math.max(...winsData.leaderboard.map(o => o.win_pct));
+      const maxOverallPct = Math.max(...winsData.leaderboard.map(o => o.overall_pct));
       const maxPpg = Math.max(...winsData.leaderboard.map(o => o.ppg));
       const list = document.getElementById('wins-list');
       list.innerHTML = rows.map(o => {
         const actualLeader = o.win_pct === maxWinPct;
+        const overallLeader = o.overall_pct === maxOverallPct;
         const ppgLeader = o.ppg === maxPpg;
         return `
         <div class="wins-row">
           <div class="wins-owner">${o.owner}</div>
           <div class="wins-stat${actualLeader ? ' leader' : ''}">${o.record}<span class="pct">(${o.win_pct.toFixed(3)})</span></div>
-          <div class="wins-stat">${o.overall_record}<span class="pct">(${o.overall_pct.toFixed(3)})</span></div>
+          <div class="wins-stat${overallLeader ? ' leader' : ''}">${o.overall_record}<span class="pct">(${o.overall_pct.toFixed(3)})</span></div>
           <div class="wins-ppg${ppgLeader ? ' leader' : ''}">${o.ppg}</div>
         </div>`;
       }).join('');
     }
     function renderWins(data) {
       winsData = data;
-      document.getElementById('wins-sub').textContent = data.years_included;
       renderWinsRows(null);
       document.querySelectorAll('.wins-header .sortable').forEach(el => {
         el.addEventListener('click', () => renderWinsRows(el.dataset.sort));
@@ -698,13 +702,13 @@
         <li>Lowest single-week score: <b>Pat</b>, 60.24 (2025, Week 7)</li>
         <li>Best single-season record: <b>Zach</b>, 13-1 (.929) in 2023</li>
         <li>Worst single-season record: <b>Pat</b>, 2-12 (.143) in 2025</li>
-        <li>Most weekly high scores in one season: <b>Zach</b>, 7 in 2023 &mdash; half the season</li>
+        <li>Most weekly high scores in one season: <b>Zach</b>, 7 in 2023, half the season</li>
         <li>Highest single-season PPG: <b>Zach</b>, 143.2 in 2023</li>
         <li>Highest average PPG since 2020: <b>Zach</b>, 127.5</li>
         <li>Most playoff appearances: <b>Triangle</b> and <b>Brian</b>, tied at 5 of 6 seasons</li>
         <li>Most top-seed (bye) appearances: <b>Triangle</b>, 3 of 6 seasons</li>
         <li>Best championship-game record: <b>JM</b>, 2-0 in title games</li>
-        <li>Most championship-game appearances: <b>Brian</b>, 4 of 6 seasons &mdash; but only 1 title to show for it</li>`;
+        <li>Most championship-game appearances: <b>Brian</b>, 4 of 6 seasons (1/4)</li>`;
     }
     function renderHighScorerCounts(years) {
       const totals = {};
