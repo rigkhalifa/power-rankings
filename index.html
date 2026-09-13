@@ -630,9 +630,9 @@
         return `
         <div class="wins-row">
           <div class="wins-owner">${o.owner}</div>
-          <div class="wins-stat${actualLeader ? ' leader' : ''}">${o.record}<span class="pct">(${o.win_pct.toFixed(3)})</span>${actualLeader ? ' &#129351;' : ''}</div>
+          <div class="wins-stat${actualLeader ? ' leader' : ''}">${o.record}<span class="pct">(${o.win_pct.toFixed(3)})</span></div>
           <div class="wins-stat">${o.overall_record}<span class="pct">(${o.overall_pct.toFixed(3)})</span></div>
-          <div class="wins-ppg${ppgLeader ? ' leader' : ''}">${o.ppg}${ppgLeader ? ' &#129351;' : ''}</div>
+          <div class="wins-ppg${ppgLeader ? ' leader' : ''}">${o.ppg}</div>
         </div>`;
       }).join('');
     }
