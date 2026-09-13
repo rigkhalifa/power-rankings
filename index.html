@@ -129,6 +129,7 @@
   .sort-arrow { font-size: 9px; }
   .wins-stat.leader, .wins-ppg.leader { font-weight: 700; color: var(--trophy); }
   .wins-stat.leader .pct { color: var(--trophy); opacity: 0.75; }
+  .playoffs-stat.leader { font-weight: 700; color: var(--trophy); }
   .wins-owner { font-size: 16px; font-weight: 500; }
   .wins-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; white-space: nowrap; }
   .wins-stat .pct { font-size: 13px; color: var(--ink-muted); margin-left: 6px; }
@@ -682,7 +683,7 @@
       });
     }
     let winsData = null;
-    let currentSort = { key: null, dir: -1 };
+    let currentSort = { key: null, dir: 1 };
     function renderWinsRows(sortKey) {
       const rows = winsData.leaderboard.slice();
       if (sortKey) {
@@ -712,7 +713,7 @@
         if (arrow) arrow.remove();
         if (sortKey && el.dataset.sort === sortKey) {
           el.classList.add('sort-active');
-          el.insertAdjacentHTML('beforeend', `<span class="sort-arrow">${currentSort.dir === -1 ? ' \u25bc' : ' \u25b2'}</span>`);
+          el.insertAdjacentHTML('beforeend', `<span class="sort-arrow">${currentSort.dir === 1 ? ' \u25bc' : ' \u25b2'}</span>`);
         }
       });
     }
@@ -723,7 +724,7 @@
         el.addEventListener('click', () => {
           const key = el.dataset.sort;
           if (currentSort.key === key) currentSort.dir *= -1;
-          else { currentSort.key = key; currentSort.dir = -1; }
+          else { currentSort.key = key; currentSort.dir = 1; }
           renderWinsRows(key);
         });
       });
@@ -732,8 +733,11 @@
       const [w, l] = rec.split('-').map(Number);
       return (w + l) > 0 ? w / (w + l) : -1;
     }
+    function winsFromRecord(rec) {
+      return Number(rec.split('-')[0]);
+    }
     let playoffsData = null;
-    let playoffsSort = { key: null, dir: -1 };
+    let playoffsSort = { key: null, dir: 1 };
     function renderPlayoffsRows(sortKey) {
       const rows = playoffsData.leaderboard.slice();
       const valueFor = (o, key) => {
@@ -741,8 +745,18 @@
         if (key === 'championship_record') return pctFromRecord(o.championship_record);
         return o[key];
       };
-      if (sortKey) rows.sort((a, b) => playoffsSort.dir * (valueFor(b, sortKey) - valueFor(a, sortKey)));
-      else rows.sort((a, b) => pctFromRecord(b.playoff_record) - pctFromRecord(a.playoff_record));
+      const tiebreakFor = (o, key) => {
+        if (key === 'playoff_record') return winsFromRecord(o.playoff_record);
+        if (key === 'championship_record') return winsFromRecord(o.championship_record);
+        return 0;
+      };
+      if (sortKey) {
+        rows.sort((a, b) => playoffsSort.dir * (valueFor(b, sortKey) - valueFor(a, sortKey))
+          || playoffsSort.dir * (tiebreakFor(b, sortKey) - tiebreakFor(a, sortKey)));
+      } else {
+        rows.sort((a, b) => pctFromRecord(b.playoff_record) - pctFromRecord(a.playoff_record)
+          || winsFromRecord(b.playoff_record) - winsFromRecord(a.playoff_record));
+      }
       const maxPlayoffPct = Math.max(...playoffsData.leaderboard.map(o => pctFromRecord(o.playoff_record)));
       const maxApps = Math.max(...playoffsData.leaderboard.map(o => o.playoff_apps));
       const maxChampPct = Math.max(...playoffsData.leaderboard.map(o => pctFromRecord(o.championship_record)));
@@ -765,7 +779,7 @@
         if (arrow) arrow.remove();
         if (sortKey && el.dataset.sort === sortKey) {
           el.classList.add('sort-active');
-          el.insertAdjacentHTML('beforeend', `<span class="sort-arrow">${playoffsSort.dir === -1 ? ' \u25bc' : ' \u25b2'}</span>`);
+          el.insertAdjacentHTML('beforeend', `<span class="sort-arrow">${playoffsSort.dir === 1 ? ' \u25bc' : ' \u25b2'}</span>`);
         }
       });
     }
@@ -776,7 +790,7 @@
         el.addEventListener('click', () => {
           const key = el.dataset.sort;
           if (playoffsSort.key === key) playoffsSort.dir *= -1;
-          else { playoffsSort.key = key; playoffsSort.dir = -1; }
+          else { playoffsSort.key = key; playoffsSort.dir = 1; }
           renderPlayoffsRows(key);
         });
       });
