@@ -10,7 +10,8 @@
       "overall_pct": 0.542,
       "ppg": 122.3,
       "playoff_apps": 5,
-      "top_seed_apps": 3
+      "top_seed_apps": 3,
+      "playoff_record": "2-5"
     },
     {
       "owner": "Zach",
@@ -21,7 +22,8 @@
       "overall_pct": 0.604,
       "ppg": 127.5,
       "playoff_apps": 4,
-      "top_seed_apps": 2
+      "top_seed_apps": 2,
+      "playoff_record": "1-4"
     },
     {
       "owner": "Nick",
@@ -32,7 +34,8 @@
       "overall_pct": 0.521,
       "ppg": 121.5,
       "playoff_apps": 4,
-      "top_seed_apps": 2
+      "top_seed_apps": 2,
+      "playoff_record": "4-3"
     },
     {
       "owner": "Brian",
@@ -43,7 +46,8 @@
       "overall_pct": 0.576,
       "ppg": 126.0,
       "playoff_apps": 5,
-      "top_seed_apps": 2
+      "top_seed_apps": 2,
+      "playoff_record": "7-4"
     },
     {
       "owner": "Gurv",
@@ -54,7 +58,8 @@
       "overall_pct": 0.577,
       "ppg": 126.7,
       "playoff_apps": 4,
-      "top_seed_apps": 1
+      "top_seed_apps": 1,
+      "playoff_record": "6-3"
     },
     {
       "owner": "JM",
@@ -65,7 +70,8 @@
       "overall_pct": 0.523,
       "ppg": 121.3,
       "playoff_apps": 4,
-      "top_seed_apps": 0
+      "top_seed_apps": 0,
+      "playoff_record": "7-2"
     },
     {
       "owner": "Masten",
@@ -76,7 +82,8 @@
       "overall_pct": 0.474,
       "ppg": 118.3,
       "playoff_apps": 4,
-      "top_seed_apps": 1
+      "top_seed_apps": 1,
+      "playoff_record": "3-3"
     },
     {
       "owner": "Pat",
@@ -87,7 +94,8 @@
       "overall_pct": 0.369,
       "ppg": 110.2,
       "playoff_apps": 3,
-      "top_seed_apps": 1
+      "top_seed_apps": 1,
+      "playoff_record": "0-3"
     },
     {
       "owner": "Janny",
@@ -98,7 +106,8 @@
       "overall_pct": 0.452,
       "ppg": 116.9,
       "playoff_apps": 2,
-      "top_seed_apps": 0
+      "top_seed_apps": 0,
+      "playoff_record": "0-2"
     },
     {
       "owner": "Librizzi",
@@ -109,7 +118,8 @@
       "overall_pct": 0.359,
       "ppg": 110.0,
       "playoff_apps": 1,
-      "top_seed_apps": 0
+      "top_seed_apps": 0,
+      "playoff_record": "0-1"
     }
   ]
 }
