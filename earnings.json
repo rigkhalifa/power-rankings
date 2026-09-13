@@ -6,24 +6,9 @@
       "total": 2880,
       "breakdown": [
         {
-          "year": "2021",
-          "note": "2nd place",
-          "amount": 510
-        },
-        {
-          "year": "2021",
-          "note": "4 weekly high scores",
-          "amount": 140
-        },
-        {
-          "year": "2022",
-          "note": "2nd place",
-          "amount": 510
-        },
-        {
-          "year": "2022",
-          "note": "4 weekly high scores",
-          "amount": 140
+          "year": "2025",
+          "note": "2 weekly high scores",
+          "amount": 70
         },
         {
           "year": "2024",
@@ -31,14 +16,29 @@
           "amount": 510
         },
         {
-          "year": "2025",
-          "note": "2 weekly high scores",
-          "amount": 70
-        },
-        {
           "year": "2023",
           "note": "1st place",
           "amount": 1000
+        },
+        {
+          "year": "2022",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2022",
+          "note": "4 weekly high scores",
+          "amount": 140
+        },
+        {
+          "year": "2021",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2021",
+          "note": "4 weekly high scores",
+          "amount": 140
         }
       ]
     },
@@ -46,6 +46,21 @@
       "owner": "JM",
       "total": 2175,
       "breakdown": [
+        {
+          "year": "2025",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2024",
+          "note": "1st place",
+          "amount": 1000
+        },
+        {
+          "year": "2024",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
         {
           "year": "2021",
           "note": "1st place",
@@ -55,21 +70,6 @@
           "year": "2021",
           "note": "3 weekly high scores",
           "amount": 105
-        },
-        {
-          "year": "2024",
-          "note": "1st place",
-          "amount": 1000
-        },
-        {
-          "year": "2024",
-          "note": "1 weekly high score",
-          "amount": 35
-        },
-        {
-          "year": "2025",
-          "note": "1 weekly high score",
-          "amount": 35
         }
       ]
     },
@@ -77,16 +77,6 @@
       "owner": "Gurv",
       "total": 1790,
       "breakdown": [
-        {
-          "year": "2022",
-          "note": "2 weekly high scores",
-          "amount": 70
-        },
-        {
-          "year": "2024",
-          "note": "2 weekly high scores",
-          "amount": 70
-        },
         {
           "year": "2025",
           "note": "1st place",
@@ -98,9 +88,19 @@
           "amount": 140
         },
         {
+          "year": "2024",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
           "year": "2023",
           "note": "2nd place",
           "amount": 510
+        },
+        {
+          "year": "2022",
+          "note": "2 weekly high scores",
+          "amount": 70
         }
       ]
     },
@@ -109,17 +109,17 @@
       "total": 1070,
       "breakdown": [
         {
+          "year": "2025",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
           "year": "2022",
           "note": "1st place",
           "amount": 1000
         },
         {
           "year": "2022",
-          "note": "1 weekly high score",
-          "amount": 35
-        },
-        {
-          "year": "2025",
           "note": "1 weekly high score",
           "amount": 35
         }
@@ -130,14 +130,9 @@
       "total": 790,
       "breakdown": [
         {
-          "year": "2021",
-          "note": "4 weekly high scores",
-          "amount": 140
-        },
-        {
-          "year": "2022",
-          "note": "2 weekly high scores",
-          "amount": 70
+          "year": "2025",
+          "note": "2nd place",
+          "amount": 510
         },
         {
           "year": "2024",
@@ -145,9 +140,14 @@
           "amount": 70
         },
         {
-          "year": "2025",
-          "note": "2nd place",
-          "amount": 510
+          "year": "2022",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2021",
+          "note": "4 weekly high scores",
+          "amount": 140
         }
       ]
     },
@@ -156,12 +156,7 @@
       "total": 280,
       "breakdown": [
         {
-          "year": "2021",
-          "note": "1 weekly high score",
-          "amount": 35
-        },
-        {
-          "year": "2022",
+          "year": "2025",
           "note": "2 weekly high scores",
           "amount": 70
         },
@@ -171,9 +166,14 @@
           "amount": 105
         },
         {
-          "year": "2025",
+          "year": "2022",
           "note": "2 weekly high scores",
           "amount": 70
+        },
+        {
+          "year": "2021",
+          "note": "1 weekly high score",
+          "amount": 35
         }
       ]
     },
@@ -182,9 +182,9 @@
       "total": 210,
       "breakdown": [
         {
-          "year": "2022",
-          "note": "2 weekly high scores",
-          "amount": 70
+          "year": "2025",
+          "note": "1 weekly high score",
+          "amount": 35
         },
         {
           "year": "2024",
@@ -192,9 +192,9 @@
           "amount": 70
         },
         {
-          "year": "2025",
-          "note": "1 weekly high score",
-          "amount": 35
+          "year": "2022",
+          "note": "2 weekly high scores",
+          "amount": 70
         },
         {
           "year": "2021",
@@ -208,9 +208,9 @@
       "total": 175,
       "breakdown": [
         {
-          "year": "2022",
-          "note": "1 weekly high score",
-          "amount": 35
+          "year": "2025",
+          "note": "2 weekly high scores",
+          "amount": 70
         },
         {
           "year": "2024",
@@ -218,9 +218,9 @@
           "amount": 35
         },
         {
-          "year": "2025",
-          "note": "2 weekly high scores",
-          "amount": 70
+          "year": "2022",
+          "note": "1 weekly high score",
+          "amount": 35
         },
         {
           "year": "2021",
@@ -234,14 +234,14 @@
       "total": 105,
       "breakdown": [
         {
-          "year": "2024",
-          "note": "2 weekly high scores",
-          "amount": 70
-        },
-        {
           "year": "2025",
           "note": "1 weekly high score",
           "amount": 35
+        },
+        {
+          "year": "2024",
+          "note": "2 weekly high scores",
+          "amount": 70
         }
       ]
     },
