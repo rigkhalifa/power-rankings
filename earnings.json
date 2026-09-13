@@ -1,85 +1,340 @@
 {
-  "years_included": "2021\u20132025, all years complete",
+  "payout_note": "$1,000 for 1st, $510 for 2nd, $35/week high scorer (13 weeks in 2020, 14 in all other years). 2020\u20132025, all years complete.",
   "leaderboard": [
     {
-      "owner": "Zach",
-      "years": 5,
-      "record": "43-27",
-      "win_pct": 0.614,
-      "overall_record": "399-231",
-      "overall_pct": 0.633
-    },
-    {
-      "owner": "Triangle",
-      "years": 5,
-      "record": "42-28",
-      "win_pct": 0.6,
-      "overall_record": "337-293",
-      "overall_pct": 0.535
-    },
-    {
       "owner": "Brian",
-      "years": 5,
-      "record": "38-32",
-      "win_pct": 0.543,
-      "overall_record": "366-264",
-      "overall_pct": 0.581
-    },
-    {
-      "owner": "Gurv",
-      "years": 5,
-      "record": "37-33",
-      "win_pct": 0.529,
-      "overall_record": "365-265",
-      "overall_pct": 0.579
-    },
-    {
-      "owner": "Nick",
-      "years": 5,
-      "record": "36-34",
-      "win_pct": 0.514,
-      "overall_record": "321-309",
-      "overall_pct": 0.51
+      "total": 2985,
+      "breakdown": [
+        {
+          "year": "2025",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2024",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2023",
+          "note": "1st place",
+          "amount": 1000
+        },
+        {
+          "year": "2023",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2022",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2022",
+          "note": "4 weekly high scores",
+          "amount": 140
+        },
+        {
+          "year": "2021",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2021",
+          "note": "4 weekly high scores",
+          "amount": 140
+        },
+        {
+          "year": "2020",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
     },
     {
       "owner": "JM",
-      "years": 5,
-      "record": "35-35",
-      "win_pct": 0.5,
-      "overall_record": "319-311",
-      "overall_pct": 0.506
+      "total": 2245,
+      "breakdown": [
+        {
+          "year": "2025",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2024",
+          "note": "1st place",
+          "amount": 1000
+        },
+        {
+          "year": "2024",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2023",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2021",
+          "note": "1st place",
+          "amount": 1000
+        },
+        {
+          "year": "2021",
+          "note": "3 weekly high scores",
+          "amount": 105
+        },
+        {
+          "year": "2020",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
     },
     {
-      "owner": "Pat",
-      "years": 5,
-      "record": "33-37",
-      "win_pct": 0.471,
-      "overall_record": "248-382",
-      "overall_pct": 0.394
+      "owner": "Gurv",
+      "total": 1965,
+      "breakdown": [
+        {
+          "year": "2025",
+          "note": "1st place",
+          "amount": 1000
+        },
+        {
+          "year": "2025",
+          "note": "4 weekly high scores",
+          "amount": 140
+        },
+        {
+          "year": "2024",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2023",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2023",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2022",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2020",
+          "note": "4 weekly high scores",
+          "amount": 140
+        }
+      ]
+    },
+    {
+      "owner": "Triangle",
+      "total": 1440,
+      "breakdown": [
+        {
+          "year": "2025",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2024",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2023",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2022",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2021",
+          "note": "4 weekly high scores",
+          "amount": 140
+        },
+        {
+          "year": "2020",
+          "note": "2nd place",
+          "amount": 510
+        },
+        {
+          "year": "2020",
+          "note": "3 weekly high scores",
+          "amount": 105
+        }
+      ]
+    },
+    {
+      "owner": "Nick",
+      "total": 1245,
+      "breakdown": [
+        {
+          "year": "2025",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2024",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2023",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2022",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2021",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2020",
+          "note": "1st place",
+          "amount": 1000
+        }
+      ]
     },
     {
       "owner": "Masten",
-      "years": 5,
-      "record": "33-37",
-      "win_pct": 0.471,
-      "overall_record": "299-331",
-      "overall_pct": 0.475
+      "total": 1070,
+      "breakdown": [
+        {
+          "year": "2025",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2022",
+          "note": "1st place",
+          "amount": 1000
+        },
+        {
+          "year": "2022",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
+    },
+    {
+      "owner": "Zach",
+      "total": 560,
+      "breakdown": [
+        {
+          "year": "2025",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2024",
+          "note": "3 weekly high scores",
+          "amount": 105
+        },
+        {
+          "year": "2023",
+          "note": "7 weekly high scores",
+          "amount": 245
+        },
+        {
+          "year": "2022",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2021",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2020",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
     },
     {
       "owner": "Janny",
-      "years": 5,
-      "record": "27-43",
-      "win_pct": 0.386,
-      "overall_record": "274-356",
-      "overall_pct": 0.435
+      "total": 210,
+      "breakdown": [
+        {
+          "year": "2025",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2024",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2023",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2020",
+          "note": "2 weekly high scores",
+          "amount": 70
+        }
+      ]
     },
     {
       "owner": "Librizzi",
-      "years": 5,
-      "record": "26-44",
-      "win_pct": 0.371,
-      "overall_record": "221-409",
-      "overall_pct": 0.351
+      "total": 210,
+      "breakdown": [
+        {
+          "year": "2025",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2024",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2022",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2021",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2020",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
+    },
+    {
+      "owner": "Pat",
+      "total": 35,
+      "breakdown": [
+        {
+          "year": "2024",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
     }
   ]
 }
