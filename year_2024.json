@@ -111,6 +111,103 @@
     },
     "avg": 121.2
   },
+  "title": "2024 Power Rankings",
+  "notes": [
+    "JM won the championship from 4th in the regular-season power rank.",
+    "Brian had the league's best record (11-3) but finished 3rd in the power rank and never posted a weekly high score.",
+    "Zach led both the power rank and the weekly high-scorer count (3 wins) during the regular season.",
+    "JM won the championship as a non-bye qualifier, beating bye recipient Brian in the final."
+  ],
+  "subtitle": "Regular season only",
+  "bye_teams": [
+    "Brian",
+    "Zach"
+  ],
+  "playoff_teams": [
+    "Brian",
+    "Zach",
+    "JM",
+    "Pat",
+    "Triangle",
+    "Gurv"
+  ]
+}      "record": "7-7",
+      "ppg": 115.5
+    },
+    {
+      "rank": 7,
+      "team": "Triangle",
+      "record": "7-7",
+      "ppg": 119.0
+    },
+    {
+      "rank": 8,
+      "team": "Janny",
+      "record": "5-9",
+      "ppg": 119.5
+    },
+    {
+      "rank": 9,
+      "team": "Librizzi",
+      "record": "6-8",
+      "ppg": 113.9
+    },
+    {
+      "rank": 10,
+      "team": "Masten",
+      "record": "3-11",
+      "ppg": 115.1
+    }
+  ],
+  "high_scorers": [
+    {
+      "team": "Zach",
+      "count": 3
+    },
+    {
+      "team": "Nick",
+      "count": 2
+    },
+    {
+      "team": "Janny",
+      "count": 2
+    },
+    {
+      "team": "Triangle",
+      "count": 2
+    },
+    {
+      "team": "Gurv",
+      "count": 2
+    },
+    {
+      "team": "Librizzi",
+      "count": 1
+    },
+    {
+      "team": "JM",
+      "count": 1
+    },
+    {
+      "team": "Pat",
+      "count": 1
+    }
+  ],
+  "champion": "JM",
+  "runner_up": "Brian",
+  "season_summary": {
+    "high": {
+      "team": "Nick",
+      "week": 11,
+      "score": 177.7
+    },
+    "low": {
+      "team": "Librizzi",
+      "week": 3,
+      "score": 64.28
+    },
+    "avg": 121.2
+  },
   "title": "2024 power rankings",
   "notes": [
     "JM won the championship from 4th in the regular-season power rank.",
