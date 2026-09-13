@@ -115,7 +115,20 @@
   "notes": [
     "Gurv held the #1 power rank every week of the season, and also led with 4 weekly high scores.",
     "Librizzi opened 10th, reached 2nd by midseason, and finished 7th.",
-    "Brian's team sat 9th through Week 13, then jumped to 6th after a 139.38 Week 14."
+    "Brian's team sat 9th through Week 13, then jumped to 6th after a 139.38 Week 14.",
+    "Both bye recipients met in the championship exactly as seeded \u2014 Gurv beat Triangle for the title."
   ],
-  "subtitle": "Regular season only"
+  "subtitle": "Regular season only",
+  "bye_teams": [
+    "Gurv",
+    "Triangle"
+  ],
+  "playoff_teams": [
+    "Gurv",
+    "Triangle",
+    "Librizzi",
+    "Nick",
+    "Masten",
+    "Janny"
+  ]
 }
