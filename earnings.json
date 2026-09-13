@@ -2,7 +2,7 @@
   "payout_note": "$1,000 for 1st, $510 for 2nd, $35/week high scorer over a 14-week regular season. 2021, 2022, 2024, 2025 complete; 2023 champion/runner-up only, no weekly data (2023 sheet doesn't exist).",
   "leaderboard": [
     {
-      "owner": "BB",
+      "owner": "Brian",
       "total": 2880,
       "breakdown": [
         {
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "owner": "T",
+      "owner": "Triangle",
       "total": 790,
       "breakdown": [
         {
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "owner": "ZC",
+      "owner": "Zach",
       "total": 280,
       "breakdown": [
         {
@@ -178,8 +178,8 @@
       ]
     },
     {
-      "owner": "NW",
-      "total": 175,
+      "owner": "Nick",
+      "total": 210,
       "breakdown": [
         {
           "year": "2022",
@@ -193,14 +193,19 @@
         },
         {
           "year": "2025",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2021",
           "note": "1 weekly high score",
           "amount": 35
         }
       ]
     },
     {
-      "owner": "Knees",
-      "total": 140,
+      "owner": "Librizzi",
+      "total": 175,
       "breakdown": [
         {
           "year": "2022",
@@ -216,6 +221,11 @@
           "year": "2025",
           "note": "2 weekly high scores",
           "amount": 70
+        },
+        {
+          "year": "2021",
+          "note": "1 weekly high score",
+          "amount": 35
         }
       ]
     },
@@ -241,28 +251,6 @@
       "breakdown": [
         {
           "year": "2024",
-          "note": "1 weekly high score",
-          "amount": 35
-        }
-      ]
-    },
-    {
-      "owner": "Nick",
-      "total": 35,
-      "breakdown": [
-        {
-          "year": "2021",
-          "note": "1 weekly high score",
-          "amount": 35
-        }
-      ]
-    },
-    {
-      "owner": "Librizzi",
-      "total": 35,
-      "breakdown": [
-        {
-          "year": "2021",
           "note": "1 weekly high score",
           "amount": 35
         }
