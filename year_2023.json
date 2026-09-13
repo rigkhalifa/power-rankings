@@ -111,7 +111,20 @@
   "notes": [
     "Zach went 13-1 and posted 7 of the season's 14 weekly high scores, but did not win the championship.",
     "Brian won the championship with a 7-7 record and 2 weekly high scores.",
-    "No power ranking exists for this season \u2014 roster strength and playoff odds weren't tracked."
+    "No power ranking exists for this season \u2014 roster strength and playoff odds weren't tracked.",
+    "Neither bye recipient (Zach, Nick) reached the championship \u2014 Brian and Gurv, both non-bye qualifiers, played for the title instead."
   ],
-  "subtitle": "Stats-only, not a power ranking \u2014 roster strength and playoff odds were never tracked this year, so teams below are sorted by actual win-loss record."
+  "subtitle": "Stats-only, not a power ranking \u2014 roster strength and playoff odds were never tracked this year, so teams below are sorted by actual win-loss record.",
+  "bye_teams": [
+    "Zach",
+    "Nick"
+  ],
+  "playoff_teams": [
+    "Zach",
+    "Nick",
+    "JM",
+    "Gurv",
+    "Pat",
+    "Brian"
+  ]
 }
