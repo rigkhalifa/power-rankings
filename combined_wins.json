@@ -1,0 +1,101 @@
+{
+  "years_included": "2021, 2022, 2024, 2025 (2023 excluded \u2014 no sheet exists)",
+  "leaderboard": [
+    {
+      "owner": "T",
+      "years": 4,
+      "record": "35-19",
+      "win_pct": 0.648,
+      "overall_record": "272-214",
+      "overall_pct": 0.56
+    },
+    {
+      "owner": "ZC",
+      "years": 4,
+      "record": "30-24",
+      "win_pct": 0.556,
+      "overall_record": "289-197",
+      "overall_pct": 0.595
+    },
+    {
+      "owner": "JM",
+      "years": 4,
+      "record": "29-25",
+      "win_pct": 0.537,
+      "overall_record": "255-231",
+      "overall_pct": 0.525
+    },
+    {
+      "owner": "Gurv",
+      "years": 4,
+      "record": "29-25",
+      "win_pct": 0.537,
+      "overall_record": "295-191",
+      "overall_pct": 0.607
+    },
+    {
+      "owner": "BB",
+      "years": 4,
+      "record": "29-25",
+      "win_pct": 0.537,
+      "overall_record": "270-216",
+      "overall_pct": 0.556
+    },
+    {
+      "owner": "NW",
+      "years": 3,
+      "record": "21-19",
+      "win_pct": 0.525,
+      "overall_record": "197-163",
+      "overall_pct": 0.547
+    },
+    {
+      "owner": "Pat",
+      "years": 4,
+      "record": "26-28",
+      "win_pct": 0.481,
+      "overall_record": "192-294",
+      "overall_pct": 0.395
+    },
+    {
+      "owner": "Masten",
+      "years": 4,
+      "record": "26-28",
+      "win_pct": 0.481,
+      "overall_record": "240-246",
+      "overall_pct": 0.494
+    },
+    {
+      "owner": "Janny",
+      "years": 4,
+      "record": "22-32",
+      "win_pct": 0.407,
+      "overall_record": "219-267",
+      "overall_pct": 0.451
+    },
+    {
+      "owner": "Nick",
+      "years": 1,
+      "record": "5-9",
+      "win_pct": 0.357,
+      "overall_record": "46-80",
+      "overall_pct": 0.365
+    },
+    {
+      "owner": "Knees",
+      "years": 3,
+      "record": "14-26",
+      "win_pct": 0.35,
+      "overall_record": "108-252",
+      "overall_pct": 0.3
+    },
+    {
+      "owner": "Librizzi",
+      "years": 1,
+      "record": "4-10",
+      "win_pct": 0.286,
+      "overall_record": "47-79",
+      "overall_pct": 0.373
+    }
+  ]
+}
