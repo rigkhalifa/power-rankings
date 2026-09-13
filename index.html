@@ -70,6 +70,7 @@
   .row.r1 .team-name { font-weight: 600; font-size: 19px; }
   .trophy { color: var(--trophy); font-size: 14px; margin-left: 6px; }
   .medal { font-size: 14px; margin-left: 6px; }
+  .playoff-mark { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); margin-left: 4px; }
   .chev { font-family: 'IBM Plex Mono', monospace; color: var(--ink-muted); font-size: 14px; align-self: center; transition: transform 0.15s; }
   .chev.open { transform: rotate(90deg); }
 
@@ -119,8 +120,8 @@
   .earnings-line { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-muted); padding: 3px 0; font-family: 'IBM Plex Mono', monospace; }
   .earnings-line span:first-child { font-style: italic; }
 
-  .wins-row { display: grid; grid-template-columns: 1fr 112px 128px 60px; align-items: center; gap: 18px; padding: 16px 4px; border-bottom: 1px solid var(--divider); }
-  .wins-header { display: grid; grid-template-columns: 1fr 112px 128px 60px; gap: 18px; padding: 0 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .wins-row { display: grid; grid-template-columns: 1fr 112px 128px 60px 96px; align-items: center; gap: 18px; padding: 16px 4px; border-bottom: 1px solid var(--divider); }
+  .wins-header { display: grid; grid-template-columns: 1fr 112px 128px 60px 96px; gap: 18px; padding: 0 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
   .wins-header span { text-align: right; }
   .wins-header span.sortable { cursor: pointer; }
   .wins-header span.sortable:hover { color: var(--ink); }
@@ -130,7 +131,7 @@
   .wins-stat .pct { font-size: 13px; color: var(--ink-muted); margin-left: 6px; }
   .wins-ppg { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; }
   @media (max-width: 480px) {
-    .wins-row, .wins-header { grid-template-columns: 1fr 88px 100px 44px; gap: 8px; }
+    .wins-row, .wins-header { grid-template-columns: 1fr 88px 100px 44px 74px; gap: 8px; }
     .wins-stat, .wins-ppg { font-size: 13px; }
     .wins-stat .pct { font-size: 11px; margin-left: 3px; }
   }
@@ -233,7 +234,7 @@
         <p id="wins-sub"></p>
         <hr class="rule">
       </div>
-      <div class="wins-header"><span></span><span class="sortable" data-sort="win_pct">Actual (win %)</span><span class="sortable" data-sort="overall_pct">Overall (win %)</span><span class="sortable" data-sort="ppg">PPG</span></div>
+      <div class="wins-header"><span></span><span class="sortable" data-sort="win_pct">Actual (win %)</span><span class="sortable" data-sort="overall_pct">Overall (win %)</span><span class="sortable" data-sort="ppg">PPG</span><span class="sortable" data-sort="playoff_apps">Playoffs (top seed)</span></div>
       <div id="wins-list"></div>
 
       <div class="digest">
@@ -247,7 +248,7 @@
       <div class="masthead">
         <h1 id="y2025-title">PLACEHOLDER</h1>
         <p id="y2025-subtitle" class="year-subtitle"></p>
-        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
         <hr class="rule">
       </div>
       <div id="y2025-list"></div>
@@ -268,7 +269,7 @@
       <div class="masthead">
         <h1 id="y2024-title">PLACEHOLDER</h1>
         <p id="y2024-subtitle" class="year-subtitle"></p>
-        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
         <hr class="rule">
       </div>
       <div id="y2024-list"></div>
@@ -289,7 +290,7 @@
       <div class="masthead">
         <h1 id="y2023-title">PLACEHOLDER</h1>
         <p id="y2023-subtitle" class="year-subtitle"></p>
-        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
         <hr class="rule">
       </div>
       <div id="y2023-list"></div>
@@ -310,7 +311,7 @@
       <div class="masthead">
         <h1 id="y2022-title">PLACEHOLDER</h1>
         <p id="y2022-subtitle" class="year-subtitle"></p>
-        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
         <hr class="rule">
       </div>
       <div id="y2022-list"></div>
@@ -331,7 +332,7 @@
       <div class="masthead">
         <h1 id="y2021-title">PLACEHOLDER</h1>
         <p id="y2021-subtitle" class="year-subtitle"></p>
-        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
         <hr class="rule">
       </div>
       <div id="y2021-list"></div>
@@ -352,7 +353,7 @@
       <div class="masthead">
         <h1 id="y2020-title">PLACEHOLDER</h1>
         <p id="y2020-subtitle" class="year-subtitle"></p>
-        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place</p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
         <hr class="rule">
       </div>
       <div id="y2020-list"></div>
@@ -570,10 +571,13 @@
         let badge = '';
         if (s.team === data.champion) badge = ' <span class="trophy">&#129351;</span>';
         else if (s.team === data.runner_up) badge = ' <span class="medal">&#129352;</span>';
+        let mark = '';
+        if (data.bye_teams && data.bye_teams.includes(s.team)) mark = ' <span class="playoff-mark">-y</span>';
+        else if (data.playoff_teams && data.playoff_teams.includes(s.team)) mark = ' <span class="playoff-mark">-x</span>';
         return `
         <div class="ly-row">
           <div class="rank">${s.rank}</div>
-          <div class="lyname">${s.team}${badge}</div>
+          <div class="lyname">${s.team}${mark}${badge}</div>
           <div class="lystats">${s.record} &middot; ${s.ppg} ppg</div>
         </div>`;
       }).join('');
@@ -643,6 +647,7 @@
           <div class="wins-stat${actualLeader ? ' leader' : ''}">${o.record}<span class="pct">(${o.win_pct.toFixed(3)})</span></div>
           <div class="wins-stat">${o.overall_record}<span class="pct">(${o.overall_pct.toFixed(3)})</span></div>
           <div class="wins-ppg${ppgLeader ? ' leader' : ''}">${o.ppg}</div>
+          <div class="wins-ppg">${o.playoff_apps} <span class="pct">(${o.top_seed_apps})</span></div>
         </div>`;
       }).join('');
     }
@@ -663,7 +668,9 @@
         <li>Worst single-season record: <b>Pat</b>, 2-12 (.143) in 2025</li>
         <li>Most weekly high scores in one season: <b>Zach</b>, 7 in 2023 &mdash; half the season</li>
         <li>Highest single-season PPG: <b>Zach</b>, 143.2 in 2023</li>
-        <li>Highest average PPG since 2020: <b>Zach</b>, 127.5</li>`;
+        <li>Highest average PPG since 2020: <b>Zach</b>, 127.5</li>
+        <li>Most playoff appearances: <b>Triangle</b> and <b>Brian</b>, tied at 5 of 6 seasons</li>
+        <li>Most top-seed (bye) appearances: <b>Triangle</b>, 3 of 6 seasons</li>`;
     }
     function renderHighScorerCounts(years) {
       const totals = {};
