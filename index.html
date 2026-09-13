@@ -655,6 +655,7 @@
     function renderWinsRows(sortKey) {
       const rows = winsData.leaderboard.slice();
       if (sortKey) rows.sort((a, b) => b[sortKey] - a[sortKey]);
+      else rows.sort((a, b) => b.win_pct - a.win_pct || b.overall_pct - a.overall_pct);
       const maxWinPct = Math.max(...winsData.leaderboard.map(o => o.win_pct));
       const maxOverallPct = Math.max(...winsData.leaderboard.map(o => o.overall_pct));
       const maxPpg = Math.max(...winsData.leaderboard.map(o => o.ppg));
@@ -702,13 +703,13 @@
         <li>Lowest single-week score: <b>Pat</b>, 60.24 (2025, Week 7)</li>
         <li>Best single-season record: <b>Zach</b>, 13-1 (.929) in 2023</li>
         <li>Worst single-season record: <b>Pat</b>, 2-12 (.143) in 2025</li>
-        <li>Most weekly high scores in one season: <b>Zach</b>, 7 in 2023, half the season</li>
+        <li>Most weekly high scores in one season: <b>Zach</b>, 7 in 2023</li>
         <li>Highest single-season PPG: <b>Zach</b>, 143.2 in 2023</li>
         <li>Highest average PPG since 2020: <b>Zach</b>, 127.5</li>
         <li>Most playoff appearances: <b>Triangle</b> and <b>Brian</b>, tied at 5 of 6 seasons</li>
         <li>Most top-seed (bye) appearances: <b>Triangle</b>, 3 of 6 seasons</li>
         <li>Best championship-game record: <b>JM</b>, 2-0 in title games</li>
-        <li>Most championship-game appearances: <b>Brian</b>, 4 of 6 seasons (1/4)</li>`;
+        <li>Most championship-game appearances: <b>Brian</b>, 4 of 6 seasons</li>`;
     }
     function renderHighScorerCounts(years) {
       const totals = {};
