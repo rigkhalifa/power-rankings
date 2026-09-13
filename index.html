@@ -136,8 +136,8 @@
   .playoffs-stat.leader { font-weight: 700; color: var(--trophy); }
   .playoffs-stat.leader .pct { color: var(--trophy); opacity: 0.75; }
   .playoffs-stat .pct.delta { display: block; margin-left: 0; margin-top: 2px; }
-  .delta-positive { color: var(--tier-good); }
-  .delta-negative { color: var(--tier-bad); }
+  .delta-positive { color: var(--tier-good) !important; }
+  .delta-negative { color: var(--tier-bad) !important; }
   .wins-owner { font-size: 16px; font-weight: 500; }
   .wins-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; white-space: nowrap; }
   .wins-stat .pct { font-size: 13px; color: var(--ink-muted); margin-left: 6px; }
@@ -270,8 +270,8 @@
 
       <div class="digest">
         <h2>Playoffs</h2>
-        <p class="sub">Playoff record and appearances (bye), 2019&ndash;2025</p>
-        <div class="playoffs-header"><span></span><span class="sortable" data-sort="playoff_record">Playoff record</span><span class="sortable" data-sort="playoff_apps">Appearances (bye)</span><span class="sortable" data-sort="championship_record">Championship</span><span class="sortable" data-sort="pppg">PPG</span></div>
+        <p class="sub">Playoff record and appearances (bye), 2019&ndash;2025 &mdash; small number under PPG is the difference vs. regular-season PPG</p>
+        <div class="playoffs-header"><span></span><span class="sortable" data-sort="playoff_record">Playoff record</span><span class="sortable" data-sort="playoff_apps">Appearances (bye)</span><span class="sortable" data-sort="championship_record">Championship</span><span class="sortable" data-sort="pppg">Playoff PPG</span></div>
         <div id="playoffs-list"></div>
       </div>
     </div>
