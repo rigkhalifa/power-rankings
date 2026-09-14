@@ -26,7 +26,7 @@
     color: var(--ink);
     font-family: 'Source Serif 4', serif;
   }
-  .page { max-width: 760px; margin: 0 auto; padding: 44px 24px 70px; }
+  .page { max-width: 760px; margin: 0 auto; padding: 44px 24px 70px; position: relative; }
 
   .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
   .tab-select {
@@ -41,7 +41,6 @@
     cursor: pointer;
   }
   .tab-select:hover { color: var(--ink); border-color: var(--accent); }
-  .my-team-control { display: flex; align-items: center; gap: 8px; margin: -12px 0 28px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); }
   .week-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); }
   .week-nav select {
     background: none; border: 1px solid var(--divider); color: var(--ink-muted);
@@ -52,18 +51,19 @@
   .coming-soon-emoji { font-size: 40px; display: block; margin-bottom: 12px; }
   .coming-soon div { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 22px; margin-bottom: 8px; }
   .coming-soon p { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; color: var(--ink-muted); margin: 0 auto; max-width: 320px; }
-  .week1-preview { max-width: 380px; margin: -20px auto 0; padding-bottom: 20px; }
   .week1-preview-note { text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--tier-mid); text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 20px; }
-  .week1-preview-stat { text-align: center; padding: 16px 0; border-top: 1px solid var(--divider); }
-  .week1-preview-stat:last-child { border-bottom: 1px solid var(--divider); }
-  .week1-preview-label { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-  .week1-preview-team { display: block; font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 18px; margin-bottom: 2px; }
-  .week1-preview-value { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--accent); }
-  .my-team-control select {
-    background: none; border: 1px solid var(--divider); color: var(--ink-muted);
-    font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 4px 8px; border-radius: 12px; cursor: pointer;
-  }
-  .my-team-control select:hover { color: var(--ink); border-color: var(--accent); }
+  .week1-matchups { max-width: 480px; margin: -20px auto 0; padding-bottom: 20px; }
+  .matchup-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: 16px 0; border-top: 1px solid var(--divider); }
+  .matchup-row:last-child { border-bottom: 1px solid var(--divider); }
+  .matchup-side { text-align: center; }
+  .matchup-side:last-child { text-align: center; }
+  .matchup-owner { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+  .matchup-score { font-family: 'IBM Plex Mono', monospace; font-size: 20px; }
+  .matchup-proj { display: block; font-size: 10px; color: var(--ink-muted); font-weight: 400; margin-top: 2px; }
+  .matchup-vs { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); text-transform: uppercase; }
+  .matchup-status { grid-column: 1 / -1; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--divider); }
+  .matchup-status.decided { color: var(--tier-good); }
+  .matchup-status.live { color: var(--trophy); }
   [data-owner].my-team { background: rgba(107, 164, 135, 0.08); border-left: 2px solid var(--accent); margin-left: -2px; }
   .tab-btn {
     font-family: 'IBM Plex Mono', monospace;
@@ -255,12 +255,8 @@
         <option value="y2020">2020</option>
         <option value="y2019">2019</option>
       </select>
-    </div>
-
-    <div class="my-team-control">
-      <label for="my-team-select">Your team</label>
-      <select id="my-team-select">
-        <option value="">Not set</option>
+      <select id="my-team-select" class="tab-select">
+        <option value="">Your team&hellip;</option>
         <option value="Triangle">Triangle</option>
         <option value="Zach">Zach</option>
         <option value="Nick">Nick</option>
@@ -279,12 +275,12 @@
     <div class="week-nav">
       <label for="week-select">Viewing</label>
       <select id="week-select">
-        <option value="preseason">Preseason</option>
-        <option value="week1">Week 1</option>
+        <option value="preseason">Draft</option>
+        <option value="week1" selected>Week 1</option>
       </select>
     </div>
 
-    <div id="preseason-content">
+    <div id="preseason-content" style="display:none;">
     <div class="masthead">
       <h1>Draft Power Rankings</h1>
       <p>Based on preseason roster grades as of 9/8/26. Live rankings begin after Week 1</p>
@@ -305,24 +301,79 @@
     </div>
     </div>
 
-    <div id="week1-content" style="display:none;">
+    <div id="week1-content">
       <div class="coming-soon">
         <span class="coming-soon-emoji">&#9203;</span>
         <div>Coming Soon</div>
-        <p>Week 1 power rankings go live once the games finish and the numbers are in.</p>
+        <p>Week 1 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
       </div>
 
-      <div class="week1-preview">
+      <div class="week1-matchups">
         <p class="week1-preview-note">In progress &mdash; before Monday Night Football</p>
-        <div class="week1-preview-stat">
-          <span class="week1-preview-label">Current Top Scorer</span>
-          <span class="week1-preview-team">not ass per chat</span>
-          <span class="week1-preview-value">142.46 pts</span>
+
+        <div class="matchup-row">
+          <div class="matchup-side">
+            <div class="matchup-owner">JM</div>
+            <div class="matchup-score">116.96<span class="matchup-proj">proj 127.67</span></div>
+          </div>
+          <div class="matchup-vs">vs</div>
+          <div class="matchup-side">
+            <div class="matchup-owner">Nick</div>
+            <div class="matchup-score">85.76<span class="matchup-proj">proj 98.95</span></div>
+          </div>
+          <div class="matchup-status decided">JM has clinched</div>
         </div>
-        <div class="week1-preview-stat">
-          <span class="week1-preview-label">Projected High Scorer</span>
-          <span class="week1-preview-team">Destined for 3rd</span>
-          <span class="week1-preview-value">140.36 pts so far &middot; proj. 147.00</span>
+
+        <div class="matchup-row">
+          <div class="matchup-side">
+            <div class="matchup-owner">Triangle</div>
+            <div class="matchup-score">141.82<span class="matchup-proj">final</span></div>
+          </div>
+          <div class="matchup-vs">vs</div>
+          <div class="matchup-side">
+            <div class="matchup-owner">Gurv</div>
+            <div class="matchup-score">93.90<span class="matchup-proj">proj 111.07</span></div>
+          </div>
+          <div class="matchup-status decided">Triangle has clinched</div>
+        </div>
+
+        <div class="matchup-row">
+          <div class="matchup-side">
+            <div class="matchup-owner">Masten</div>
+            <div class="matchup-score">129.50<span class="matchup-proj">final</span></div>
+          </div>
+          <div class="matchup-vs">vs</div>
+          <div class="matchup-side">
+            <div class="matchup-owner">Librizzi</div>
+            <div class="matchup-score">91.96<span class="matchup-proj">final</span></div>
+          </div>
+          <div class="matchup-status decided">Masten wins &mdash; final</div>
+        </div>
+
+        <div class="matchup-row">
+          <div class="matchup-side">
+            <div class="matchup-owner">Zach</div>
+            <div class="matchup-score">140.36<span class="matchup-proj">proj 147.00</span></div>
+          </div>
+          <div class="matchup-vs">vs</div>
+          <div class="matchup-side">
+            <div class="matchup-owner">Brian</div>
+            <div class="matchup-score">142.46<span class="matchup-proj">final</span></div>
+          </div>
+          <div class="matchup-status live">Still live &mdash; Zach needs 2.1+ more</div>
+        </div>
+
+        <div class="matchup-row">
+          <div class="matchup-side">
+            <div class="matchup-owner">Janny</div>
+            <div class="matchup-score">111.70<span class="matchup-proj">proj 130.87</span></div>
+          </div>
+          <div class="matchup-vs">vs</div>
+          <div class="matchup-side">
+            <div class="matchup-owner">Chris</div>
+            <div class="matchup-score">139.76<span class="matchup-proj">final</span></div>
+          </div>
+          <div class="matchup-status decided">Chris has clinched</div>
         </div>
       </div>
     </div>
@@ -591,7 +642,7 @@
     const RUNNER_UP = 'Ban Him & Aubrey';
     const OWNER_TO_TEAM_2026 = {
       'Triangle': 'Ban Him & Aubrey', 'Nick': 'Jeanty want winny', 'JM': 'Co-Authored',
-      'Zach': 'Destined for 3rd', 'Librizzi': 'reigning playoff team', 'Masten': 'MILFs',
+      'Zach': 'Destined for 3rd', 'Librizzi': 'on to 2027', 'Masten': 'MILFs',
       'Chris': 'Chasing Victory', 'Gurv': 'Ban defense & kickers', 'Janny': 'Fat Husband',
       'Brian': 'not ass per chat'
     };
@@ -605,7 +656,7 @@
     // baseline after that.
     const PRESEASON_RANK = {
       'Ban Him & Aubrey': 1, 'Jeanty want winny': 2, 'Co-Authored': 3,
-      'Destined for 3rd': 4, 'reigning playoff team': 5, 'MILFs': 6,
+      'Destined for 3rd': 4, 'on to 2027': 5, 'MILFs': 6,
       'Chasing Victory': 7, 'Ban defense & kickers': 8, 'Fat Husband': 9,
       'not ass per chat': 10
     };
