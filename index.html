@@ -547,6 +547,19 @@
       'Brian': 'not ass per chat'
     };
     const TEAM_2026_TO_OWNER = Object.fromEntries(Object.entries(OWNER_TO_TEAM_2026).map(([o, t]) => [t, o]));
+    // Preseason draft order, fixed and confirmed directly from the
+    // Season Roster Strength table — this never changes mid-season,
+    // so it's safe to hardcode rather than read live. Used only for
+    // Week 1's delta arrow (comparing Week 1 to preseason). Once
+    // Week 2 happens, the comparison needs to switch to a saved
+    // Week 1 snapshot instead — this table stops being the right
+    // baseline after that.
+    const PRESEASON_RANK = {
+      'Ban Him & Aubrey': 1, 'Jeanty want winny': 2, 'Co-Authored': 3,
+      'Destined for 3rd': 4, 'reigning playoff team': 5, 'MILFs': 6,
+      'Chasing Victory': 7, 'Ban defense & kickers': 8, 'Fat Husband': 9,
+      'not ass per chat': 10
+    };
     function getMyTeam() {
       try { return localStorage.getItem('myTeam') || ''; } catch (e) { return ''; }
     }
@@ -682,10 +695,16 @@
       sorted.forEach((t, i) => { t.rank = i + 1; });
 
       list.innerHTML = sorted.map((t, i) => {
-        // No week-over-week snapshot exists yet, so every team shows a
-        // flat delta for now. Once a prior week's snapshot is saved,
-        // swap this for a real prevRank - thisRank comparison.
-        const deltaSymbol = '<span class="week-delta flat">&#9654;</span>';
+        // Week 1 has nothing to compare against except the preseason
+        // draft order — this is the correct baseline the very first
+        // time this runs. Once a real Week 1 snapshot exists, Week 2
+        // onward needs to compare against THAT instead of preseason.
+        const prevRank = PRESEASON_RANK[t.name];
+        let deltaSymbol = '<span class="week-delta flat">&#9654;</span>';
+        if (prevRank !== undefined) {
+          if (prevRank > t.rank) deltaSymbol = '<span class="week-delta up">&#9654;</span>';
+          else if (prevRank < t.rank) deltaSymbol = '<span class="week-delta down">&#9654;</span>';
+        }
 
         // Positional ROS breakdown comes from a screenshot each week,
         // same as the draft page. No file exists yet, so this always
