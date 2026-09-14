@@ -87,6 +87,15 @@
   .row.r1 .rank { color: var(--ink); font-weight: 500; }
   .team-name { font-size: 18px; font-weight: 500; }
   .row.r1 .team-name { font-weight: 600; font-size: 19px; }
+  .week-delta { font-size: 11px; margin-right: 4px; }
+  .week-delta.flat { color: var(--ink-muted); }
+  .week-delta.up { color: var(--tier-good); transform: rotate(-90deg); display: inline-block; }
+  .week-delta.down { color: var(--tier-bad); transform: rotate(90deg); display: inline-block; }
+  .week-stats { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); margin-top: 2px; }
+  .week-detail-line { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 1px solid var(--divider); }
+  .week-detail-line span:first-child { color: var(--ink-muted); }
+  .week-detail-line span:last-child { font-family: 'IBM Plex Mono', monospace; }
+  .week-ros-heading { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin: 14px 0 6px; }
   .trophy { color: var(--trophy); font-size: 14px; margin-left: 6px; }
   .medal { font-size: 14px; margin-left: 6px; }
   .playoff-mark { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); margin-left: 4px; }
@@ -520,6 +529,15 @@
 
   <script>
     const API_URL = 'https://script.google.com/macros/s/AKfycbzAm-9Glh6ylCSZoq28hBOM79lHr07Zlcv4TGJjW59ugeJbcV1PXlQpFgcaNv4fU84L/exec';
+    /**
+     * Flip this to true once Week 1 is actually locked in and you're
+     * ready to switch the 2026 tab from "draft power rankings"
+     * (preseason, roster-strength based) over to the live weekly
+     * power rank table. You can do this yourself directly in this
+     * file — no need to wait on me. Everything downstream reads
+     * this one flag.
+     */
+    const WEEK_1_LIVE = false;
     const CHAMPION = 'Ban defense & kickers';
     const RUNNER_UP = 'Ban Him & Aubrey';
     const OWNER_TO_TEAM_2026 = {
@@ -584,7 +602,7 @@
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
       });
-      renderList(teams, projections);
+      if (WEEK_1_LIVE) renderWeeklyList(teams); else renderList(teams, projections);
       renderDigest(projectionsRaw);
       renderTrophies(trophies);
       renderBestValue(bestValue);
@@ -641,6 +659,75 @@
       });
     });
 
+    function safeScore(t) {
+      // Defensive: a missing/error score (null, NaN, blank) must never
+      // sort as "best" — treat it as worst-case instead. Confirmed via
+      // direct testing that Number(null) === 0, which is finite, so a
+      // simple Number.isFinite() check alone silently lets null through
+      // as if it were a real, best-possible score. Null must be caught
+      // explicitly before the Number() conversion happens.
+      if (t.score === null || t.score === undefined || t.score === '') return Infinity;
+      const n = Number(t.score);
+      return Number.isFinite(n) ? n : Infinity;
+    }
+
+    function renderWeeklyList(teams) {
+      const list = document.getElementById('list');
+      if (!teams || !teams.length) {
+        list.innerHTML = '<div class="empty">No teams found.</div>';
+        return;
+      }
+
+      const sorted = teams.slice().sort((a, b) => safeScore(a) - safeScore(b));
+      sorted.forEach((t, i) => { t.rank = i + 1; });
+
+      list.innerHTML = sorted.map((t, i) => {
+        // No week-over-week snapshot exists yet, so every team shows a
+        // flat delta for now. Once a prior week's snapshot is saved,
+        // swap this for a real prevRank - thisRank comparison.
+        const deltaSymbol = '<span class="week-delta flat">&#9654;</span>';
+
+        // Positional ROS breakdown comes from a screenshot each week,
+        // same as the draft page. No file exists yet, so this always
+        // shows the "not available" fallback until that first weekly
+        // file is built and added to the fetch chain.
+        const rosPanelBody = '<div class="no-data">ROS positional breakdown not available yet.</div>';
+
+        return `
+          <div>
+            <button class="row-btn" data-i="${i}">
+              <div class="row ${t.rank === 1 ? 'r1' : ''}" data-owner="${TEAM_2026_TO_OWNER[t.name] || ''}">
+                <div class="rank">${t.rank}</div>
+                <div>
+                  <div class="team-name">${deltaSymbol} ${t.name}</div>
+                  <div class="week-stats">${t.record} &middot; ${t.poOdds} PO</div>
+                </div>
+                <div class="chev" data-i="${i}">&rsaquo;</div>
+              </div>
+            </button>
+            <div class="panel" data-i="${i}">
+              <div class="week-detail-line"><span>Overall Wins</span><span>${t.overallRecord}</span></div>
+              <div class="week-detail-line"><span>Consistency</span><span>${t.cons}</span></div>
+              <div class="week-detail-line"><span>PPG</span><span>${t.ppg}</span></div>
+              <div class="week-detail-line"><span>ROS Roster Rank</span><span>${t.rosRoster}</span></div>
+              <div class="week-ros-heading">ROS Roster Projection</div>
+              ${rosPanelBody}
+            </div>
+          </div>`;
+      }).join('');
+
+      document.querySelectorAll('.row-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = btn.dataset.i;
+          const panel = document.querySelector(`.panel[data-i="${i}"]`);
+          const chev = document.querySelector(`.chev[data-i="${i}"]`);
+          const open = panel.style.display === 'block';
+          panel.style.display = open ? 'none' : 'block';
+          chev.classList.toggle('open', !open);
+        });
+      });
+      applyMyTeamHighlight();
+    }
     function renderList(teams, projections) {
       const list = document.getElementById('list');
       if (!teams.length) {
