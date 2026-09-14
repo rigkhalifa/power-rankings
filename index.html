@@ -42,6 +42,16 @@
   }
   .tab-select:hover { color: var(--ink); border-color: var(--accent); }
   .my-team-control { display: flex; align-items: center; gap: 8px; margin: -12px 0 28px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); }
+  .week-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); }
+  .week-nav select {
+    background: none; border: 1px solid var(--divider); color: var(--ink-muted);
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 4px 8px; border-radius: 12px; cursor: pointer;
+  }
+  .week-nav select:hover { color: var(--ink); border-color: var(--accent); }
+  .coming-soon { text-align: center; padding: 70px 20px; }
+  .coming-soon-emoji { font-size: 40px; display: block; margin-bottom: 12px; }
+  .coming-soon div { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 22px; margin-bottom: 8px; }
+  .coming-soon p { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; color: var(--ink-muted); margin: 0 auto; max-width: 320px; }
   .my-team-control select {
     background: none; border: 1px solid var(--divider); color: var(--ink-muted);
     font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 4px 8px; border-radius: 12px; cursor: pointer;
@@ -259,6 +269,15 @@
     </div>
 
     <div id="view-current">
+    <div class="week-nav">
+      <label for="week-select">Viewing</label>
+      <select id="week-select">
+        <option value="preseason">Preseason</option>
+        <option value="week1">Week 1</option>
+      </select>
+    </div>
+
+    <div id="preseason-content">
     <div class="masthead">
       <h1>Draft Power Rankings</h1>
       <p>Based on preseason roster grades as of 9/8/26. Live rankings begin after Week 1</p>
@@ -276,6 +295,15 @@
       <h2>Top salaries vs. THE BLITZ projections</h2>
       <p class="sub">The 15 biggest auction prices per position, checked against THE BLITZ season long projections for that player</p>
       <div id="value-grid" class="digest-grid"></div>
+    </div>
+    </div>
+
+    <div id="week1-content" style="display:none;">
+      <div class="coming-soon">
+        <span class="coming-soon-emoji">&#9203;</span>
+        <div>Coming Soon</div>
+        <p>Week 1 power rankings go live once the games finish and the numbers are in.</p>
+      </div>
     </div>
     </div>
 
@@ -655,6 +683,12 @@
     document.getElementById('my-team-select').value = getMyTeam();
     document.getElementById('my-team-select').addEventListener('change', (e) => {
       setMyTeam(e.target.value);
+    });
+
+    document.getElementById('week-select').addEventListener('change', (e) => {
+      const isPreseason = e.target.value === 'preseason';
+      document.getElementById('preseason-content').style.display = isPreseason ? '' : 'none';
+      document.getElementById('week1-content').style.display = isPreseason ? 'none' : '';
     });
 
     document.getElementById('season-review-select').addEventListener('change', (e) => {
