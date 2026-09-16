@@ -309,11 +309,13 @@
     </div>
 
     <div id="week1-content">
-      <div class="coming-soon">
+      <div class="coming-soon" id="week1-coming-soon">
         <span class="coming-soon-emoji">&#9203;</span>
         <div>Coming Soon</div>
         <p>Week 1 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
       </div>
+
+      <div id="week1-list"></div>
 
       <div class="week1-matchups">
         <p class="week1-preview-note">Week 1 &mdash; Final</p>
@@ -803,7 +805,9 @@
     }
 
     function renderWeeklyList(teams) {
-      const list = document.getElementById('list');
+      const comingSoon = document.getElementById('week1-coming-soon');
+      if (comingSoon) comingSoon.style.display = 'none';
+      const list = document.getElementById('week1-list');
       if (!teams || !teams.length) {
         list.innerHTML = '<div class="empty">No teams found.</div>';
         return;
