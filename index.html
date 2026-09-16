@@ -752,6 +752,11 @@
       });
     });
 
+    function formatPpg(raw) {
+      const m = String(raw).match(/^#(\d+),\s*([\d.]+)\s*ppg$/i);
+      if (!m) return String(raw);
+      return `${m[2]} PPG (${ordinal(Number(m[1]))} in league)`;
+    }
     function formatPoOdds(v) {
       const n = Number(v);
       if (!Number.isFinite(n)) return String(v);
@@ -815,7 +820,7 @@
                 <div class="rank">${t.rank}</div>
                 <div>
                   <div class="team-name">${deltaSymbol} ${t.name}</div>
-                  <div class="week-stats">${t.record} &middot; ${formatPoOdds(t.poOdds)} PO &middot; ${t.ppg}</div>
+                  <div class="week-stats">${t.record} &middot; ${formatPoOdds(t.poOdds)} PO &middot; ${formatPpg(t.ppg)}</div>
                 </div>
                 <div class="chev" data-i="${i}">&rsaquo;</div>
               </div>
