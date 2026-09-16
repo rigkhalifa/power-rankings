@@ -304,8 +304,6 @@
         <p>Week 1 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
       </div>
 
-      <div id="week1-list"></div>
-
       <div class="week1-matchups">
         <div class="week1-highlights">
           <div class="week1-highlight-stat">
@@ -315,6 +313,8 @@
           </div>
         </div>
       </div>
+
+      <div id="week1-list"></div>
     </div>
     </div>
 
@@ -670,7 +670,11 @@
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
       });
-      if (WEEK_1_LIVE) renderWeeklyList(teams); else renderList(teams, projections);
+      const draftTeams = Object.entries(PRESEASON_RANK)
+        .map(([name, rank]) => ({ name, rank }))
+        .sort((a, b) => a.rank - b.rank);
+      renderList(draftTeams, projections);
+      if (WEEK_1_LIVE) renderWeeklyList(teams);
       renderDigest(projectionsRaw);
       renderTrophies(trophies);
       renderBestValue(bestValue);
@@ -733,6 +737,11 @@
       });
     });
 
+    function formatPoOdds(v) {
+      const n = Number(v);
+      if (!Number.isFinite(n)) return String(v);
+      return Math.round(n * 100) + '%';
+    }
     function safeScore(t) {
       // Defensive: a missing/error score (null, NaN, blank) must never
       // sort as "best" — treat it as worst-case instead. Confirmed via
@@ -791,7 +800,7 @@
                 <div class="rank">${t.rank}</div>
                 <div>
                   <div class="team-name">${deltaSymbol} ${t.name}</div>
-                  <div class="week-stats">${t.record} &middot; ${t.poOdds} PO</div>
+                  <div class="week-stats">${t.record} &middot; ${formatPoOdds(t.poOdds)} PO</div>
                 </div>
                 <div class="chev" data-i="${i}">&rsaquo;</div>
               </div>
