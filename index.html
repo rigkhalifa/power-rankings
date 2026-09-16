@@ -314,7 +314,7 @@
         </div>
       </div>
 
-      <div id="week1-list"></div>
+      <div id="week1-list">Loading&hellip;</div>
     </div>
     </div>
 
@@ -577,6 +577,10 @@
      * this one flag.
      */
     const WEEK_1_LIVE = true;
+    if (WEEK_1_LIVE) {
+      const comingSoonEl = document.getElementById('week1-coming-soon');
+      if (comingSoonEl) comingSoonEl.style.display = 'none';
+    }
     const CHAMPION = 'Ban defense & kickers';
     const RUNNER_UP = 'Ban Him & Aubrey';
     const OWNER_TO_TEAM_2026 = {
@@ -816,11 +820,11 @@
           </div>`;
       }).join('');
 
-      document.querySelectorAll('.row-btn').forEach(btn => {
+      list.querySelectorAll('.row-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const i = btn.dataset.i;
-          const panel = document.querySelector(`.panel[data-i="${i}"]`);
-          const chev = document.querySelector(`.chev[data-i="${i}"]`);
+          const panel = list.querySelector(`.panel[data-i="${i}"]`);
+          const chev = list.querySelector(`.chev[data-i="${i}"]`);
           const open = panel.style.display === 'block';
           panel.style.display = open ? 'none' : 'block';
           chev.classList.toggle('open', !open);
@@ -863,11 +867,11 @@
           </div>`;
       }).join('');
 
-      document.querySelectorAll('.row-btn').forEach(btn => {
+      list.querySelectorAll('.row-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const i = btn.dataset.i;
-          const panel = document.querySelector(`.panel[data-i="${i}"]`);
-          const chev = document.querySelector(`.chev[data-i="${i}"]`);
+          const panel = list.querySelector(`.panel[data-i="${i}"]`);
+          const chev = list.querySelector(`.chev[data-i="${i}"]`);
           const open = panel.style.display === 'block';
           panel.style.display = open ? 'none' : 'block';
           chev.classList.toggle('open', !open);
