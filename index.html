@@ -100,10 +100,10 @@
   .row.r1 .rank { color: var(--ink); font-weight: 500; }
   .team-name { font-size: 18px; font-weight: 500; }
   .row.r1 .team-name { font-weight: 600; font-size: 19px; }
-  .week-delta { font-size: 11px; margin-right: 4px; }
+  .week-delta { margin-right: 4px; display: inline-flex; vertical-align: middle; }
   .week-delta.flat { color: var(--ink-muted); }
-  .week-delta.up { color: var(--tier-good); transform: rotate(-90deg); display: inline-block; }
-  .week-delta.down { color: var(--tier-bad); transform: rotate(90deg); display: inline-block; }
+  .week-delta.up { color: var(--tier-good); }
+  .week-delta.down { color: var(--tier-bad); }
   .week-stats { font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 500; color: var(--ink-muted); margin-top: 4px; }
   .week-detail-line { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 1px solid var(--divider); }
   .week-detail-line span:first-child { color: var(--ink-muted); }
@@ -601,6 +601,17 @@
     // screenshots sent for that week. Rebuild this object each week
     // with fresh data — it's the same manual pattern as the draft
     // page's positional digest.
+    // Inline SVG instead of a Unicode triangle character — some
+    // platforms (notably iOS) render certain Unicode symbols with a
+    // default full-color emoji glyph that ignores CSS color and
+    // transform entirely, which is why the up/down arrows looked
+    // identical and colorless on mobile. SVG with fill="currentColor"
+    // is guaranteed to respect the wrapping span's CSS color everywhere.
+    const DELTA_ICON = {
+      up: '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 1L9 8H1L5 1Z"/></svg>',
+      down: '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 9L1 2H9L5 9Z"/></svg>',
+      flat: '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><rect x="1" y="4.25" width="8" height="1.5" rx="0.75"/></svg>'
+    };
     const ROS_PROJECTIONS = {
       'Ban Him & Aubrey': { QB: 3, RB: 5, WR: 3, TE: 1, K: 1, DST: 3, FLEX: 9 },
       'Jeanty want winny': { QB: 5, RB: 1, WR: 10, TE: 4, K: 10, DST: 5, FLEX: 5 },
@@ -776,10 +787,10 @@
         // time this runs. Once a real Week 1 snapshot exists, Week 2
         // onward needs to compare against THAT instead of preseason.
         const prevRank = PRESEASON_RANK[t.name];
-        let deltaSymbol = '<span class="week-delta flat">&#9654;</span>';
+        let deltaSymbol = '<span class="week-delta flat">' + DELTA_ICON.flat + '</span>';
         if (prevRank !== undefined) {
-          if (prevRank > t.rank) deltaSymbol = '<span class="week-delta up">&#9654;</span>';
-          else if (prevRank < t.rank) deltaSymbol = '<span class="week-delta down">&#9654;</span>';
+          if (prevRank > t.rank) deltaSymbol = '<span class="week-delta up">' + DELTA_ICON.up + '</span>';
+          else if (prevRank < t.rank) deltaSymbol = '<span class="week-delta down">' + DELTA_ICON.down + '</span>';
         }
 
         // Positional ROS breakdown comes from a screenshot each week,
