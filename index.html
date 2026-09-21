@@ -60,6 +60,19 @@
   .week1-highlight-value { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--accent); }
   .week1-matchups { max-width: 480px; margin: -20px auto 0; padding-bottom: 20px; }
   .matchup-winner { font-size: 14px; }
+  .matchup-status { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; text-align: center; margin: 0 0 10px; }
+  .matchup-list { max-width: 480px; margin: 0 auto 8px; }
+  .matchup-row { display: grid; grid-template-columns: 1fr 44px 1fr; align-items: center; gap: 8px; padding: 14px 0; border-bottom: 1px solid var(--divider); }
+  .matchup-row:last-child { border-bottom: none; }
+  .matchup-side { display: flex; flex-direction: column; }
+  .matchup-side.right { align-items: flex-end; text-align: right; }
+  .matchup-team { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; color: var(--ink-muted); }
+  .matchup-team.win { color: var(--ink); font-weight: 600; }
+  .matchup-score { font-family: 'IBM Plex Mono', monospace; font-size: 19px; margin-top: 3px; }
+  .matchup-score.win { font-weight: 700; }
+  .matchup-proj { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); margin-top: 3px; }
+  .matchup-vs { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); text-align: center; }
+  .matchup-vs.final { color: var(--tier-bad); font-weight: 700; letter-spacing: 0.5px; }
   [data-owner].my-team { background: rgba(107, 164, 135, 0.08); border-left: 2px solid var(--accent); margin-left: -2px; }
   .tab-btn {
     font-family: 'IBM Plex Mono', monospace;
@@ -272,7 +285,8 @@
       <label for="week-select">Viewing</label>
       <select id="week-select">
         <option value="preseason">Draft</option>
-        <option value="week1" selected>Week 1</option>
+        <option value="week1">Week 1</option>
+        <option value="week2" selected>Week 2</option>
       </select>
     </div>
 
@@ -297,13 +311,7 @@
     </div>
     </div>
 
-    <div id="week1-content">
-      <div class="coming-soon" id="week1-coming-soon">
-        <span class="coming-soon-emoji">&#9203;</span>
-        <div>Coming Soon</div>
-        <p>Week 1 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
-      </div>
-
+    <div id="week1-content" style="display:none;">
       <div class="week1-matchups">
         <div class="week1-highlights">
           <div class="week1-highlight-stat">
@@ -315,6 +323,27 @@
       </div>
 
       <div id="week1-list">Loading&hellip;</div>
+    </div>
+
+    <div id="week2-content">
+      <div class="week1-matchups">
+        <p class="matchup-status">Week 2 &middot; in progress</p>
+        <div id="week2-matchup-list" class="matchup-list"></div>
+        <div class="week1-highlights">
+          <div class="week1-highlight-stat">
+            <span class="week1-highlight-label">Week 2 Projected High Scorer <span class="matchup-winner">&#128176;</span></span>
+            <span class="week1-highlight-team" id="week2-topscorer-team"></span>
+            <span class="week1-highlight-value" id="week2-topscorer-value"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="coming-soon" id="week2-coming-soon">
+        <span class="coming-soon-emoji">&#9203;</span>
+        <div>Coming Soon</div>
+        <p>Week 2 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
+      </div>
+      <div id="week2-list" style="display:none;">Loading&hellip;</div>
     </div>
     </div>
 
@@ -576,11 +605,6 @@
      * file — no need to wait on me. Everything downstream reads
      * this one flag.
      */
-    const WEEK_1_LIVE = true;
-    if (WEEK_1_LIVE) {
-      const comingSoonEl = document.getElementById('week1-coming-soon');
-      if (comingSoonEl) comingSoonEl.style.display = 'none';
-    }
     const CHAMPION = 'Ban defense & kickers';
     const RUNNER_UP = 'Ban Him & Aubrey';
     const OWNER_TO_TEAM_2026 = {
@@ -593,14 +617,12 @@
     // Preseason draft order, fixed and confirmed directly from the
     // Season Roster Strength table — this never changes mid-season,
     // so it's safe to hardcode rather than read live. Used only for
-    // Week 1's delta arrow (comparing Week 1 to preseason). Once
-    // Week 2 happens, the comparison needs to switch to a saved
-    // Week 1 snapshot instead — this table stops being the right
-    // baseline after that.
-    // Week 1 ROS positional ranks, sourced from the FantasyPros
-    // screenshots sent for that week. Rebuild this object each week
-    // with fresh data — it's the same manual pattern as the draft
-    // page's positional digest.
+    // Week 1's delta arrow (comparing Week 1 to preseason).
+    // Week 1's ROS positional ranks, sourced from the FantasyPros
+    // screenshot sent that week. Week 1 is now frozen/historical —
+    // this map stays fixed forever alongside week1.json. Each new
+    // week gets its own ROS map (WEEK2_ROS, WEEK3_ROS, ...) built the
+    // same way once that week's FantasyPros screenshot comes in.
     // Inline SVG instead of a Unicode triangle character — some
     // platforms (notably iOS) render certain Unicode symbols with a
     // default full-color emoji glyph that ignores CSS color and
@@ -630,6 +652,28 @@
       'Chasing Victory': 7, 'Ban defense & kickers': 8, 'Fat Husband': 9,
       'not ass per chat': 10
     };
+    // Week 2 ROS positional breakdown isn't in yet (no FantasyPros
+    // screenshot for this week yet) — leave empty so the weekly
+    // panel falls back to "not available yet" until it's added.
+    const WEEK2_ROS = {};
+    // Flip this to true once Week 2's power rankings are actually
+    // posted (Wednesday morning, after waivers clear and the sheet
+    // is updated) — same pattern as WEEK_1_LIVE was. Until then the
+    // ranked table stays "Coming Soon" even though the matchup
+    // scoreboard and top-scorer callout above it are already live.
+    const WEEK2_RANKINGS_LIVE = false;
+    // Week 2 matchup scoreboard, from the Monday-morning screenshot.
+    // score = current live score, proj = projected final total (ROS
+    // included). A side is "final" once score === proj (no players
+    // remaining). Rebuild this array fresh from that week's
+    // screenshot each Monday.
+    const WEEK2_MATCHUPS = [
+      { home: 'Co-Authored', homeScore: 67.94, homeProj: 78.56, away: 'Chasing Victory', awayScore: 100.32, awayProj: 100.32 },
+      { home: 'Ban Him & Aubrey', homeScore: 87.06, homeProj: 109.23, away: 'on to 2027', awayScore: 107.80, awayProj: 121.88 },
+      { home: 'Ban defense & kickers', homeScore: 108.38, homeProj: 108.38, away: 'not ass per chat', awayScore: 132.48, awayProj: 132.48 },
+      { home: 'Jeanty want winny', homeScore: 116.98, homeProj: 128.43, away: 'MILFs', awayScore: 141.06, awayProj: 141.06 },
+      { home: 'Destined for 3rd', homeScore: 124.62, homeProj: 136.32, away: 'Fat Husband', awayScore: 100.80, awayProj: 119.04 }
+    ];
     function getMyTeam() {
       try { return localStorage.getItem('myTeam') || ''; } catch (e) { return ''; }
     }
@@ -668,6 +712,7 @@
 
     Promise.all([
       fetch(API_URL).then(r => r.json()),
+      fetch('week1.json').then(r => r.json()),
       fetch('projections.json').then(r => r.json()),
       fetch('trophies.json').then(r => r.json()),
       fetch('best_value.json').then(r => r.json()),
@@ -680,7 +725,7 @@
       fetch('year_2019.json').then(r => r.json()),
       fetch('earnings.json').then(r => r.json()),
       fetch('combined_wins.json').then(r => r.json())
-    ]).then(([teams, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
+    ]).then(([teams, week1Snapshot, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -689,7 +734,31 @@
         .map(([name, rank]) => ({ name, rank }))
         .sort((a, b) => a.rank - b.rank);
       renderList(draftTeams, projections);
-      if (WEEK_1_LIVE) renderWeeklyList(teams);
+
+      // Week 1 is now frozen history: render straight from the saved
+      // snapshot rather than the live sheet, so it never drifts once
+      // the sheet moves on to Week 2+.
+      const week1Teams = Object.entries(week1Snapshot)
+        .map(([name, d]) => ({ name, ...d }))
+        .sort((a, b) => a.rank - b.rank);
+      renderWeekList('week1-list', week1Teams, PRESEASON_RANK, ROS_PROJECTIONS);
+
+      // Week 2 is the live week: rank comes from today's sheet read,
+      // and its delta compares against the Week 1 snapshot instead of
+      // the preseason order.
+      const week1RankMap = Object.fromEntries(
+        Object.entries(week1Snapshot).map(([name, d]) => [name, d.rank])
+      );
+      if (WEEK2_RANKINGS_LIVE) {
+        document.getElementById('week2-coming-soon').style.display = 'none';
+        document.getElementById('week2-list').style.display = '';
+        const week2Sorted = teams.slice().sort((a, b) => safeScore(a) - safeScore(b));
+        week2Sorted.forEach((t, i) => { t.rank = i + 1; });
+        renderWeekList('week2-list', week2Sorted, week1RankMap, WEEK2_ROS);
+      }
+      renderMatchups(WEEK2_MATCHUPS, 'week2-matchup-list');
+      renderProjectedHighScorer(WEEK2_MATCHUPS);
+
       renderDigest(projectionsRaw);
       renderTrophies(trophies);
       renderBestValue(bestValue);
@@ -732,9 +801,10 @@
     });
 
     document.getElementById('week-select').addEventListener('change', (e) => {
-      const isPreseason = e.target.value === 'preseason';
-      document.getElementById('preseason-content').style.display = isPreseason ? '' : 'none';
-      document.getElementById('week1-content').style.display = isPreseason ? 'none' : '';
+      const v = e.target.value;
+      document.getElementById('preseason-content').style.display = v === 'preseason' ? '' : 'none';
+      document.getElementById('week1-content').style.display = v === 'week1' ? '' : 'none';
+      document.getElementById('week2-content').style.display = v === 'week2' ? '' : 'none';
     });
 
     document.getElementById('season-review-select').addEventListener('change', (e) => {
@@ -774,24 +844,75 @@
       return Number.isFinite(n) ? n : Infinity;
     }
 
-    function renderWeeklyList(teams) {
-      const comingSoon = document.getElementById('week1-coming-soon');
-      if (comingSoon) comingSoon.style.display = 'none';
-      const list = document.getElementById('week1-list');
+    // A side is "final" once its live score matches its own projected
+    // final total — i.e. no players remaining on that roster. A
+    // matchup only gets the FINAL tag once BOTH sides are final;
+    // one side finishing first doesn't decide anything, since the
+    // other side can still catch up.
+    function isSideFinal(score, proj) {
+      return Number(score) === Number(proj);
+    }
+
+    function renderMatchups(matchups, containerId) {
+      const el = document.getElementById(containerId);
+      el.innerHTML = matchups.map(m => {
+        const homeFinal = isSideFinal(m.homeScore, m.homeProj);
+        const awayFinal = isSideFinal(m.awayScore, m.awayProj);
+        const bothFinal = homeFinal && awayFinal;
+        const homeWin = bothFinal && m.homeScore > m.awayScore;
+        const awayWin = bothFinal && m.awayScore > m.homeScore;
+        const homeProjLine = homeFinal ? '' : `<span class="matchup-proj">proj ${m.homeProj.toFixed(2)}</span>`;
+        const awayProjLine = awayFinal ? '' : `<span class="matchup-proj">proj ${m.awayProj.toFixed(2)}</span>`;
+        return `
+          <div class="matchup-row">
+            <div class="matchup-side">
+              <span class="matchup-team ${homeWin ? 'win' : ''}">${m.home}</span>
+              <span class="matchup-score ${homeWin ? 'win' : ''}">${m.homeScore.toFixed(2)}</span>
+              ${homeProjLine}
+            </div>
+            <div class="matchup-vs ${bothFinal ? 'final' : ''}">${bothFinal ? 'FINAL' : 'vs'}</div>
+            <div class="matchup-side right">
+              <span class="matchup-team ${awayWin ? 'win' : ''}">${m.away}</span>
+              <span class="matchup-score ${awayWin ? 'win' : ''}">${m.awayScore.toFixed(2)}</span>
+              ${awayProjLine}
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    // The "projected high scorer" is whoever's on pace for the
+    // highest final total: their locked-in score once final,
+    // otherwise their projected (ROS-included) total. Recomputes
+    // automatically as more sides go final over the course of the
+    // week, so this only needs the matchups array kept up to date.
+    function renderProjectedHighScorer(matchups) {
+      const sides = [];
+      matchups.forEach(m => {
+        sides.push({ name: m.home, value: isSideFinal(m.homeScore, m.homeProj) ? m.homeScore : m.homeProj });
+        sides.push({ name: m.away, value: isSideFinal(m.awayScore, m.awayProj) ? m.awayScore : m.awayProj });
+      });
+      const top = sides.reduce((best, s) => (s.value > best.value ? s : best), sides[0]);
+      document.getElementById('week2-topscorer-team').textContent = top.name;
+      document.getElementById('week2-topscorer-value').textContent = top.value.toFixed(2) + ' pts';
+    }
+
+    // Generic weekly-view renderer, shared by every week's tab (frozen
+    // history read from a saved snapshot, or the live current week
+    // read from the sheet). containerId is that week's list element;
+    // prevRankMap is the baseline the delta arrow compares against
+    // (preseason order for Week 1, the prior week's snapshot for
+    // every week after); rosMap is that week's ROS positional
+    // breakdown, keyed by team name (empty object until that week's
+    // FantasyPros screenshot is in).
+    function renderWeekList(containerId, teams, prevRankMap, rosMap) {
+      const list = document.getElementById(containerId);
       if (!teams || !teams.length) {
         list.innerHTML = '<div class="empty">No teams found.</div>';
         return;
       }
 
-      const sorted = teams.slice().sort((a, b) => safeScore(a) - safeScore(b));
-      sorted.forEach((t, i) => { t.rank = i + 1; });
-
-      list.innerHTML = sorted.map((t, i) => {
-        // Week 1 has nothing to compare against except the preseason
-        // draft order — this is the correct baseline the very first
-        // time this runs. Once a real Week 1 snapshot exists, Week 2
-        // onward needs to compare against THAT instead of preseason.
-        const prevRank = PRESEASON_RANK[t.name];
+      list.innerHTML = teams.map((t, i) => {
+        const prevRank = prevRankMap[t.name];
         let deltaSymbol = '<span class="week-delta flat">' + DELTA_ICON.flat + '</span>';
         if (prevRank !== undefined) {
           if (prevRank > t.rank) deltaSymbol = '<span class="week-delta up">' + DELTA_ICON.up + '</span>';
@@ -800,7 +921,7 @@
 
         // Positional ROS breakdown comes from a screenshot each week,
         // same as the draft page.
-        const rosData = ROS_PROJECTIONS[t.name];
+        const rosData = rosMap[t.name];
         const rosPanelBody = rosData
           ? POS_ORDER.filter(pos => pos in rosData).map(pos => {
               const rank = rosData[pos];
