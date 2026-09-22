@@ -284,9 +284,9 @@
     <div class="week-nav">
       <label for="week-select">Viewing</label>
       <select id="week-select">
-        <option value="preseason">Draft</option>
-        <option value="week1">Week 1</option>
         <option value="week2" selected>Week 2</option>
+        <option value="week1">Week 1</option>
+        <option value="preseason">Draft</option>
       </select>
     </div>
 
@@ -331,7 +331,7 @@
         <div id="week2-matchup-list" class="matchup-list"></div>
         <div class="week1-highlights">
           <div class="week1-highlight-stat">
-            <span class="week1-highlight-label">Week 2 Projected High Scorer <span class="matchup-winner">&#128176;</span></span>
+            <span class="week1-highlight-label" id="week2-topscorer-label">Week 2 Projected High Scorer <span class="matchup-winner">&#128176;</span></span>
             <span class="week1-highlight-team" id="week2-topscorer-team"></span>
             <span class="week1-highlight-value" id="week2-topscorer-value"></span>
           </div>
@@ -894,6 +894,14 @@
       const top = sides.reduce((best, s) => (s.value > best.value ? s : best), sides[0]);
       document.getElementById('week2-topscorer-team').textContent = top.name;
       document.getElementById('week2-topscorer-value').textContent = top.value.toFixed(2) + ' pts';
+
+      // Once every matchup is decided, this stops being a projection —
+      // swap the label to match Week 1's wording ("Top Scorer"
+      // rather than "Projected High Scorer").
+      const allFinal = matchups.every(m => isSideFinal(m.homeScore, m.homeProj) && isSideFinal(m.awayScore, m.awayProj));
+      const labelEl = document.getElementById('week2-topscorer-label');
+      labelEl.innerHTML = (allFinal ? 'Week 2 Top Scorer' : 'Week 2 Projected High Scorer') +
+        ' <span class="matchup-winner">&#128176;</span>';
     }
 
     // Generic weekly-view renderer, shared by every week's tab (frozen
