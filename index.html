@@ -74,6 +74,8 @@
   .matchup-vs { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); text-align: center; }
   .matchup-vs.final { color: var(--tier-bad); font-weight: 700; letter-spacing: 0.5px; }
   [data-owner].my-team { background: rgba(107, 164, 135, 0.08); border-left: 2px solid var(--accent); margin-left: -2px; }
+  .matchup-side.my-team { padding: 4px 8px; border-radius: 4px; }
+  .matchup-side.right.my-team { border-left: none; border-right: 2px solid var(--accent); margin-left: 0; margin-right: -2px; }
   .tab-btn {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
@@ -880,19 +882,20 @@
         const awayProjLine = awayFinal ? '' : `<span class="matchup-proj">proj ${m.awayProj.toFixed(2)}</span>`;
         return `
           <div class="matchup-row">
-            <div class="matchup-side">
+            <div class="matchup-side" data-owner="${TEAM_2026_TO_OWNER[m.home] || ''}">
               <span class="matchup-team ${homeWin ? 'win' : ''}">${m.home}</span>
               <span class="matchup-score ${homeWin ? 'win' : ''}">${m.homeScore.toFixed(2)}</span>
               ${homeProjLine}
             </div>
             <div class="matchup-vs ${bothFinal ? 'final' : ''}">${bothFinal ? 'FINAL' : 'vs'}</div>
-            <div class="matchup-side right">
+            <div class="matchup-side right" data-owner="${TEAM_2026_TO_OWNER[m.away] || ''}">
               <span class="matchup-team ${awayWin ? 'win' : ''}">${m.away}</span>
               <span class="matchup-score ${awayWin ? 'win' : ''}">${m.awayScore.toFixed(2)}</span>
               ${awayProjLine}
             </div>
           </div>`;
       }).join('');
+      applyMyTeamHighlight();
     }
 
     // The "projected high scorer" is whoever's on pace for the
