@@ -58,7 +58,7 @@
   .week1-highlight-label { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
   .week1-highlight-team { display: block; font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 18px; margin-bottom: 2px; }
   .week1-highlight-value { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--accent); }
-  .week1-matchups { max-width: 480px; margin: -20px auto 0; padding-bottom: 20px; }
+  .week1-matchups { max-width: 480px; margin: 32px auto 0; padding-bottom: 20px; }
   .matchup-winner { font-size: 14px; }
   .matchup-status { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; text-align: center; margin: 0 0 10px; }
   .matchup-list { max-width: 480px; margin: 0 auto 8px; }
@@ -312,9 +312,9 @@
     </div>
 
     <div id="week1-content" style="display:none;">
+      <div id="week1-list">Loading&hellip;</div>
+
       <div class="week1-matchups">
-        <p class="matchup-status">Week 1 &middot; final results</p>
-        <div id="week1-matchup-list" class="matchup-list"></div>
         <div class="week1-highlights">
           <div class="week1-highlight-stat">
             <span class="week1-highlight-label">Week 1 Top Scorer <span class="matchup-winner">&#128176;</span></span>
@@ -322,15 +322,20 @@
             <span class="week1-highlight-value">143.36 pts</span>
           </div>
         </div>
+        <p class="matchup-status">Week 1 &middot; final results</p>
+        <div id="week1-matchup-list" class="matchup-list"></div>
       </div>
-
-      <div id="week1-list">Loading&hellip;</div>
     </div>
 
     <div id="week2-content">
+      <div class="coming-soon" id="week2-coming-soon">
+        <span class="coming-soon-emoji">&#9203;</span>
+        <div>Coming Soon</div>
+        <p>Week 2 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
+      </div>
+      <div id="week2-list" style="display:none;">Loading&hellip;</div>
+
       <div class="week1-matchups">
-        <p class="matchup-status" id="week2-matchup-status">Week 2 &middot; in progress</p>
-        <div id="week2-matchup-list" class="matchup-list"></div>
         <div class="week1-highlights">
           <div class="week1-highlight-stat">
             <span class="week1-highlight-label" id="week2-topscorer-label">Week 2 Projected High Scorer <span class="matchup-winner">&#128176;</span></span>
@@ -338,14 +343,9 @@
             <span class="week1-highlight-value" id="week2-topscorer-value"></span>
           </div>
         </div>
+        <p class="matchup-status" id="week2-matchup-status">Week 2 &middot; in progress</p>
+        <div id="week2-matchup-list" class="matchup-list"></div>
       </div>
-
-      <div class="coming-soon" id="week2-coming-soon">
-        <span class="coming-soon-emoji">&#9203;</span>
-        <div>Coming Soon</div>
-        <p>Week 2 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
-      </div>
-      <div id="week2-list" style="display:none;">Loading&hellip;</div>
     </div>
     </div>
 
