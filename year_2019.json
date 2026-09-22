@@ -1,0 +1,175 @@
+{
+  "season": "2019",
+  "standings": [
+    {
+      "rank": 1,
+      "team": "Masten",
+      "record": "9-4",
+      "ppg": 129.6
+    },
+    {
+      "rank": 2,
+      "team": "Pat",
+      "record": "8-5",
+      "ppg": 114.8
+    },
+    {
+      "rank": 3,
+      "team": "Triangle",
+      "record": "8-5",
+      "ppg": 121.8
+    },
+    {
+      "rank": 4,
+      "team": "Brian",
+      "record": "7-6",
+      "ppg": 127.1
+    },
+    {
+      "rank": 5,
+      "team": "Nick",
+      "record": "7-6",
+      "ppg": 126.2
+    },
+    {
+      "rank": 6,
+      "team": "Librizzi",
+      "record": "7-6",
+      "ppg": 111.7
+    },
+    {
+      "rank": 7,
+      "team": "Zach",
+      "record": "6-7",
+      "ppg": 127.3
+    },
+    {
+      "rank": 8,
+      "team": "JM",
+      "record": "5-8",
+      "ppg": 121.2
+    },
+    {
+      "rank": 9,
+      "team": "Gurv",
+      "record": "4-9",
+      "ppg": 116.0
+    },
+    {
+      "rank": 10,
+      "team": "Janny",
+      "record": "3-10",
+      "ppg": 109.8
+    }
+  ],
+  "high_scorers": [
+    {
+      "team": "Janny",
+      "count": 2
+    },
+    {
+      "team": "Zach",
+      "count": 2
+    },
+    {
+      "team": "Masten",
+      "count": 2
+    },
+    {
+      "team": "Triangle",
+      "count": 2
+    },
+    {
+      "team": "Librizzi",
+      "count": 2
+    },
+    {
+      "team": "Brian",
+      "count": 1
+    },
+    {
+      "team": "Nick",
+      "count": 1
+    },
+    {
+      "team": "JM",
+      "count": 1
+    }
+  ],
+  "champion": "Masten",
+  "runner_up": "Pat",
+  "season_summary": {
+    "high": {
+      "team": "Zach",
+      "week": 3,
+      "score": 207.26
+    },
+    "low": {
+      "team": "Triangle",
+      "week": 7,
+      "score": 62.38
+    },
+    "avg": 120.6
+  },
+  "title": "2019 Stats",
+  "subtitle": "No Power Rankings available for 2019. Teams sorted by actual win loss record",
+  "bye_teams": [
+    "Triangle",
+    "Masten"
+  ],
+  "playoff_teams": [
+    "Triangle",
+    "Masten",
+    "Librizzi",
+    "Pat",
+    "Nick",
+    "Brian"
+  ],
+  "notes": [
+    "Masten got a first-round bye and won the championship \u2014 the earliest instance of a deserved top-seed title on record.",
+    "Zach posted 207.26 in Week 3 \u2014 the highest single-week score across all seasons tracked on this site.",
+    "No power ranking exists for this season \u2014 roster strength and playoff odds weren't tracked."
+  ],
+  "bracket": {
+    "bye": [
+      "Masten",
+      "Triangle"
+    ],
+    "qf": [
+      {
+        "w": "Brian",
+        "ws": 133.6,
+        "l": "Nick",
+        "ls": 109.6
+      },
+      {
+        "w": "Pat",
+        "ws": 155.1,
+        "l": "Librizzi",
+        "ls": 85.7
+      }
+    ],
+    "sf": [
+      {
+        "w": "Masten",
+        "ws": 193.02,
+        "l": "Brian",
+        "ls": 99.42
+      },
+      {
+        "w": "Pat",
+        "ws": 124.34,
+        "l": "Triangle",
+        "ls": 121.8
+      }
+    ],
+    "f": [
+      {
+        "w": "Masten",
+        "ws": 119.76,
+        "l": "Pat",
+        "ls": 88.36
+      }
+    ]
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "season": "2021",
+  "standings": [
+    {
+      "rank": 1,
+      "team": "Triangle",
+      "record": "12-2",
+      "ppg": 135.1
+    },
+    {
+      "rank": 2,
+      "team": "Pat",
+      "record": "12-2",
+      "ppg": 124.9
+    },
+    {
+      "rank": 3,
+      "team": "JM",
+      "record": "8-6",
+      "ppg": 127.2
+    },
+    {
+      "rank": 4,
+      "team": "Brian",
+      "record": "6-8",
+      "ppg": 130.0
+    },
+    {
+      "rank": 5,
+      "team": "Masten",
+      "record": "7-7",
+      "ppg": 119.2
+    },
+    {
+      "rank": 6,
+      "team": "Zach",
+      "record": "6-8",
+      "ppg": 124.6
+    },
+    {
+      "rank": 7,
+      "team": "Gurv",
+      "record": "6-8",
+      "ppg": 119.7
+    },
+    {
+      "rank": 8,
+      "team": "Janny",
+      "record": "4-10",
+      "ppg": 111.0
+    },
+    {
+      "rank": 9,
+      "team": "Librizzi",
+      "record": "4-10",
+      "ppg": 111.8
+    },
+    {
+      "rank": 10,
+      "team": "Nick",
+      "record": "5-9",
+      "ppg": 108.6
+    }
+  ],
+  "high_scorers": [
+    {
+      "team": "Brian",
+      "count": 4
+    },
+    {
+      "team": "Triangle",
+      "count": 4
+    },
+    {
+      "team": "JM",
+      "count": 3
+    },
+    {
+      "team": "Librizzi",
+      "count": 1
+    },
+    {
+      "team": "Zach",
+      "count": 1
+    },
+    {
+      "team": "Nick",
+      "count": 1
+    }
+  ],
+  "champion": "JM",
+  "runner_up": "Brian",
+  "season_summary": {
+    "high": {
+      "team": "Brian",
+      "week": 1,
+      "score": 190.28
+    },
+    "low": {
+      "team": "Librizzi",
+      "week": 10,
+      "score": 61.92
+    },
+    "avg": 121.2
+  },
+  "title": "2021 Power Rankings",
+  "notes": [
+    "Triangle opened 8th in the preseason power rank, took over #1 in Week 7, and held it the rest of the season.",
+    "JM won the championship from 3rd in the regular-season power rank.",
+    "Brian posted the season's highest score (190.28) in Week 1 and led the league with 4 weekly high scores.",
+    "Librizzi finished last for 13 of the season's 14 weeks.",
+    "JM won the championship as a non-bye qualifier, beating fellow non-bye team Brian in the final."
+  ],
+  "subtitle": "Regular season only",
+  "bye_teams": [
+    "Triangle",
+    "Pat"
+  ],
+  "playoff_teams": [
+    "Triangle",
+    "Pat",
+    "JM",
+    "Zach",
+    "Masten",
+    "Brian"
+  ],
+  "bracket": {
+    "bye": [
+      "Triangle",
+      "Pat"
+    ],
+    "qf": [
+      {
+        "w": "Brian",
+        "ws": 132.9,
+        "l": "Masten",
+        "ls": 125.9
+      },
+      {
+        "w": "JM",
+        "ws": 119.68,
+        "l": "Zach",
+        "ls": 69.78
+      }
+    ],
+    "sf": [
+      {
+        "w": "JM",
+        "ws": 149.4,
+        "l": "Pat",
+        "ls": 136.34
+      },
+      {
+        "w": "Brian",
+        "ws": 147.32,
+        "l": "Triangle",
+        "ls": 133.28
+      }
+    ],
+    "f": [
+      {
+        "w": "JM",
+        "ws": 119.36,
+        "l": "Brian",
+        "ls": 111.56
+      }
+    ]
+  }
+}

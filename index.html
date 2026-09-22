@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TLAD Savant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1C1A17;
+    --ink: #F4F1EA;
+    --ink-muted: #9C958A;
+    --divider: rgba(244, 241, 234, 0.1);
+    --accent: #6BA487;
+    --trophy: #D4A64C;
+    --tier-good: #6BA487;
+    --tier-mid: #7FA8C9;
+    --tier-bad: #D9846A;
+    --track: #322E28;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Serif 4', serif;
+  }
+  .page { max-width: 760px; margin: 0 auto; padding: 44px 24px 70px; position: relative; }
+
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .tab-select {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    background: none;
+    border: 1px solid var(--divider);
+    color: var(--ink-muted);
+    padding: 7px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .tab-select:hover { color: var(--ink); border-color: var(--accent); }
+  .week-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); }
+  .week-nav select {
+    background: none; border: 1px solid var(--divider); color: var(--ink-muted);
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; padding: 4px 8px; border-radius: 12px; cursor: pointer;
+  }
+  .week-nav select:hover { color: var(--ink); border-color: var(--accent); }
+  .coming-soon { text-align: center; padding: 70px 20px; }
+  .coming-soon-emoji { font-size: 40px; display: block; margin-bottom: 12px; }
+  .coming-soon div { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 22px; margin-bottom: 8px; }
+  .coming-soon p { font-family: 'IBM Plex Sans', sans-serif; font-size: 14px; color: var(--ink-muted); margin: 0 auto; max-width: 320px; }
+  .matchup-winner { font-size: 14px; }
+  .week1-highlights { max-width: 380px; margin: 0 auto; }
+  .week1-highlight-stat { text-align: center; padding: 14px 0; border-top: 1px solid var(--divider); }
+  .week1-highlight-stat:last-child { border-bottom: 1px solid var(--divider); }
+  .week1-highlight-label { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .week1-highlight-team { display: block; font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 18px; margin-bottom: 2px; }
+  .week1-highlight-value { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: var(--accent); }
+  .week1-matchups { max-width: 480px; margin: 32px auto 0; padding-bottom: 20px; }
+  .matchup-winner { font-size: 14px; }
+  .matchup-status { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; text-align: center; margin: 0 0 10px; }
+  .matchup-list { max-width: 480px; margin: 0 auto 8px; }
+  .matchup-row { display: grid; grid-template-columns: 1fr 44px 1fr; align-items: center; gap: 8px; padding: 14px 0; border-bottom: 1px solid var(--divider); }
+  .matchup-row:last-child { border-bottom: none; }
+  .matchup-side { display: flex; flex-direction: column; }
+  .matchup-side.right { align-items: flex-end; text-align: right; }
+  .matchup-team { font-family: 'IBM Plex Sans', sans-serif; font-size: 13px; color: var(--ink-muted); }
+  .matchup-team.win { color: var(--ink); font-weight: 600; }
+  .matchup-score { font-family: 'IBM Plex Mono', monospace; font-size: 19px; margin-top: 3px; }
+  .matchup-score.win { font-weight: 700; }
+  .matchup-proj { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); margin-top: 3px; }
+  .matchup-vs { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); text-align: center; }
+  .matchup-vs.final { color: var(--tier-bad); font-weight: 700; letter-spacing: 0.5px; }
+  [data-owner].my-team { background: rgba(107, 164, 135, 0.08); border-left: 2px solid var(--accent); margin-left: -2px; }
+  .tab-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    background: none;
+    border: 1px solid var(--divider);
+    color: var(--ink-muted);
+    padding: 7px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  .tab-btn.active { border-color: var(--accent); color: var(--ink); background: rgba(107, 164, 135, 0.1); }
+
+  .ly-row { display: grid; grid-template-columns: 36px 1fr auto; align-items: baseline; gap: 14px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
+  .ly-row .rank { font-family: 'IBM Plex Mono', monospace; font-size: 16px; color: var(--ink-muted); text-align: right; }
+  .ly-row .lyname { font-size: 15px; font-weight: 500; }
+  .ly-row .lystats { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-muted); text-align: right; white-space: nowrap; }
+
+  .masthead h1 { font-weight: 600; font-size: 30px; margin: 0 0 8px; letter-spacing: -0.2px; }
+  .masthead p { font-family: 'IBM Plex Sans', sans-serif; font-style: normal; font-size: 14px; color: var(--ink-muted); margin: 0 0 20px; }
+  .year-subtitle { margin: 0 0 4px !important; }
+  .year-legend { font-family: 'IBM Plex Mono', monospace !important; font-size: 12px !important; color: var(--ink-muted); margin: 0 0 20px !important; }
+  .masthead .rule { border: none; border-top: 1px solid var(--ink); margin: 0; }
+
+  .row-btn { all: unset; cursor: pointer; display: block; width: 100%; }
+  .row {
+    display: grid;
+    grid-template-columns: 52px 1fr 20px;
+    align-items: baseline;
+    gap: 16px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--divider);
+    border-left: 2px solid transparent;
+  }
+  .row.r1 { border-left-color: var(--accent); padding-left: 14px; }
+  .rank { font-family: 'IBM Plex Mono', monospace; font-size: 18px; color: var(--ink-muted); text-align: right; }
+  .row.r1 .rank { color: var(--ink); font-weight: 500; }
+  .team-name { font-size: 18px; font-weight: 500; }
+  .row.r1 .team-name { font-weight: 600; font-size: 19px; }
+  .week-delta { margin-right: 4px; display: inline-flex; vertical-align: middle; }
+  .week-delta.flat { color: var(--ink-muted); }
+  .week-delta.up { color: var(--tier-good); }
+  .week-delta.down { color: var(--tier-bad); }
+  .week-stats { font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 500; color: var(--ink-muted); margin-top: 4px; }
+  .week-detail-line { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 1px solid var(--divider); }
+  .week-detail-line span:first-child { color: var(--ink-muted); }
+  .week-detail-line span:last-child { font-family: 'IBM Plex Mono', monospace; }
+  .week-ros-heading { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin: 14px 0 6px; }
+  .trophy { color: var(--trophy); font-size: 14px; margin-left: 6px; }
+  .medal { font-size: 14px; margin-left: 6px; }
+  .playoff-mark { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); margin-left: 4px; }
+  .chev { font-family: 'IBM Plex Mono', monospace; color: var(--ink-muted); font-size: 14px; align-self: center; transition: transform 0.15s; }
+  .chev.open { transform: rotate(90deg); }
+
+  .panel { display: none; padding: 6px 4px 22px 4px; border-bottom: 1px solid var(--divider); }
+  .pos-row { display: grid; grid-template-columns: 64px 1fr 40px; align-items: center; gap: 10px; padding: 5px 0; }
+  .pos-label { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); }
+  .pos-track { height: 8px; background: var(--track); border-radius: 4px; overflow: hidden; }
+  .pos-fill { height: 100%; border-radius: 4px; }
+  .pos-fill.good { background: var(--tier-good); }
+  .pos-fill.mid { background: var(--tier-mid); }
+  .pos-fill.bad { background: var(--tier-bad); }
+  .pos-rank { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); text-align: right; }
+  .no-data { font-size: 13px; color: var(--ink-muted); font-style: italic; padding: 8px 0; }
+
+  .digest { margin-top: 48px; }
+  .digest h2 { font-weight: 600; font-size: 22px; margin: 0 0 4px; }
+  .digest .sub { font-family: 'IBM Plex Sans', sans-serif; font-style: normal; font-size: 13px; color: var(--ink-muted); margin: 0 0 20px; }
+  .digest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px 20px; }
+  #value-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  #ly-highlights { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .digest-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; color: var(--ink-muted); margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .digest-card ol { list-style: none; margin: 0; padding: 0; }
+  .digest-card li { font-size: 14px; padding: 4px 0; border-bottom: 1px solid var(--divider); }
+  .digest-card li:last-child { border-bottom: none; }
+  .digest-card .n { font-family: 'IBM Plex Mono', monospace; color: var(--ink-muted); margin-right: 6px; }
+
+  .trophy-row-btn { all: unset; cursor: pointer; display: block; width: 100%; }
+  .trophy-row {
+    display: grid;
+    grid-template-columns: 1fr auto 20px;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .trophy-team { font-size: 16px; font-weight: 500; }
+  .trophy-owner { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-muted); margin-left: 6px; }
+  .trophy-count { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--trophy); white-space: nowrap; }
+  .trophy-panel { display: none; padding: 4px 4px 16px 4px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-muted); border-bottom: 1px solid var(--divider); }
+  .hs-count { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-muted); white-space: nowrap; }
+
+  .earnings-row-btn { all: unset; cursor: pointer; display: block; width: 100%; }
+  .earnings-row { display: grid; grid-template-columns: 1fr auto 20px; align-items: center; gap: 12px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
+  .earnings-owner { font-size: 16px; font-weight: 500; }
+  .earnings-total { font-family: 'IBM Plex Mono', monospace; font-size: 16px; color: var(--accent); font-weight: 500; text-align: right; }
+  .earnings-total .net { display: block; font-size: 11px; font-weight: 400; margin-top: 2px; }
+  .earnings-total .net.net-positive { color: var(--tier-good); }
+  .earnings-total .net.net-negative { color: var(--tier-bad); }
+  .earnings-panel { display: none; padding: 4px 4px 16px 4px; border-bottom: 1px solid var(--divider); }
+  .earnings-line { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-muted); padding: 3px 0; font-family: 'IBM Plex Mono', monospace; }
+  .earnings-line span:first-child { font-style: italic; }
+
+  .wins-row { display: grid; grid-template-columns: 1fr 112px 128px 60px; align-items: center; gap: 18px; padding: 16px 4px; border-bottom: 1px solid var(--divider); }
+  .wins-header { display: grid; grid-template-columns: 1fr 112px 128px 60px; gap: 18px; padding: 0 4px 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .wins-header span { text-align: right; }
+  .wins-header span.sortable { cursor: pointer; }
+  .wins-header span.sortable:hover { color: var(--ink); }
+  .wins-header span.sort-active { color: var(--accent); }
+  .sort-arrow { font-size: 9px; }
+  .wins-stat.leader, .wins-ppg.leader { font-weight: 700; color: var(--trophy); }
+  .wins-stat.leader .pct { color: var(--trophy); opacity: 0.75; }
+  .playoffs-stat .pct.delta { display: block; margin-left: 0; margin-top: 2px; }
+  .playoffs-stat.leader { font-weight: 700; color: var(--trophy); }
+  .playoffs-stat.leader .pct { color: var(--trophy); opacity: 0.75; }
+  .playoffs-stat .pct.delta { display: block; margin-left: 0; margin-top: 2px; }
+  .delta-positive { color: var(--tier-good) !important; }
+  .delta-negative { color: var(--tier-bad) !important; }
+  .wins-owner { font-size: 16px; font-weight: 500; }
+  .wins-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; white-space: nowrap; }
+  .wins-stat .pct { font-size: 13px; color: var(--ink-muted); margin-left: 6px; }
+  .wins-ppg { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 15px; }
+  .playoffs-row { display: grid; grid-template-columns: 1fr 112px 120px 90px 110px; align-items: center; gap: 16px; padding: 14px 4px; border-bottom: 1px solid var(--divider); }
+  .playoffs-header { display: grid; grid-template-columns: 1fr 112px 120px 90px 110px; gap: 16px; padding: 0 4px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .playoffs-header span { text-align: right; }
+  .playoffs-header span.sortable { cursor: pointer; }
+  .playoffs-header span.sortable:hover { color: var(--ink); }
+  .playoffs-header span.sort-active { color: var(--accent); }
+  .playoffs-owner { font-size: 16px; font-weight: 500; }
+  .playoffs-stat { text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
+  @media (max-width: 480px) {
+    .playoffs-row, .playoffs-header { grid-template-columns: 1fr 80px 82px 62px 78px; gap: 4px; }
+    .playoffs-stat { font-size: 13px; }
+  }
+  @media (max-width: 480px) {
+    .wins-row, .wins-header { grid-template-columns: 1fr 88px 100px 44px; gap: 8px; }
+    .wins-stat, .wins-ppg { font-size: 13px; }
+    .wins-stat .pct { font-size: 11px; margin-left: 3px; }
+  }
+
+  .value-card h3 { font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; color: var(--ink-muted); margin: 0 0 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .value-card ol { list-style: none; margin: 0; padding: 0; }
+  .value-row { display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--divider); }
+  .value-row:last-child { border-bottom: none; }
+  .value-row .vsalary { font-family: 'IBM Plex Mono', monospace; font-size: 17px; font-weight: 500; color: var(--accent); }
+  .value-row .vname { font-size: 14px; font-weight: 500; }
+  .value-row .vteam { display: block; font-size: 11px; color: var(--ink-muted); font-style: italic; }
+  .value-row .vblitz { text-align: right; font-size: 10px; color: var(--ink-muted); line-height: 1.3; white-space: nowrap; }
+  .value-row .vblitz b { font-family: 'IBM Plex Mono', monospace; color: var(--ink); font-size: 13px; display: block; font-weight: 500; }
+
+  .empty, .error { padding: 40px 4px; text-align: center; color: var(--ink-muted); font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
+  .glance-list { list-style: none; margin: 0; padding: 0; }
+  .glance-list li { font-size: 14px; padding: 8px 0; border-bottom: 1px solid var(--divider); }
+  .glance-list li:last-child { border-bottom: none; }
+  .glance-list b { color: var(--ink); font-weight: 500; }
+  .payout-rules { list-style: none; margin: 0 0 32px; padding: 0; }
+  .payout-rules li { font-size: 15px; padding: 8px 0; border-bottom: 1px solid var(--divider); }
+  .payout-rules li:last-child { border-bottom: none; }
+  .payout-rules b { font-weight: 600; }
+  .records-list { list-style: none; margin: 0; padding: 0; }
+  .records-list li { font-size: 16px; padding: 10px 0; border-bottom: 1px solid var(--divider); }
+  .records-list li:last-child { border-bottom: none; }
+  .records-list b { color: var(--ink); font-weight: 600; }
+  .bracket-rounds { display: flex; flex-direction: column; gap: 20px; }
+  .bracket-round h3 { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; color: var(--accent); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .bracket-game { padding: 10px 0; border-bottom: 1px solid var(--divider); }
+  .bracket-game:last-child { border-bottom: none; }
+  .bracket-game-row { display: flex; justify-content: space-between; align-items: baseline; padding: 2px 0; font-size: 15px; }
+  .bracket-game-row.winner { font-weight: 600; }
+  .bracket-game-row.loser { color: var(--ink-muted); font-size: 13px; }
+  .bracket-game-score { font-family: 'IBM Plex Mono', monospace; }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="tabs">
+      <button class="tab-btn active" data-view="current">2026 Season</button>
+      <button class="tab-btn" data-view="history">Winnings</button>
+      <button class="tab-btn" data-view="trophycase">Trophy Case</button>
+      <button class="tab-btn" data-view="wins">2019&ndash;2025 Combined Stats</button>
+      <select id="season-review-select" class="tab-select">
+        <option value="">Season review&hellip;</option>
+        <option value="y2025">2025</option>
+        <option value="y2024">2024</option>
+        <option value="y2023">2023</option>
+        <option value="y2022">2022</option>
+        <option value="y2021">2021</option>
+        <option value="y2020">2020</option>
+        <option value="y2019">2019</option>
+      </select>
+      <select id="my-team-select" class="tab-select">
+        <option value="">Your team&hellip;</option>
+        <option value="Triangle">Triangle</option>
+        <option value="Zach">Zach</option>
+        <option value="Nick">Nick</option>
+        <option value="Brian">Brian</option>
+        <option value="Masten">Masten</option>
+        <option value="Gurv">Gurv</option>
+        <option value="JM">JM</option>
+        <option value="Pat">Pat</option>
+        <option value="Librizzi">Librizzi</option>
+        <option value="Janny">Janny</option>
+        <option value="Chris">Chris</option>
+      </select>
+    </div>
+
+    <div id="view-current">
+    <div class="week-nav">
+      <label for="week-select">Viewing</label>
+      <select id="week-select">
+        <option value="week2" selected>Week 2</option>
+        <option value="week1">Week 1</option>
+        <option value="preseason">Draft</option>
+      </select>
+    </div>
+
+    <div id="preseason-content" style="display:none;">
+    <div class="masthead">
+      <h1>Draft Power Rankings</h1>
+      <p>Based on preseason roster grades as of 9/8/26. Live rankings begin after Week 1</p>
+      <hr class="rule">
+    </div>
+    <div id="list">Loading&hellip;</div>
+
+    <div class="digest">
+      <h2>Position Digest</h2>
+      <p class="sub">Top 3 teams per position, preseason</p>
+      <div id="digest-grid" class="digest-grid"></div>
+    </div>
+
+    <div class="digest">
+      <h2>Top salaries vs. THE BLITZ projections</h2>
+      <p class="sub">The 15 biggest auction prices per position, checked against THE BLITZ season long projections for that player</p>
+      <div id="value-grid" class="digest-grid"></div>
+    </div>
+    </div>
+
+    <div id="week1-content" style="display:none;">
+      <div id="week1-list">Loading&hellip;</div>
+
+      <div class="week1-matchups">
+        <div class="week1-highlights">
+          <div class="week1-highlight-stat">
+            <span class="week1-highlight-label">Week 1 Top Scorer <span class="matchup-winner">&#128176;</span></span>
+            <span class="week1-highlight-team">Destined for 3rd</span>
+            <span class="week1-highlight-value">143.36 pts</span>
+          </div>
+        </div>
+        <p class="matchup-status">Week 1 &middot; final results</p>
+        <div id="week1-matchup-list" class="matchup-list"></div>
+      </div>
+    </div>
+
+    <div id="week2-content">
+      <div class="coming-soon" id="week2-coming-soon">
+        <span class="coming-soon-emoji">&#9203;</span>
+        <div>Coming Soon</div>
+        <p>Week 2 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
+      </div>
+      <div id="week2-list" style="display:none;">Loading&hellip;</div>
+
+      <div class="week1-matchups">
+        <div class="week1-highlights">
+          <div class="week1-highlight-stat">
+            <span class="week1-highlight-label" id="week2-topscorer-label">Week 2 Projected High Scorer <span class="matchup-winner">&#128176;</span></span>
+            <span class="week1-highlight-team" id="week2-topscorer-team"></span>
+            <span class="week1-highlight-value" id="week2-topscorer-value"></span>
+          </div>
+        </div>
+        <p class="matchup-status" id="week2-matchup-status">Week 2 &middot; in progress</p>
+        <div id="week2-matchup-list" class="matchup-list"></div>
+      </div>
+    </div>
+    </div>
+
+    <div id="view-history" style="display:none;">
+      <div class="masthead">
+        <h1>Winnings</h1>
+        <p>Total earnings since 2019</p>
+        <hr class="rule">
+      </div>
+
+      <div class="digest">
+        <div id="earnings-list"></div>
+      </div>
+    </div>
+
+    <div id="view-trophycase" style="display:none;">
+      <div class="digest">
+        <h2>Total Championships</h2>
+        <p class="sub">All-time titles, 2012&ndash;2025</p>
+        <div id="trophy-list"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Weekly High-Scorer</h2>
+        <p class="sub">Weekly high-scorer wins since 2019</p>
+        <div id="hs-count-list"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Records</h2>
+        <p class="sub">Notable single-season and single-week marks, 2019&ndash;2025</p>
+        <ul id="records-list" class="records-list"></ul>
+      </div>
+    </div>
+
+    <div id="view-wins" style="display:none;">
+      <div class="masthead">
+        <h1>2019&ndash;2025 Combined Stats</h1>
+        <hr class="rule">
+      </div>
+      <div class="digest">
+        <h2>Regular season</h2>
+        <div class="wins-header"><span></span><span class="sortable" data-sort="win_pct">Actual (win %)</span><span class="sortable" data-sort="overall_pct">Overall (win %)</span><span class="sortable" data-sort="ppg">PPG</span></div>
+        <div id="wins-list"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Playoffs</h2>
+        <p class="sub">Playoff record and appearances (bye), 2019&ndash;2025</p>
+        <div class="playoffs-header"><span></span><span class="sortable" data-sort="playoff_record">Playoff record</span><span class="sortable" data-sort="playoff_apps">Appearances (bye)</span><span class="sortable" data-sort="championship_record">Championship</span><span class="sortable" data-sort="pppg">PPG (vs regular season)</span></div>
+        <div id="playoffs-list"></div>
+      </div>
+    </div>
+
+    <div id="view-y2025" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2025-title">PLACEHOLDER</h1>
+        <p id="y2025-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
+        <hr class="rule">
+      </div>
+      <div id="y2025-list"></div>
+
+      <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2025-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Weekly High-Scorer</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2025-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Season at a glance</h2>
+        <ul id="y2025-glance" class="glance-list"></ul>
+      </div>
+
+    </div>
+
+    <div id="view-y2024" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2024-title">PLACEHOLDER</h1>
+        <p id="y2024-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
+        <hr class="rule">
+      </div>
+      <div id="y2024-list"></div>
+
+      <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2024-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Weekly High-Scorer</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2024-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Season at a glance</h2>
+        <ul id="y2024-glance" class="glance-list"></ul>
+      </div>
+
+    </div>
+
+    <div id="view-y2023" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2023-title">PLACEHOLDER</h1>
+        <p id="y2023-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
+        <hr class="rule">
+      </div>
+      <div id="y2023-list"></div>
+
+      <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2023-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Weekly High-Scorer</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2023-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Season at a glance</h2>
+        <ul id="y2023-glance" class="glance-list"></ul>
+      </div>
+
+    </div>
+
+    <div id="view-y2022" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2022-title">PLACEHOLDER</h1>
+        <p id="y2022-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
+        <hr class="rule">
+      </div>
+      <div id="y2022-list"></div>
+
+      <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2022-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Weekly High-Scorer</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2022-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Season at a glance</h2>
+        <ul id="y2022-glance" class="glance-list"></ul>
+      </div>
+
+    </div>
+
+    <div id="view-y2021" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2021-title">PLACEHOLDER</h1>
+        <p id="y2021-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
+        <hr class="rule">
+      </div>
+      <div id="y2021-list"></div>
+
+      <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2021-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Weekly High-Scorer</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2021-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Season at a glance</h2>
+        <ul id="y2021-glance" class="glance-list"></ul>
+      </div>
+
+    </div>
+
+    <div id="view-y2020" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2020-title">PLACEHOLDER</h1>
+        <p id="y2020-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
+        <hr class="rule">
+      </div>
+      <div id="y2020-list"></div>
+
+      <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2020-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Weekly High-Scorer</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2020-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Season at a glance</h2>
+        <ul id="y2020-glance" class="glance-list"></ul>
+      </div>
+
+    </div>
+
+    <div id="view-y2019" style="display:none;">
+      <div class="masthead">
+        <h1 id="y2019-title">PLACEHOLDER</h1>
+        <p id="y2019-subtitle" class="year-subtitle"></p>
+        <p class="year-legend">&#129351; 1st place &middot; &#129352; 2nd place &middot; -x playoff &middot; -y bye</p>
+        <hr class="rule">
+      </div>
+      <div id="y2019-list"></div>
+
+      <div class="digest">
+        <h2>Playoff Bracket</h2>
+        <p class="sub">Quarterfinal, semifinal, and championship games</p>
+        <div id="y2019-bracket" class="bracket-rounds"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Weekly High-Scorer</h2>
+        <p class="sub">Number of weeks each team posted the league's top score</p>
+        <div id="y2019-highscore" class="digest-grid"></div>
+      </div>
+
+      <div class="digest">
+        <h2>Season at a glance</h2>
+        <ul id="y2019-glance" class="glance-list"></ul>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzAm-9Glh6ylCSZoq28hBOM79lHr07Zlcv4TGJjW59ugeJbcV1PXlQpFgcaNv4fU84L/exec';
+    /**
+     * Flip this to true once Week 1 is actually locked in and you're
+     * ready to switch the 2026 tab from "draft power rankings"
+     * (preseason, roster-strength based) over to the live weekly
+     * power rank table. You can do this yourself directly in this
+     * file — no need to wait on me. Everything downstream reads
+     * this one flag.
+     */
+    const CHAMPION = 'Ban defense & kickers';
+    const RUNNER_UP = 'Ban Him & Aubrey';
+    const OWNER_TO_TEAM_2026 = {
+      'Triangle': 'Ban Him & Aubrey', 'Nick': 'Jeanty want winny', 'JM': 'Co-Authored',
+      'Zach': 'Destined for 3rd', 'Librizzi': 'on to 2027', 'Masten': 'MILFs',
+      'Chris': 'Chasing Victory', 'Gurv': 'Ban defense & kickers', 'Janny': 'Fat Husband',
+      'Brian': 'not ass per chat'
+    };
+    const TEAM_2026_TO_OWNER = Object.fromEntries(Object.entries(OWNER_TO_TEAM_2026).map(([o, t]) => [t, o]));
+    // Preseason draft order, fixed and confirmed directly from the
+    // Season Roster Strength table — this never changes mid-season,
+    // so it's safe to hardcode rather than read live. Used only for
+    // Week 1's delta arrow (comparing Week 1 to preseason).
+    // Week 1's ROS positional ranks, sourced from the FantasyPros
+    // screenshot sent that week. Week 1 is now frozen/historical —
+    // this map stays fixed forever alongside week1.json. Each new
+    // week gets its own ROS map (WEEK2_ROS, WEEK3_ROS, ...) built the
+    // same way once that week's FantasyPros screenshot comes in.
+    // Inline SVG instead of a Unicode triangle character — some
+    // platforms (notably iOS) render certain Unicode symbols with a
+    // default full-color emoji glyph that ignores CSS color and
+    // transform entirely, which is why the up/down arrows looked
+    // identical and colorless on mobile. SVG with fill="currentColor"
+    // is guaranteed to respect the wrapping span's CSS color everywhere.
+    const DELTA_ICON = {
+      up: '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 1L9 8H1L5 1Z"/></svg>',
+      down: '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 9L1 2H9L5 9Z"/></svg>',
+      flat: '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><rect x="1" y="4.25" width="8" height="1.5" rx="0.75"/></svg>'
+    };
+    const ROS_PROJECTIONS = {
+      'Ban Him & Aubrey': { QB: 3, RB: 5, WR: 3, TE: 1, K: 1, DST: 3, FLEX: 9 },
+      'Jeanty want winny': { QB: 5, RB: 1, WR: 10, TE: 4, K: 10, DST: 5, FLEX: 5 },
+      'Co-Authored': { QB: 6, RB: 10, WR: 4, TE: 3, K: 4, DST: 10, FLEX: 4 },
+      'Destined for 3rd': { QB: 1, RB: 9, WR: 5, TE: 7, K: 2, DST: 2, FLEX: 3 },
+      'on to 2027': { QB: 2, RB: 4, WR: 9, TE: 5, K: 8, DST: 10, FLEX: 1 },
+      'MILFs': { QB: 9, RB: 8, WR: 1, TE: 8, K: 5, DST: 10, FLEX: 7 },
+      'Chasing Victory': { QB: 4, RB: 7, WR: 2, TE: 9, K: 3, DST: 1, FLEX: 2 },
+      'Ban defense & kickers': { QB: 10, RB: 6, WR: 8, TE: 2, K: 6, DST: 10, FLEX: 6 },
+      'Fat Husband': { QB: 8, RB: 2, WR: 6, TE: 6, K: 9, DST: 4, FLEX: 8 },
+      'not ass per chat': { QB: 7, RB: 3, WR: 7, TE: 10, K: 7, DST: 6, FLEX: 10 }
+    };
+    const PRESEASON_RANK = {
+      'Ban Him & Aubrey': 1, 'Jeanty want winny': 2, 'Co-Authored': 3,
+      'Destined for 3rd': 4, 'on to 2027': 5, 'MILFs': 6,
+      'Chasing Victory': 7, 'Ban defense & kickers': 8, 'Fat Husband': 9,
+      'not ass per chat': 10
+    };
+    // Week 1's matchup scoreboard, frozen alongside week1.json — this
+    // week is fully decided forever, so proj is just set equal to the
+    // final score on both sides (guarantees the shared "final" check
+    // below always reads both sides as final, no separate code path
+    // needed for historical weeks).
+    const WEEK1_MATCHUPS = [
+      { home: 'Co-Authored', homeScore: 125.86, homeProj: 125.86, away: 'Jeanty want winny', awayScore: 118.36, awayProj: 118.36 },
+      { home: 'Ban Him & Aubrey', homeScore: 141.82, homeProj: 141.82, away: 'Ban defense & kickers', awayScore: 100.34, awayProj: 100.34 },
+      { home: 'MILFs', homeScore: 129.50, homeProj: 129.50, away: 'on to 2027', awayScore: 91.96, awayProj: 91.96 },
+      { home: 'Destined for 3rd', homeScore: 143.36, homeProj: 143.36, away: 'not ass per chat', awayScore: 142.46, awayProj: 142.46 },
+      { home: 'Fat Husband', homeScore: 121.00, homeProj: 121.00, away: 'Chasing Victory', awayScore: 139.76, awayProj: 139.76 }
+    ];
+    // Week 2 ROS positional breakdown isn't in yet (no FantasyPros
+    // screenshot for this week yet) — leave empty so the weekly
+    // panel falls back to "not available yet" until it's added.
+    const WEEK2_ROS = {};
+    // Flip this to true once Week 2's power rankings are actually
+    // posted (Wednesday morning, after waivers clear and the sheet
+    // is updated) — same pattern as WEEK_1_LIVE was. Until then the
+    // ranked table stays "Coming Soon" even though the matchup
+    // scoreboard and top-scorer callout above it are already live.
+    const WEEK2_RANKINGS_LIVE = false;
+    // Week 2 matchup scoreboard, from the Monday-morning screenshot.
+    // score = current live score, proj = projected final total (ROS
+    // included). A side is "final" once score === proj (no players
+    // remaining). Rebuild this array fresh from that week's
+    // screenshot each Monday.
+    const WEEK2_MATCHUPS = [
+      { home: 'Co-Authored', homeScore: 103.44, homeProj: 103.44, away: 'Chasing Victory', awayScore: 100.32, awayProj: 100.32 },
+      { home: 'Ban Him & Aubrey', homeScore: 102.06, homeProj: 102.06, away: 'on to 2027', awayScore: 122.50, awayProj: 122.50 },
+      { home: 'Ban defense & kickers', homeScore: 108.38, homeProj: 108.38, away: 'not ass per chat', awayScore: 132.48, awayProj: 132.48 },
+      { home: 'Jeanty want winny', homeScore: 117.58, homeProj: 117.58, away: 'MILFs', awayScore: 141.06, awayProj: 141.06 },
+      { home: 'Destined for 3rd', homeScore: 132.12, homeProj: 132.12, away: 'Fat Husband', awayScore: 101.60, awayProj: 101.60 }
+    ];
+    function getMyTeam() {
+      try { return localStorage.getItem('myTeam') || ''; } catch (e) { return ''; }
+    }
+    function setMyTeam(owner) {
+      try {
+        if (owner) localStorage.setItem('myTeam', owner);
+        else localStorage.removeItem('myTeam');
+      } catch (e) {}
+      applyMyTeamHighlight();
+    }
+    function applyMyTeamHighlight() {
+      const mine = getMyTeam();
+      document.querySelectorAll('[data-owner]').forEach(el => {
+        el.classList.toggle('my-team', !!mine && el.dataset.owner === mine);
+      });
+    }
+    const POS_ORDER = ['QB', 'RB', 'WR', 'TE', 'FLEX', 'K', 'DST', 'STARTERS', 'BENCH'];
+    const DIGEST_POS = ['QB', 'RB', 'WR', 'TE', 'FLEX'];
+
+    function ordinal(n) {
+      const s = ['th', 'st', 'nd', 'rd'], v = n % 100;
+      return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
+    function tier(rank) {
+      if (rank <= 3) return 'good';
+      if (rank <= 7) return 'mid';
+      return 'bad';
+    }
+    function barWidth(rank) {
+      return Math.round(((11 - rank) / 10) * 100) + '%';
+    }
+
+    function normalizeName(s) {
+      return String(s).normalize('NFKC').trim().toLowerCase();
+    }
+
+    Promise.all([
+      fetch(API_URL).then(r => r.json()),
+      fetch('week1.json').then(r => r.json()),
+      fetch('projections.json').then(r => r.json()),
+      fetch('trophies.json').then(r => r.json()),
+      fetch('best_value.json').then(r => r.json()),
+      fetch('last_year.json').then(r => r.json()),
+      fetch('year_2024.json').then(r => r.json()),
+      fetch('year_2022.json').then(r => r.json()),
+      fetch('year_2021.json').then(r => r.json()),
+      fetch('year_2023.json').then(r => r.json()),
+      fetch('year_2020.json').then(r => r.json()),
+      fetch('year_2019.json').then(r => r.json()),
+      fetch('earnings.json').then(r => r.json()),
+      fetch('combined_wins.json').then(r => r.json())
+    ]).then(([teams, week1Snapshot, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
+      const projections = {};
+      Object.keys(projectionsRaw).forEach(key => {
+        projections[normalizeName(key)] = projectionsRaw[key];
+      });
+      const draftTeams = Object.entries(PRESEASON_RANK)
+        .map(([name, rank]) => ({ name, rank }))
+        .sort((a, b) => a.rank - b.rank);
+      renderList(draftTeams, projections);
+
+      // Week 1 is now frozen history: render straight from the saved
+      // snapshot rather than the live sheet, so it never drifts once
+      // the sheet moves on to Week 2+.
+      const week1Teams = Object.entries(week1Snapshot)
+        .map(([name, d]) => ({ name, ...d }))
+        .sort((a, b) => a.rank - b.rank);
+      renderWeekList('week1-list', week1Teams, PRESEASON_RANK, ROS_PROJECTIONS);
+      renderMatchups(WEEK1_MATCHUPS, 'week1-matchup-list');
+
+      // Week 2 is the live week: rank comes from today's sheet read,
+      // and its delta compares against the Week 1 snapshot instead of
+      // the preseason order.
+      const week1RankMap = Object.fromEntries(
+        Object.entries(week1Snapshot).map(([name, d]) => [name, d.rank])
+      );
+      if (WEEK2_RANKINGS_LIVE) {
+        document.getElementById('week2-coming-soon').style.display = 'none';
+        document.getElementById('week2-list').style.display = '';
+        const week2Sorted = teams.slice().sort((a, b) => safeScore(a) - safeScore(b));
+        week2Sorted.forEach((t, i) => { t.rank = i + 1; });
+        renderWeekList('week2-list', week2Sorted, week1RankMap, WEEK2_ROS);
+      }
+      renderMatchups(WEEK2_MATCHUPS, 'week2-matchup-list');
+      renderProjectedHighScorer(WEEK2_MATCHUPS);
+
+      renderDigest(projectionsRaw);
+      renderTrophies(trophies);
+      renderBestValue(bestValue);
+      renderYearReview('y2025', y2025);
+      renderYearReview('y2024', y2024);
+      renderYearReview('y2022', y2022);
+      renderYearReview('y2021', y2021);
+      renderYearReview('y2023', y2023);
+      renderYearReview('y2020', y2020);
+      renderYearReview('y2019', y2019);
+      renderEarnings(earnings);
+      renderWins(wins);
+      renderPlayoffs(wins);
+      renderRecords();
+      renderHighScorerCounts([y2025, y2024, y2022, y2021, y2023, y2020, y2019]);
+      applyMyTeamHighlight();
+    }).catch(err => {
+      document.getElementById('list').innerHTML =
+        '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
+      console.error(err);
+    });
+
+    function activateView(view) {
+      document.getElementById('view-current').style.display = view === 'current' ? '' : 'none';
+      document.getElementById('view-history').style.display = view === 'history' ? '' : 'none';
+      document.getElementById('view-trophycase').style.display = view === 'trophycase' ? '' : 'none';
+      document.getElementById('view-wins').style.display = view === 'wins' ? '' : 'none';
+      document.getElementById('view-y2025').style.display = view === 'y2025' ? '' : 'none';
+      document.getElementById('view-y2024').style.display = view === 'y2024' ? '' : 'none';
+      document.getElementById('view-y2023').style.display = view === 'y2023' ? '' : 'none';
+      document.getElementById('view-y2022').style.display = view === 'y2022' ? '' : 'none';
+      document.getElementById('view-y2021').style.display = view === 'y2021' ? '' : 'none';
+      document.getElementById('view-y2020').style.display = view === 'y2020' ? '' : 'none';
+      document.getElementById('view-y2019').style.display = view === 'y2019' ? '' : 'none';
+    }
+
+    document.getElementById('my-team-select').value = getMyTeam();
+    document.getElementById('my-team-select').addEventListener('change', (e) => {
+      setMyTeam(e.target.value);
+    });
+
+    document.getElementById('week-select').addEventListener('change', (e) => {
+      const v = e.target.value;
+      document.getElementById('preseason-content').style.display = v === 'preseason' ? '' : 'none';
+      document.getElementById('week1-content').style.display = v === 'week1' ? '' : 'none';
+      document.getElementById('week2-content').style.display = v === 'week2' ? '' : 'none';
+    });
+
+    document.getElementById('season-review-select').addEventListener('change', (e) => {
+      if (!e.target.value) return;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      activateView(e.target.value);
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('season-review-select').value = '';
+        activateView(btn.dataset.view);
+      });
+    });
+
+    function formatPpg(raw) {
+      const m = String(raw).match(/^#(\d+),\s*([\d.]+)\s*ppg$/i);
+      if (!m) return String(raw);
+      return `${m[2]} PPG (${ordinal(Number(m[1]))} in league)`;
+    }
+    function formatPoOdds(v) {
+      const n = Number(v);
+      if (!Number.isFinite(n)) return String(v);
+      return Math.round(n * 100) + '%';
+    }
+    function safeScore(t) {
+      // Defensive: a missing/error score (null, NaN, blank) must never
+      // sort as "best" — treat it as worst-case instead. Confirmed via
+      // direct testing that Number(null) === 0, which is finite, so a
+      // simple Number.isFinite() check alone silently lets null through
+      // as if it were a real, best-possible score. Null must be caught
+      // explicitly before the Number() conversion happens.
+      if (t.score === null || t.score === undefined || t.score === '') return Infinity;
+      const n = Number(t.score);
+      return Number.isFinite(n) ? n : Infinity;
+    }
+
+    // A side is "final" once its live score matches its own projected
+    // final total — i.e. no players remaining on that roster. A
+    // matchup only gets the FINAL tag once BOTH sides are final;
+    // one side finishing first doesn't decide anything, since the
+    // other side can still catch up.
+    function isSideFinal(score, proj) {
+      return Number(score) === Number(proj);
+    }
+
+    function renderMatchups(matchups, containerId) {
+      const el = document.getElementById(containerId);
+      el.innerHTML = matchups.map(m => {
+        const homeFinal = isSideFinal(m.homeScore, m.homeProj);
+        const awayFinal = isSideFinal(m.awayScore, m.awayProj);
+        const bothFinal = homeFinal && awayFinal;
+        const homeWin = bothFinal && m.homeScore > m.awayScore;
+        const awayWin = bothFinal && m.awayScore > m.homeScore;
+        const homeProjLine = homeFinal ? '' : `<span class="matchup-proj">proj ${m.homeProj.toFixed(2)}</span>`;
+        const awayProjLine = awayFinal ? '' : `<span class="matchup-proj">proj ${m.awayProj.toFixed(2)}</span>`;
+        return `
+          <div class="matchup-row">
+            <div class="matchup-side">
+              <span class="matchup-team ${homeWin ? 'win' : ''}">${m.home}</span>
+              <span class="matchup-score ${homeWin ? 'win' : ''}">${m.homeScore.toFixed(2)}</span>
+              ${homeProjLine}
+            </div>
+            <div class="matchup-vs ${bothFinal ? 'final' : ''}">${bothFinal ? 'FINAL' : 'vs'}</div>
+            <div class="matchup-side right">
+              <span class="matchup-team ${awayWin ? 'win' : ''}">${m.away}</span>
+              <span class="matchup-score ${awayWin ? 'win' : ''}">${m.awayScore.toFixed(2)}</span>
+              ${awayProjLine}
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    // The "projected high scorer" is whoever's on pace for the
+    // highest final total: their locked-in score once final,
+    // otherwise their projected (ROS-included) total. Recomputes
+    // automatically as more sides go final over the course of the
+    // week, so this only needs the matchups array kept up to date.
+    function renderProjectedHighScorer(matchups) {
+      const sides = [];
+      matchups.forEach(m => {
+        sides.push({ name: m.home, value: isSideFinal(m.homeScore, m.homeProj) ? m.homeScore : m.homeProj });
+        sides.push({ name: m.away, value: isSideFinal(m.awayScore, m.awayProj) ? m.awayScore : m.awayProj });
+      });
+      const top = sides.reduce((best, s) => (s.value > best.value ? s : best), sides[0]);
+      document.getElementById('week2-topscorer-team').textContent = top.name;
+      document.getElementById('week2-topscorer-value').textContent = top.value.toFixed(2) + ' pts';
+
+      // Once every matchup is decided, this stops being a projection —
+      // swap the label to match Week 1's wording ("Top Scorer"
+      // rather than "Projected High Scorer").
+      const allFinal = matchups.every(m => isSideFinal(m.homeScore, m.homeProj) && isSideFinal(m.awayScore, m.awayProj));
+      const labelEl = document.getElementById('week2-topscorer-label');
+      labelEl.innerHTML = (allFinal ? 'Week 2 Top Scorer' : 'Week 2 Projected High Scorer') +
+        ' <span class="matchup-winner">&#128176;</span>';
+      const statusEl = document.getElementById('week2-matchup-status');
+      if (statusEl) statusEl.textContent = 'Week 2 · ' + (allFinal ? 'final results' : 'in progress');
+    }
+
+    // Generic weekly-view renderer, shared by every week's tab (frozen
+    // history read from a saved snapshot, or the live current week
+    // read from the sheet). containerId is that week's list element;
+    // prevRankMap is the baseline the delta arrow compares against
+    // (preseason order for Week 1, the prior week's snapshot for
+    // every week after); rosMap is that week's ROS positional
+    // breakdown, keyed by team name (empty object until that week's
+    // FantasyPros screenshot is in).
+    function renderWeekList(containerId, teams, prevRankMap, rosMap) {
+      const list = document.getElementById(containerId);
+      if (!teams || !teams.length) {
+        list.innerHTML = '<div class="empty">No teams found.</div>';
+        return;
+      }
+
+      list.innerHTML = teams.map((t, i) => {
+        const prevRank = prevRankMap[t.name];
+        let deltaSymbol = '<span class="week-delta flat">' + DELTA_ICON.flat + '</span>';
+        if (prevRank !== undefined) {
+          if (prevRank > t.rank) deltaSymbol = '<span class="week-delta up">' + DELTA_ICON.up + '</span>';
+          else if (prevRank < t.rank) deltaSymbol = '<span class="week-delta down">' + DELTA_ICON.down + '</span>';
+        }
+
+        // Positional ROS breakdown comes from a screenshot each week,
+        // same as the draft page.
+        const rosData = rosMap[t.name];
+        const rosPanelBody = rosData
+          ? POS_ORDER.filter(pos => pos in rosData).map(pos => {
+              const rank = rosData[pos];
+              return `
+                <div class="pos-row">
+                  <div class="pos-label">${pos}</div>
+                  <div class="pos-track"><div class="pos-fill ${tier(rank)}" style="width:${barWidth(rank)}"></div></div>
+                  <div class="pos-rank">${ordinal(rank)}</div>
+                </div>`;
+            }).join('')
+          : '<div class="no-data">ROS positional breakdown not available yet.</div>';
+
+        return `
+          <div>
+            <button class="row-btn" data-i="${i}">
+              <div class="row ${t.rank === 1 ? 'r1' : ''}" data-owner="${TEAM_2026_TO_OWNER[t.name] || ''}">
+                <div class="rank">${t.rank}</div>
+                <div>
+                  <div class="team-name">${deltaSymbol} ${t.name}</div>
+                  <div class="week-stats">${t.record} &middot; ${formatPoOdds(t.poOdds)} PO &middot; ${formatPpg(t.ppg)}</div>
+                </div>
+                <div class="chev" data-i="${i}">&rsaquo;</div>
+              </div>
+            </button>
+            <div class="panel" data-i="${i}">
+              <div class="week-detail-line"><span>Overall Wins</span><span>${t.overallRecord}</span></div>
+              <div class="week-detail-line"><span>Consistency</span><span>${t.cons}</span></div>
+              <div class="week-detail-line"><span>ROS Roster Rank</span><span>${t.rosRoster}</span></div>
+              <div class="week-ros-heading">ROS Roster Projection</div>
+              ${rosPanelBody}
+            </div>
+          </div>`;
+      }).join('');
+
+      list.querySelectorAll('.row-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = btn.dataset.i;
+          const panel = list.querySelector(`.panel[data-i="${i}"]`);
+          const chev = list.querySelector(`.chev[data-i="${i}"]`);
+          const open = panel.style.display === 'block';
+          panel.style.display = open ? 'none' : 'block';
+          chev.classList.toggle('open', !open);
+        });
+      });
+      applyMyTeamHighlight();
+    }
+    function renderList(teams, projections) {
+      const list = document.getElementById('list');
+      if (!teams.length) {
+        list.innerHTML = '<div class="empty">No teams found.</div>';
+        return;
+      }
+
+      list.innerHTML = teams.map((t, i) => {
+        const proj = projections[normalizeName(t.name)];
+        const panelBody = proj
+          ? POS_ORDER.map(pos => {
+              if (!(pos in proj)) return '';
+              const rank = proj[pos];
+              return `
+                <div class="pos-row">
+                  <div class="pos-label">${pos}</div>
+                  <div class="pos-track"><div class="pos-fill ${tier(rank)}" style="width:${barWidth(rank)}"></div></div>
+                  <div class="pos-rank">${ordinal(rank)}</div>
+                </div>`;
+            }).join('')
+          : '<div class="no-data">No positional data yet.</div>';
+
+        return `
+          <div>
+            <button class="row-btn" data-i="${i}">
+              <div class="row ${t.rank === 1 ? 'r1' : ''}" data-owner="${TEAM_2026_TO_OWNER[t.name] || ''}">
+                <div class="rank">${t.rank}</div>
+                <div class="team-name">${t.name}${t.name === CHAMPION ? ' <span class="trophy">&#129351;</span>' : ''}${t.name === RUNNER_UP ? ' <span class="medal">&#129352;</span>' : ''}</div>
+                <div class="chev" data-i="${i}">&rsaquo;</div>
+              </div>
+            </button>
+            <div class="panel" data-i="${i}">${panelBody}</div>
+          </div>`;
+      }).join('');
+
+      list.querySelectorAll('.row-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = btn.dataset.i;
+          const panel = list.querySelector(`.panel[data-i="${i}"]`);
+          const chev = list.querySelector(`.chev[data-i="${i}"]`);
+          const open = panel.style.display === 'block';
+          panel.style.display = open ? 'none' : 'block';
+          chev.classList.toggle('open', !open);
+        });
+      });
+    }
+
+    function renderDigest(projections) {
+      const grid = document.getElementById('digest-grid');
+      grid.innerHTML = DIGEST_POS.map(pos => {
+        const ranked = Object.entries(projections)
+          .filter(([, p]) => pos in p)
+          .sort((a, b) => a[1][pos] - b[1][pos])
+          .slice(0, 3);
+        const items = ranked.map(([name], idx) => `<li data-owner="${TEAM_2026_TO_OWNER[name] || ''}"><span class="n">${idx + 1}.</span>${name}</li>`)
+          .join('');
+        return `<div class="digest-card"><h3>${pos}</h3><ol>${items}</ol></div>`;
+      }).join('');
+    }
+    function renderTrophies(trophies) {
+      const list = document.getElementById('trophy-list');
+      const entries = Object.entries(trophies)
+        .sort((a, b) => b[1].years.length - a[1].years.length);
+
+      list.innerHTML = entries.map(([name, info], i) => {
+        const count = info.years.length;
+        const label = count === 0 ? 'No titles' : `${count} title${count > 1 ? 's' : ''} ${'&#127942;'.repeat(count)}`;
+        const panelBody = count > 0
+          ? info.years.slice().sort((a, b) => b - a).join(', ')
+          : 'No championships yet.';
+        return `
+          <div>
+            <button class="trophy-row-btn" data-t="${i}">
+              <div class="trophy-row" data-owner="${info.owner}">
+                <div class="trophy-team">${name}<span class="trophy-owner">${info.owner}</span></div>
+                <div class="trophy-count">${label}</div>
+                <div class="chev" data-t="${i}">&rsaquo;</div>
+              </div>
+            </button>
+            <div class="trophy-panel" data-t="${i}">${panelBody}</div>
+          </div>`;
+      }).join('');
+
+      document.querySelectorAll('.trophy-row-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = btn.dataset.t;
+          const panel = document.querySelector(`.trophy-panel[data-t="${i}"]`);
+          const chev = document.querySelector(`.chev[data-t="${i}"]`);
+          const open = panel.style.display === 'block';
+          panel.style.display = open ? 'none' : 'block';
+          chev.classList.toggle('open', !open);
+        });
+      });
+    }
+    function renderBestValue(bestValue) {
+      const grid = document.getElementById('value-grid');
+      const order = ['QB', 'RB', 'WR', 'TE'];
+      grid.innerHTML = order.filter(pos => bestValue[pos] && bestValue[pos].length).map(pos => {
+        const items = bestValue[pos].map((p) => `
+          <li class="value-row" data-owner="${TEAM_2026_TO_OWNER[p.team] || ''}">
+            <div class="vsalary">$${p.salary}</div>
+            <div>
+              <div class="vname">${p.player}</div>
+              <div class="vteam">${p.team}</div>
+            </div>
+            <div class="vblitz">THE BLITZ says<b>${p.blitz_rank ? pos + p.blitz_rank : '&mdash;'}</b></div>
+          </li>`).join('');
+        return `<div class="digest-card value-card"><h3>${pos}</h3><ol>${items}</ol></div>`;
+      }).join('');
+    }
+    function renderYearReview(prefix, data) {
+      document.getElementById(`${prefix}-title`).textContent = data.title;
+      document.getElementById(`${prefix}-subtitle`).textContent = data.subtitle;
+
+      const list = document.getElementById(`${prefix}-list`);
+      list.innerHTML = data.standings.map(s => {
+        let badge = '';
+        if (s.team === data.champion) badge = ' <span class="trophy">&#129351;</span>';
+        else if (s.team === data.runner_up) badge = ' <span class="medal">&#129352;</span>';
+        let mark = '';
+        if (data.bye_teams && data.bye_teams.includes(s.team)) mark = ' <span class="playoff-mark">-y</span>';
+        else if (data.playoff_teams && data.playoff_teams.includes(s.team)) mark = ' <span class="playoff-mark">-x</span>';
+        return `
+        <div class="ly-row" data-owner="${s.team}">
+          <div class="rank">${s.rank}</div>
+          <div class="lyname">${s.team}${mark}${badge}</div>
+          <div class="lystats">${s.record} &middot; ${s.ppg} ppg</div>
+        </div>`;
+      }).join('');
+
+      const hs = document.getElementById(`${prefix}-highscore`);
+      hs.innerHTML = data.high_scorers.map(h => `
+        <div class="trophy-row" data-owner="${h.team}">
+          <div class="trophy-team">${h.team}</div>
+          <div class="trophy-count">${h.count} week${h.count > 1 ? 's' : ''}</div>
+        </div>`).join('');
+
+      const glance = document.getElementById(`${prefix}-glance`);
+      const s = data.season_summary;
+      const notesHtml = (data.notes || []).map(n => `<li>${n}</li>`).join('');
+      glance.innerHTML = `
+        <li>Highest score: <b>${s.high.team}</b>, ${s.high.score} (Week ${s.high.week})</li>
+        <li>Lowest score: <b>${s.low.team}</b>, ${s.low.score} (Week ${s.low.week})</li>
+        <li>League average: <b>${s.avg}</b> points per week</li>
+        ${notesHtml}`;
+
+      const bracket = document.getElementById(`${prefix}-bracket`);
+      if (data.bracket) {
+        const b = data.bracket;
+        const byeHtml = `<div class="bracket-round"><h3>Byes</h3><div class="bracket-game">${b.bye.map(name => `<div class="bracket-game-row winner" data-owner="${name}"><span>${name}</span></div>`).join('')}</div></div>`;
+        const roundHtml = (label, games) => `
+          <div class="bracket-round">
+            <h3>${label}</h3>
+            ${games.map(g => `
+              <div class="bracket-game">
+                <div class="bracket-game-row winner" data-owner="${g.w}"><span>${g.w}</span><span class="bracket-game-score">${g.ws}</span></div>
+                <div class="bracket-game-row loser" data-owner="${g.l}"><span>${g.l}</span><span class="bracket-game-score">${g.ls}</span></div>
+              </div>`).join('')}
+          </div>`;
+        bracket.innerHTML = byeHtml + roundHtml('Quarterfinal', b.qf) + roundHtml('Semifinal', b.sf) + roundHtml('Championship', b.f);
+      }
+    }
+    const BUY_IN = 200;
+    const YEARS_PLAYED = 7;
+    function renderEarnings(data) {
+      const list = document.getElementById('earnings-list');
+
+      list.innerHTML = data.leaderboard.map((o, i) => {
+        const lines = o.breakdown.map(b => `
+          <div class="earnings-line">
+            <span>${b.year} &middot; ${b.note}</span>
+            <span>$${b.amount}</span>
+          </div>`).join('');
+        const net = o.total - BUY_IN * YEARS_PLAYED;
+        const netDisplay = net >= 0 ? `+$${net}` : `-$${Math.abs(net)}`;
+        const netClass = net >= 0 ? 'net-positive' : 'net-negative';
+        return `
+          <div>
+            <button class="earnings-row-btn" data-e="${i}">
+              <div class="earnings-row" data-owner="${o.owner}">
+                <div class="earnings-owner">${o.owner}</div>
+                <div class="earnings-total">$${o.total}<span class="net ${netClass}">(net ${netDisplay})</span></div>
+                <div class="chev" data-e="${i}">&rsaquo;</div>
+              </div>
+            </button>
+            <div class="earnings-panel" data-e="${i}">${lines}</div>
+          </div>`;
+      }).join('');
+
+      document.querySelectorAll('.earnings-row-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = btn.dataset.e;
+          const panel = document.querySelector(`.earnings-panel[data-e="${i}"]`);
+          const chev = document.querySelector(`.chev[data-e="${i}"]`);
+          const open = panel.style.display === 'block';
+          panel.style.display = open ? 'none' : 'block';
+          chev.classList.toggle('open', !open);
+        });
+      });
+    }
+    let winsData = null;
+    let currentSort = { key: null, dir: 1 };
+    function renderWinsRows(sortKey) {
+      const rows = winsData.leaderboard.slice();
+      if (sortKey) {
+        rows.sort((a, b) => currentSort.dir * (b[sortKey] - a[sortKey]));
+      } else {
+        rows.sort((a, b) => b.win_pct - a.win_pct || b.overall_pct - a.overall_pct);
+      }
+      const maxWinPct = Math.max(...winsData.leaderboard.map(o => o.win_pct));
+      const maxOverallPct = Math.max(...winsData.leaderboard.map(o => o.overall_pct));
+      const maxPpg = Math.max(...winsData.leaderboard.map(o => o.ppg));
+      const list = document.getElementById('wins-list');
+      list.innerHTML = rows.map(o => {
+        const actualLeader = o.win_pct === maxWinPct;
+        const overallLeader = o.overall_pct === maxOverallPct;
+        const ppgLeader = o.ppg === maxPpg;
+        return `
+        <div class="wins-row" data-owner="${o.owner}">
+          <div class="wins-owner">${o.owner}</div>
+          <div class="wins-stat${actualLeader ? ' leader' : ''}">${o.record}<span class="pct">(${o.win_pct.toFixed(3)})</span></div>
+          <div class="wins-stat${overallLeader ? ' leader' : ''}">${o.overall_record}<span class="pct">(${o.overall_pct.toFixed(3)})</span></div>
+          <div class="wins-ppg${ppgLeader ? ' leader' : ''}">${o.ppg}</div>
+        </div>`;
+      }).join('');
+      document.querySelectorAll('.wins-header .sortable').forEach(el => {
+        el.classList.remove('sort-active');
+        const arrow = el.querySelector('.sort-arrow');
+        if (arrow) arrow.remove();
+        if (sortKey && el.dataset.sort === sortKey) {
+          el.classList.add('sort-active');
+          el.insertAdjacentHTML('beforeend', `<span class="sort-arrow">${currentSort.dir === 1 ? ' \u25bc' : ' \u25b2'}</span>`);
+        }
+      });
+    }
+    function renderWins(data) {
+      winsData = data;
+      renderWinsRows(null);
+      document.querySelectorAll('.wins-header .sortable').forEach(el => {
+        el.addEventListener('click', () => {
+          const key = el.dataset.sort;
+          if (currentSort.key === key) currentSort.dir *= -1;
+          else { currentSort.key = key; currentSort.dir = 1; }
+          renderWinsRows(key);
+        });
+      });
+    }
+    function pctFromRecord(rec) {
+      const [w, l] = rec.split('-').map(Number);
+      return (w + l) > 0 ? w / (w + l) : -1;
+    }
+    function winsFromRecord(rec) {
+      return Number(rec.split('-')[0]);
+    }
+    let playoffsData = null;
+    let playoffsSort = { key: null, dir: 1 };
+    function renderPlayoffsRows(sortKey) {
+      const rows = playoffsData.leaderboard.slice();
+      const valueFor = (o, key) => {
+        if (key === 'playoff_record') return pctFromRecord(o.playoff_record);
+        if (key === 'championship_record') return pctFromRecord(o.championship_record);
+        return o[key];
+      };
+      const tiebreakFor = (o, key) => {
+        if (key === 'playoff_record') return winsFromRecord(o.playoff_record);
+        if (key === 'championship_record') return winsFromRecord(o.championship_record);
+        return 0;
+      };
+      if (sortKey) {
+        rows.sort((a, b) => playoffsSort.dir * (valueFor(b, sortKey) - valueFor(a, sortKey))
+          || playoffsSort.dir * (tiebreakFor(b, sortKey) - tiebreakFor(a, sortKey)));
+      } else {
+        rows.sort((a, b) => pctFromRecord(b.playoff_record) - pctFromRecord(a.playoff_record)
+          || winsFromRecord(b.playoff_record) - winsFromRecord(a.playoff_record));
+      }
+      const maxPlayoffPct = Math.max(...playoffsData.leaderboard.map(o => pctFromRecord(o.playoff_record)));
+      const maxApps = Math.max(...playoffsData.leaderboard.map(o => o.playoff_apps));
+      const maxChampPct = Math.max(...playoffsData.leaderboard.map(o => pctFromRecord(o.championship_record)));
+      const maxPppg = Math.max(...playoffsData.leaderboard.map(o => o.pppg));
+      const list = document.getElementById('playoffs-list');
+      list.innerHTML = rows.map(o => {
+        const recordLeader = pctFromRecord(o.playoff_record) === maxPlayoffPct;
+        const appsLeader = o.playoff_apps === maxApps;
+        const champLeader = pctFromRecord(o.championship_record) === maxChampPct && maxChampPct > 0;
+        const pppgLeader = o.pppg === maxPppg;
+        return `
+        <div class="playoffs-row" data-owner="${o.owner}">
+          <div class="playoffs-owner">${o.owner}</div>
+          <div class="playoffs-stat${recordLeader ? ' leader' : ''}">${o.playoff_record}<span class="pct">(${pctFromRecord(o.playoff_record).toFixed(3)})</span></div>
+          <div class="playoffs-stat${appsLeader ? ' leader' : ''}">${o.playoff_apps} <span class="pct">(${o.top_seed_apps})</span></div>
+          <div class="playoffs-stat${champLeader ? ' leader' : ''}">${o.championship_record}</div>
+          <div class="playoffs-stat${pppgLeader ? ' leader' : ''}">${o.pppg}<span class="pct delta ${o.playoff_delta >= 0 ? 'delta-positive' : 'delta-negative'}">${o.playoff_delta >= 0 ? '+' : ''}${o.playoff_delta}</span></div>
+        </div>`;
+      }).join('');
+      document.querySelectorAll('.playoffs-header .sortable').forEach(el => {
+        el.classList.remove('sort-active');
+        const arrow = el.querySelector('.sort-arrow');
+        if (arrow) arrow.remove();
+        if (sortKey && el.dataset.sort === sortKey) {
+          el.classList.add('sort-active');
+          el.insertAdjacentHTML('beforeend', `<span class="sort-arrow">${playoffsSort.dir === 1 ? ' \u25bc' : ' \u25b2'}</span>`);
+        }
+      });
+    }
+    function renderPlayoffs(data) {
+      playoffsData = data;
+      renderPlayoffsRows(null);
+      document.querySelectorAll('.playoffs-header .sortable').forEach(el => {
+        el.addEventListener('click', () => {
+          const key = el.dataset.sort;
+          if (playoffsSort.key === key) playoffsSort.dir *= -1;
+          else { playoffsSort.key = key; playoffsSort.dir = 1; }
+          renderPlayoffsRows(key);
+        });
+      });
+    }
+    function renderRecords() {
+      const list = document.getElementById('records-list');
+      list.innerHTML = `
+        <li>Highest single-week score: <b>Zach</b>, 207.26 (2019, Week 3)</li>
+        <li>Lowest single-week score: <b>Pat</b>, 60.24 (2025, Week 7)</li>
+        <li>Best single-season record: <b>Zach</b>, 13-1 (.929) in 2023</li>
+        <li>Worst single-season record: <b>Pat</b>, 2-12 (.143) in 2025</li>
+        <li>Most weekly high scores in one season: <b>Zach</b>, 7 in 2023</li>
+        <li>Highest single-season PPG: <b>Zach</b>, 143.2 in 2023</li>
+        <li>Highest average PPG over the last 7 seasons: <b>Zach</b>, 127.5</li>
+        <li>Longest win streak in a single season: <b>Zach</b>, 9 straight in 2023</li>
+        <li>Most consecutive winning seasons: <b>Triangle</b>, 4 in a row</li>`;
+    }
+    function renderHighScorerCounts(years) {
+      const totals = {};
+      years.forEach(yr => {
+        yr.high_scorers.forEach(h => {
+          totals[h.team] = (totals[h.team] || 0) + h.count;
+        });
+      });
+      const sorted = Object.entries(totals).sort((a, b) => b[1] - a[1]);
+      const list = document.getElementById('hs-count-list');
+      list.innerHTML = sorted.map(([owner, count]) => `
+        <div class="trophy-row" data-owner="${owner}">
+          <div class="trophy-team">${owner}</div>
+          <div class="hs-count">${count} week${count > 1 ? 's' : ''} &#128176;</div>
+        </div>`).join('');
+    }
+  </script>
+</body>
+</html>

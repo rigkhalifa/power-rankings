@@ -1,0 +1,172 @@
+{
+  "season": "2020",
+  "standings": [
+    {
+      "rank": 1,
+      "team": "Nick",
+      "record": "11-2",
+      "ppg": 126.2
+    },
+    {
+      "rank": 2,
+      "team": "Triangle",
+      "record": "8-5",
+      "ppg": 129.7
+    },
+    {
+      "rank": 3,
+      "team": "Gurv",
+      "record": "7-6",
+      "ppg": 128.8
+    },
+    {
+      "rank": 4,
+      "team": "Brian",
+      "record": "7-6",
+      "ppg": 127.6
+    },
+    {
+      "rank": 5,
+      "team": "JM",
+      "record": "7-6",
+      "ppg": 127.1
+    },
+    {
+      "rank": 6,
+      "team": "Masten",
+      "record": "7-6",
+      "ppg": 122.6
+    },
+    {
+      "rank": 7,
+      "team": "Zach",
+      "record": "7-6",
+      "ppg": 118.6
+    },
+    {
+      "rank": 8,
+      "team": "Janny",
+      "record": "6-7",
+      "ppg": 123.8
+    },
+    {
+      "rank": 9,
+      "team": "Librizzi",
+      "record": "3-10",
+      "ppg": 116.9
+    },
+    {
+      "rank": 10,
+      "team": "Pat",
+      "record": "2-11",
+      "ppg": 106.8
+    }
+  ],
+  "high_scorers": [
+    {
+      "team": "Gurv",
+      "count": 4
+    },
+    {
+      "team": "Triangle",
+      "count": 3
+    },
+    {
+      "team": "Janny",
+      "count": 2
+    },
+    {
+      "team": "JM",
+      "count": 1
+    },
+    {
+      "team": "Librizzi",
+      "count": 1
+    },
+    {
+      "team": "Zach",
+      "count": 1
+    },
+    {
+      "team": "Brian",
+      "count": 1
+    }
+  ],
+  "champion": "Nick",
+  "runner_up": "Triangle",
+  "season_summary": {
+    "high": {
+      "team": "Triangle",
+      "week": 2,
+      "score": 203.18
+    },
+    "low": {
+      "team": "Librizzi",
+      "week": 10,
+      "score": 76.32
+    },
+    "avg": 122.8
+  },
+  "title": "2020 Power Rankings",
+  "notes": [
+    "Nick took over the #1 power rank in Week 5 and held it the rest of the season, finishing with the league's best record (11-2) and the championship.",
+    "Triangle's 203.18 in Week 2 is the highest single-week score across all six seasons tracked on this site.",
+    "Pat sat in 10th place for 10 straight weeks and finished 2-11.",
+    "Nick's #1 seed bye lined up with the eventual championship."
+  ],
+  "subtitle": "Regular season only",
+  "bye_teams": [
+    "Nick",
+    "Triangle"
+  ],
+  "playoff_teams": [
+    "Nick",
+    "Triangle",
+    "JM",
+    "Gurv",
+    "Masten",
+    "Brian"
+  ],
+  "bracket": {
+    "bye": [
+      "Nick",
+      "Triangle"
+    ],
+    "qf": [
+      {
+        "w": "JM",
+        "ws": 141.22,
+        "l": "Brian",
+        "ls": 96.74
+      },
+      {
+        "w": "Gurv",
+        "ws": 142.34,
+        "l": "Masten",
+        "ls": 112.54
+      }
+    ],
+    "sf": [
+      {
+        "w": "Nick",
+        "ws": 156.24,
+        "l": "JM",
+        "ls": 140.96
+      },
+      {
+        "w": "Triangle",
+        "ws": 130.16,
+        "l": "Gurv",
+        "ls": 120.6
+      }
+    ],
+    "f": [
+      {
+        "w": "Nick",
+        "ws": 118.78,
+        "l": "Triangle",
+        "ls": 97.12
+      }
+    ]
+  }
+}

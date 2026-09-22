@@ -1,0 +1,173 @@
+{
+  "season": "2022",
+  "standings": [
+    {
+      "rank": 1,
+      "team": "Masten",
+      "record": "10-4",
+      "ppg": 123.3
+    },
+    {
+      "rank": 2,
+      "team": "Zach",
+      "record": "8-6",
+      "ppg": 127.9
+    },
+    {
+      "rank": 3,
+      "team": "Triangle",
+      "record": "8-6",
+      "ppg": 126.3
+    },
+    {
+      "rank": 4,
+      "team": "Brian",
+      "record": "8-6",
+      "ppg": 130.6
+    },
+    {
+      "rank": 5,
+      "team": "Nick",
+      "record": "8-6",
+      "ppg": 125.8
+    },
+    {
+      "rank": 6,
+      "team": "Janny",
+      "record": "7-7",
+      "ppg": 121.4
+    },
+    {
+      "rank": 7,
+      "team": "Gurv",
+      "record": "6-8",
+      "ppg": 120.8
+    },
+    {
+      "rank": 8,
+      "team": "JM",
+      "record": "7-7",
+      "ppg": 115.2
+    },
+    {
+      "rank": 9,
+      "team": "Pat",
+      "record": "5-9",
+      "ppg": 104.2
+    },
+    {
+      "rank": 10,
+      "team": "Librizzi",
+      "record": "3-11",
+      "ppg": 97.2
+    }
+  ],
+  "high_scorers": [
+    {
+      "team": "Brian",
+      "count": 4
+    },
+    {
+      "team": "Gurv",
+      "count": 2
+    },
+    {
+      "team": "Triangle",
+      "count": 2
+    },
+    {
+      "team": "Zach",
+      "count": 2
+    },
+    {
+      "team": "Nick",
+      "count": 2
+    },
+    {
+      "team": "Masten",
+      "count": 1
+    },
+    {
+      "team": "Librizzi",
+      "count": 1
+    }
+  ],
+  "champion": "Masten",
+  "runner_up": "Brian",
+  "season_summary": {
+    "high": {
+      "team": "Gurv",
+      "week": 9,
+      "score": 180.24
+    },
+    "low": {
+      "team": "Librizzi",
+      "week": 10,
+      "score": 66.64
+    },
+    "avg": 119.3
+  },
+  "title": "2022 Power Rankings",
+  "notes": [
+    "Zach held the #1 power rank from Week 3 through Week 12; Masten passed them late and won the championship.",
+    "Brian finished as runner-up for the second year in a row, again leading the league with 4 weekly high scores.",
+    "Librizzi posted the season's lowest score (66.64, Week 10) while in last place, then won the Week 14 high-scorer bonus.",
+    "Brian led the league in points per game (130.6) but finished 4th in the power rank.",
+    "The two bye recipients, Masten and Brian, met in the championship \u2014 Masten won, Brian finished runner-up for the second straight year."
+  ],
+  "subtitle": "Regular season only",
+  "bye_teams": [
+    "Masten",
+    "Brian"
+  ],
+  "playoff_teams": [
+    "Masten",
+    "Brian",
+    "Janny",
+    "Zach",
+    "Nick",
+    "Triangle"
+  ],
+  "bracket": {
+    "bye": [
+      "Masten",
+      "Brian"
+    ],
+    "qf": [
+      {
+        "w": "Nick",
+        "ws": 120.58,
+        "l": "Triangle",
+        "ls": 111.18
+      },
+      {
+        "w": "Zach",
+        "ws": 144.12,
+        "l": "Janny",
+        "ls": 124.56
+      }
+    ],
+    "sf": [
+      {
+        "w": "Masten",
+        "ws": 104.9,
+        "l": "Nick",
+        "ls": 97.36
+      },
+      {
+        "w": "Brian",
+        "ws": 139.48,
+        "l": "Zach",
+        "ls": 121.2
+      }
+    ],
+    "f": [
+      {
+        "w": "Masten",
+        "ws": 76.8,
+        "l": "Brian",
+        "ls": 73.68
+      }
+    ]
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "season": "2025",
+  "standings": [
+    {
+      "rank": 1,
+      "team": "Gurv",
+      "record": "10-4",
+      "ppg": 140.1
+    },
+    {
+      "rank": 2,
+      "team": "Nick",
+      "record": "8-6",
+      "ppg": 119.4
+    },
+    {
+      "rank": 3,
+      "team": "Masten",
+      "record": "8-6",
+      "ppg": 119.3
+    },
+    {
+      "rank": 4,
+      "team": "Triangle",
+      "record": "10-4",
+      "ppg": 113.0
+    },
+    {
+      "rank": 5,
+      "team": "Zach",
+      "record": "6-8",
+      "ppg": 121.3
+    },
+    {
+      "rank": 6,
+      "team": "Brian",
+      "record": "6-8",
+      "ppg": 120.7
+    },
+    {
+      "rank": 7,
+      "team": "Librizzi",
+      "record": "7-7",
+      "ppg": 110.5
+    },
+    {
+      "rank": 8,
+      "team": "Janny",
+      "record": "7-7",
+      "ppg": 112.3
+    },
+    {
+      "rank": 9,
+      "team": "JM",
+      "record": "6-8",
+      "ppg": 116.8
+    },
+    {
+      "rank": 10,
+      "team": "Pat",
+      "record": "2-12",
+      "ppg": 95.8
+    }
+  ],
+  "high_scorers": [
+    {
+      "team": "Gurv",
+      "count": 4
+    },
+    {
+      "team": "Librizzi",
+      "count": 2
+    },
+    {
+      "team": "Brian",
+      "count": 2
+    },
+    {
+      "team": "Zach",
+      "count": 2
+    },
+    {
+      "team": "Nick",
+      "count": 1
+    },
+    {
+      "team": "JM",
+      "count": 1
+    },
+    {
+      "team": "Janny",
+      "count": 1
+    },
+    {
+      "team": "Masten",
+      "count": 1
+    }
+  ],
+  "champion": "Gurv",
+  "runner_up": "Triangle",
+  "season_summary": {
+    "high": {
+      "team": "Gurv",
+      "week": 7,
+      "score": 202.24
+    },
+    "low": {
+      "team": "Pat",
+      "week": 7,
+      "score": 60.24
+    },
+    "avg": 116.9
+  },
+  "title": "2025 Power Rankings",
+  "notes": [
+    "Gurv held the #1 power rank every week of the season, and also led with 4 weekly high scores.",
+    "Librizzi opened 10th, reached 2nd by midseason, and finished 7th.",
+    "Brian's team sat 9th through Week 13, then jumped to 6th after a 139.38 Week 14.",
+    "Both bye recipients met in the championship exactly as seeded \u2014 Gurv beat Triangle for the title."
+  ],
+  "subtitle": "Regular season only",
+  "bye_teams": [
+    "Gurv",
+    "Triangle"
+  ],
+  "playoff_teams": [
+    "Gurv",
+    "Triangle",
+    "Librizzi",
+    "Nick",
+    "Masten",
+    "Janny"
+  ],
+  "bracket": {
+    "bye": [
+      "Gurv",
+      "Triangle"
+    ],
+    "qf": [
+      {
+        "w": "Masten",
+        "ws": 200.62,
+        "l": "Janny",
+        "ls": 84.4
+      },
+      {
+        "w": "Nick",
+        "ws": 137.16,
+        "l": "Librizzi",
+        "ls": 122.1
+      }
+    ],
+    "sf": [
+      {
+        "w": "Gurv",
+        "ws": 141.7,
+        "l": "Masten",
+        "ls": 88.08
+      },
+      {
+        "w": "Triangle",
+        "ws": 131.34,
+        "l": "Nick",
+        "ls": 129.46
+      }
+    ],
+    "f": [
+      {
+        "w": "Gurv",
+        "ws": 141.38,
+        "l": "Triangle",
+        "ls": 108.32
+      }
+    ]
+  }
+}

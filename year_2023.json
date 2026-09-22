@@ -1,0 +1,172 @@
+{
+  "season": "2023",
+  "standings": [
+    {
+      "rank": 1,
+      "team": "Zach",
+      "record": "13-1",
+      "ppg": 143.2
+    },
+    {
+      "rank": 2,
+      "team": "Nick",
+      "record": "9-5",
+      "ppg": 122.0
+    },
+    {
+      "rank": 3,
+      "team": "Gurv",
+      "record": "8-6",
+      "ppg": 123.3
+    },
+    {
+      "rank": 4,
+      "team": "Brian",
+      "record": "7-7",
+      "ppg": 126.3
+    },
+    {
+      "rank": 5,
+      "team": "Pat",
+      "record": "7-7",
+      "ppg": 114.0
+    },
+    {
+      "rank": 6,
+      "team": "JM",
+      "record": "6-8",
+      "ppg": 118.1
+    },
+    {
+      "rank": 7,
+      "team": "Librizzi",
+      "record": "6-8",
+      "ppg": 110.0
+    },
+    {
+      "rank": 8,
+      "team": "Triangle",
+      "record": "5-9",
+      "ppg": 111.3
+    },
+    {
+      "rank": 9,
+      "team": "Masten",
+      "record": "5-9",
+      "ppg": 110.6
+    },
+    {
+      "rank": 10,
+      "team": "Janny",
+      "record": "4-10",
+      "ppg": 113.9
+    }
+  ],
+  "high_scorers": [
+    {
+      "team": "Zach",
+      "count": 7
+    },
+    {
+      "team": "Brian",
+      "count": 2
+    },
+    {
+      "team": "JM",
+      "count": 1
+    },
+    {
+      "team": "Gurv",
+      "count": 1
+    },
+    {
+      "team": "Triangle",
+      "count": 1
+    },
+    {
+      "team": "Nick",
+      "count": 1
+    },
+    {
+      "team": "Janny",
+      "count": 1
+    }
+  ],
+  "champion": "Brian",
+  "runner_up": "Gurv",
+  "season_summary": {
+    "high": {
+      "team": "Gurv",
+      "week": 5,
+      "score": 196.34
+    },
+    "low": {
+      "team": "Triangle",
+      "week": 8,
+      "score": 69.2
+    },
+    "avg": 119.3
+  },
+  "title": "2023 Stats",
+  "notes": [
+    "Zach went 13-1 and posted 7 of the season's 14 weekly high scores, but did not win the championship.",
+    "Brian won the championship with a 7-7 record and 2 weekly high scores.",
+    "No power ranking exists for this season \u2014 roster strength and playoff odds weren't tracked.",
+    "Neither bye recipient (Zach, Nick) reached the championship \u2014 Brian and Gurv, both non-bye qualifiers, played for the title instead."
+  ],
+  "subtitle": "No Power Rankings available for 2023. Teams sorted by actual win loss record",
+  "bye_teams": [
+    "Zach",
+    "Nick"
+  ],
+  "playoff_teams": [
+    "Zach",
+    "Nick",
+    "JM",
+    "Gurv",
+    "Pat",
+    "Brian"
+  ],
+  "bracket": {
+    "bye": [
+      "Zach",
+      "Nick"
+    ],
+    "qf": [
+      {
+        "w": "Brian",
+        "ws": 121.06,
+        "l": "Pat",
+        "ls": 114.92
+      },
+      {
+        "w": "Gurv",
+        "ws": 142.64,
+        "l": "JM",
+        "ls": 112.32
+      }
+    ],
+    "sf": [
+      {
+        "w": "Brian",
+        "ws": 115.78,
+        "l": "Zach",
+        "ls": 104.48
+      },
+      {
+        "w": "Gurv",
+        "ws": 191.88,
+        "l": "Nick",
+        "ls": 138.64
+      }
+    ],
+    "f": [
+      {
+        "w": "Brian",
+        "ws": 159.86,
+        "l": "Gurv",
+        "ls": 129.14
+      }
+    ]
+  }
+}
