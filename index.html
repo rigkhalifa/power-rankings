@@ -313,6 +313,8 @@
 
     <div id="week1-content" style="display:none;">
       <div class="week1-matchups">
+        <p class="matchup-status">Week 1 &middot; final results</p>
+        <div id="week1-matchup-list" class="matchup-list"></div>
         <div class="week1-highlights">
           <div class="week1-highlight-stat">
             <span class="week1-highlight-label">Week 1 Top Scorer <span class="matchup-winner">&#128176;</span></span>
@@ -327,7 +329,7 @@
 
     <div id="week2-content">
       <div class="week1-matchups">
-        <p class="matchup-status">Week 2 &middot; in progress</p>
+        <p class="matchup-status" id="week2-matchup-status">Week 2 &middot; in progress</p>
         <div id="week2-matchup-list" class="matchup-list"></div>
         <div class="week1-highlights">
           <div class="week1-highlight-stat">
@@ -652,6 +654,18 @@
       'Chasing Victory': 7, 'Ban defense & kickers': 8, 'Fat Husband': 9,
       'not ass per chat': 10
     };
+    // Week 1's matchup scoreboard, frozen alongside week1.json — this
+    // week is fully decided forever, so proj is just set equal to the
+    // final score on both sides (guarantees the shared "final" check
+    // below always reads both sides as final, no separate code path
+    // needed for historical weeks).
+    const WEEK1_MATCHUPS = [
+      { home: 'Co-Authored', homeScore: 125.86, homeProj: 125.86, away: 'Jeanty want winny', awayScore: 118.36, awayProj: 118.36 },
+      { home: 'Ban Him & Aubrey', homeScore: 141.82, homeProj: 141.82, away: 'Ban defense & kickers', awayScore: 100.34, awayProj: 100.34 },
+      { home: 'MILFs', homeScore: 129.50, homeProj: 129.50, away: 'on to 2027', awayScore: 91.96, awayProj: 91.96 },
+      { home: 'Destined for 3rd', homeScore: 143.36, homeProj: 143.36, away: 'not ass per chat', awayScore: 142.46, awayProj: 142.46 },
+      { home: 'Fat Husband', homeScore: 121.00, homeProj: 121.00, away: 'Chasing Victory', awayScore: 139.76, awayProj: 139.76 }
+    ];
     // Week 2 ROS positional breakdown isn't in yet (no FantasyPros
     // screenshot for this week yet) — leave empty so the weekly
     // panel falls back to "not available yet" until it's added.
@@ -668,11 +682,11 @@
     // remaining). Rebuild this array fresh from that week's
     // screenshot each Monday.
     const WEEK2_MATCHUPS = [
-      { home: 'Co-Authored', homeScore: 67.94, homeProj: 78.56, away: 'Chasing Victory', awayScore: 100.32, awayProj: 100.32 },
-      { home: 'Ban Him & Aubrey', homeScore: 87.06, homeProj: 109.23, away: 'on to 2027', awayScore: 107.80, awayProj: 121.88 },
+      { home: 'Co-Authored', homeScore: 103.44, homeProj: 103.44, away: 'Chasing Victory', awayScore: 100.32, awayProj: 100.32 },
+      { home: 'Ban Him & Aubrey', homeScore: 102.06, homeProj: 102.06, away: 'on to 2027', awayScore: 122.50, awayProj: 122.50 },
       { home: 'Ban defense & kickers', homeScore: 108.38, homeProj: 108.38, away: 'not ass per chat', awayScore: 132.48, awayProj: 132.48 },
-      { home: 'Jeanty want winny', homeScore: 116.98, homeProj: 128.43, away: 'MILFs', awayScore: 141.06, awayProj: 141.06 },
-      { home: 'Destined for 3rd', homeScore: 124.62, homeProj: 136.32, away: 'Fat Husband', awayScore: 100.80, awayProj: 119.04 }
+      { home: 'Jeanty want winny', homeScore: 117.58, homeProj: 117.58, away: 'MILFs', awayScore: 141.06, awayProj: 141.06 },
+      { home: 'Destined for 3rd', homeScore: 132.12, homeProj: 132.12, away: 'Fat Husband', awayScore: 101.60, awayProj: 101.60 }
     ];
     function getMyTeam() {
       try { return localStorage.getItem('myTeam') || ''; } catch (e) { return ''; }
@@ -742,6 +756,7 @@
         .map(([name, d]) => ({ name, ...d }))
         .sort((a, b) => a.rank - b.rank);
       renderWeekList('week1-list', week1Teams, PRESEASON_RANK, ROS_PROJECTIONS);
+      renderMatchups(WEEK1_MATCHUPS, 'week1-matchup-list');
 
       // Week 2 is the live week: rank comes from today's sheet read,
       // and its delta compares against the Week 1 snapshot instead of
@@ -902,6 +917,8 @@
       const labelEl = document.getElementById('week2-topscorer-label');
       labelEl.innerHTML = (allFinal ? 'Week 2 Top Scorer' : 'Week 2 Projected High Scorer') +
         ' <span class="matchup-winner">&#128176;</span>';
+      const statusEl = document.getElementById('week2-matchup-status');
+      if (statusEl) statusEl.textContent = 'Week 2 · ' + (allFinal ? 'final results' : 'in progress');
     }
 
     // Generic weekly-view renderer, shared by every week's tab (frozen
