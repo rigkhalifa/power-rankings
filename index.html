@@ -612,7 +612,7 @@
     const CHAMPION = 'Ban defense & kickers';
     const RUNNER_UP = 'Ban Him & Aubrey';
     const OWNER_TO_TEAM_2026 = {
-      'Triangle': 'Ban Him & Aubrey', 'Nick': 'Jeanty want winny', 'JM': 'Co-Authored',
+      'Triangle': 'Ban Him & Aubrey', 'Nick': 'Ban WR/TE/QB/K/DST/FLEX', 'JM': 'Co-Authored',
       'Zach': 'Destined for 3rd', 'Librizzi': 'on to 2027', 'Masten': 'MILFs',
       'Chris': 'Chasing Victory', 'Gurv': 'Ban defense & kickers', 'Janny': 'Fat Husband',
       'Brian': 'not ass per chat'
@@ -656,6 +656,24 @@
       'Chasing Victory': 7, 'Ban defense & kickers': 8, 'Fat Husband': 9,
       'not ass per chat': 10
     };
+    // In-season team renames (current sheet name -> name used in
+    // frozen prior-week snapshots). A rename doesn't change who the
+    // team IS, just what the live API now calls them, so the delta
+    // arrow needs this alias to keep finding last week's rank under
+    // the new name. PRESEASON_RANK, WEEK1_MATCHUPS, ROS_PROJECTIONS
+    // and week1.json stay untouched — they're frozen history and
+    // correctly reflect the name as of that week. Add a new entry
+    // here each time a team renames mid-season.
+    const TEAM_RENAMES = {
+      'Ban WR/TE/QB/K/DST/FLEX': 'Jeanty want winny'
+    };
+    function withRenameAliases(rankMap) {
+      const withAliases = { ...rankMap };
+      Object.entries(TEAM_RENAMES).forEach(([newName, oldName]) => {
+        if (withAliases[oldName] !== undefined) withAliases[newName] = withAliases[oldName];
+      });
+      return withAliases;
+    }
     // Week 1's matchup scoreboard, frozen alongside week1.json — this
     // week is fully decided forever, so proj is just set equal to the
     // final score on both sides (guarantees the shared "final" check
@@ -687,7 +705,7 @@
       { home: 'Co-Authored', homeScore: 103.44, homeProj: 103.44, away: 'Chasing Victory', awayScore: 100.32, awayProj: 100.32 },
       { home: 'Ban Him & Aubrey', homeScore: 102.06, homeProj: 102.06, away: 'on to 2027', awayScore: 122.50, awayProj: 122.50 },
       { home: 'Ban defense & kickers', homeScore: 108.38, homeProj: 108.38, away: 'not ass per chat', awayScore: 132.48, awayProj: 132.48 },
-      { home: 'Jeanty want winny', homeScore: 117.58, homeProj: 117.58, away: 'MILFs', awayScore: 141.06, awayProj: 141.06 },
+      { home: 'Ban WR/TE/QB/K/DST/FLEX', homeScore: 117.58, homeProj: 117.58, away: 'MILFs', awayScore: 141.06, awayProj: 141.06 },
       { home: 'Destined for 3rd', homeScore: 132.12, homeProj: 132.12, away: 'Fat Husband', awayScore: 101.60, awayProj: 101.60 }
     ];
     function getMyTeam() {
@@ -763,9 +781,9 @@
       // Week 2 is the live week: rank comes from today's sheet read,
       // and its delta compares against the Week 1 snapshot instead of
       // the preseason order.
-      const week1RankMap = Object.fromEntries(
+      const week1RankMap = withRenameAliases(Object.fromEntries(
         Object.entries(week1Snapshot).map(([name, d]) => [name, d.rank])
-      );
+      ));
       if (WEEK2_RANKINGS_LIVE) {
         document.getElementById('week2-coming-soon').style.display = 'none';
         document.getElementById('week2-list').style.display = '';
