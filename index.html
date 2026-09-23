@@ -706,6 +706,21 @@
     // with ROS rankings and playoff odds — the ranked table pulls
     // from the live sheet read (`teams`) below.
     const WEEK2_RANKINGS_LIVE = true;
+    // Whether the table is "live" (this flag) and whether the data
+    // has actually finished loading are two different things. The
+    // old code only swapped Coming Soon -> the list inside the
+    // fetch's .then(), so on a slow API day (the live sheet read can
+    // take several seconds) visitors saw the "Coming Soon, posted
+    // Wednesday morning" panel flash on screen first, then get
+    // replaced — confusing once the rankings genuinely are live.
+    // Fix: switch to "Loading" immediately, synchronously, the
+    // instant this flag says live, without waiting on the fetch at
+    // all. The .then() below still fills in the real rows once data
+    // arrives; this only changes what's shown while it's in flight.
+    if (WEEK2_RANKINGS_LIVE) {
+      document.getElementById('week2-coming-soon').style.display = 'none';
+      document.getElementById('week2-list').style.display = '';
+    }
     // Week 2 matchup scoreboard, from the Monday-morning screenshot.
     // score = current live score, proj = projected final total (ROS
     // included). A side is "final" once score === proj (no players
