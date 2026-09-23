@@ -686,16 +686,26 @@
       { home: 'Destined for 3rd', homeScore: 143.36, homeProj: 143.36, away: 'not ass per chat', awayScore: 142.46, awayProj: 142.46 },
       { home: 'Fat Husband', homeScore: 121.00, homeProj: 121.00, away: 'Chasing Victory', awayScore: 139.76, awayProj: 139.76 }
     ];
-    // Week 2 ROS positional breakdown isn't in yet (no FantasyPros
-    // screenshot for this week yet) — leave empty so the weekly
-    // panel falls back to "not available yet" until it's added.
-    const WEEK2_ROS = {};
-    // Flip this to true once Week 2's power rankings are actually
-    // posted (Wednesday morning, after waivers clear and the sheet
-    // is updated) — same pattern as WEEK_1_LIVE was. Until then the
-    // ranked table stays "Coming Soon" even though the matchup
-    // scoreboard and top-scorer callout above it are already live.
-    const WEEK2_RANKINGS_LIVE = false;
+    // Week 2's ROS positional ranks, sourced from the FantasyPros
+    // screenshots sent Wednesday morning (same pattern as
+    // ROS_PROJECTIONS for Week 1). Keyed by the current (live) team
+    // name, since this is the live week, not a frozen snapshot.
+    const WEEK2_ROS = {
+      'Ban Him & Aubrey': { QB: 3, RB: 4, WR: 5, TE: 1, K: 1, DST: 2, FLEX: 9 },
+      'Fat Husband': { QB: 10, RB: 2, WR: 6, TE: 3, K: 10, DST: 4, FLEX: 7 },
+      'Ban everything': { QB: 9, RB: 1, WR: 10, TE: 4, K: 10, DST: 10, FLEX: 6 },
+      'MILFs': { QB: 6, RB: 8, WR: 1, TE: 10, K: 3, DST: 10, FLEX: 5 },
+      'Destined for 3rd': { QB: 1, RB: 9, WR: 4, TE: 7, K: 2, DST: 3, FLEX: 3 },
+      'Co-Authored': { QB: 4, RB: 10, WR: 3, TE: 5, K: 10, DST: 10, FLEX: 1 },
+      'Chasing Victory': { QB: 5, RB: 7, WR: 2, TE: 8, K: 4, DST: 1, FLEX: 2 },
+      'on to 2027': { QB: 2, RB: 5, WR: 9, TE: 6, K: 10, DST: 10, FLEX: 4 },
+      'Ban defense & kickers': { QB: 7, RB: 6, WR: 8, TE: 2, K: 10, DST: 10, FLEX: 8 },
+      'not ass per chat': { QB: 8, RB: 3, WR: 7, TE: 9, K: 5, DST: 5, FLEX: 10 }
+    };
+    // Week 2's power rankings are live now that the sheet is updated
+    // with ROS rankings and playoff odds — the ranked table pulls
+    // from the live sheet read (`teams`) below.
+    const WEEK2_RANKINGS_LIVE = true;
     // Week 2 matchup scoreboard, from the Monday-morning screenshot.
     // score = current live score, proj = projected final total (ROS
     // included). A side is "final" once score === proj (no players
