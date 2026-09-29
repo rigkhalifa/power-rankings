@@ -105,8 +105,13 @@
     },
     {
       "owner": "Masten",
-      "total": 2140,
+      "total": 2175,
       "breakdown": [
+        {
+          "year": "2026",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
         {
           "year": "2025",
           "note": "1 weekly high score",
@@ -264,8 +269,13 @@
     },
     {
       "owner": "Zach",
-      "total": 630,
+      "total": 665,
       "breakdown": [
+        {
+          "year": "2026",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
         {
           "year": "2025",
           "note": "2 weekly high scores",
@@ -320,40 +330,14 @@
       ]
     },
     {
-      "owner": "Janny",
-      "total": 280,
-      "breakdown": [
-        {
-          "year": "2025",
-          "note": "1 weekly high score",
-          "amount": 35
-        },
-        {
-          "year": "2024",
-          "note": "2 weekly high scores",
-          "amount": 70
-        },
-        {
-          "year": "2023",
-          "note": "1 weekly high score",
-          "amount": 35
-        },
-        {
-          "year": "2020",
-          "note": "2 weekly high scores",
-          "amount": 70
-        },
-        {
-          "year": "2019",
-          "note": "2 weekly high scores",
-          "amount": 70
-        }
-      ]
-    },
-    {
       "owner": "Librizzi",
-      "total": 280,
+      "total": 315,
       "breakdown": [
+        {
+          "year": "2026",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
         {
           "year": "2025",
           "note": "2 weekly high scores",
@@ -378,6 +362,37 @@
           "year": "2020",
           "note": "1 weekly high score",
           "amount": 35
+        },
+        {
+          "year": "2019",
+          "note": "2 weekly high scores",
+          "amount": 70
+        }
+      ]
+    },
+    {
+      "owner": "Janny",
+      "total": 280,
+      "breakdown": [
+        {
+          "year": "2025",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2024",
+          "note": "2 weekly high scores",
+          "amount": 70
+        },
+        {
+          "year": "2023",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
+        {
+          "year": "2020",
+          "note": "2 weekly high scores",
+          "amount": 70
         },
         {
           "year": "2019",
