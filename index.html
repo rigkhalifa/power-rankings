@@ -286,7 +286,8 @@
     <div class="week-nav">
       <label for="week-select">Viewing</label>
       <select id="week-select">
-        <option value="week2" selected>Week 2</option>
+        <option value="week3" selected>Week 3</option>
+        <option value="week2">Week 2</option>
         <option value="week1">Week 1</option>
         <option value="preseason">Draft</option>
       </select>
@@ -329,24 +330,40 @@
       </div>
     </div>
 
-    <div id="week2-content">
-      <div class="coming-soon" id="week2-coming-soon">
-        <span class="coming-soon-emoji">&#9203;</span>
-        <div>Coming Soon</div>
-        <p>Week 2 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
-      </div>
-      <div id="week2-list" style="display:none;">Loading&hellip;</div>
+    <div id="week2-content" style="display:none;">
+      <div id="week2-list">Loading&hellip;</div>
 
       <div class="week1-matchups">
         <div class="week1-highlights">
           <div class="week1-highlight-stat">
-            <span class="week1-highlight-label" id="week2-topscorer-label">Week 2 Projected High Scorer <span class="matchup-winner">&#128176;</span></span>
-            <span class="week1-highlight-team" id="week2-topscorer-team"></span>
-            <span class="week1-highlight-value" id="week2-topscorer-value"></span>
+            <span class="week1-highlight-label">Week 2 Top Scorer <span class="matchup-winner">&#128176;</span></span>
+            <span class="week1-highlight-team">MILFs</span>
+            <span class="week1-highlight-value">141.06 pts</span>
           </div>
         </div>
-        <p class="matchup-status" id="week2-matchup-status">Week 2 &middot; in progress</p>
+        <p class="matchup-status">Week 2 &middot; final results</p>
         <div id="week2-matchup-list" class="matchup-list"></div>
+      </div>
+    </div>
+
+    <div id="week3-content">
+      <div class="coming-soon" id="week3-coming-soon">
+        <span class="coming-soon-emoji">&#9203;</span>
+        <div>Coming Soon</div>
+        <p>Week 3 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
+      </div>
+      <div id="week3-list" style="display:none;">Loading&hellip;</div>
+
+      <div class="week1-matchups">
+        <div class="week1-highlights">
+          <div class="week1-highlight-stat">
+            <span class="week1-highlight-label" id="week3-topscorer-label">Week 3 Projected High Scorer <span class="matchup-winner">&#128176;</span></span>
+            <span class="week1-highlight-team" id="week3-topscorer-team"></span>
+            <span class="week1-highlight-value" id="week3-topscorer-value"></span>
+          </div>
+        </div>
+        <p class="matchup-status" id="week3-matchup-status">Week 3 &middot; in progress</p>
+        <div id="week3-matchup-list" class="matchup-list"></div>
       </div>
     </div>
     </div>
@@ -702,10 +719,26 @@
       'Ban defense & kickers': { QB: 7, RB: 6, WR: 8, TE: 2, K: 10, DST: 10, FLEX: 8 },
       'not ass per chat': { QB: 8, RB: 3, WR: 7, TE: 9, K: 5, DST: 5, FLEX: 10 }
     };
-    // Week 2's power rankings are live now that the sheet is updated
-    // with ROS rankings and playoff odds — the ranked table pulls
-    // from the live sheet read (`teams`) below.
-    const WEEK2_RANKINGS_LIVE = true;
+    // Week 2 is now frozen history (week2.json) — its matchups are
+    // fully decided forever, same treatment as WEEK1_MATCHUPS.
+    const WEEK2_MATCHUPS = [
+      { home: 'Co-Authored', homeScore: 103.44, homeProj: 103.44, away: 'Chasing Victory', awayScore: 100.32, awayProj: 100.32 },
+      { home: 'Ban Him & Aubrey', homeScore: 102.06, homeProj: 102.06, away: 'on to 2027', awayScore: 122.50, awayProj: 122.50 },
+      { home: 'Ban defense & kickers', homeScore: 108.38, homeProj: 108.38, away: 'not ass per chat', awayScore: 132.48, awayProj: 132.48 },
+      { home: 'Ban everything', homeScore: 117.58, homeProj: 117.58, away: 'MILFs', awayScore: 141.06, awayProj: 141.06 },
+      { home: 'Destined for 3rd', homeScore: 132.12, homeProj: 132.12, away: 'Fat Husband', awayScore: 101.60, awayProj: 101.60 }
+    ];
+    // Week 3 ROS positional breakdown isn't in yet (no FantasyPros
+    // screenshot for this week yet) — leave empty so the weekly
+    // panel falls back to "not available yet" until it's added.
+    const WEEK3_ROS = {};
+    // Flip this to true once Week 3's power rankings are actually
+    // posted (Wednesday morning, after waivers clear, PO odds/ROS
+    // roster/the "For copy" row are in) — same pattern as prior
+    // weeks. Until then the ranked table stays "Coming Soon" even
+    // though the matchup scoreboard and top-scorer callout above it
+    // are already live.
+    const WEEK3_RANKINGS_LIVE = false;
     // Whether the table is "live" (this flag) and whether the data
     // has actually finished loading are two different things. The
     // old code only swapped Coming Soon -> the list inside the
@@ -717,21 +750,18 @@
     // instant this flag says live, without waiting on the fetch at
     // all. The .then() below still fills in the real rows once data
     // arrives; this only changes what's shown while it's in flight.
-    if (WEEK2_RANKINGS_LIVE) {
-      document.getElementById('week2-coming-soon').style.display = 'none';
-      document.getElementById('week2-list').style.display = '';
+    if (WEEK3_RANKINGS_LIVE) {
+      document.getElementById('week3-coming-soon').style.display = 'none';
+      document.getElementById('week3-list').style.display = '';
     }
-    // Week 2 matchup scoreboard, from the Monday-morning screenshot.
-    // score = current live score, proj = projected final total (ROS
-    // included). A side is "final" once score === proj (no players
-    // remaining). Rebuild this array fresh from that week's
-    // screenshot each Monday.
-    const WEEK2_MATCHUPS = [
-      { home: 'Co-Authored', homeScore: 103.44, homeProj: 103.44, away: 'Chasing Victory', awayScore: 100.32, awayProj: 100.32 },
-      { home: 'Ban Him & Aubrey', homeScore: 102.06, homeProj: 102.06, away: 'on to 2027', awayScore: 122.50, awayProj: 122.50 },
-      { home: 'Ban defense & kickers', homeScore: 108.38, homeProj: 108.38, away: 'not ass per chat', awayScore: 132.48, awayProj: 132.48 },
-      { home: 'Ban everything', homeScore: 117.58, homeProj: 117.58, away: 'MILFs', awayScore: 141.06, awayProj: 141.06 },
-      { home: 'Destined for 3rd', homeScore: 132.12, homeProj: 132.12, away: 'Fat Husband', awayScore: 101.60, awayProj: 101.60 }
+    // Week 3 matchup scoreboard, from the Monday-night screenshot —
+    // all 5 matchups already final this week.
+    const WEEK3_MATCHUPS = [
+      { home: 'Co-Authored', homeScore: 89.48, homeProj: 89.48, away: 'Destined for 3rd', awayScore: 129.86, awayProj: 129.86 },
+      { home: 'Ban Him & Aubrey', homeScore: 136.82, homeProj: 136.82, away: 'MILFs', awayScore: 131.00, awayProj: 131.00 },
+      { home: 'Ban defense & kickers', homeScore: 140.34, homeProj: 140.34, away: 'Fat Husband', awayScore: 127.70, awayProj: 127.70 },
+      { home: 'Ban everything', homeScore: 126.68, homeProj: 126.68, away: 'Chasing Victory', awayScore: 122.98, awayProj: 122.98 },
+      { home: 'on to 2027', homeScore: 141.54, homeProj: 141.54, away: 'not ass per chat', awayScore: 89.94, awayProj: 89.94 }
     ];
     function getMyTeam() {
       try { return localStorage.getItem('myTeam') || ''; } catch (e) { return ''; }
@@ -772,6 +802,7 @@
     Promise.all([
       fetch(API_URL).then(r => r.json()),
       fetch('week1.json').then(r => r.json()),
+      fetch('week2.json').then(r => r.json()),
       fetch('projections.json').then(r => r.json()),
       fetch('trophies.json').then(r => r.json()),
       fetch('best_value.json').then(r => r.json()),
@@ -784,7 +815,7 @@
       fetch('year_2019.json').then(r => r.json()),
       fetch('earnings.json').then(r => r.json()),
       fetch('combined_wins.json').then(r => r.json())
-    ]).then(([teams, week1Snapshot, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
+    ]).then(([teams, week1Snapshot, week2Snapshot, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -796,28 +827,41 @@
 
       // Week 1 is now frozen history: render straight from the saved
       // snapshot rather than the live sheet, so it never drifts once
-      // the sheet moves on to Week 2+.
+      // the sheet moves on.
       const week1Teams = Object.entries(week1Snapshot)
         .map(([name, d]) => ({ name, ...d }))
         .sort((a, b) => a.rank - b.rank);
       renderWeekList('week1-list', week1Teams, PRESEASON_RANK, ROS_PROJECTIONS);
       renderMatchups(WEEK1_MATCHUPS, 'week1-matchup-list');
 
-      // Week 2 is the live week: rank comes from today's sheet read,
-      // and its delta compares against the Week 1 snapshot instead of
-      // the preseason order.
       const week1RankMap = withRenameAliases(Object.fromEntries(
         Object.entries(week1Snapshot).map(([name, d]) => [name, d.rank])
       ));
-      if (WEEK2_RANKINGS_LIVE) {
-        document.getElementById('week2-coming-soon').style.display = 'none';
-        document.getElementById('week2-list').style.display = '';
-        const week2Sorted = teams.slice().sort((a, b) => safeScore(a) - safeScore(b));
-        week2Sorted.forEach((t, i) => { t.rank = i + 1; });
-        renderWeekList('week2-list', week2Sorted, week1RankMap, WEEK2_ROS);
-      }
+
+      // Week 2 is now frozen history too, same treatment as Week 1:
+      // render straight from its saved snapshot, delta compares
+      // against Week 1's snapshot.
+      const week2Teams = Object.entries(week2Snapshot)
+        .map(([name, d]) => ({ name, ...d }))
+        .sort((a, b) => a.rank - b.rank);
+      renderWeekList('week2-list', week2Teams, week1RankMap, WEEK2_ROS);
       renderMatchups(WEEK2_MATCHUPS, 'week2-matchup-list');
-      renderProjectedHighScorer(WEEK2_MATCHUPS);
+
+      // Week 3 is the live week: rank comes from today's sheet read,
+      // and its delta compares against the Week 2 snapshot instead of
+      // Week 1's.
+      const week2RankMap = withRenameAliases(Object.fromEntries(
+        Object.entries(week2Snapshot).map(([name, d]) => [name, d.rank])
+      ));
+      if (WEEK3_RANKINGS_LIVE) {
+        document.getElementById('week3-coming-soon').style.display = 'none';
+        document.getElementById('week3-list').style.display = '';
+        const week3Sorted = teams.slice().sort((a, b) => safeScore(a) - safeScore(b));
+        week3Sorted.forEach((t, i) => { t.rank = i + 1; });
+        renderWeekList('week3-list', week3Sorted, week2RankMap, WEEK3_ROS);
+      }
+      renderMatchups(WEEK3_MATCHUPS, 'week3-matchup-list');
+      renderProjectedHighScorer(WEEK3_MATCHUPS, 3);
 
       renderDigest(projectionsRaw);
       renderTrophies(trophies);
@@ -880,6 +924,7 @@
       document.getElementById('preseason-content').style.display = v === 'preseason' ? '' : 'none';
       document.getElementById('week1-content').style.display = v === 'week1' ? '' : 'none';
       document.getElementById('week2-content').style.display = v === 'week2' ? '' : 'none';
+      document.getElementById('week3-content').style.display = v === 'week3' ? '' : 'none';
     });
 
     document.getElementById('season-review-select').addEventListener('change', (e) => {
@@ -961,25 +1006,25 @@
     // otherwise their projected (ROS-included) total. Recomputes
     // automatically as more sides go final over the course of the
     // week, so this only needs the matchups array kept up to date.
-    function renderProjectedHighScorer(matchups) {
+    function renderProjectedHighScorer(matchups, weekNum) {
       const sides = [];
       matchups.forEach(m => {
         sides.push({ name: m.home, value: isSideFinal(m.homeScore, m.homeProj) ? m.homeScore : m.homeProj });
         sides.push({ name: m.away, value: isSideFinal(m.awayScore, m.awayProj) ? m.awayScore : m.awayProj });
       });
       const top = sides.reduce((best, s) => (s.value > best.value ? s : best), sides[0]);
-      document.getElementById('week2-topscorer-team').textContent = top.name;
-      document.getElementById('week2-topscorer-value').textContent = top.value.toFixed(2) + ' pts';
+      document.getElementById(`week${weekNum}-topscorer-team`).textContent = top.name;
+      document.getElementById(`week${weekNum}-topscorer-value`).textContent = top.value.toFixed(2) + ' pts';
 
       // Once every matchup is decided, this stops being a projection —
       // swap the label to match Week 1's wording ("Top Scorer"
       // rather than "Projected High Scorer").
       const allFinal = matchups.every(m => isSideFinal(m.homeScore, m.homeProj) && isSideFinal(m.awayScore, m.awayProj));
-      const labelEl = document.getElementById('week2-topscorer-label');
-      labelEl.innerHTML = (allFinal ? 'Week 2 Top Scorer' : 'Week 2 Projected High Scorer') +
+      const labelEl = document.getElementById(`week${weekNum}-topscorer-label`);
+      labelEl.innerHTML = (allFinal ? `Week ${weekNum} Top Scorer` : `Week ${weekNum} Projected High Scorer`) +
         ' <span class="matchup-winner">&#128176;</span>';
-      const statusEl = document.getElementById('week2-matchup-status');
-      if (statusEl) statusEl.textContent = 'Week 2 · ' + (allFinal ? 'final results' : 'in progress');
+      const statusEl = document.getElementById(`week${weekNum}-matchup-status`);
+      if (statusEl) statusEl.textContent = `Week ${weekNum} · ` + (allFinal ? 'final results' : 'in progress');
     }
 
     // Generic weekly-view renderer, shared by every week's tab (frozen
