@@ -728,17 +728,20 @@
       { home: 'Ban everything', homeScore: 117.58, homeProj: 117.58, away: 'MILFs', awayScore: 141.06, awayProj: 141.06 },
       { home: 'Destined for 3rd', homeScore: 132.12, homeProj: 132.12, away: 'Fat Husband', awayScore: 101.60, awayProj: 101.60 }
     ];
-    // Week 3 ROS positional breakdown isn't in yet (no FantasyPros
-    // screenshot for this week yet) — leave empty so the weekly
-    // panel falls back to "not available yet" until it's added.
-    const WEEK3_ROS = {};
-    // Flip this to true once Week 3's power rankings are actually
-    // posted (Wednesday morning, after waivers clear, PO odds/ROS
-    // roster/the "For copy" row are in) — same pattern as prior
-    // weeks. Until then the ranked table stays "Coming Soon" even
-    // though the matchup scoreboard and top-scorer callout above it
-    // are already live.
-    const WEEK3_RANKINGS_LIVE = false;
+    const WEEK3_ROS = {
+      'Ban Him & Aubrey': { QB: 5, RB: 5, WR: 5, TE: 2, K: 1, DST: 2, FLEX: 8 },
+      'Fat Husband': { QB: 8, RB: 2, WR: 9, TE: 4, K: 10, DST: 3, FLEX: 3 },
+      'Ban everything': { QB: 9, RB: 1, WR: 10, TE: 3, K: 3, DST: 10, FLEX: 7 },
+      'MILFs': { QB: 7, RB: 9, WR: 1, TE: 10, K: 10, DST: 10, FLEX: 9 },
+      'Destined for 3rd': { QB: 1, RB: 8, WR: 2, TE: 7, K: 2, DST: 5, FLEX: 1 },
+      'Co-Authored': { QB: 4, RB: 10, WR: 4, TE: 6, K: 10, DST: 10, FLEX: 2 },
+      'Chasing Victory': { QB: 3, RB: 7, WR: 3, TE: 8, K: 4, DST: 1, FLEX: 4 },
+      'on to 2027': { QB: 2, RB: 4, WR: 8, TE: 5, K: 10, DST: 10, FLEX: 6 },
+      'Ban defense & kickers': { QB: 6, RB: 6, WR: 6, TE: 1, K: 6, DST: 6, FLEX: 5 },
+      'not ass per chat': { QB: 10, RB: 3, WR: 7, TE: 9, K: 5, DST: 4, FLEX: 10 }
+    };
+    // Week 3 power rankings are live as of Wednesday.
+    const WEEK3_RANKINGS_LIVE = true;
     // Whether the table is "live" (this flag) and whether the data
     // has actually finished loading are two different things. The
     // old code only swapped Coming Soon -> the list inside the
