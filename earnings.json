@@ -316,6 +316,7 @@
     {
       "owner": "Pat",
       "total": 580,
+      "yearsPlayed": 7,
       "breakdown": [
         {
           "year": "2024",
@@ -400,6 +401,12 @@
           "amount": 70
         }
       ]
+    },
+    {
+      "owner": "Chris",
+      "total": 0,
+      "yearsPlayed": 1,
+      "breakdown": []
     }
   ]
 }
