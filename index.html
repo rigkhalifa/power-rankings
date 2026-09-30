@@ -1272,7 +1272,12 @@
             <span>${b.year} &middot; ${b.note}</span>
             <span>$${b.amount}</span>
           </div>`).join('');
-        const net = o.total - BUY_IN * YEARS_PLAYED;
+        // Most owners have played every season (YEARS_PLAYED), but this
+        // isn't uniform anymore: Pat stopped playing before the 2026
+        // entry fee, and Chris just joined this year. yearsPlayed on
+        // the owner's own record overrides the league default when set.
+        const yearsPlayed = o.yearsPlayed != null ? o.yearsPlayed : YEARS_PLAYED;
+        const net = o.total - BUY_IN * yearsPlayed;
         const netDisplay = net >= 0 ? `+$${net}` : `-$${Math.abs(net)}`;
         const netClass = net >= 0 ? 'net-positive' : 'net-negative';
         return `
