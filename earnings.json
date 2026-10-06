@@ -141,8 +141,13 @@
     },
     {
       "owner": "Gurv",
-      "total": 1965,
+      "total": 2000,
       "breakdown": [
+        {
+          "year": "2026",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
         {
           "year": "2025",
           "note": "1st place",
