@@ -364,12 +364,7 @@
     </div>
 
     <div id="week4-content">
-      <div class="coming-soon" id="week4-coming-soon">
-        <span class="coming-soon-emoji">&#9203;</span>
-        <div>Coming Soon</div>
-        <p>Week 4 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
-      </div>
-      <div id="week4-list" style="display:none;">Loading&hellip;</div>
+      <div id="week4-list">Loading&hellip;</div>
 
       <div class="week1-matchups">
         <div class="week1-highlights">
@@ -773,6 +768,21 @@
       { home: 'Ban everything', homeScore: 126.68, homeProj: 126.68, away: 'Chasing Victory', awayScore: 122.98, awayProj: 122.98 },
       { home: 'on to 2027', homeScore: 141.54, homeProj: 141.54, away: 'not ass per chat', awayScore: 89.94, awayProj: 89.94 }
     ];
+    // Week 4 ROS positional ranks from the FantasyPros screenshots.
+    const WEEK4_ROS = {
+      'Ban everything': { QB: 8, RB: 1, WR: 10, TE: 3, K: 3, DST: 10, FLEX: 10 },
+      'Destined for 3rd': { QB: 1, RB: 7, WR: 2, TE: 7, K: 2, DST: 4, FLEX: 2 },
+      'Ban Him & Aubrey': { QB: 7, RB: 5, WR: 5, TE: 2, K: 1, DST: 3, FLEX: 5 },
+      'end my suffering': { QB: 9, RB: 2, WR: 9, TE: 4, K: 5, DST: 2, FLEX: 1 },
+      'MILFs': { QB: 5, RB: 9, WR: 1, TE: 9, K: 10, DST: 5, FLEX: 8 },
+      'on to 2027': { QB: 3, RB: 4, WR: 8, TE: 5, K: 10, DST: 10, FLEX: 6 },
+      'Chasing Victory': { QB: 2, RB: 6, WR: 3, TE: 8, K: 10, DST: 1, FLEX: 7 },
+      'Co-Authored': { QB: 6, RB: 10, WR: 4, TE: 6, K: 10, DST: 10, FLEX: 3 },
+      'not ass per chat': { QB: 10, RB: 3, WR: 6, TE: 10, K: 4, DST: 6, FLEX: 9 },
+      'Ban defense & kickers': { QB: 4, RB: 8, WR: 7, TE: 1, K: 10, DST: 10, FLEX: 4 }
+    };
+    // Week 4 is frozen from the moment it goes live (week4.json) —
+    // no live sheet fetch.
     // Week 4 scoreboard — all 5 matchups final.
     const WEEK4_MATCHUPS = [
       { home: 'Co-Authored', homeScore: 119.32, homeProj: 119.32, away: 'Ban defense & kickers', awayScore: 161.34, awayProj: 161.34 },
@@ -781,9 +791,6 @@
       { home: 'MILFs', homeScore: 108.00, homeProj: 108.00, away: 'Chasing Victory', awayScore: 91.56, awayProj: 91.56 },
       { home: 'on to 2027', homeScore: 142.88, homeProj: 142.88, away: 'end my suffering', awayScore: 131.88, awayProj: 131.88 }
     ];
-    // Flip to true Wednesday once PO odds/ROS/"For copy" are in; also
-    // needs WEEK4_ROS and a live fetch of API_URL added back.
-    const WEEK4_RANKINGS_LIVE = false;
     function getMyTeam() {
       try { return localStorage.getItem('myTeam') || ''; } catch (e) { return ''; }
     }
@@ -824,6 +831,7 @@
       fetch('week1.json').then(r => r.json()),
       fetch('week2.json').then(r => r.json()),
       fetch('week3.json').then(r => r.json()),
+      fetch('week4.json').then(r => r.json()),
       fetch('projections.json').then(r => r.json()),
       fetch('trophies.json').then(r => r.json()),
       fetch('best_value.json').then(r => r.json()),
@@ -836,7 +844,7 @@
       fetch('year_2019.json').then(r => r.json()),
       fetch('earnings.json').then(r => r.json()),
       fetch('combined_wins.json').then(r => r.json())
-    ]).then(([week1Snapshot, week2Snapshot, week3Snapshot, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
+    ]).then(([week1Snapshot, week2Snapshot, week3Snapshot, week4Snapshot, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -879,6 +887,13 @@
         .sort((a, b) => a.rank - b.rank);
       renderWeekList('week3-list', week3Teams, week2RankMap, WEEK3_ROS);
       renderMatchups(WEEK3_MATCHUPS, 'week3-matchup-list');
+      const week3RankMap = withRenameAliases(Object.fromEntries(
+        Object.entries(week3Snapshot).map(([name, d]) => [name, d.rank])
+      ));
+      const week4Teams = Object.entries(week4Snapshot)
+        .map(([name, d]) => ({ name, ...d }))
+        .sort((a, b) => a.rank - b.rank);
+      renderWeekList('week4-list', week4Teams, week3RankMap, WEEK4_ROS);
       renderMatchups(WEEK4_MATCHUPS, 'week4-matchup-list');
 
       renderDigest(projectionsRaw);
