@@ -286,7 +286,8 @@
     <div class="week-nav">
       <label for="week-select">Viewing</label>
       <select id="week-select">
-        <option value="week4" selected>Week 4</option>
+        <option value="week5" selected>Week 5</option>
+        <option value="week4">Week 4</option>
         <option value="week3">Week 3</option>
         <option value="week2">Week 2</option>
         <option value="week1">Week 1</option>
@@ -363,7 +364,7 @@
       </div>
     </div>
 
-    <div id="week4-content">
+    <div id="week4-content" style="display:none;">
       <div id="week4-list">Loading&hellip;</div>
 
       <div class="week1-matchups">
@@ -376,6 +377,26 @@
         </div>
         <p class="matchup-status">Week 4 &middot; final results</p>
         <div id="week4-matchup-list" class="matchup-list"></div>
+      </div>
+    </div>
+
+    <div id="week5-content">
+      <div class="coming-soon" id="week5-coming-soon">
+        <span class="coming-soon-emoji">&#9203;</span>
+        <div>Coming Soon</div>
+        <p>Week 5 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
+      </div>
+
+      <div class="week1-matchups">
+        <div class="week1-highlights">
+          <div class="week1-highlight-stat">
+            <span class="week1-highlight-label">Week 5 Top Scorer <span class="matchup-winner">&#128176;</span></span>
+            <span class="week1-highlight-team">Ban everything</span>
+            <span class="week1-highlight-value">189.16 pts</span>
+          </div>
+        </div>
+        <p class="matchup-status">Week 5 &middot; final results</p>
+        <div id="week5-matchup-list" class="matchup-list"></div>
       </div>
     </div>
     </div>
@@ -642,7 +663,7 @@
     const RUNNER_UP = 'Ban Him & Aubrey';
     const OWNER_TO_TEAM_2026 = {
       'Triangle': 'Ban Him & Aubrey', 'Nick': 'Ban everything', 'JM': 'Co-Authored',
-      'Zach': 'Destined for 3rd', 'Librizzi': 'on to 2027', 'Masten': 'MILFs',
+      'Zach': 'Destined for 3rd', 'Librizzi': 'what is happening', 'Masten': 'MILFs',
       'Chris': 'Chasing Victory', 'Gurv': 'Ban defense & kickers', 'Janny': 'end my suffering',
       'Brian': 'not ass per chat'
     };
@@ -695,7 +716,8 @@
     // here each time a team renames mid-season.
     const TEAM_RENAMES = {
       'Ban everything': 'Jeanty want winny',
-      'end my suffering': 'Fat Husband'
+      'end my suffering': 'Fat Husband',
+      'what is happening': 'on to 2027'
     };
     // Old names must still resolve to the owner so "My Team"
     // highlighting keeps working on frozen weeks that used them.
@@ -781,6 +803,14 @@
       'not ass per chat': { QB: 10, RB: 3, WR: 6, TE: 10, K: 4, DST: 6, FLEX: 9 },
       'Ban defense & kickers': { QB: 4, RB: 8, WR: 7, TE: 1, K: 10, DST: 10, FLEX: 4 }
     };
+    // Week 5 scoreboard — all 5 matchups final.
+    const WEEK5_MATCHUPS = [
+      { home: 'Co-Authored', homeScore: 112.90, homeProj: 112.90, away: 'what is happening', awayScore: 181.98, awayProj: 181.98 },
+      { home: 'Ban Him & Aubrey', homeScore: 151.58, homeProj: 151.58, away: 'end my suffering', awayScore: 127.52, awayProj: 127.52 },
+      { home: 'Ban defense & kickers', homeScore: 101.74, homeProj: 101.74, away: 'Ban everything', awayScore: 189.16, awayProj: 189.16 },
+      { home: 'MILFs', homeScore: 100.94, homeProj: 100.94, away: 'not ass per chat', awayScore: 73.10, awayProj: 73.10 },
+      { home: 'Destined for 3rd', homeScore: 124.50, homeProj: 124.50, away: 'Chasing Victory', awayScore: 122.66, awayProj: 122.66 }
+    ];
     // Week 4 is frozen from the moment it goes live (week4.json) —
     // no live sheet fetch.
     // Week 4 scoreboard — all 5 matchups final.
@@ -895,6 +925,7 @@
         .sort((a, b) => a.rank - b.rank);
       renderWeekList('week4-list', week4Teams, week3RankMap, WEEK4_ROS);
       renderMatchups(WEEK4_MATCHUPS, 'week4-matchup-list');
+      renderMatchups(WEEK5_MATCHUPS, 'week5-matchup-list');
 
       renderDigest(projectionsRaw);
       renderTrophies(trophies);
@@ -923,7 +954,8 @@
           { team: 'Zach', count: 1 },     // Week 1
           { team: 'Masten', count: 1 },   // Week 2
           { team: 'Librizzi', count: 1 },  // Week 3
-          { team: 'Gurv', count: 1 }       // Week 4
+          { team: 'Gurv', count: 1 },      // Week 4
+          { team: 'Nick', count: 1 }       // Week 5
         ]
       };
       renderHighScorerCounts([y2025, y2024, y2022, y2021, y2023, y2020, y2019, season2026HighScorers]);
@@ -960,6 +992,7 @@
       document.getElementById('week2-content').style.display = v === 'week2' ? '' : 'none';
       document.getElementById('week3-content').style.display = v === 'week3' ? '' : 'none';
       document.getElementById('week4-content').style.display = v === 'week4' ? '' : 'none';
+      document.getElementById('week5-content').style.display = v === 'week5' ? '' : 'none';
     });
 
     document.getElementById('season-review-select').addEventListener('change', (e) => {
