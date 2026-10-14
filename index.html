@@ -381,11 +381,7 @@
     </div>
 
     <div id="week5-content">
-      <div class="coming-soon" id="week5-coming-soon">
-        <span class="coming-soon-emoji">&#9203;</span>
-        <div>Coming Soon</div>
-        <p>Week 5 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
-      </div>
+      <div id="week5-list">Loading&hellip;</div>
 
       <div class="week1-matchups">
         <div class="week1-highlights">
@@ -662,7 +658,7 @@
     const CHAMPION = 'Ban defense & kickers';
     const RUNNER_UP = 'Ban Him & Aubrey';
     const OWNER_TO_TEAM_2026 = {
-      'Triangle': 'Ban Him & Aubrey', 'Nick': 'Ban everything', 'JM': 'Co-Authored',
+      'Triangle': 'Ban Him & Aubrey', 'Nick': 'Ban Gibbs Bye', 'JM': 'Co-Authored',
       'Zach': 'Destined for 3rd', 'Librizzi': 'what is happening', 'Masten': 'MILFs',
       'Chris': 'Chasing Victory', 'Gurv': 'Ban defense & kickers', 'Janny': 'end my suffering',
       'Brian': 'not ass per chat'
@@ -717,17 +713,25 @@
     const TEAM_RENAMES = {
       'Ban everything': 'Jeanty want winny',
       'end my suffering': 'Fat Husband',
-      'what is happening': 'on to 2027'
+      'what is happening': 'on to 2027',
+      'Ban Gibbs Bye': 'Ban everything'
     };
     // Old names must still resolve to the owner so "My Team"
     // highlighting keeps working on frozen weeks that used them.
-    Object.entries(TEAM_RENAMES).forEach(([newName, oldName]) => {
-      if (TEAM_2026_TO_OWNER[newName] !== undefined) TEAM_2026_TO_OWNER[oldName] = TEAM_2026_TO_OWNER[newName];
+    Object.entries(OWNER_TO_TEAM_2026).forEach(([owner, current]) => {
+      let n = current;
+      while (TEAM_RENAMES[n]) { n = TEAM_RENAMES[n]; TEAM_2026_TO_OWNER[n] = owner; }
     });
     function withRenameAliases(rankMap) {
       const withAliases = { ...rankMap };
-      Object.entries(TEAM_RENAMES).forEach(([newName, oldName]) => {
-        if (withAliases[oldName] !== undefined) withAliases[newName] = withAliases[oldName];
+      // Follow rename chains (e.g. Ban Gibbs Bye <- Ban everything <-
+      // Jeanty want winny) until a name found in this snapshot.
+      Object.keys(TEAM_RENAMES).forEach(newName => {
+        let n = newName;
+        while (TEAM_RENAMES[n]) {
+          n = TEAM_RENAMES[n];
+          if (withAliases[n] !== undefined) { withAliases[newName] = withAliases[n]; break; }
+        }
       });
       return withAliases;
     }
@@ -803,6 +807,19 @@
       'not ass per chat': { QB: 10, RB: 3, WR: 6, TE: 10, K: 4, DST: 6, FLEX: 9 },
       'Ban defense & kickers': { QB: 4, RB: 8, WR: 7, TE: 1, K: 10, DST: 10, FLEX: 4 }
     };
+    // Week 5 ROS positional ranks from the FantasyPros screenshots.
+    const WEEK5_ROS = {
+      'Ban Gibbs Bye': { QB: 4, RB: 1, WR: 9, TE: 9, K: 3, DST: 10, FLEX: 2 },
+      'Ban Him & Aubrey': { QB: 9, RB: 6, WR: 3, TE: 2, K: 1, DST: 4, FLEX: 4 },
+      'Destined for 3rd': { QB: 1, RB: 7, WR: 2, TE: 7, K: 2, DST: 7, FLEX: 5 },
+      'what is happening': { QB: 3, RB: 4, WR: 8, TE: 3, K: 4, DST: 8, FLEX: 3 },
+      'end my suffering': { QB: 8, RB: 2, WR: 10, TE: 5, K: 5, DST: 2, FLEX: 1 },
+      'MILFs': { QB: 6, RB: 9, WR: 1, TE: 8, K: 8, DST: 3, FLEX: 8 },
+      'not ass per chat': { QB: 10, RB: 3, WR: 6, TE: 10, K: 6, DST: 5, FLEX: 7 },
+      'Ban defense & kickers': { QB: 5, RB: 5, WR: 7, TE: 1, K: 7, DST: 6, FLEX: 9 },
+      'Chasing Victory': { QB: 2, RB: 8, WR: 4, TE: 6, K: 10, DST: 1, FLEX: 10 },
+      'Co-Authored': { QB: 7, RB: 10, WR: 5, TE: 4, K: 10, DST: 10, FLEX: 6 }
+    };
     // Week 5 scoreboard — all 5 matchups final.
     const WEEK5_MATCHUPS = [
       { home: 'Co-Authored', homeScore: 112.90, homeProj: 112.90, away: 'what is happening', awayScore: 181.98, awayProj: 181.98 },
@@ -862,6 +879,7 @@
       fetch('week2.json').then(r => r.json()),
       fetch('week3.json').then(r => r.json()),
       fetch('week4.json').then(r => r.json()),
+      fetch('week5.json').then(r => r.json()),
       fetch('projections.json').then(r => r.json()),
       fetch('trophies.json').then(r => r.json()),
       fetch('best_value.json').then(r => r.json()),
@@ -874,7 +892,7 @@
       fetch('year_2019.json').then(r => r.json()),
       fetch('earnings.json').then(r => r.json()),
       fetch('combined_wins.json').then(r => r.json())
-    ]).then(([week1Snapshot, week2Snapshot, week3Snapshot, week4Snapshot, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
+    ]).then(([week1Snapshot, week2Snapshot, week3Snapshot, week4Snapshot, week5Snapshot, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -925,6 +943,13 @@
         .sort((a, b) => a.rank - b.rank);
       renderWeekList('week4-list', week4Teams, week3RankMap, WEEK4_ROS);
       renderMatchups(WEEK4_MATCHUPS, 'week4-matchup-list');
+      const week4RankMap = withRenameAliases(Object.fromEntries(
+        Object.entries(week4Snapshot).map(([name, d]) => [name, d.rank])
+      ));
+      const week5Teams = Object.entries(week5Snapshot)
+        .map(([name, d]) => ({ name, ...d }))
+        .sort((a, b) => a.rank - b.rank);
+      renderWeekList('week5-list', week5Teams, week4RankMap, WEEK5_ROS);
       renderMatchups(WEEK5_MATCHUPS, 'week5-matchup-list');
 
       renderDigest(projectionsRaw);
