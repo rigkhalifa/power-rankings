@@ -286,7 +286,8 @@
     <div class="week-nav">
       <label for="week-select">Viewing</label>
       <select id="week-select">
-        <option value="week5" selected>Week 5</option>
+        <option value="week6" selected>Week 6</option>
+        <option value="week5">Week 5</option>
         <option value="week4">Week 4</option>
         <option value="week3">Week 3</option>
         <option value="week2">Week 2</option>
@@ -380,7 +381,7 @@
       </div>
     </div>
 
-    <div id="week5-content">
+    <div id="week5-content" style="display:none;">
       <div id="week5-list">Loading&hellip;</div>
 
       <div class="week1-matchups">
@@ -393,6 +394,26 @@
         </div>
         <p class="matchup-status">Week 5 &middot; final results</p>
         <div id="week5-matchup-list" class="matchup-list"></div>
+      </div>
+    </div>
+
+    <div id="week6-content">
+      <div class="coming-soon" id="week6-coming-soon">
+        <span class="coming-soon-emoji">&#9203;</span>
+        <div>Coming Soon</div>
+        <p>Week 6 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
+      </div>
+
+      <div class="week1-matchups">
+        <div class="week1-highlights">
+          <div class="week1-highlight-stat">
+            <span class="week1-highlight-label">Week 6 Top Scorer <span class="matchup-winner">&#128176;</span></span>
+            <span class="week1-highlight-team">Ban Gibbs Bye</span>
+            <span class="week1-highlight-value">155.10 pts</span>
+          </div>
+        </div>
+        <p class="matchup-status">Week 6 &middot; final results</p>
+        <div id="week6-matchup-list" class="matchup-list"></div>
       </div>
     </div>
     </div>
@@ -658,8 +679,8 @@
     const CHAMPION = 'Ban defense & kickers';
     const RUNNER_UP = 'Ban Him & Aubrey';
     const OWNER_TO_TEAM_2026 = {
-      'Triangle': 'Ban Him & Aubrey', 'Nick': 'Ban Gibbs Bye', 'JM': 'Co-Authored',
-      'Zach': 'Destined for 3rd', 'Librizzi': 'what is happening', 'Masten': 'MILFs',
+      'Triangle': 'Ban Him & Aubrey', 'Nick': 'Ban Gibbs Bye', 'JM': 'High Character',
+      'Zach': 'Destined for 3rd', 'Librizzi': 'was nice while it lasted', 'Masten': 'MILFs',
       'Chris': 'Chasing Victory', 'Gurv': 'Ban defense & kickers', 'Janny': 'end my suffering',
       'Brian': 'not ass per chat'
     };
@@ -714,7 +735,9 @@
       'Ban everything': 'Jeanty want winny',
       'end my suffering': 'Fat Husband',
       'what is happening': 'on to 2027',
-      'Ban Gibbs Bye': 'Ban everything'
+      'Ban Gibbs Bye': 'Ban everything',
+      'High Character': 'Co-Authored',
+      'was nice while it lasted': 'what is happening'
     };
     // Old names must still resolve to the owner so "My Team"
     // highlighting keeps working on frozen weeks that used them.
@@ -807,6 +830,14 @@
       'not ass per chat': { QB: 10, RB: 3, WR: 6, TE: 10, K: 4, DST: 6, FLEX: 9 },
       'Ban defense & kickers': { QB: 4, RB: 8, WR: 7, TE: 1, K: 10, DST: 10, FLEX: 4 }
     };
+    // Week 6 scoreboard — all 5 matchups final.
+    const WEEK6_MATCHUPS = [
+      { home: 'High Character', homeScore: 106.70, homeProj: 106.70, away: 'Ban Him & Aubrey', awayScore: 77.64, awayProj: 77.64 },
+      { home: 'Ban defense & kickers', homeScore: 111.28, homeProj: 111.28, away: 'Chasing Victory', awayScore: 78.26, awayProj: 78.26 },
+      { home: 'Ban Gibbs Bye', homeScore: 155.10, homeProj: 155.10, away: 'was nice while it lasted', awayScore: 98.42, awayProj: 98.42 },
+      { home: 'MILFs', homeScore: 82.92, homeProj: 82.92, away: 'Destined for 3rd', awayScore: 127.90, awayProj: 127.90 },
+      { home: 'not ass per chat', homeScore: 136.58, homeProj: 136.58, away: 'end my suffering', awayScore: 110.08, awayProj: 110.08 }
+    ];
     // Week 5 ROS positional ranks from the FantasyPros screenshots.
     const WEEK5_ROS = {
       'Ban Gibbs Bye': { QB: 4, RB: 1, WR: 9, TE: 9, K: 3, DST: 10, FLEX: 2 },
@@ -951,6 +982,7 @@
         .sort((a, b) => a.rank - b.rank);
       renderWeekList('week5-list', week5Teams, week4RankMap, WEEK5_ROS);
       renderMatchups(WEEK5_MATCHUPS, 'week5-matchup-list');
+      renderMatchups(WEEK6_MATCHUPS, 'week6-matchup-list');
 
       renderDigest(projectionsRaw);
       renderTrophies(trophies);
@@ -980,7 +1012,8 @@
           { team: 'Masten', count: 1 },   // Week 2
           { team: 'Librizzi', count: 1 },  // Week 3
           { team: 'Gurv', count: 1 },      // Week 4
-          { team: 'Nick', count: 1 }       // Week 5
+          { team: 'Nick', count: 1 },      // Week 5
+          { team: 'Nick', count: 1 }       // Week 6
         ]
       };
       renderHighScorerCounts([y2025, y2024, y2022, y2021, y2023, y2020, y2019, season2026HighScorers]);
@@ -1018,6 +1051,7 @@
       document.getElementById('week3-content').style.display = v === 'week3' ? '' : 'none';
       document.getElementById('week4-content').style.display = v === 'week4' ? '' : 'none';
       document.getElementById('week5-content').style.display = v === 'week5' ? '' : 'none';
+      document.getElementById('week6-content').style.display = v === 'week6' ? '' : 'none';
     });
 
     document.getElementById('season-review-select').addEventListener('change', (e) => {
