@@ -398,11 +398,7 @@
     </div>
 
     <div id="week6-content">
-      <div class="coming-soon" id="week6-coming-soon">
-        <span class="coming-soon-emoji">&#9203;</span>
-        <div>Coming Soon</div>
-        <p>Week 6 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
-      </div>
+      <div id="week6-list">Loading&hellip;</div>
 
       <div class="week1-matchups">
         <div class="week1-highlights">
@@ -839,6 +835,18 @@
       { home: 'not ass per chat', homeScore: 136.58, homeProj: 136.58, away: 'end my suffering', awayScore: 110.08, awayProj: 110.08 }
     ];
     // Week 5 ROS positional ranks from the FantasyPros screenshots.
+    const WEEK6_ROS = {
+      'Ban Him & Aubrey': { QB: 8, RB: 5, WR: 2, TE: 2, K: 1, DST: 3, FLEX: 4 },
+      'Ban Gibbs Bye': { QB: 4, RB: 1, WR: 8, TE: 4, K: 10, DST: 10, FLEX: 9 },
+      'Destined for 3rd': { QB: 1, RB: 6, WR: 3, TE: 7, K: 2, DST: 4, FLEX: 7 },
+      'was nice while it lasted': { QB: 3, RB: 4, WR: 9, TE: 3, K: 3, DST: 10, FLEX: 2 },
+      'end my suffering': { QB: 9, RB: 2, WR: 10, TE: 6, K: 5, DST: 2, FLEX: 1 },
+      'High Character': { QB: 6, RB: 9, WR: 5, TE: 5, K: 10, DST: 8, FLEX: 3 },
+      'not ass per chat': { QB: 10, RB: 3, WR: 7, TE: 9, K: 6, DST: 6, FLEX: 6 },
+      'Chasing Victory': { QB: 2, RB: 7, WR: 4, TE: 10, K: 4, DST: 1, FLEX: 5 },
+      'MILFs': { QB: 5, RB: 10, WR: 1, TE: 8, K: 10, DST: 5, FLEX: 8 },
+      'Ban defense & kickers': { QB: 7, RB: 8, WR: 6, TE: 1, K: 7, DST: 7, FLEX: 10 }
+    };
     const WEEK5_ROS = {
       'Ban Gibbs Bye': { QB: 4, RB: 1, WR: 9, TE: 9, K: 3, DST: 10, FLEX: 2 },
       'Ban Him & Aubrey': { QB: 9, RB: 6, WR: 3, TE: 2, K: 1, DST: 4, FLEX: 4 },
@@ -911,6 +919,7 @@
       fetch('week3.json').then(r => r.json()),
       fetch('week4.json').then(r => r.json()),
       fetch('week5.json').then(r => r.json()),
+      fetch('week6.json').then(r => r.json()),
       fetch('projections.json').then(r => r.json()),
       fetch('trophies.json').then(r => r.json()),
       fetch('best_value.json').then(r => r.json()),
@@ -923,7 +932,7 @@
       fetch('year_2019.json').then(r => r.json()),
       fetch('earnings.json').then(r => r.json()),
       fetch('combined_wins.json').then(r => r.json())
-    ]).then(([week1Snapshot, week2Snapshot, week3Snapshot, week4Snapshot, week5Snapshot, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
+    ]).then(([week1Snapshot, week2Snapshot, week3Snapshot, week4Snapshot, week5Snapshot, week6Snapshot, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -982,6 +991,13 @@
         .sort((a, b) => a.rank - b.rank);
       renderWeekList('week5-list', week5Teams, week4RankMap, WEEK5_ROS);
       renderMatchups(WEEK5_MATCHUPS, 'week5-matchup-list');
+      const week5RankMap = withRenameAliases(Object.fromEntries(
+        Object.entries(week5Snapshot).map(([name, d]) => [name, d.rank])
+      ));
+      const week6Teams = Object.entries(week6Snapshot)
+        .map(([name, d]) => ({ name, ...d }))
+        .sort((a, b) => a.rank - b.rank);
+      renderWeekList('week6-list', week6Teams, week5RankMap, WEEK6_ROS);
       renderMatchups(WEEK6_MATCHUPS, 'week6-matchup-list');
 
       renderDigest(projectionsRaw);
