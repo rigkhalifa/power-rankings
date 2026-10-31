@@ -59,8 +59,13 @@
     },
     {
       "owner": "JM",
-      "total": 2280,
+      "total": 2315,
       "breakdown": [
+        {
+          "year": "2026",
+          "note": "1 weekly high score",
+          "amount": 35
+        },
         {
           "year": "2025",
           "note": "1 weekly high score",
