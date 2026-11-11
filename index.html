@@ -72,7 +72,7 @@
   .matchup-score.win { font-weight: 700; }
   .matchup-proj { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); margin-top: 3px; }
   .matchup-vs { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--ink-muted); text-align: center; }
-  .matchup-vs.final { color: var(--tier-bad); font-weight: 700; letter-spacing: 0.5px; }
+  .matchup-vs.final { color: var(--ink-muted); font-weight: 600; letter-spacing: 0.5px; }
   [data-owner].my-team { background: rgba(107, 164, 135, 0.08); border-left: 2px solid var(--accent); margin-left: -2px; }
   .matchup-side.my-team { padding: 4px 8px; border-radius: 4px; }
   .matchup-side.right.my-team { border-left: none; border-right: 2px solid var(--accent); margin-left: 0; margin-right: -2px; }
@@ -119,7 +119,36 @@
   .week-delta.flat { color: var(--ink-muted); }
   .week-delta.up { color: var(--tier-good); }
   .week-delta.down { color: var(--tier-bad); }
-  .week-stats { font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 500; color: var(--ink-muted); margin-top: 4px; }
+  .week-stats { font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 500; color: var(--ink-muted); margin-top: 4px; display: flex; flex-wrap: wrap; column-gap: 0; row-gap: 2px; }
+  .week-stats .wg { white-space: nowrap; }
+  .week-stats .wg + .wg::before, .week-stats .ws + .ws::before { content: '\00B7'; margin: 0 8px; color: var(--ink-muted); }
+  .week-stats .ws-owner { color: var(--ink); opacity: 0.85; }
+  .week-delta .dn { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; margin-left: 2px; }
+  .week-masthead { margin-bottom: 8px; }
+  .week-masthead p { margin-bottom: 16px; }
+  .rank-history { max-width: 460px; margin-top: 4px; }
+  .rank-history svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .rank-history .rh-line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+  .rank-history .rh-draft { fill: none; stroke: var(--ink-muted); stroke-width: 2; stroke-dasharray: 4 5; }
+  .rank-history .rh-grid { stroke: var(--divider); stroke-width: 1; }
+  .rank-history .rh-dot { fill: var(--accent); }
+  .rank-history .rh-dot.draft { fill: var(--ink-muted); }
+  .rank-history .rh-dot.now { fill: var(--ink); }
+  .rank-history .rh-rank { font-family: 'IBM Plex Mono', monospace; font-size: 15px; fill: var(--ink); text-anchor: middle; }
+  .rank-history .rh-wk { font-family: 'IBM Plex Mono', monospace; font-size: 13px; fill: var(--ink-muted); text-anchor: middle; }
+  .rank-history .rh-axis { font-family: 'IBM Plex Mono', monospace; font-size: 12px; fill: var(--ink-muted); text-anchor: end; }
+  @media (max-width: 480px) {
+    .row { grid-template-columns: 30px 1fr 14px; gap: 10px; }
+    .rank { font-size: 16px; }
+    .team-name { font-size: 17px; }
+    .row.r1 .team-name { font-size: 18px; }
+    .week-stats { font-size: 13px; flex-direction: column; }
+    .week-stats .wg + .wg::before { content: none; }
+    .week-stats .ws + .ws::before { margin: 0 6px; }
+    .rank-history .rh-rank { font-size: 19px; }
+    .rank-history .rh-wk { font-size: 17px; }
+    .rank-history .rh-axis { font-size: 16px; }
+  }
   .week-detail-line { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-bottom: 1px solid var(--divider); }
   .week-detail-line span:first-child { color: var(--ink-muted); }
   .week-detail-line span:last-child { font-family: 'IBM Plex Mono', monospace; }
@@ -286,15 +315,6 @@
     <div class="week-nav">
       <label for="week-select">Viewing</label>
       <select id="week-select">
-        <option value="week9" selected>Week 9</option>
-        <option value="week8">Week 8</option>
-        <option value="week7">Week 7</option>
-        <option value="week6">Week 6</option>
-        <option value="week5">Week 5</option>
-        <option value="week4">Week 4</option>
-        <option value="week3">Week 3</option>
-        <option value="week2">Week 2</option>
-        <option value="week1">Week 1</option>
         <option value="preseason">Draft</option>
       </select>
     </div>
@@ -320,149 +340,7 @@
     </div>
     </div>
 
-    <div id="week1-content" style="display:none;">
-      <div id="week1-list">Loading&hellip;</div>
-
-      <div class="week1-matchups">
-        <div class="week1-highlights">
-          <div class="week1-highlight-stat">
-            <span class="week1-highlight-label">Week 1 Top Scorer <span class="matchup-winner">&#128176;</span></span>
-            <span class="week1-highlight-team">Destined for 3rd</span>
-            <span class="week1-highlight-value">143.36 pts</span>
-          </div>
-        </div>
-        <p class="matchup-status">Week 1 &middot; final results</p>
-        <div id="week1-matchup-list" class="matchup-list"></div>
-      </div>
-    </div>
-
-    <div id="week2-content" style="display:none;">
-      <div id="week2-list">Loading&hellip;</div>
-
-      <div class="week1-matchups">
-        <div class="week1-highlights">
-          <div class="week1-highlight-stat">
-            <span class="week1-highlight-label">Week 2 Top Scorer <span class="matchup-winner">&#128176;</span></span>
-            <span class="week1-highlight-team">MILFs</span>
-            <span class="week1-highlight-value">141.06 pts</span>
-          </div>
-        </div>
-        <p class="matchup-status">Week 2 &middot; final results</p>
-        <div id="week2-matchup-list" class="matchup-list"></div>
-      </div>
-    </div>
-
-    <div id="week3-content" style="display:none;">
-      <div id="week3-list">Loading&hellip;</div>
-
-      <div class="week1-matchups">
-        <div class="week1-highlights">
-          <div class="week1-highlight-stat">
-            <span class="week1-highlight-label">Week 3 Top Scorer <span class="matchup-winner">&#128176;</span></span>
-            <span class="week1-highlight-team">on to 2027</span>
-            <span class="week1-highlight-value">141.54 pts</span>
-          </div>
-        </div>
-        <p class="matchup-status">Week 3 &middot; final results</p>
-        <div id="week3-matchup-list" class="matchup-list"></div>
-      </div>
-    </div>
-
-    <div id="week4-content" style="display:none;">
-      <div id="week4-list">Loading&hellip;</div>
-
-      <div class="week1-matchups">
-        <div class="week1-highlights">
-          <div class="week1-highlight-stat">
-            <span class="week1-highlight-label">Week 4 Top Scorer <span class="matchup-winner">&#128176;</span></span>
-            <span class="week1-highlight-team">Ban defense &amp; kickers</span>
-            <span class="week1-highlight-value">161.34 pts</span>
-          </div>
-        </div>
-        <p class="matchup-status">Week 4 &middot; final results</p>
-        <div id="week4-matchup-list" class="matchup-list"></div>
-      </div>
-    </div>
-
-    <div id="week5-content" style="display:none;">
-      <div id="week5-list">Loading&hellip;</div>
-
-      <div class="week1-matchups">
-        <div class="week1-highlights">
-          <div class="week1-highlight-stat">
-            <span class="week1-highlight-label">Week 5 Top Scorer <span class="matchup-winner">&#128176;</span></span>
-            <span class="week1-highlight-team">Ban everything</span>
-            <span class="week1-highlight-value">189.16 pts</span>
-          </div>
-        </div>
-        <p class="matchup-status">Week 5 &middot; final results</p>
-        <div id="week5-matchup-list" class="matchup-list"></div>
-      </div>
-    </div>
-
-    <div id="week6-content" style="display:none;">
-      <div id="week6-list">Loading&hellip;</div>
-
-      <div class="week1-matchups">
-        <div class="week1-highlights">
-          <div class="week1-highlight-stat">
-            <span class="week1-highlight-label">Week 6 Top Scorer <span class="matchup-winner">&#128176;</span></span>
-            <span class="week1-highlight-team">Ban Gibbs Bye</span>
-            <span class="week1-highlight-value">155.10 pts</span>
-          </div>
-        </div>
-        <p class="matchup-status">Week 6 &middot; final results</p>
-        <div id="week6-matchup-list" class="matchup-list"></div>
-      </div>
-    </div>
-
-    <div id="week7-content" style="display:none;">
-      <div id="week7-list">Loading&hellip;</div>
-
-      <div class="week1-matchups">
-        <div class="week1-highlights">
-          <div class="week1-highlight-stat">
-            <span class="week1-highlight-label">Week 7 Top Scorer <span class="matchup-winner">&#128176;</span></span>
-            <span class="week1-highlight-team">High Character</span>
-            <span class="week1-highlight-value">154.18 pts</span>
-          </div>
-        </div>
-        <p class="matchup-status">Week 7 &middot; final results</p>
-        <div id="week7-matchup-list" class="matchup-list"></div>
-      </div>
-    </div>
-
-    <div id="week8-content" style="display:none;">
-      <div id="week8-list">Loading&hellip;</div>
-
-      <div class="week1-matchups">
-        <div class="week1-highlights">
-          <div class="week1-highlight-stat">
-            <span class="week1-highlight-label">Week 8 Top Scorer <span class="matchup-winner">&#128176;</span></span>
-            <span class="week1-highlight-team">Destined for 3rd</span>
-            <span class="week1-highlight-value">164.26 pts</span>
-          </div>
-        </div>
-        <p class="matchup-status">Week 8 &middot; final results</p>
-        <div id="week8-matchup-list" class="matchup-list"></div>
-      </div>
-    </div>
-
-    <div id="week9-content">
-      <div id="week9-list">Loading&hellip;</div>
-
-      <div class="week1-matchups">
-        <div class="week1-highlights">
-          <div class="week1-highlight-stat">
-            <span class="week1-highlight-label">Week 9 Top Scorer <span class="matchup-winner">&#128176;</span></span>
-            <span class="week1-highlight-team">Ban Gibbs Bye</span>
-            <span class="week1-highlight-value">157.76 pts</span>
-          </div>
-        </div>
-        <p class="matchup-status">Week 9 &middot; final results</p>
-        <div id="week9-matchup-list" class="matchup-list"></div>
-      </div>
-    </div>
+    <div id="week-views"><div class="empty">Loading&hellip;</div></div>
     </div>
 
     <div id="view-history" style="display:none;">
@@ -736,11 +614,6 @@
     // Season Roster Strength table — this never changes mid-season,
     // so it's safe to hardcode rather than read live. Used only for
     // Week 1's delta arrow (comparing Week 1 to preseason).
-    // Week 1's ROS positional ranks, sourced from the FantasyPros
-    // screenshot sent that week. Week 1 is now frozen/historical —
-    // this map stays fixed forever alongside week1.json. Each new
-    // week gets its own ROS map (WEEK2_ROS, WEEK3_ROS, ...) built the
-    // same way once that week's FantasyPros screenshot comes in.
     // Inline SVG instead of a Unicode triangle character — some
     // platforms (notably iOS) render certain Unicode symbols with a
     // default full-color emoji glyph that ignores CSS color and
@@ -752,18 +625,6 @@
       down: '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M5 9L1 2H9L5 9Z"/></svg>',
       flat: '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><rect x="1" y="4.25" width="8" height="1.5" rx="0.75"/></svg>'
     };
-    const ROS_PROJECTIONS = {
-      'Ban Him & Aubrey': { QB: 3, RB: 5, WR: 3, TE: 1, K: 1, DST: 3, FLEX: 9 },
-      'Jeanty want winny': { QB: 5, RB: 1, WR: 10, TE: 4, K: 10, DST: 5, FLEX: 5 },
-      'Co-Authored': { QB: 6, RB: 10, WR: 4, TE: 3, K: 4, DST: 10, FLEX: 4 },
-      'Destined for 3rd': { QB: 1, RB: 9, WR: 5, TE: 7, K: 2, DST: 2, FLEX: 3 },
-      'on to 2027': { QB: 2, RB: 4, WR: 9, TE: 5, K: 8, DST: 10, FLEX: 1 },
-      'MILFs': { QB: 9, RB: 8, WR: 1, TE: 8, K: 5, DST: 10, FLEX: 7 },
-      'Chasing Victory': { QB: 4, RB: 7, WR: 2, TE: 9, K: 3, DST: 1, FLEX: 2 },
-      'Ban defense & kickers': { QB: 10, RB: 6, WR: 8, TE: 2, K: 6, DST: 10, FLEX: 6 },
-      'Fat Husband': { QB: 8, RB: 2, WR: 6, TE: 6, K: 9, DST: 4, FLEX: 8 },
-      'not ass per chat': { QB: 7, RB: 3, WR: 7, TE: 10, K: 7, DST: 6, FLEX: 10 }
-    };
     const PRESEASON_RANK = {
       'Ban Him & Aubrey': 1, 'Jeanty want winny': 2, 'Co-Authored': 3,
       'Destined for 3rd': 4, 'on to 2027': 5, 'MILFs': 6,
@@ -774,10 +635,9 @@
     // frozen prior-week snapshots). A rename doesn't change who the
     // team IS, just what the live API now calls them, so the delta
     // arrow needs this alias to keep finding last week's rank under
-    // the new name. PRESEASON_RANK, WEEK1_MATCHUPS, ROS_PROJECTIONS
-    // and week1.json stay untouched — they're frozen history and
-    // correctly reflect the name as of that week. Add a new entry
-    // here each time a team renames mid-season.
+    // the new name. Weekly pages no longer need this (each weekN.json
+    // carries owners); it now only serves the Draft page and best-value
+    // lists, which use preseason names.
     const TEAM_RENAMES = {
       'Ban everything': 'Jeanty want winny',
       'end my suffering': 'Fat Husband',
@@ -793,199 +653,6 @@
       let n = current;
       while (TEAM_RENAMES[n]) { n = TEAM_RENAMES[n]; TEAM_2026_TO_OWNER[n] = owner; }
     });
-    function withRenameAliases(rankMap) {
-      const withAliases = { ...rankMap };
-      // Follow rename chains (e.g. Ban Gibbs Bye <- Ban everything <-
-      // Jeanty want winny) until a name found in this snapshot.
-      Object.keys(TEAM_RENAMES).forEach(newName => {
-        let n = newName;
-        while (TEAM_RENAMES[n]) {
-          n = TEAM_RENAMES[n];
-          if (withAliases[n] !== undefined) { withAliases[newName] = withAliases[n]; break; }
-        }
-      });
-      return withAliases;
-    }
-    // Week 1's matchup scoreboard, frozen alongside week1.json — this
-    // week is fully decided forever, so proj is just set equal to the
-    // final score on both sides (guarantees the shared "final" check
-    // below always reads both sides as final, no separate code path
-    // needed for historical weeks).
-    const WEEK1_MATCHUPS = [
-      { home: 'Co-Authored', homeScore: 125.86, homeProj: 125.86, away: 'Jeanty want winny', awayScore: 118.36, awayProj: 118.36 },
-      { home: 'Ban Him & Aubrey', homeScore: 141.82, homeProj: 141.82, away: 'Ban defense & kickers', awayScore: 100.34, awayProj: 100.34 },
-      { home: 'MILFs', homeScore: 129.50, homeProj: 129.50, away: 'on to 2027', awayScore: 91.96, awayProj: 91.96 },
-      { home: 'Destined for 3rd', homeScore: 143.36, homeProj: 143.36, away: 'not ass per chat', awayScore: 142.46, awayProj: 142.46 },
-      { home: 'Fat Husband', homeScore: 121.00, homeProj: 121.00, away: 'Chasing Victory', awayScore: 139.76, awayProj: 139.76 }
-    ];
-    // Week 2's ROS positional ranks, sourced from the FantasyPros
-    // screenshots sent Wednesday morning (same pattern as
-    // ROS_PROJECTIONS for Week 1). Keyed by the current (live) team
-    // name, since this is the live week, not a frozen snapshot.
-    const WEEK2_ROS = {
-      'Ban Him & Aubrey': { QB: 3, RB: 4, WR: 5, TE: 1, K: 1, DST: 2, FLEX: 9 },
-      'Fat Husband': { QB: 10, RB: 2, WR: 6, TE: 3, K: 10, DST: 4, FLEX: 7 },
-      'Ban everything': { QB: 9, RB: 1, WR: 10, TE: 4, K: 10, DST: 10, FLEX: 6 },
-      'MILFs': { QB: 6, RB: 8, WR: 1, TE: 10, K: 3, DST: 10, FLEX: 5 },
-      'Destined for 3rd': { QB: 1, RB: 9, WR: 4, TE: 7, K: 2, DST: 3, FLEX: 3 },
-      'Co-Authored': { QB: 4, RB: 10, WR: 3, TE: 5, K: 10, DST: 10, FLEX: 1 },
-      'Chasing Victory': { QB: 5, RB: 7, WR: 2, TE: 8, K: 4, DST: 1, FLEX: 2 },
-      'on to 2027': { QB: 2, RB: 5, WR: 9, TE: 6, K: 10, DST: 10, FLEX: 4 },
-      'Ban defense & kickers': { QB: 7, RB: 6, WR: 8, TE: 2, K: 10, DST: 10, FLEX: 8 },
-      'not ass per chat': { QB: 8, RB: 3, WR: 7, TE: 9, K: 5, DST: 5, FLEX: 10 }
-    };
-    // Week 2 is now frozen history (week2.json) — its matchups are
-    // fully decided forever, same treatment as WEEK1_MATCHUPS.
-    const WEEK2_MATCHUPS = [
-      { home: 'Co-Authored', homeScore: 103.44, homeProj: 103.44, away: 'Chasing Victory', awayScore: 100.32, awayProj: 100.32 },
-      { home: 'Ban Him & Aubrey', homeScore: 102.06, homeProj: 102.06, away: 'on to 2027', awayScore: 122.50, awayProj: 122.50 },
-      { home: 'Ban defense & kickers', homeScore: 108.38, homeProj: 108.38, away: 'not ass per chat', awayScore: 132.48, awayProj: 132.48 },
-      { home: 'Ban everything', homeScore: 117.58, homeProj: 117.58, away: 'MILFs', awayScore: 141.06, awayProj: 141.06 },
-      { home: 'Destined for 3rd', homeScore: 132.12, homeProj: 132.12, away: 'Fat Husband', awayScore: 101.60, awayProj: 101.60 }
-    ];
-    const WEEK3_ROS = {
-      'Ban Him & Aubrey': { QB: 5, RB: 5, WR: 5, TE: 2, K: 1, DST: 2, FLEX: 8 },
-      'Fat Husband': { QB: 8, RB: 2, WR: 9, TE: 4, K: 10, DST: 3, FLEX: 3 },
-      'Ban everything': { QB: 9, RB: 1, WR: 10, TE: 3, K: 3, DST: 10, FLEX: 7 },
-      'MILFs': { QB: 7, RB: 9, WR: 1, TE: 10, K: 10, DST: 10, FLEX: 9 },
-      'Destined for 3rd': { QB: 1, RB: 8, WR: 2, TE: 7, K: 2, DST: 5, FLEX: 1 },
-      'Co-Authored': { QB: 4, RB: 10, WR: 4, TE: 6, K: 10, DST: 10, FLEX: 2 },
-      'Chasing Victory': { QB: 3, RB: 7, WR: 3, TE: 8, K: 4, DST: 1, FLEX: 4 },
-      'on to 2027': { QB: 2, RB: 4, WR: 8, TE: 5, K: 10, DST: 10, FLEX: 6 },
-      'Ban defense & kickers': { QB: 6, RB: 6, WR: 6, TE: 1, K: 6, DST: 6, FLEX: 5 },
-      'not ass per chat': { QB: 10, RB: 3, WR: 7, TE: 9, K: 5, DST: 4, FLEX: 10 }
-    };
-    // Week 3 is now frozen history (week3.json) — its matchups are
-    // fully decided forever, same treatment as WEEK1_MATCHUPS and
-    // WEEK2_MATCHUPS.
-    const WEEK3_MATCHUPS = [
-      { home: 'Co-Authored', homeScore: 89.48, homeProj: 89.48, away: 'Destined for 3rd', awayScore: 129.86, awayProj: 129.86 },
-      { home: 'Ban Him & Aubrey', homeScore: 136.82, homeProj: 136.82, away: 'MILFs', awayScore: 131.00, awayProj: 131.00 },
-      { home: 'Ban defense & kickers', homeScore: 140.34, homeProj: 140.34, away: 'Fat Husband', awayScore: 127.70, awayProj: 127.70 },
-      { home: 'Ban everything', homeScore: 126.68, homeProj: 126.68, away: 'Chasing Victory', awayScore: 122.98, awayProj: 122.98 },
-      { home: 'on to 2027', homeScore: 141.54, homeProj: 141.54, away: 'not ass per chat', awayScore: 89.94, awayProj: 89.94 }
-    ];
-    // Week 4 ROS positional ranks from the FantasyPros screenshots.
-    const WEEK4_ROS = {
-      'Ban everything': { QB: 8, RB: 1, WR: 10, TE: 3, K: 3, DST: 10, FLEX: 10 },
-      'Destined for 3rd': { QB: 1, RB: 7, WR: 2, TE: 7, K: 2, DST: 4, FLEX: 2 },
-      'Ban Him & Aubrey': { QB: 7, RB: 5, WR: 5, TE: 2, K: 1, DST: 3, FLEX: 5 },
-      'end my suffering': { QB: 9, RB: 2, WR: 9, TE: 4, K: 5, DST: 2, FLEX: 1 },
-      'MILFs': { QB: 5, RB: 9, WR: 1, TE: 9, K: 10, DST: 5, FLEX: 8 },
-      'on to 2027': { QB: 3, RB: 4, WR: 8, TE: 5, K: 10, DST: 10, FLEX: 6 },
-      'Chasing Victory': { QB: 2, RB: 6, WR: 3, TE: 8, K: 10, DST: 1, FLEX: 7 },
-      'Co-Authored': { QB: 6, RB: 10, WR: 4, TE: 6, K: 10, DST: 10, FLEX: 3 },
-      'not ass per chat': { QB: 10, RB: 3, WR: 6, TE: 10, K: 4, DST: 6, FLEX: 9 },
-      'Ban defense & kickers': { QB: 4, RB: 8, WR: 7, TE: 1, K: 10, DST: 10, FLEX: 4 }
-    };
-    // Week 6 scoreboard — all 5 matchups final.
-    const WEEK6_MATCHUPS = [
-      { home: 'High Character', homeScore: 106.70, homeProj: 106.70, away: 'Ban Him & Aubrey', awayScore: 77.64, awayProj: 77.64 },
-      { home: 'Ban defense & kickers', homeScore: 111.28, homeProj: 111.28, away: 'Chasing Victory', awayScore: 78.26, awayProj: 78.26 },
-      { home: 'Ban Gibbs Bye', homeScore: 155.10, homeProj: 155.10, away: 'was nice while it lasted', awayScore: 98.42, awayProj: 98.42 },
-      { home: 'MILFs', homeScore: 82.92, homeProj: 82.92, away: 'Destined for 3rd', awayScore: 127.90, awayProj: 127.90 },
-      { home: 'not ass per chat', homeScore: 136.58, homeProj: 136.58, away: 'end my suffering', awayScore: 110.08, awayProj: 110.08 }
-    ];
-    const WEEK9_MATCHUPS = [
-      { home: 'High Character', homeScore: 111.74, homeProj: 111.74, away: 'MILFs', awayScore: 103.00, awayProj: 103.00 },
-      { home: 'Vice City Golf Club', homeScore: 130.94, homeProj: 130.94, away: 'Destined for 3rd', awayScore: 101.26, awayProj: 101.26 },
-      { home: 'Ban defense & kickers', homeScore: 129.48, homeProj: 129.48, away: 'was nice while it lasted', awayScore: 110.04, awayProj: 110.04 },
-      { home: 'Ban Gibbs Bye', homeScore: 157.76, homeProj: 157.76, away: 'end my suffering', awayScore: 96.02, awayProj: 96.02 },
-      { home: 'not ass per chat', homeScore: 128.26, homeProj: 128.26, away: 'Chasing Victory', awayScore: 128.68, awayProj: 128.68 }
-    ];
-    const WEEK8_MATCHUPS = [
-      { home: 'High Character', homeScore: 150.78, homeProj: 150.78, away: 'end my suffering', awayScore: 83.28, awayProj: 83.28 },
-      { home: 'Vice City Golf Club', homeScore: 143.56, homeProj: 143.56, away: 'Chasing Victory', awayScore: 107.98, awayProj: 107.98 },
-      { home: 'Ban defense & kickers', homeScore: 124.34, homeProj: 124.34, away: 'MILFs', awayScore: 105.40, awayProj: 105.40 },
-      { home: 'Ban Gibbs Bye', homeScore: 131.46, homeProj: 131.46, away: 'not ass per chat', awayScore: 116.78, awayProj: 116.78 },
-      { home: 'was nice while it lasted', homeScore: 110.50, homeProj: 110.50, away: 'Destined for 3rd', awayScore: 164.26, awayProj: 164.26 }
-    ];
-    const WEEK7_MATCHUPS = [
-      { home: 'High Character', homeScore: 154.18, homeProj: 154.18, away: 'not ass per chat', awayScore: 87.72, awayProj: 87.72 },
-      { home: 'end my suffering', homeScore: 109.00, homeProj: 109.00, away: 'MILFs', awayScore: 107.52, awayProj: 107.52 },
-      { home: 'Ban Gibbs Bye', homeScore: 113.54, homeProj: 113.54, away: 'Vice City Golf Club', awayScore: 99.32, awayProj: 99.32 },
-      { home: 'was nice while it lasted', homeScore: 102.18, homeProj: 102.18, away: 'Chasing Victory', awayScore: 127.22, awayProj: 127.22 },
-      { home: 'Destined for 3rd', homeScore: 128.20, homeProj: 128.20, away: 'Ban defense & kickers', awayScore: 126.42, awayProj: 126.42 }
-    ];
-    // Week 5 ROS positional ranks from the FantasyPros screenshots.
-    const WEEK9_ROS = {
-      'High Character': { QB: 2, RB: 7, WR: 8, TE: 3, K: 3, DST: 6, FLEX: 2 },
-      'Ban Gibbs Bye': { QB: 4, RB: 1, WR: 4, TE: 4, K: 10, DST: 3, FLEX: 6 },
-      'Destined for 3rd': { QB: 1, RB: 6, WR: 7, TE: 7, K: 1, DST: 8, FLEX: 1 },
-      'was nice while it lasted': { QB: 10, RB: 3, WR: 6, TE: 5, K: 10, DST: 7, FLEX: 4 },
-      'Chasing Victory': { QB: 3, RB: 5, WR: 3, TE: 9, K: 5, DST: 2, FLEX: 8 },
-      'Ban defense & kickers': { QB: 8, RB: 8, WR: 2, TE: 1, K: 10, DST: 9, FLEX: 9 },
-      'Vice City Golf Club': { QB: 6, RB: 9, WR: 5, TE: 2, K: 2, DST: 4, FLEX: 5 },
-      'end my suffering': { QB: 9, RB: 2, WR: 10, TE: 6, K: 4, DST: 1, FLEX: 3 },
-      'not ass per chat': { QB: 7, RB: 4, WR: 9, TE: 8, K: 10, DST: 5, FLEX: 7 },
-      'MILFs': { QB: 5, RB: 10, WR: 1, TE: 10, K: 10, DST: 10, FLEX: 10 }
-    };
-    const WEEK8_ROS = {
-      'Ban Gibbs Bye': { QB: 3, RB: 1, WR: 6, TE: 4, K: 10, DST: 3, FLEX: 7 },
-      'Destined for 3rd': { QB: 1, RB: 5, WR: 4, TE: 7, K: 2, DST: 4, FLEX: 1 },
-      'Vice City Golf Club': { QB: 9, RB: 9, WR: 2, TE: 2, K: 1, DST: 5, FLEX: 3 },
-      'High Character': { QB: 2, RB: 6, WR: 9, TE: 3, K: 10, DST: 10, FLEX: 2 },
-      'was nice while it lasted': { QB: 10, RB: 4, WR: 7, TE: 5, K: 10, DST: 10, FLEX: 6 },
-      'end my suffering': { QB: 7, RB: 2, WR: 10, TE: 6, K: 3, DST: 1, FLEX: 4 },
-      'Ban defense & kickers': { QB: 6, RB: 8, WR: 5, TE: 1, K: 10, DST: 6, FLEX: 9 },
-      'Chasing Victory': { QB: 4, RB: 7, WR: 3, TE: 9, K: 4, DST: 2, FLEX: 5 },
-      'not ass per chat': { QB: 8, RB: 3, WR: 8, TE: 8, K: 10, DST: 7, FLEX: 8 },
-      'MILFs': { QB: 5, RB: 10, WR: 1, TE: 10, K: 10, DST: 10, FLEX: 10 }
-    };
-    const WEEK7_ROS = {
-      'Ban Gibbs Bye': { QB: 2, RB: 1, WR: 7, TE: 3, K: 10, DST: 3, FLEX: 8 },
-      'Vice City Golf Club': { QB: 9, RB: 6, WR: 2, TE: 2, K: 1, DST: 5, FLEX: 5 },
-      'was nice while it lasted': { QB: 4, RB: 4, WR: 9, TE: 4, K: 10, DST: 10, FLEX: 2 },
-      'Destined for 3rd': { QB: 1, RB: 5, WR: 5, TE: 8, K: 2, DST: 7, FLEX: 6 },
-      'end my suffering': { QB: 8, RB: 2, WR: 10, TE: 10, K: 3, DST: 1, FLEX: 1 },
-      'High Character': { QB: 5, RB: 7, WR: 4, TE: 5, K: 10, DST: 10, FLEX: 3 },
-      'Chasing Victory': { QB: 3, RB: 8, WR: 3, TE: 9, K: 4, DST: 2, FLEX: 4 },
-      'not ass per chat': { QB: 10, RB: 3, WR: 8, TE: 7, K: 10, DST: 6, FLEX: 9 },
-      'MILFs': { QB: 6, RB: 10, WR: 1, TE: 6, K: 5, DST: 10, FLEX: 7 },
-      'Ban defense & kickers': { QB: 7, RB: 9, WR: 6, TE: 1, K: 10, DST: 4, FLEX: 10 }
-    };
-    const WEEK6_ROS = {
-      'Ban Him & Aubrey': { QB: 8, RB: 5, WR: 2, TE: 2, K: 1, DST: 3, FLEX: 4 },
-      'Ban Gibbs Bye': { QB: 4, RB: 1, WR: 8, TE: 4, K: 10, DST: 10, FLEX: 9 },
-      'Destined for 3rd': { QB: 1, RB: 6, WR: 3, TE: 7, K: 2, DST: 4, FLEX: 7 },
-      'was nice while it lasted': { QB: 3, RB: 4, WR: 9, TE: 3, K: 3, DST: 10, FLEX: 2 },
-      'end my suffering': { QB: 9, RB: 2, WR: 10, TE: 6, K: 5, DST: 2, FLEX: 1 },
-      'High Character': { QB: 6, RB: 9, WR: 5, TE: 5, K: 10, DST: 8, FLEX: 3 },
-      'not ass per chat': { QB: 10, RB: 3, WR: 7, TE: 9, K: 6, DST: 6, FLEX: 6 },
-      'Chasing Victory': { QB: 2, RB: 7, WR: 4, TE: 10, K: 4, DST: 1, FLEX: 5 },
-      'MILFs': { QB: 5, RB: 10, WR: 1, TE: 8, K: 10, DST: 5, FLEX: 8 },
-      'Ban defense & kickers': { QB: 7, RB: 8, WR: 6, TE: 1, K: 7, DST: 7, FLEX: 10 }
-    };
-    const WEEK5_ROS = {
-      'Ban Gibbs Bye': { QB: 4, RB: 1, WR: 9, TE: 9, K: 3, DST: 10, FLEX: 2 },
-      'Ban Him & Aubrey': { QB: 9, RB: 6, WR: 3, TE: 2, K: 1, DST: 4, FLEX: 4 },
-      'Destined for 3rd': { QB: 1, RB: 7, WR: 2, TE: 7, K: 2, DST: 7, FLEX: 5 },
-      'what is happening': { QB: 3, RB: 4, WR: 8, TE: 3, K: 4, DST: 8, FLEX: 3 },
-      'end my suffering': { QB: 8, RB: 2, WR: 10, TE: 5, K: 5, DST: 2, FLEX: 1 },
-      'MILFs': { QB: 6, RB: 9, WR: 1, TE: 8, K: 8, DST: 3, FLEX: 8 },
-      'not ass per chat': { QB: 10, RB: 3, WR: 6, TE: 10, K: 6, DST: 5, FLEX: 7 },
-      'Ban defense & kickers': { QB: 5, RB: 5, WR: 7, TE: 1, K: 7, DST: 6, FLEX: 9 },
-      'Chasing Victory': { QB: 2, RB: 8, WR: 4, TE: 6, K: 10, DST: 1, FLEX: 10 },
-      'Co-Authored': { QB: 7, RB: 10, WR: 5, TE: 4, K: 10, DST: 10, FLEX: 6 }
-    };
-    // Week 5 scoreboard — all 5 matchups final.
-    const WEEK5_MATCHUPS = [
-      { home: 'Co-Authored', homeScore: 112.90, homeProj: 112.90, away: 'what is happening', awayScore: 181.98, awayProj: 181.98 },
-      { home: 'Ban Him & Aubrey', homeScore: 151.58, homeProj: 151.58, away: 'end my suffering', awayScore: 127.52, awayProj: 127.52 },
-      { home: 'Ban defense & kickers', homeScore: 101.74, homeProj: 101.74, away: 'Ban everything', awayScore: 189.16, awayProj: 189.16 },
-      { home: 'MILFs', homeScore: 100.94, homeProj: 100.94, away: 'not ass per chat', awayScore: 73.10, awayProj: 73.10 },
-      { home: 'Destined for 3rd', homeScore: 124.50, homeProj: 124.50, away: 'Chasing Victory', awayScore: 122.66, awayProj: 122.66 }
-    ];
-    // Week 4 is frozen from the moment it goes live (week4.json) —
-    // no live sheet fetch.
-    // Week 4 scoreboard — all 5 matchups final.
-    const WEEK4_MATCHUPS = [
-      { home: 'Co-Authored', homeScore: 119.32, homeProj: 119.32, away: 'Ban defense & kickers', awayScore: 161.34, awayProj: 161.34 },
-      { home: 'Ban Him & Aubrey', homeScore: 101.92, homeProj: 101.92, away: 'not ass per chat', awayScore: 144.42, awayProj: 144.42 },
-      { home: 'Ban everything', homeScore: 133.58, homeProj: 133.58, away: 'Destined for 3rd', awayScore: 113.92, awayProj: 113.92 },
-      { home: 'MILFs', homeScore: 108.00, homeProj: 108.00, away: 'Chasing Victory', awayScore: 91.56, awayProj: 91.56 },
-      { home: 'on to 2027', homeScore: 142.88, homeProj: 142.88, away: 'end my suffering', awayScore: 131.88, awayProj: 131.88 }
-    ];
     function getMyTeam() {
       try { return localStorage.getItem('myTeam') || ''; } catch (e) { return ''; }
     }
@@ -1022,16 +689,51 @@
       return String(s).normalize('NFKC').trim().toLowerCase();
     }
 
-    Promise.all([
-      fetch('week1.json').then(r => r.json()),
-      fetch('week2.json').then(r => r.json()),
-      fetch('week3.json').then(r => r.json()),
-      fetch('week4.json').then(r => r.json()),
-      fetch('week5.json').then(r => r.json()),
-      fetch('week6.json').then(r => r.json()),
-      fetch('week7.json').then(r => r.json()),
-      fetch('week8.json').then(r => r.json()),
-      fetch('week9.json').then(r => r.json()),
+    // ---- 2026 weekly data ------------------------------------------
+    // Every week lives entirely in its own weekN.json: top scorer,
+    // final scoreboard, and (once posted Wednesday) the rankings with
+    // each team's ROS bars. Each team / matchup side carries its OWNER,
+    // so delta arrows, "Your team" highlighting and the high-scorer
+    // count all follow owners and survive any number of renames.
+    // Posting a new week = uploading weekN.json. index.html never
+    // needs editing for a normal week. "rankings": null shows the
+    // Coming Soon panel.
+    const MAX_WEEKS = 18;
+    const PRESEASON_BY_OWNER = Object.fromEntries(
+      Object.entries(PRESEASON_RANK).map(([name, rank]) => [TEAM_2026_TO_OWNER[name], rank])
+    );
+    function loadWeek(n) {
+      return fetch(`week${n}.json`, { cache: 'no-cache' })
+        .then(r => (r.ok ? r.json() : null))
+        .then(d => normalizeWeek(n, d))
+        .catch(() => null);
+    }
+    // Accepts the current format, plus the old name-keyed snapshot
+    // format as a fallback so a half-finished upload degrades instead
+    // of breaking the page.
+    function normalizeWeek(n, d) {
+      if (!d || typeof d !== 'object') return null;
+      if (d.week !== undefined) return d;
+      const rankings = Object.entries(d).map(([team, v]) => ({ team, owner: TEAM_2026_TO_OWNER[team] || '', ...v, ros: null }))
+        .sort((a, b) => a.rank - b.rank);
+      return { week: n, topScorer: null, matchups: [], rankings };
+    }
+
+    const weeksPromise = Promise.all(Array.from({ length: MAX_WEEKS }, (_, i) => loadWeek(i + 1)))
+      .then(all => {
+        const weeks = [];
+        for (const w of all) { if (!w) break; weeks.push(w); }
+        renderSeason(weeks);
+        return weeks;
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('week-views').innerHTML =
+          '<div class="error">Couldn\'t load this week\'s rankings. Try refreshing.</div>';
+        return [];
+      });
+
+    const dataPromise = Promise.all([
       fetch('projections.json').then(r => r.json()),
       fetch('trophies.json').then(r => r.json()),
       fetch('best_value.json').then(r => r.json()),
@@ -1044,7 +746,7 @@
       fetch('year_2019.json').then(r => r.json()),
       fetch('earnings.json').then(r => r.json()),
       fetch('combined_wins.json').then(r => r.json())
-    ]).then(([week1Snapshot, week2Snapshot, week3Snapshot, week4Snapshot, week5Snapshot, week6Snapshot, week7Snapshot, week8Snapshot, week9Snapshot, projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
+    ]).then(([projectionsRaw, trophies, bestValue, y2025, y2024, y2022, y2021, y2023, y2020, y2019, earnings, wins]) => {
       const projections = {};
       Object.keys(projectionsRaw).forEach(key => {
         projections[normalizeName(key)] = projectionsRaw[key];
@@ -1053,88 +755,6 @@
         .map(([name, rank]) => ({ name, rank }))
         .sort((a, b) => a.rank - b.rank);
       renderList(draftTeams, projections);
-
-      // Week 1 is now frozen history: render straight from the saved
-      // snapshot rather than the live sheet, so it never drifts once
-      // the sheet moves on.
-      const week1Teams = Object.entries(week1Snapshot)
-        .map(([name, d]) => ({ name, ...d }))
-        .sort((a, b) => a.rank - b.rank);
-      renderWeekList('week1-list', week1Teams, PRESEASON_RANK, ROS_PROJECTIONS);
-      renderMatchups(WEEK1_MATCHUPS, 'week1-matchup-list');
-
-      const week1RankMap = withRenameAliases(Object.fromEntries(
-        Object.entries(week1Snapshot).map(([name, d]) => [name, d.rank])
-      ));
-
-      // Week 2 is now frozen history too, same treatment as Week 1:
-      // render straight from its saved snapshot, delta compares
-      // against Week 1's snapshot.
-      const week2Teams = Object.entries(week2Snapshot)
-        .map(([name, d]) => ({ name, ...d }))
-        .sort((a, b) => a.rank - b.rank);
-      renderWeekList('week2-list', week2Teams, week1RankMap, WEEK2_ROS);
-      renderMatchups(WEEK2_MATCHUPS, 'week2-matchup-list');
-
-      // Week 3 is now frozen history too, same treatment as Weeks 1
-      // and 2: render straight from its saved snapshot, delta
-      // compares against the Week 2 snapshot.
-      const week2RankMap = withRenameAliases(Object.fromEntries(
-        Object.entries(week2Snapshot).map(([name, d]) => [name, d.rank])
-      ));
-      const week3Teams = Object.entries(week3Snapshot)
-        .map(([name, d]) => ({ name, ...d }))
-        .sort((a, b) => a.rank - b.rank);
-      renderWeekList('week3-list', week3Teams, week2RankMap, WEEK3_ROS);
-      renderMatchups(WEEK3_MATCHUPS, 'week3-matchup-list');
-      const week3RankMap = withRenameAliases(Object.fromEntries(
-        Object.entries(week3Snapshot).map(([name, d]) => [name, d.rank])
-      ));
-      const week4Teams = Object.entries(week4Snapshot)
-        .map(([name, d]) => ({ name, ...d }))
-        .sort((a, b) => a.rank - b.rank);
-      renderWeekList('week4-list', week4Teams, week3RankMap, WEEK4_ROS);
-      renderMatchups(WEEK4_MATCHUPS, 'week4-matchup-list');
-      const week4RankMap = withRenameAliases(Object.fromEntries(
-        Object.entries(week4Snapshot).map(([name, d]) => [name, d.rank])
-      ));
-      const week5Teams = Object.entries(week5Snapshot)
-        .map(([name, d]) => ({ name, ...d }))
-        .sort((a, b) => a.rank - b.rank);
-      renderWeekList('week5-list', week5Teams, week4RankMap, WEEK5_ROS);
-      renderMatchups(WEEK5_MATCHUPS, 'week5-matchup-list');
-      const week5RankMap = withRenameAliases(Object.fromEntries(
-        Object.entries(week5Snapshot).map(([name, d]) => [name, d.rank])
-      ));
-      const week6Teams = Object.entries(week6Snapshot)
-        .map(([name, d]) => ({ name, ...d }))
-        .sort((a, b) => a.rank - b.rank);
-      renderWeekList('week6-list', week6Teams, week5RankMap, WEEK6_ROS);
-      renderMatchups(WEEK6_MATCHUPS, 'week6-matchup-list');
-      const week6RankMap = withRenameAliases(Object.fromEntries(
-        Object.entries(week6Snapshot).map(([name, d]) => [name, d.rank])
-      ));
-      const week7Teams = Object.entries(week7Snapshot)
-        .map(([name, d]) => ({ name, ...d }))
-        .sort((a, b) => a.rank - b.rank);
-      renderWeekList('week7-list', week7Teams, week6RankMap, WEEK7_ROS);
-      renderMatchups(WEEK7_MATCHUPS, 'week7-matchup-list');
-      const week7RankMap = withRenameAliases(Object.fromEntries(
-        Object.entries(week7Snapshot).map(([name, d]) => [name, d.rank])
-      ));
-      const week8Teams = Object.entries(week8Snapshot)
-        .map(([name, d]) => ({ name, ...d }))
-        .sort((a, b) => a.rank - b.rank);
-      renderWeekList('week8-list', week8Teams, week7RankMap, WEEK8_ROS);
-      renderMatchups(WEEK8_MATCHUPS, 'week8-matchup-list');
-      const week8RankMap = withRenameAliases(Object.fromEntries(
-        Object.entries(week8Snapshot).map(([name, d]) => [name, d.rank])
-      ));
-      const week9Teams = Object.entries(week9Snapshot)
-        .map(([name, d]) => ({ name, ...d }))
-        .sort((a, b) => a.rank - b.rank);
-      renderWeekList('week9-list', week9Teams, week8RankMap, WEEK9_ROS);
-      renderMatchups(WEEK9_MATCHUPS, 'week9-matchup-list');
 
       renderDigest(projectionsRaw);
       renderTrophies(trophies);
@@ -1150,34 +770,110 @@
       renderWins(wins);
       renderPlayoffs(wins);
       renderRecords();
-      // 2026 is still in progress, so there's no full year_2026.json
-      // season-review file yet (that gets built once the season ends,
-      // same as the others). Its weekly high scorers are tracked here
-      // instead, in the same {team, count} shape the historical files
-      // use — team is really the OWNER name for these older files,
-      // matching how renderHighScorerCounts and renderYearReview both
-      // already treat "team" as the data-owner key. Add to this list
-      // each week a new high scorer is confirmed.
-      const season2026HighScorers = {
-        high_scorers: [
-          { team: 'Zach', count: 1 },     // Week 1
-          { team: 'Masten', count: 1 },   // Week 2
-          { team: 'Librizzi', count: 1 },  // Week 3
-          { team: 'Gurv', count: 1 },      // Week 4
-          { team: 'Nick', count: 1 },      // Week 5
-          { team: 'Nick', count: 1 },      // Week 6
-          { team: 'JM', count: 1 },        // Week 7
-          { team: 'Zach', count: 1 },      // Week 8
-          { team: 'Nick', count: 1 }       // Week 9
-        ]
-      };
-      renderHighScorerCounts([y2025, y2024, y2022, y2021, y2023, y2020, y2019, season2026HighScorers]);
-      applyMyTeamHighlight();
+      return [y2025, y2024, y2022, y2021, y2023, y2020, y2019];
     }).catch(err => {
       document.getElementById('list').innerHTML =
         '<div class="error">Couldn\'t load rankings. Try refreshing.</div>';
       console.error(err);
+      return null;
     });
+
+    // 2026 weekly high scorers come straight from each week's
+    // topScorer.owner, so the Trophy Case count updates the moment a
+    // week's file is uploaded.
+    Promise.all([weeksPromise, dataPromise]).then(([weeks, years]) => {
+      if (years) {
+        const season2026HighScorers = {
+          high_scorers: weeks.filter(w => w.topScorer && w.topScorer.owner)
+            .map(w => ({ team: w.topScorer.owner, count: 1 }))
+        };
+        renderHighScorerCounts([...years, season2026HighScorers]);
+      }
+      applyMyTeamHighlight();
+    });
+
+    function renderSeason(weeks) {
+      const container = document.getElementById('week-views');
+      const select = document.getElementById('week-select');
+      if (!weeks.length) {
+        container.innerHTML = '';
+        showWeek('preseason');
+        return;
+      }
+      container.innerHTML = weeks.map(w => {
+        const n = w.week;
+        const ranked = Array.isArray(w.rankings) && w.rankings.length;
+        const body = ranked
+          ? `<div id="week${n}-list"></div>`
+          : `<div class="coming-soon">
+               <span class="coming-soon-emoji">&#9203;</span>
+               <div>Coming Soon</div>
+               <p>Week ${n} Power Rankings will be posted Wednesday morning, after waivers clear.</p>
+             </div>`;
+        const top = w.topScorer ? `
+            <div class="week1-highlights">
+              <div class="week1-highlight-stat">
+                <span class="week1-highlight-label">Week ${n} Top Scorer <span class="matchup-winner">&#128176;</span></span>
+                <span class="week1-highlight-team">${w.topScorer.team}</span>
+                <span class="week1-highlight-value">${Number(w.topScorer.points).toFixed(2)} pts</span>
+              </div>
+            </div>` : '';
+        const board = (w.matchups && w.matchups.length) ? `
+          <div class="week1-matchups">${top}
+            <p class="matchup-status">Week ${n} &middot; final results</p>
+            <div id="week${n}-matchup-list" class="matchup-list"></div>
+          </div>` : '';
+        return `
+        <div id="week${n}-content" class="week-content" style="display:none;">
+          <div class="masthead week-masthead">
+            <h1>Week ${n} Power Rankings</h1>
+            ${ranked ? '<p>Tap a team for record details, ROS outlook and rank history.</p>' : ''}
+            <hr class="rule">
+          </div>
+          ${body}${board}
+        </div>`;
+      }).join('');
+
+      // Dropdown: newest week first, Draft stays last.
+      const draftOpt = select.querySelector('option[value="preseason"]');
+      weeks.slice().reverse().forEach(w => {
+        const o = document.createElement('option');
+        o.value = `week${w.week}`;
+        o.textContent = `Week ${w.week}`;
+        select.insertBefore(o, draftOpt);
+      });
+
+      weeks.forEach((w, i) => {
+        if (Array.isArray(w.rankings) && w.rankings.length) {
+          const prev = i === 0 ? null : weeks[i - 1];
+          const prevMap = i === 0
+            ? PRESEASON_BY_OWNER
+            : Object.fromEntries((prev.rankings || []).map(t => [t.owner, t.rank]));
+          const history = owner => {
+            const pts = [];
+            if (PRESEASON_BY_OWNER[owner] !== undefined) pts.push({ label: 'D', rank: PRESEASON_BY_OWNER[owner], draft: true });
+            weeks.slice(0, i + 1).forEach(x => {
+              const t = (x.rankings || []).find(r => r.owner === owner);
+              if (t) pts.push({ label: String(x.week), rank: t.rank });
+            });
+            return pts;
+          };
+          renderWeekList(`week${w.week}-list`, w.rankings, prevMap, history);
+        }
+        if (w.matchups && w.matchups.length) renderMatchups(w.matchups, `week${w.week}-matchup-list`);
+      });
+
+      const latest = `week${weeks[weeks.length - 1].week}`;
+      select.value = latest;
+      showWeek(latest);
+    }
+
+    function showWeek(v) {
+      document.getElementById('preseason-content').style.display = v === 'preseason' ? '' : 'none';
+      document.querySelectorAll('#week-views .week-content').forEach(el => {
+        el.style.display = el.id === `${v}-content` ? '' : 'none';
+      });
+    }
 
     function activateView(view) {
       document.getElementById('view-current').style.display = view === 'current' ? '' : 'none';
@@ -1199,17 +895,7 @@
     });
 
     document.getElementById('week-select').addEventListener('change', (e) => {
-      const v = e.target.value;
-      document.getElementById('preseason-content').style.display = v === 'preseason' ? '' : 'none';
-      document.getElementById('week1-content').style.display = v === 'week1' ? '' : 'none';
-      document.getElementById('week2-content').style.display = v === 'week2' ? '' : 'none';
-      document.getElementById('week3-content').style.display = v === 'week3' ? '' : 'none';
-      document.getElementById('week4-content').style.display = v === 'week4' ? '' : 'none';
-      document.getElementById('week5-content').style.display = v === 'week5' ? '' : 'none';
-      document.getElementById('week6-content').style.display = v === 'week6' ? '' : 'none';
-      document.getElementById('week7-content').style.display = v === 'week7' ? '' : 'none';
-      document.getElementById('week8-content').style.display = v === 'week8' ? '' : 'none';
-      document.getElementById('week9-content').style.display = v === 'week9' ? '' : 'none';
+      showWeek(e.target.value);
     });
 
     document.getElementById('season-review-select').addEventListener('change', (e) => {
@@ -1230,7 +916,7 @@
     function formatPpg(raw) {
       const m = String(raw).match(/^#(\d+),\s*([\d.]+)\s*ppg$/i);
       if (!m) return String(raw);
-      return `${m[2]} PPG (${ordinal(Number(m[1]))} in league)`;
+      return `${m[2]} PPG (${ordinal(Number(m[1]))})`;
     }
     function formatPoOdds(v) {
       const n = Number(v);
@@ -1261,24 +947,28 @@
     function renderMatchups(matchups, containerId) {
       const el = document.getElementById(containerId);
       el.innerHTML = matchups.map(m => {
-        const homeFinal = isSideFinal(m.homeScore, m.homeProj);
-        const awayFinal = isSideFinal(m.awayScore, m.awayProj);
+        const homeProj = m.homeProj !== undefined ? m.homeProj : m.homeScore;
+        const awayProj = m.awayProj !== undefined ? m.awayProj : m.awayScore;
+        const homeFinal = isSideFinal(m.homeScore, homeProj);
+        const awayFinal = isSideFinal(m.awayScore, awayProj);
         const bothFinal = homeFinal && awayFinal;
         const homeWin = bothFinal && m.homeScore > m.awayScore;
         const awayWin = bothFinal && m.awayScore > m.homeScore;
-        const homeProjLine = homeFinal ? '' : `<span class="matchup-proj">proj ${m.homeProj.toFixed(2)}</span>`;
-        const awayProjLine = awayFinal ? '' : `<span class="matchup-proj">proj ${m.awayProj.toFixed(2)}</span>`;
+        const homeProjLine = homeFinal ? '' : `<span class="matchup-proj">proj ${Number(homeProj).toFixed(2)}</span>`;
+        const awayProjLine = awayFinal ? '' : `<span class="matchup-proj">proj ${Number(awayProj).toFixed(2)}</span>`;
+        const homeOwner = m.homeOwner || TEAM_2026_TO_OWNER[m.home] || '';
+        const awayOwner = m.awayOwner || TEAM_2026_TO_OWNER[m.away] || '';
         return `
           <div class="matchup-row">
-            <div class="matchup-side" data-owner="${TEAM_2026_TO_OWNER[m.home] || ''}">
+            <div class="matchup-side" data-owner="${homeOwner}">
               <span class="matchup-team ${homeWin ? 'win' : ''}">${m.home}</span>
-              <span class="matchup-score ${homeWin ? 'win' : ''}">${m.homeScore.toFixed(2)}</span>
+              <span class="matchup-score ${homeWin ? 'win' : ''}">${Number(m.homeScore).toFixed(2)}</span>
               ${homeProjLine}
             </div>
             <div class="matchup-vs ${bothFinal ? 'final' : ''}">${bothFinal ? 'FINAL' : 'vs'}</div>
-            <div class="matchup-side right" data-owner="${TEAM_2026_TO_OWNER[m.away] || ''}">
+            <div class="matchup-side right" data-owner="${awayOwner}">
               <span class="matchup-team ${awayWin ? 'win' : ''}">${m.away}</span>
-              <span class="matchup-score ${awayWin ? 'win' : ''}">${m.awayScore.toFixed(2)}</span>
+              <span class="matchup-score ${awayWin ? 'win' : ''}">${Number(m.awayScore).toFixed(2)}</span>
               ${awayProjLine}
             </div>
           </div>`;
@@ -1312,15 +1002,40 @@
       if (statusEl) statusEl.textContent = `Week ${weekNum} · ` + (allFinal ? 'final results' : 'in progress');
     }
 
-    // Generic weekly-view renderer, shared by every week's tab (frozen
-    // history read from a saved snapshot, or the live current week
-    // read from the sheet). containerId is that week's list element;
-    // prevRankMap is the baseline the delta arrow compares against
-    // (preseason order for Week 1, the prior week's snapshot for
-    // every week after); rosMap is that week's ROS positional
-    // breakdown, keyed by team name (empty object until that week's
-    // FantasyPros screenshot is in).
-    function renderWeekList(containerId, teams, prevRankMap, rosMap) {
+    // Rank-history sparkline: draft rank (dashed lead-in) then each
+    // week's power rank up to the week being viewed. Rank 1 sits at
+    // the top; the y-axis is always 1-10 so lines compare across teams.
+    function rankHistorySvg(points) {
+      if (!points.length) return '';
+      const W = 460, H = 132, padL = 30, padR = 16, top = 26, bottom = 26;
+      const step = points.length > 1 ? (W - padL - padR) / (points.length - 1) : 0;
+      const x = i => padL + (points.length > 1 ? i * step : (W - padL - padR) / 2);
+      const y = r => top + (r - 1) * (H - top - bottom) / 9;
+      const xy = points.map((p, i) => [x(i), y(p.rank)]);
+      const hasDraft = points[0].draft && points.length > 1;
+      const weekPts = hasDraft ? xy.slice(1) : xy;
+      const draftSeg = hasDraft ? `<line class="rh-draft" x1="${xy[0][0]}" y1="${xy[0][1]}" x2="${xy[1][0]}" y2="${xy[1][1]}"/>` : '';
+      const line = weekPts.length > 1 ? `<polyline class="rh-line" points="${weekPts.map(p => p.join(',')).join(' ')}"/>` : '';
+      const dots = points.map((p, i) => {
+        const cls = p.draft ? 'draft' : (i === points.length - 1 ? 'now' : '');
+        return `<circle class="rh-dot ${cls}" cx="${xy[i][0]}" cy="${xy[i][1]}" r="${i === points.length - 1 ? 5 : 4}"/>
+          <text class="rh-rank" x="${xy[i][0]}" y="${xy[i][1] - 9}">${p.rank}</text>
+          <text class="rh-wk" x="${xy[i][0]}" y="${H - 4}">${p.draft ? 'D' : (points.length > 11 ? '' : 'W') + p.label}</text>`;
+      }).join('');
+      const grid = `<line class="rh-grid" x1="${padL}" x2="${W - padR}" y1="${y(1)}" y2="${y(1)}"/>
+        <line class="rh-grid" x1="${padL}" x2="${W - padR}" y1="${y(10)}" y2="${y(10)}"/>
+        <text class="rh-axis" x="${padL - 10}" y="${y(1) + 4}">1</text>
+        <text class="rh-axis" x="${padL - 10}" y="${y(10) + 4}">10</text>`;
+      const desc = points.map(p => (p.draft ? 'Draft ' : 'Week ' + p.label + ' ') + p.rank).join(', ');
+      return `<div class="rank-history"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Rank history: ${desc}">${grid}${draftSeg}${line}${dots}</svg></div>`;
+    }
+
+    // Weekly power-rankings list. teams come straight from weekN.json
+    // (each with owner + ros); prevRankMap is keyed by OWNER (draft
+    // order for Week 1, the prior week's rankings after that);
+    // historyFor(owner) returns that owner's rank path for the
+    // sparkline.
+    function renderWeekList(containerId, teams, prevRankMap, historyFor) {
       const list = document.getElementById(containerId);
       if (!teams || !teams.length) {
         list.innerHTML = '<div class="empty">No teams found.</div>';
@@ -1328,16 +1043,15 @@
       }
 
       list.innerHTML = teams.map((t, i) => {
-        const prevRank = prevRankMap[t.name];
+        const prevRank = prevRankMap[t.owner];
         let deltaSymbol = '<span class="week-delta flat">' + DELTA_ICON.flat + '</span>';
         if (prevRank !== undefined) {
-          if (prevRank > t.rank) deltaSymbol = '<span class="week-delta up">' + DELTA_ICON.up + '</span>';
-          else if (prevRank < t.rank) deltaSymbol = '<span class="week-delta down">' + DELTA_ICON.down + '</span>';
+          const diff = prevRank - t.rank;
+          if (diff > 0) deltaSymbol = `<span class="week-delta up" title="Up ${diff} from last week">${DELTA_ICON.up}<span class="dn">${diff}</span></span>`;
+          else if (diff < 0) deltaSymbol = `<span class="week-delta down" title="Down ${-diff} from last week">${DELTA_ICON.down}<span class="dn">${-diff}</span></span>`;
         }
 
-        // Positional ROS breakdown comes from a screenshot each week,
-        // same as the draft page.
-        const rosData = rosMap[t.name];
+        const rosData = t.ros;
         const rosPanelBody = rosData
           ? POS_ORDER.filter(pos => pos in rosData).map(pos => {
               const rank = rosData[pos];
@@ -1350,14 +1064,21 @@
             }).join('')
           : '<div class="no-data">ROS positional breakdown not available yet.</div>';
 
+        // Two nowrap groups: on phones they stack as two clean lines
+        // (owner/record/PPG, then playoff odds) instead of wrapping
+        // mid-phrase; on wider screens they sit on one line.
+        const stats = `<span class="wg">${t.owner ? `<span class="ws ws-owner">${t.owner}</span>` : ''}` +
+          `<span class="ws">${t.record}</span><span class="ws">${formatPpg(t.ppg)}</span></span>` +
+          `<span class="wg"><span class="ws">${formatPoOdds(t.poOdds)} playoff odds</span></span>`;
+
         return `
           <div>
             <button class="row-btn" data-i="${i}">
-              <div class="row ${t.rank === 1 ? 'r1' : ''}" data-owner="${TEAM_2026_TO_OWNER[t.name] || ''}">
+              <div class="row ${t.rank === 1 ? 'r1' : ''}" data-owner="${t.owner || ''}">
                 <div class="rank">${t.rank}</div>
                 <div>
-                  <div class="team-name">${deltaSymbol} ${t.name}</div>
-                  <div class="week-stats">${t.record} &middot; ${formatPoOdds(t.poOdds)} PO &middot; ${formatPpg(t.ppg)}</div>
+                  <div class="team-name">${deltaSymbol} ${t.team}</div>
+                  <div class="week-stats">${stats}</div>
                 </div>
                 <div class="chev" data-i="${i}">&rsaquo;</div>
               </div>
@@ -1368,6 +1089,8 @@
               <div class="week-detail-line"><span>ROS Roster Rank</span><span>${t.rosRoster}</span></div>
               <div class="week-ros-heading">ROS Roster Projection</div>
               ${rosPanelBody}
+              <div class="week-ros-heading">Rank History</div>
+              ${rankHistorySvg(historyFor(t.owner))}
             </div>
           </div>`;
       }).join('');

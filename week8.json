@@ -1,102 +1,262 @@
 {
-  "Destined for 3rd": {
-    "rank": 1,
-    "record": "7-1",
-    "overallRecord": "54-18",
-    "cons": "#1",
-    "ppg": "#2, 133ppg",
-    "rosRoster": "#2",
-    "poOdds": 0.99,
-    "score": 1.7714285714285716
+  "week": 8,
+  "topScorer": {
+    "team": "Destined for 3rd",
+    "owner": "Zach",
+    "points": 164.26
   },
-  "Ban Gibbs Bye": {
-    "rank": 2,
-    "record": "6-2",
-    "overallRecord": "45-27",
-    "cons": "#3",
-    "ppg": "#1, 136ppg",
-    "rosRoster": "#1",
-    "poOdds": 0.99,
-    "score": 2.1
-  },
-  "High Character": {
-    "rank": 3,
-    "record": "5-3",
-    "overallRecord": "35-37",
-    "cons": "#6",
-    "ppg": "#5, 120ppg",
-    "rosRoster": "#4",
-    "poOdds": 0.92,
-    "score": 4.942857142857143
-  },
-  "Ban defense & kickers": {
-    "rank": 4,
-    "record": "4-4",
-    "overallRecord": "42-30",
-    "cons": "#4",
-    "ppg": "#4, 122ppg",
-    "rosRoster": "#7",
-    "poOdds": 0.63,
-    "score": 5.3
-  },
-  "was nice while it lasted": {
-    "rank": 5,
-    "record": "4-4",
-    "overallRecord": "38-34",
-    "cons": "#9",
-    "ppg": "#3, 124ppg",
-    "rosRoster": "#5",
-    "poOdds": 0.79,
-    "score": 5.928571428571429
-  },
-  "Vice City Golf Club": {
-    "rank": 6,
-    "record": "4-4",
-    "overallRecord": "32-40",
-    "cons": "#8",
-    "ppg": "#6, 119ppg",
-    "rosRoster": "#3",
-    "poOdds": 0.75,
-    "score": 6.214285714285714
-  },
-  "MILFs": {
-    "rank": 7,
-    "record": "4-4",
-    "overallRecord": "29-43",
-    "cons": "#5",
-    "ppg": "#8, 113ppg",
-    "rosRoster": "#10",
-    "poOdds": 0.42,
-    "score": 7.714285714285714
-  },
-  "not ass per chat": {
-    "rank": 8,
-    "record": "3-5",
-    "overallRecord": "35-37",
-    "cons": "#10",
-    "ppg": "#9, 112ppg",
-    "rosRoster": "#9",
-    "poOdds": 0.13,
-    "score": 9.642857142857142
-  },
-  "end my suffering": {
-    "rank": 9,
-    "record": "1-7",
-    "overallRecord": "28-44",
-    "cons": "#2",
-    "ppg": "#7, 114ppg",
-    "rosRoster": "#6",
-    "poOdds": 0.03,
-    "score": 9.685714285714285
-  },
-  "Chasing Victory": {
-    "rank": 10,
-    "record": "2-6",
-    "overallRecord": "22-50",
-    "cons": "#7",
-    "ppg": "#10, 111ppg",
-    "rosRoster": "#8",
-    "poOdds": 0.13,
-    "score": 10.971428571428572
-  }
+  "matchups": [
+    {
+      "home": "High Character",
+      "homeOwner": "JM",
+      "homeScore": 150.78,
+      "away": "end my suffering",
+      "awayOwner": "Janny",
+      "awayScore": 83.28
+    },
+    {
+      "home": "Vice City Golf Club",
+      "homeOwner": "Triangle",
+      "homeScore": 143.56,
+      "away": "Chasing Victory",
+      "awayOwner": "Chris",
+      "awayScore": 107.98
+    },
+    {
+      "home": "Ban defense & kickers",
+      "homeOwner": "Gurv",
+      "homeScore": 124.34,
+      "away": "MILFs",
+      "awayOwner": "Masten",
+      "awayScore": 105.4
+    },
+    {
+      "home": "Ban Gibbs Bye",
+      "homeOwner": "Nick",
+      "homeScore": 131.46,
+      "away": "not ass per chat",
+      "awayOwner": "Brian",
+      "awayScore": 116.78
+    },
+    {
+      "home": "was nice while it lasted",
+      "homeOwner": "Librizzi",
+      "homeScore": 110.5,
+      "away": "Destined for 3rd",
+      "awayOwner": "Zach",
+      "awayScore": 164.26
+    }
+  ],
+  "rankings": [
+    {
+      "rank": 1,
+      "team": "Destined for 3rd",
+      "owner": "Zach",
+      "record": "7-1",
+      "overallRecord": "54-18",
+      "cons": "#1",
+      "ppg": "#2, 133ppg",
+      "rosRoster": "#2",
+      "poOdds": 0.99,
+      "score": 1.7714285714285716,
+      "ros": {
+        "QB": 1,
+        "RB": 5,
+        "WR": 4,
+        "TE": 7,
+        "K": 2,
+        "DST": 4,
+        "FLEX": 1
+      }
+    },
+    {
+      "rank": 2,
+      "team": "Ban Gibbs Bye",
+      "owner": "Nick",
+      "record": "6-2",
+      "overallRecord": "45-27",
+      "cons": "#3",
+      "ppg": "#1, 136ppg",
+      "rosRoster": "#1",
+      "poOdds": 0.99,
+      "score": 2.1,
+      "ros": {
+        "QB": 3,
+        "RB": 1,
+        "WR": 6,
+        "TE": 4,
+        "K": 10,
+        "DST": 3,
+        "FLEX": 7
+      }
+    },
+    {
+      "rank": 3,
+      "team": "High Character",
+      "owner": "JM",
+      "record": "5-3",
+      "overallRecord": "35-37",
+      "cons": "#6",
+      "ppg": "#5, 120ppg",
+      "rosRoster": "#4",
+      "poOdds": 0.92,
+      "score": 4.942857142857143,
+      "ros": {
+        "QB": 2,
+        "RB": 6,
+        "WR": 9,
+        "TE": 3,
+        "K": 10,
+        "DST": 10,
+        "FLEX": 2
+      }
+    },
+    {
+      "rank": 4,
+      "team": "Ban defense & kickers",
+      "owner": "Gurv",
+      "record": "4-4",
+      "overallRecord": "42-30",
+      "cons": "#4",
+      "ppg": "#4, 122ppg",
+      "rosRoster": "#7",
+      "poOdds": 0.63,
+      "score": 5.3,
+      "ros": {
+        "QB": 6,
+        "RB": 8,
+        "WR": 5,
+        "TE": 1,
+        "K": 10,
+        "DST": 6,
+        "FLEX": 9
+      }
+    },
+    {
+      "rank": 5,
+      "team": "was nice while it lasted",
+      "owner": "Librizzi",
+      "record": "4-4",
+      "overallRecord": "38-34",
+      "cons": "#9",
+      "ppg": "#3, 124ppg",
+      "rosRoster": "#5",
+      "poOdds": 0.79,
+      "score": 5.928571428571429,
+      "ros": {
+        "QB": 10,
+        "RB": 4,
+        "WR": 7,
+        "TE": 5,
+        "K": 10,
+        "DST": 10,
+        "FLEX": 6
+      }
+    },
+    {
+      "rank": 6,
+      "team": "Vice City Golf Club",
+      "owner": "Triangle",
+      "record": "4-4",
+      "overallRecord": "32-40",
+      "cons": "#8",
+      "ppg": "#6, 119ppg",
+      "rosRoster": "#3",
+      "poOdds": 0.75,
+      "score": 6.214285714285714,
+      "ros": {
+        "QB": 9,
+        "RB": 9,
+        "WR": 2,
+        "TE": 2,
+        "K": 1,
+        "DST": 5,
+        "FLEX": 3
+      }
+    },
+    {
+      "rank": 7,
+      "team": "MILFs",
+      "owner": "Masten",
+      "record": "4-4",
+      "overallRecord": "29-43",
+      "cons": "#5",
+      "ppg": "#8, 113ppg",
+      "rosRoster": "#10",
+      "poOdds": 0.42,
+      "score": 7.714285714285714,
+      "ros": {
+        "QB": 5,
+        "RB": 10,
+        "WR": 1,
+        "TE": 10,
+        "K": 10,
+        "DST": 10,
+        "FLEX": 10
+      }
+    },
+    {
+      "rank": 8,
+      "team": "not ass per chat",
+      "owner": "Brian",
+      "record": "3-5",
+      "overallRecord": "35-37",
+      "cons": "#10",
+      "ppg": "#9, 112ppg",
+      "rosRoster": "#9",
+      "poOdds": 0.13,
+      "score": 9.642857142857142,
+      "ros": {
+        "QB": 8,
+        "RB": 3,
+        "WR": 8,
+        "TE": 8,
+        "K": 10,
+        "DST": 7,
+        "FLEX": 8
+      }
+    },
+    {
+      "rank": 9,
+      "team": "end my suffering",
+      "owner": "Janny",
+      "record": "1-7",
+      "overallRecord": "28-44",
+      "cons": "#2",
+      "ppg": "#7, 114ppg",
+      "rosRoster": "#6",
+      "poOdds": 0.03,
+      "score": 9.685714285714285,
+      "ros": {
+        "QB": 7,
+        "RB": 2,
+        "WR": 10,
+        "TE": 6,
+        "K": 3,
+        "DST": 1,
+        "FLEX": 4
+      }
+    },
+    {
+      "rank": 10,
+      "team": "Chasing Victory",
+      "owner": "Chris",
+      "record": "2-6",
+      "overallRecord": "22-50",
+      "cons": "#7",
+      "ppg": "#10, 111ppg",
+      "rosRoster": "#8",
+      "poOdds": 0.13,
+      "score": 10.971428571428572,
+      "ros": {
+        "QB": 4,
+        "RB": 7,
+        "WR": 3,
+        "TE": 9,
+        "K": 4,
+        "DST": 2,
+        "FLEX": 5
+      }
+    }
+  ]
 }

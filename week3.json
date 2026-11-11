@@ -1,102 +1,262 @@
 {
-  "Destined for 3rd": {
-    "rank": 1,
-    "record": "3-0",
-    "overallRecord": "21-6",
-    "cons": "#2",
-    "ppg": "#1, 135ppg",
-    "rosRoster": "#1",
-    "poOdds": 0.95,
-    "score": 1.2142857142857142
+  "week": 3,
+  "topScorer": {
+    "team": "on to 2027",
+    "owner": "Librizzi",
+    "points": 141.54
   },
-  "Ban Him & Aubrey": {
-    "rank": 2,
-    "record": "2-1",
-    "overallRecord": "16-11",
-    "cons": "#5",
-    "ppg": "#3, 127ppg",
-    "rosRoster": "#2",
-    "poOdds": 0.87,
-    "score": 3
-  },
-  "MILFs": {
-    "rank": 3,
-    "record": "2-1",
-    "overallRecord": "20-7",
-    "cons": "#1",
-    "ppg": "#2, 134ppg",
-    "rosRoster": "#8",
-    "poOdds": 0.62,
-    "score": 3.2857142857142856
-  },
-  "on to 2027": {
-    "rank": 4,
-    "record": "2-1",
-    "overallRecord": "15-12",
-    "cons": "#9",
-    "ppg": "#7, 119ppg",
-    "rosRoster": "#5",
-    "poOdds": 0.75,
-    "score": 4.928571428571429
-  },
-  "Ban everything": {
-    "rank": 5,
-    "record": "1-2",
-    "overallRecord": "10-17",
-    "cons": "#3",
-    "ppg": "#6, 121ppg",
-    "rosRoster": "#3",
-    "poOdds": 0.7,
-    "score": 5.5
-  },
-  "Co-Authored": {
-    "rank": 6,
-    "record": "2-1",
-    "overallRecord": "7-20",
-    "cons": "#8",
-    "ppg": "#10, 106ppg",
-    "rosRoster": "#7",
-    "poOdds": 0.43,
-    "score": 6.357142857142857
-  },
-  "Chasing Victory": {
-    "rank": 7,
-    "record": "1-2",
-    "overallRecord": "8-19",
-    "cons": "#6",
-    "ppg": "#5, 121ppg",
-    "rosRoster": "#6",
-    "poOdds": 0.54,
-    "score": 6.571428571428571
-  },
-  "not ass per chat": {
-    "rank": 8,
-    "record": "1-2",
-    "overallRecord": "17-10",
-    "cons": "#10",
-    "ppg": "#4, 122ppg",
-    "rosRoster": "#10",
-    "poOdds": 0.3,
-    "score": 7.142857142857143
-  },
-  "Ban defense & kickers": {
-    "rank": 9,
-    "record": "1-2",
-    "overallRecord": "13-14",
-    "cons": "#7",
-    "ppg": "#9, 116ppg",
-    "rosRoster": "#9",
-    "poOdds": 0.56,
-    "score": 7.642857142857143
-  },
-  "Fat Husband": {
-    "rank": 10,
-    "record": "0-3",
-    "overallRecord": "8-19",
-    "cons": "#4",
-    "ppg": "#8, 117ppg",
-    "rosRoster": "#4",
-    "poOdds": 0.29,
-    "score": 8
-  }
+  "matchups": [
+    {
+      "home": "Co-Authored",
+      "homeOwner": "JM",
+      "homeScore": 89.48,
+      "away": "Destined for 3rd",
+      "awayOwner": "Zach",
+      "awayScore": 129.86
+    },
+    {
+      "home": "Ban Him & Aubrey",
+      "homeOwner": "Triangle",
+      "homeScore": 136.82,
+      "away": "MILFs",
+      "awayOwner": "Masten",
+      "awayScore": 131
+    },
+    {
+      "home": "Ban defense & kickers",
+      "homeOwner": "Gurv",
+      "homeScore": 140.34,
+      "away": "Fat Husband",
+      "awayOwner": "Janny",
+      "awayScore": 127.7
+    },
+    {
+      "home": "Ban everything",
+      "homeOwner": "Nick",
+      "homeScore": 126.68,
+      "away": "Chasing Victory",
+      "awayOwner": "Chris",
+      "awayScore": 122.98
+    },
+    {
+      "home": "on to 2027",
+      "homeOwner": "Librizzi",
+      "homeScore": 141.54,
+      "away": "not ass per chat",
+      "awayOwner": "Brian",
+      "awayScore": 89.94
+    }
+  ],
+  "rankings": [
+    {
+      "rank": 1,
+      "team": "Destined for 3rd",
+      "owner": "Zach",
+      "record": "3-0",
+      "overallRecord": "21-6",
+      "cons": "#2",
+      "ppg": "#1, 135ppg",
+      "rosRoster": "#1",
+      "poOdds": 0.95,
+      "score": 1.2142857142857142,
+      "ros": {
+        "QB": 1,
+        "RB": 8,
+        "WR": 2,
+        "TE": 7,
+        "K": 2,
+        "DST": 5,
+        "FLEX": 1
+      }
+    },
+    {
+      "rank": 2,
+      "team": "Ban Him & Aubrey",
+      "owner": "Triangle",
+      "record": "2-1",
+      "overallRecord": "16-11",
+      "cons": "#5",
+      "ppg": "#3, 127ppg",
+      "rosRoster": "#2",
+      "poOdds": 0.87,
+      "score": 3,
+      "ros": {
+        "QB": 5,
+        "RB": 5,
+        "WR": 5,
+        "TE": 2,
+        "K": 1,
+        "DST": 2,
+        "FLEX": 8
+      }
+    },
+    {
+      "rank": 3,
+      "team": "MILFs",
+      "owner": "Masten",
+      "record": "2-1",
+      "overallRecord": "20-7",
+      "cons": "#1",
+      "ppg": "#2, 134ppg",
+      "rosRoster": "#8",
+      "poOdds": 0.62,
+      "score": 3.2857142857142856,
+      "ros": {
+        "QB": 7,
+        "RB": 9,
+        "WR": 1,
+        "TE": 10,
+        "K": 10,
+        "DST": 10,
+        "FLEX": 9
+      }
+    },
+    {
+      "rank": 4,
+      "team": "on to 2027",
+      "owner": "Librizzi",
+      "record": "2-1",
+      "overallRecord": "15-12",
+      "cons": "#9",
+      "ppg": "#7, 119ppg",
+      "rosRoster": "#5",
+      "poOdds": 0.75,
+      "score": 4.928571428571429,
+      "ros": {
+        "QB": 2,
+        "RB": 4,
+        "WR": 8,
+        "TE": 5,
+        "K": 10,
+        "DST": 10,
+        "FLEX": 6
+      }
+    },
+    {
+      "rank": 5,
+      "team": "Ban everything",
+      "owner": "Nick",
+      "record": "1-2",
+      "overallRecord": "10-17",
+      "cons": "#3",
+      "ppg": "#6, 121ppg",
+      "rosRoster": "#3",
+      "poOdds": 0.7,
+      "score": 5.5,
+      "ros": {
+        "QB": 9,
+        "RB": 1,
+        "WR": 10,
+        "TE": 3,
+        "K": 3,
+        "DST": 10,
+        "FLEX": 7
+      }
+    },
+    {
+      "rank": 6,
+      "team": "Co-Authored",
+      "owner": "JM",
+      "record": "2-1",
+      "overallRecord": "7-20",
+      "cons": "#8",
+      "ppg": "#10, 106ppg",
+      "rosRoster": "#7",
+      "poOdds": 0.43,
+      "score": 6.357142857142857,
+      "ros": {
+        "QB": 4,
+        "RB": 10,
+        "WR": 4,
+        "TE": 6,
+        "K": 10,
+        "DST": 10,
+        "FLEX": 2
+      }
+    },
+    {
+      "rank": 7,
+      "team": "Chasing Victory",
+      "owner": "Chris",
+      "record": "1-2",
+      "overallRecord": "8-19",
+      "cons": "#6",
+      "ppg": "#5, 121ppg",
+      "rosRoster": "#6",
+      "poOdds": 0.54,
+      "score": 6.571428571428571,
+      "ros": {
+        "QB": 3,
+        "RB": 7,
+        "WR": 3,
+        "TE": 8,
+        "K": 4,
+        "DST": 1,
+        "FLEX": 4
+      }
+    },
+    {
+      "rank": 8,
+      "team": "not ass per chat",
+      "owner": "Brian",
+      "record": "1-2",
+      "overallRecord": "17-10",
+      "cons": "#10",
+      "ppg": "#4, 122ppg",
+      "rosRoster": "#10",
+      "poOdds": 0.3,
+      "score": 7.142857142857143,
+      "ros": {
+        "QB": 10,
+        "RB": 3,
+        "WR": 7,
+        "TE": 9,
+        "K": 5,
+        "DST": 4,
+        "FLEX": 10
+      }
+    },
+    {
+      "rank": 9,
+      "team": "Ban defense & kickers",
+      "owner": "Gurv",
+      "record": "1-2",
+      "overallRecord": "13-14",
+      "cons": "#7",
+      "ppg": "#9, 116ppg",
+      "rosRoster": "#9",
+      "poOdds": 0.56,
+      "score": 7.642857142857143,
+      "ros": {
+        "QB": 6,
+        "RB": 6,
+        "WR": 6,
+        "TE": 1,
+        "K": 6,
+        "DST": 6,
+        "FLEX": 5
+      }
+    },
+    {
+      "rank": 10,
+      "team": "Fat Husband",
+      "owner": "Janny",
+      "record": "0-3",
+      "overallRecord": "8-19",
+      "cons": "#4",
+      "ppg": "#8, 117ppg",
+      "rosRoster": "#4",
+      "poOdds": 0.29,
+      "score": 8,
+      "ros": {
+        "QB": 8,
+        "RB": 2,
+        "WR": 9,
+        "TE": 4,
+        "K": 10,
+        "DST": 3,
+        "FLEX": 3
+      }
+    }
+  ]
 }
