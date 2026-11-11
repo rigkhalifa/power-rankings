@@ -286,7 +286,8 @@
     <div class="week-nav">
       <label for="week-select">Viewing</label>
       <select id="week-select">
-        <option value="week8" selected>Week 8</option>
+        <option value="week9" selected>Week 9</option>
+        <option value="week8">Week 8</option>
         <option value="week7">Week 7</option>
         <option value="week6">Week 6</option>
         <option value="week5">Week 5</option>
@@ -431,7 +432,7 @@
       </div>
     </div>
 
-    <div id="week8-content">
+    <div id="week8-content" style="display:none;">
       <div id="week8-list">Loading&hellip;</div>
 
       <div class="week1-matchups">
@@ -444,6 +445,26 @@
         </div>
         <p class="matchup-status">Week 8 &middot; final results</p>
         <div id="week8-matchup-list" class="matchup-list"></div>
+      </div>
+    </div>
+
+    <div id="week9-content">
+      <div class="coming-soon" id="week9-coming-soon">
+        <span class="coming-soon-emoji">&#9203;</span>
+        <div>Coming Soon</div>
+        <p>Week 9 Power Rankings will be posted Wednesday morning, after waivers clear.</p>
+      </div>
+
+      <div class="week1-matchups">
+        <div class="week1-highlights">
+          <div class="week1-highlight-stat">
+            <span class="week1-highlight-label">Week 9 Top Scorer <span class="matchup-winner">&#128176;</span></span>
+            <span class="week1-highlight-team">Ban Gibbs Bye</span>
+            <span class="week1-highlight-value">157.76 pts</span>
+          </div>
+        </div>
+        <p class="matchup-status">Week 9 &middot; final results</p>
+        <div id="week9-matchup-list" class="matchup-list"></div>
       </div>
     </div>
     </div>
@@ -869,6 +890,13 @@
       { home: 'MILFs', homeScore: 82.92, homeProj: 82.92, away: 'Destined for 3rd', awayScore: 127.90, awayProj: 127.90 },
       { home: 'not ass per chat', homeScore: 136.58, homeProj: 136.58, away: 'end my suffering', awayScore: 110.08, awayProj: 110.08 }
     ];
+    const WEEK9_MATCHUPS = [
+      { home: 'High Character', homeScore: 111.74, homeProj: 111.74, away: 'MILFs', awayScore: 103.00, awayProj: 103.00 },
+      { home: 'Vice City Golf Club', homeScore: 130.94, homeProj: 130.94, away: 'Destined for 3rd', awayScore: 101.26, awayProj: 101.26 },
+      { home: 'Ban defense & kickers', homeScore: 129.48, homeProj: 129.48, away: 'was nice while it lasted', awayScore: 110.04, awayProj: 110.04 },
+      { home: 'Ban Gibbs Bye', homeScore: 157.76, homeProj: 157.76, away: 'end my suffering', awayScore: 96.02, awayProj: 96.02 },
+      { home: 'not ass per chat', homeScore: 128.26, homeProj: 128.26, away: 'Chasing Victory', awayScore: 128.68, awayProj: 128.68 }
+    ];
     const WEEK8_MATCHUPS = [
       { home: 'High Character', homeScore: 150.78, homeProj: 150.78, away: 'end my suffering', awayScore: 83.28, awayProj: 83.28 },
       { home: 'Vice City Golf Club', homeScore: 143.56, homeProj: 143.56, away: 'Chasing Victory', awayScore: 107.98, awayProj: 107.98 },
@@ -1090,6 +1118,7 @@
         .sort((a, b) => a.rank - b.rank);
       renderWeekList('week8-list', week8Teams, week7RankMap, WEEK8_ROS);
       renderMatchups(WEEK8_MATCHUPS, 'week8-matchup-list');
+      renderMatchups(WEEK9_MATCHUPS, 'week9-matchup-list');
 
       renderDigest(projectionsRaw);
       renderTrophies(trophies);
@@ -1122,7 +1151,8 @@
           { team: 'Nick', count: 1 },      // Week 5
           { team: 'Nick', count: 1 },      // Week 6
           { team: 'JM', count: 1 },        // Week 7
-          { team: 'Zach', count: 1 }       // Week 8
+          { team: 'Zach', count: 1 },      // Week 8
+          { team: 'Nick', count: 1 }       // Week 9
         ]
       };
       renderHighScorerCounts([y2025, y2024, y2022, y2021, y2023, y2020, y2019, season2026HighScorers]);
@@ -1163,6 +1193,7 @@
       document.getElementById('week6-content').style.display = v === 'week6' ? '' : 'none';
       document.getElementById('week7-content').style.display = v === 'week7' ? '' : 'none';
       document.getElementById('week8-content').style.display = v === 'week8' ? '' : 'none';
+      document.getElementById('week9-content').style.display = v === 'week9' ? '' : 'none';
     });
 
     document.getElementById('season-review-select').addEventListener('change', (e) => {
