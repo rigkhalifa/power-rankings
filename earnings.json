@@ -419,9 +419,15 @@
     },
     {
       "owner": "Chris",
-      "total": 0,
+      "total": 35,
       "yearsPlayed": 1,
-      "breakdown": []
+      "breakdown": [
+        {
+          "year": "2026",
+          "note": "1 weekly high score",
+          "amount": 35
+        }
+      ]
     }
   ]
 }
