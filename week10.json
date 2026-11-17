@@ -1,0 +1,51 @@
+{
+ "week": 10,
+ "topScorer": {
+  "team": "Chasing Victory",
+  "owner": "Chris",
+  "points": 165.86
+ },
+ "matchups": [
+  {
+   "home": "High Character",
+   "homeOwner": "JM",
+   "homeScore": 124.96,
+   "away": "Ban Gibbs Bye",
+   "awayOwner": "Nick",
+   "awayScore": 121.62
+  },
+  {
+   "home": "Vice City Golf Club",
+   "homeOwner": "Triangle",
+   "homeScore": 79.2,
+   "away": "Ban defense & kickers",
+   "awayOwner": "Gurv",
+   "awayScore": 71.58
+  },
+  {
+   "home": "MILFs",
+   "homeOwner": "Masten",
+   "homeScore": 137.12,
+   "away": "on to 2027",
+   "awayOwner": "Librizzi",
+   "awayScore": 124.78
+  },
+  {
+   "home": "Destined for 3rd",
+   "homeOwner": "Zach",
+   "homeScore": 132.74,
+   "away": "not ass per chat",
+   "awayOwner": "Brian",
+   "awayScore": 160.04
+  },
+  {
+   "home": "end my suffering",
+   "homeOwner": "Janny",
+   "homeScore": 153.86,
+   "away": "Chasing Victory",
+   "awayOwner": "Chris",
+   "awayScore": 165.86
+  }
+ ],
+ "rankings": null
+}
