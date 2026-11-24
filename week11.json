@@ -1,0 +1,51 @@
+{
+ "week": 11,
+ "topScorer": {
+  "team": "end my suffering",
+  "owner": "Janny",
+  "points": 139.28
+ },
+ "matchups": [
+  {
+   "home": "High Character",
+   "homeOwner": "JM",
+   "homeScore": 135.9,
+   "away": "Chasing Victory",
+   "awayOwner": "Chris",
+   "awayScore": 100.0
+  },
+  {
+   "home": "Vice City Golf Club",
+   "homeOwner": "Triangle",
+   "homeScore": 115.46,
+   "away": "on to 2027",
+   "awayOwner": "Librizzi",
+   "awayScore": 117.0
+  },
+  {
+   "home": "Ban defense & kickers",
+   "homeOwner": "Gurv",
+   "homeScore": 124.56,
+   "away": "I wish the lord would take me",
+   "awayOwner": "Brian",
+   "awayScore": 106.16
+  },
+  {
+   "home": "Ban Gibbs Bye",
+   "homeOwner": "Nick",
+   "homeScore": 108.12,
+   "away": "MILFs",
+   "awayOwner": "Masten",
+   "awayScore": 98.6
+  },
+  {
+   "home": "Destined for 3rd",
+   "homeOwner": "Zach",
+   "homeScore": 94.46,
+   "away": "end my suffering",
+   "awayOwner": "Janny",
+   "awayScore": 139.28
+  }
+ ],
+ "rankings": null
+}
